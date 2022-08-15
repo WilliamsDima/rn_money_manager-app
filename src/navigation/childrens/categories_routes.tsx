@@ -1,25 +1,24 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import { RoutesNames } from '../routes-names'
-
-import Main from '../../screens/Main'
 import { screenOptions } from '../routes-config'
 import Header from '../../components/organisms/Header'
+import Categories from '../../screens/Categories'
 
-const MainStack = createStackNavigator()
+const CategoriesStack = createStackNavigator()
 
-const MainRoutes = () => {
+const CategoriesRoutes = () => {
   return (
-    <MainStack.Navigator
+    <CategoriesStack.Navigator
       screenOptions={{
         ...screenOptions,
         headerShown: true,
         headerTitle: (props) => <Header {...props} />,
       }}
     >
-      <MainStack.Screen name={RoutesNames.Main.HomeStack} component={Main} />
-    </MainStack.Navigator>
+      <CategoriesStack.Screen name={RoutesNames.Categories.HomeStack} component={Categories} />
+    </CategoriesStack.Navigator>
   )
 }
 
-export default MainRoutes
+export default CategoriesRoutes

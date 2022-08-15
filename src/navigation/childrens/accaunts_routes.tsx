@@ -1,25 +1,24 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import { RoutesNames } from '../routes-names'
-
-import Main from '../../screens/Main'
 import { screenOptions } from '../routes-config'
 import Header from '../../components/organisms/Header'
+import Accaunts from '../../screens/Accaunts'
 
-const MainStack = createStackNavigator()
+const AccauntsStack = createStackNavigator()
 
-const MainRoutes = () => {
+const AccauntsRoutes = () => {
   return (
-    <MainStack.Navigator
+    <AccauntsStack.Navigator
       screenOptions={{
         ...screenOptions,
         headerShown: true,
         headerTitle: (props) => <Header {...props} />,
       }}
     >
-      <MainStack.Screen name={RoutesNames.Main.HomeStack} component={Main} />
-    </MainStack.Navigator>
+      <AccauntsStack.Screen name={RoutesNames.Accaunts.HomeStack} component={Accaunts} />
+    </AccauntsStack.Navigator>
   )
 }
 
-export default MainRoutes
+export default AccauntsRoutes

@@ -1,6 +1,18 @@
 export const RoutesNames = {
   Main: {
-    Home: 'Главная',
-    HomeStack: 'Дом',
+    Home: 'Main',
+    HomeStack: 'Home',
+  },
+  Accaunts: {
+    Home: 'AccauntsMain',
+    HomeStack: 'Accaunts',
+  },
+  Categories: {
+    Home: 'CategoriesMain',
+    HomeStack: 'Categories',
+  },
+  More: {
+    Home: 'MoreMain',
+    HomeStack: 'More',
   },
 }

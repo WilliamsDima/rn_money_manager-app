@@ -8,13 +8,19 @@ import HeaderMain from '../../molecules/Headers/HeaderMain'
 
 const Header: FC<IHeader> = () => {
   const route = useRoute()
-
+  
   const renderHeader = () => {
     switch (route.name) {
       case RoutesNames.Main.Home:
       case RoutesNames.Main.HomeStack:
-        return (
-          <HeaderMain/>
+      case RoutesNames.Accaunts.Home:
+      case RoutesNames.Accaunts.HomeStack:
+      case RoutesNames.Categories.Home:
+      case RoutesNames.Categories.HomeStack:
+      case RoutesNames.More.Home:
+      case RoutesNames.More.HomeStack:
+      return (
+          <HeaderMain routeName={route.name}/>
         )
 
       default:

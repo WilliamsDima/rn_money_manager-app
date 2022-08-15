@@ -1,13 +1,13 @@
 import React from 'react'
 import { ScrollView, Text } from 'react-native'
-import { styles } from './main.styles'
+import { styles } from './accaunts.styles'
 
-const MainTemplate = () => {
+const AccauntsTemplate = () => {
   return (
     <ScrollView style={styles.container}>
-        <Text>MainTemplate</Text>
+        <Text>AccauntsTemplate</Text>
     </ScrollView>
   )
 }
 
-export default MainTemplate
+export default AccauntsTemplate

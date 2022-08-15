@@ -1,13 +1,13 @@
 import React from 'react'
 import { ScrollView, Text } from 'react-native'
-import { styles } from './main.styles'
+import { styles } from './more.styles'
 
-const MainTemplate = () => {
+const MoreTemplate = () => {
   return (
     <ScrollView style={styles.container}>
-        <Text>MainTemplate</Text>
+        <Text>MoreTemplate</Text>
     </ScrollView>
   )
 }
 
-export default MainTemplate
+export default MoreTemplate

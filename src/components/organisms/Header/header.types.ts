@@ -1,1 +1,3 @@
-export interface IHeader {}
+export interface IHeader {
+    routeName: string
+}

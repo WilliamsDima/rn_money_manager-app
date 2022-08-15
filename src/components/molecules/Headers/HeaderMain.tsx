@@ -6,13 +6,13 @@ interface IHeaderMain {
   
 }
 
-const HeaderMain: FC<IHeaderMain> = (props) => {
+const HeaderMain: FC<IHeaderMain> = ({routeName}) => {
 
   const navigation = useNavigation()
 
   return (
     <View>
-      <Text>Header</Text>
+      <Text>{routeName}</Text>
     </View>
   )
 }
