@@ -1,11 +1,11 @@
 import React from 'react'
-import { SafeAreaView } from 'react-native'
+import Countainer from '../../components/atoms/Container'
 import AccauntsTemplate from '../../components/templates/Accaunts'
 
 const Accaunts = () => {
-  return <SafeAreaView>
+  return <Countainer>
     <AccauntsTemplate />
-  </SafeAreaView>
+  </Countainer>
   
 }
 

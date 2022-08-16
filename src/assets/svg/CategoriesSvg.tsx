@@ -1,27 +1,29 @@
 import * as React from "react"
-import Svg, { Path } from "react-native-svg"
+import Svg, { SvgProps, Path } from "react-native-svg"
 
-export const CategoriesSvg = (props) => (
+const CategoriesSvg = (props: SvgProps) => (
   <Svg
+    width={24}
+    height={24}
+    fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 224.075 224.075"
-    style={{
-      enableBackground: "new 0 0 224.075 224.075",
-    }}
-    width={20}
-    height={20}
-    xmlSpace="preserve"
     {...props}
   >
-    <Path 
-    fill={props.color}
-    stroke={props.color}
-    d="M63 27.841h146.9c18.9.5 18.9-28.3 0-27.8H63c-18.9-.5-18.9 28.3 0 27.8zM209.9 98.141H63c-18.9-.5-18.9 28.3 0 27.8h146.9c18.9.5 18.9-28.3 0-27.8zM209.9 195.741H63c-18.9 0-18.9 28.3 0 28.3h146.9c18.9 0 18.9-28.3 0-28.3zM14.2 195.641c-7.9 0-14.2 6.3-14.2 14.2s6.3 14.2 14.2 14.2c7.3 0 13.6-6.3 13.6-14.2 0-7.8-6.3-14.1-13.6-14.2zM14.2 98.141c-7.9 0-14.2 6.3-14.2 13.6 0 7.9 6.3 14.2 14.2 14.2 7.3 0 13.6-6.3 13.6-14.2 0-7.3-6.3-13.6-13.6-13.6zM14.2.041C6.3.041 0 6.341 0 14.241c0 7.3 6.3 13.6 14.2 13.6 7.3 0 13.6-6.3 13.6-13.6 0-7.9-6.3-14.2-13.6-14.2z" />
+    <Path
+      d="M3 5.5h3.07M10.324 3.732a2.5 2.5 0 1 1-3.536 3.536 2.5 2.5 0 0 1 3.536-3.536M11.06 5.5H21"
+      stroke={props.color || "#0E0C0B"}
+      strokeWidth={1.5}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <Path
+      d="M10.324 3.732a2.5 2.5 0 1 1-3.536 3.536 2.5 2.5 0 0 1 3.536-3.536M21 12h-3.06M12.94 12H3M17.212 10.232a2.5 2.5 0 1 1-3.536 3.536 2.5 2.5 0 0 1 3.536-3.536ZM11.06 18.5H21M3 18.5h3.06M10.324 16.732a2.5 2.5 0 1 1-3.536 3.536 2.5 2.5 0 0 1 3.536-3.536Z"
+      stroke={props.color || "#0E0C0B"}
+      strokeWidth={1.5}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
   </Svg>
 )
 
-
-// fill={props.color}
-// stroke={props.color}
-// width={30}
-// height={30}
+export default CategoriesSvg

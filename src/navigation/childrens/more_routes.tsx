@@ -13,6 +13,7 @@ const MoreRoutes = () => {
       screenOptions={{
         ...screenOptions,
         headerShown: true,
+        headerTintColor: 'red',
         headerTitle: (props) => <Header {...props} />,
       }}
     >
