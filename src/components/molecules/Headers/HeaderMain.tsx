@@ -3,7 +3,6 @@ import { useNavigation } from '@react-navigation/native'
 import { View, Text } from 'react-native'
 import { styles } from './header.styles'
 import HeaderAccaunt from '../HeaderAccaunt'
-import { globalStyles } from '../../../services/styles'
 import HistoryBtn from '../../atoms/HistoryBtn'
 
 interface IHeaderMain {

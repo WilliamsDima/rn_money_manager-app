@@ -5,7 +5,7 @@ import { globalStyles } from '../../../services/styles'
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    ...globalStyles.spaceHorizontal,
+    //...globalStyles.spaceHorizontal,
     backgroundColor: COLORS.colorLightBlack
   }
 })
