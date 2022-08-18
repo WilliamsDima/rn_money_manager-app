@@ -5,6 +5,7 @@ import CategoriesSvg from "../assets/svg/CategoriesSvg";
 import { HeaderLeftSvg } from "../assets/svg/HeaderLeftIconSvg";
 import { HistorySvg } from "../assets/svg/HistorySvg";
 import HomeSvg from "../assets/svg/HomeSvg";
+import HeartSvg from '../assets/svg/categories/HeartSvg'
 import { MoreSvg } from "../assets/svg/MoreSvg";
 import { PlusSvg } from "../assets/svg/PlusSvg";
 import { RoutesNames } from "../navigation/routes-names";
@@ -21,6 +22,7 @@ export const ICONS_SVG = {
     arrow_select: (props) => <ArrowSelectSvg color={props.color} {...props}/>, // стрелочки выбора
     history: (props) => <HistorySvg color={props.color} {...props}/>, // история
     plus_circle: (props) => <PlusSvg color={props.color} {...props}/>, // плючис в кружочке
+    heart: (props) => <HeartSvg color={props.color} {...props}/>, // сердце
 }
 
 interface IIconSvg {

@@ -4,5 +4,6 @@ export enum COLORS {
     colorShadow = 'rgb(13, 24, 40)',
     colorBlack = '#111',
     colorLightBlack = '#333',
-    colorHeader = '#3A8050'
+    colorHeader = '#3A8050',
+    colorSecondary = '#444',
 }
