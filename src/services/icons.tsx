@@ -9,24 +9,25 @@ import HeartSvg from '../assets/svg/categories/HeartSvg'
 import { MoreSvg } from "../assets/svg/MoreSvg";
 import { PlusSvg } from "../assets/svg/PlusSvg";
 import { RoutesNames } from "../navigation/routes-names";
+import { ARROW_SELECT, HEADER_LEFT, HEART, HISTORY, PLUS_CIRCLE, TAB_ACCAUNTS, TAB_CATEGORIES, TAB_HOME, TAB_MORE, TICONS } from "./iconsName";
 
 export const ICONS_SVG = {
     // tab
-    [RoutesNames.Main.Home]: (props) => <HomeSvg color={props.color} {...props}/>, // домик
-    [RoutesNames.Accaunts.Home]: (props) => <AccauntsSvg color={props.color} {...props}/>, // Карточки
-    [RoutesNames.Categories.Home]: (props) => <CategoriesSvg color={props.color} {...props}/>, // категории
-    [RoutesNames.More.Home]: (props) => <MoreSvg color={props.color} {...props}/>,// три точки
+    [TAB_HOME]: (props) => <HomeSvg color={props.color} {...props}/>,
+    [TAB_ACCAUNTS]: (props) => <AccauntsSvg color={props.color} {...props}/>,
+    [TAB_CATEGORIES]: (props) => <CategoriesSvg color={props.color} {...props}/>,
+    [TAB_MORE]: (props) => <MoreSvg color={props.color} {...props}/>,
     //
 
-    header_left: (props) => <HeaderLeftSvg color={props.color} {...props}/>, // счёт
-    arrow_select: (props) => <ArrowSelectSvg color={props.color} {...props}/>, // стрелочки выбора
-    history: (props) => <HistorySvg color={props.color} {...props}/>, // история
-    plus_circle: (props) => <PlusSvg color={props.color} {...props}/>, // плючис в кружочке
-    heart: (props) => <HeartSvg color={props.color} {...props}/>, // сердце
+    [HEADER_LEFT]: (props) => <HeaderLeftSvg color={props.color} {...props}/>,
+    [ARROW_SELECT]: (props) => <ArrowSelectSvg color={props.color} {...props}/>,
+    [HISTORY]: (props) => <HistorySvg color={props.color} {...props}/>,
+    [PLUS_CIRCLE]: (props) => <PlusSvg color={props.color} {...props}/>,
+    [HEART]: (props) => <HeartSvg color={props.color} {...props}/>,
 }
 
 interface IIconSvg {
-    name: string
+    name: TICONS 
     color?: string
 }
 

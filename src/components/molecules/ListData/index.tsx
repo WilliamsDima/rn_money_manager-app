@@ -11,6 +11,12 @@ const ListData: FC<IList> = ({}) => {
 
   let content = mok.map((item) => <ItemList key={item.id} item={item}/>);
 
+  // let content = (<FlatList style={{flex: 1}}
+  //   data={mok}
+  //   keyExtractor={item => item.id.toString()}
+  //   renderItem={(item) => <ItemList item={item}/>}
+  //   />);
+  
   return (
     <ScrollView style={styles.container}>
         {content}

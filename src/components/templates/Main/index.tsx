@@ -5,13 +5,14 @@ import Countainer from '../../atoms/Container'
 import GreenWrapper from '../../atoms/GreenWrapper'
 import FilterContent from '../../molecules/FilterContent'
 import HeaderMain from '../../molecules/HeaderMain'
+import ListData from '../../molecules/ListData'
 import MainContetn from '../../organisms/MainContent'
 import { styles } from './main.styles'
 
 const MainTemplate = () => {
 
   return (
-      <Countainer overStyle={{paddingHorizontal: 0}}>
+      <>
         <GreenWrapper>
           <HeaderMain />
         </GreenWrapper>
@@ -22,7 +23,7 @@ const MainTemplate = () => {
 
         <MainContetn />
 
-      </Countainer>
+      </>
   )
 }
 
