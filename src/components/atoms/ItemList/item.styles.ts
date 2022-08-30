@@ -3,7 +3,7 @@ import { COLORS } from '../../../services/colors'
 
 export const styles = StyleSheet.create({
   item: {
-    height: '7%',
+    //height: '9%',
     alignItems: 'center',
     justifyContent: 'space-between',
     flexDirection: 'row',
@@ -12,4 +12,14 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: COLORS.colorSecondary
   },
+  icon: {
+    height: 40,
+    width: 40,
+    borderRadius: 25,
+    marginRight: 20
+  },
+  avatar: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  }
 })

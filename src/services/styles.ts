@@ -31,6 +31,16 @@ export const globalStyles = StyleSheet.create({
     spaceRight: {
       paddingRight: 15,
     },
+    h1: {
+      color: COLORS.colorPriamry,
+      fontSize: 22,
+      fontWeight: '600'
+    },
+    h2: {
+      color: COLORS.colorPriamry,
+      fontSize: 20,
+      fontWeight: '600'
+    },
     p1: {
       color: COLORS.colorPriamry,
       fontSize: 14,
