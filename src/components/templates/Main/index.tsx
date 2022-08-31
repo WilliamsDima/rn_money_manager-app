@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { View } from 'react-native'
 import { globalStyles } from '../../../services/styles'
-import BigModal from '../../atoms/BigModal'
+import CustomModal from '../../atoms/Modal'
 import GreenWrapper from '../../atoms/GreenWrapper'
 import FilterContent from '../../molecules/FilterContent'
 import HeaderMain from '../../molecules/HeaderMain'
@@ -25,9 +25,9 @@ const MainTemplate = () => {
 
         <MainContetn />
 
-        <BigModal visible={expAndEncomeModal} closeHandler={setExpAndEncomeModal}>
+        <CustomModal visible={expAndEncomeModal} closeHandler={setExpAndEncomeModal}>
             <ExpAndIncModal />
-        </BigModal>
+        </CustomModal>
 
       </>
   )

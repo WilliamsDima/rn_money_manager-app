@@ -3,9 +3,9 @@ import { TouchableOpacity } from 'react-native'
 import { IconSvg } from '../../../services/icons'
 import { HISTORY } from '../../../services/iconsName'
 import { styles } from './button.styles'
-import { IButtonTabBar } from './button.types'
+import { IButton } from './button.types'
 
-const HistoryBtn: FC<IButtonTabBar> = ({}) => {
+const HistoryBtn: FC<IButton> = ({}) => {
   
   return (
     <TouchableOpacity

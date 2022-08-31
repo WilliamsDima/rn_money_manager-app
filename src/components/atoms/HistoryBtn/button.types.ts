@@ -1,5 +1,3 @@
-export interface IButtonTabBar {
+export interface IButton {
   onPress?: () => void
-  isFocused?: boolean
-  assetNames: string
 }

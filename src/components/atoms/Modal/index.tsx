@@ -1,10 +1,12 @@
 import React, { FC } from 'react'
 import { Modal, View } from 'react-native'
-import { styles } from './modal.styles'
+import { styles } from './modal.styles';
 import { IModal } from './modal.types'
 
 
-const BigModal: FC<IModal> = React.memo(({visible, closeHandler, children}) => {
+const CustomModal: FC<IModal> = React.memo(({
+    visible, closeHandler, 
+    animationType = 'slide', children}) => {
 
   const cancelHandler = () => {
       closeHandler(false)
@@ -13,7 +15,7 @@ const BigModal: FC<IModal> = React.memo(({visible, closeHandler, children}) => {
   return (
       <Modal
       visible={visible}
-      animationType='slide'
+      animationType={animationType}
       transparent={true}
       onRequestClose={cancelHandler}>
           
@@ -27,4 +29,4 @@ const BigModal: FC<IModal> = React.memo(({visible, closeHandler, children}) => {
   );
 });
 
-export default BigModal
+export default CustomModal

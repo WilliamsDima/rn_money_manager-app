@@ -41,6 +41,11 @@ export const globalStyles = StyleSheet.create({
       fontSize: 20,
       fontWeight: '600'
     },
+    h3: {
+      color: COLORS.colorPriamry,
+      fontSize: 18,
+      fontWeight: '600'
+    },
     p1: {
       color: COLORS.colorPriamry,
       fontSize: 14,

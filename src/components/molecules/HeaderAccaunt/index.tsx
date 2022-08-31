@@ -1,14 +1,18 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
 import { IconSvg } from '../../../services/icons'
 import { ARROW_SELECT, HEADER_LEFT } from '../../../services/iconsName'
 import { globalStyles } from '../../../services/styles'
 import { styles } from './header.styles'
 
-const HeaderAccaunt = () => {
+interface IHeader extends TouchableOpacity {
+  onPress: () => void
+}
+
+const HeaderAccaunt: FC<IHeader> = ({onPress}) => {
 
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
         <View style={styles.content}>
             <IconSvg name={HEADER_LEFT} />
             <Text style={globalStyles.p1}>Карта</Text>
