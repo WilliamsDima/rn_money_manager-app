@@ -9,7 +9,10 @@ import HeartSvg from '../assets/svg/categories/HeartSvg'
 import { MoreSvg } from "../assets/svg/MoreSvg";
 import { PlusSvg } from "../assets/svg/PlusSvg";
 import { RoutesNames } from "../navigation/routes-names";
-import { ARROW_SELECT, HEADER_LEFT, HEART, HISTORY, PLUS_CIRCLE, TAB_ACCAUNTS, TAB_CATEGORIES, TAB_HOME, TAB_MORE, TICONS } from "./iconsName";
+import { ARROW_SELECT, HEADER_LEFT, HEART, HISTORY, MONEY_BAG, PIGGY_BANK, PLUS_CIRCLE, TAB_ACCAUNTS, TAB_CATEGORIES, TAB_HOME, TAB_MORE, TICONS, WALLET } from "./iconsName";
+import { MoneyBagSvg } from "../assets/svg/categories/MoneyBagSvg";
+import { WalletSvg } from "../assets/svg/categories/WalletSvg";
+import { PiggyBankSvg } from "../assets/svg/categories/PiggyBankSvg";
 
 export const ICONS_SVG = {
     // tab
@@ -17,6 +20,9 @@ export const ICONS_SVG = {
     [TAB_ACCAUNTS]: (props) => <AccauntsSvg color={props.color} {...props}/>,
     [TAB_CATEGORIES]: (props) => <CategoriesSvg color={props.color} {...props}/>,
     [TAB_MORE]: (props) => <MoreSvg color={props.color} {...props}/>,
+    [MONEY_BAG]: (props) => <MoneyBagSvg color={props.color} {...props}/>,
+    [WALLET]: (props) => <WalletSvg color={props.color} {...props}/>,
+    [PIGGY_BANK]: (props) => <PiggyBankSvg color={props.color} {...props}/>,
     //
 
     [HEADER_LEFT]: (props) => <HeaderLeftSvg color={props.color} {...props}/>,

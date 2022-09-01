@@ -26,7 +26,7 @@ const HeaderMain: FC<IHeaderMain> = ({routeName}) => {
       visible={modal}
       animationType={'fade'}
       closeHandler={setModal}>
-        <AccauntsModal close={setModal}/>
+        <AccauntsModal close={() => setModal(false)}/>
       </CustomModal>
     </View>
   )

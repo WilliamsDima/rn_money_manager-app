@@ -7,12 +7,13 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
     justifyContent: 'space-between',
-    paddingHorizontal: 10
+    paddingHorizontal: 10,
+    paddingVertical: 10
   },
   icon: {
-    height: 30,
-    width: 30,
-    borderRadius: 15,
+    height: 40,
+    width: 40,
+    borderRadius: 20,
     marginRight: 20
   },
   item: {

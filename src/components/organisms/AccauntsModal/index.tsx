@@ -1,14 +1,21 @@
 import React, { FC, useState } from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
+import { useAppSelector } from '../../../hooks/hooks'
 import { globalStyles } from '../../../services/styles'
 import AccauntsBtnSelect from '../../atoms/AccauntsBtnSelect'
-import Input from '../../atoms/Input'
 import { styles } from './modal.styles'
 import { IExpAndIncModal } from './modal.types'
 
 const AccauntsModal: FC<IExpAndIncModal> = React.memo(({close}) => {
 
-  const [accaunts, setAccaunts] = useState(0)
+  const { accounts } = useAppSelector(state => state.main)
+
+  const [accauntsId, setAccauntsId] = useState(0)
+
+  const setAccauntsHandler = (id) => {
+    setAccauntsId(id)
+    close()
+  }
 
   return (
     <TouchableOpacity 
@@ -21,7 +28,13 @@ const AccauntsModal: FC<IExpAndIncModal> = React.memo(({close}) => {
         <Text style={globalStyles.h3}>Счета:</Text>
 
         <View style={{marginTop: 20, width: '100%'}}>
-            <AccauntsBtnSelect />
+          {accounts.map((item) => {
+            return <AccauntsBtnSelect 
+            key={item.id} 
+            data={item} 
+            idSelect={accauntsId}
+            setAccauntsHandler={setAccauntsHandler}/>
+          })}
         </View>
       </TouchableOpacity>
     </TouchableOpacity>
