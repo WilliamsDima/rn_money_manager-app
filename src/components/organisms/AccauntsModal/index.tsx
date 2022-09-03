@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react'
-import { Text, TouchableOpacity, View } from 'react-native'
+import { ScrollView, Text, TouchableOpacity, View } from 'react-native'
 import { useAppSelector } from '../../../hooks/hooks'
 import { globalStyles } from '../../../services/styles'
 import AccauntsBtnSelect from '../../atoms/AccauntsBtnSelect'
@@ -27,7 +27,7 @@ const AccauntsModal: FC<IExpAndIncModal> = React.memo(({close}) => {
       style={styles.content}>
         <Text style={globalStyles.h3}>Счета:</Text>
 
-        <View style={{marginTop: 20, width: '100%'}}>
+        <ScrollView style={{marginTop: 20, width: '100%'}}>
           {accounts.map((item) => {
             return <AccauntsBtnSelect 
             key={item.id} 
@@ -35,7 +35,7 @@ const AccauntsModal: FC<IExpAndIncModal> = React.memo(({close}) => {
             idSelect={accauntsId}
             setAccauntsHandler={setAccauntsHandler}/>
           })}
-        </View>
+        </ScrollView>
       </TouchableOpacity>
     </TouchableOpacity>
   )

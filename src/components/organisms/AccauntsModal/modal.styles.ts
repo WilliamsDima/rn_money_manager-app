@@ -14,6 +14,7 @@ export const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 10,
     width: '90%',
+    maxHeight: '50%',
     alignItems: 'center'
   }
 })

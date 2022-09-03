@@ -27,5 +27,9 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     borderColor: COLORS.colorLightBlack
+  },
+  active: {
+    borderColor: COLORS.mainColor,
+    backgroundColor: COLORS.mainColor,
   }
 })

@@ -23,7 +23,7 @@ const AccauntsBtnSelect: FC<IAccauntsBtnSelect> = ({data, overStyle,
       </View>
       <View style={styles.item}>
         <Text style={[globalStyles.p1, styles.item]}>{count} p</Text>
-        <View style={styles.circle}/>
+        <View style={[styles.circle, idSelect === id && styles.active]}/>
       </View>
     </TouchableOpacity>
   )

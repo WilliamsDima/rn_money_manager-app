@@ -3,6 +3,7 @@ import { Text, TouchableOpacity, View } from 'react-native'
 import { COLORS } from '../../../services/colors'
 import { globalStyles } from '../../../services/styles'
 import Input from '../../atoms/Input'
+import CategoriesList from '../CategoriesList'
 import { styles } from './modal.styles'
 import { IExpAndIncModal } from './modal.types'
 
@@ -32,6 +33,10 @@ const ExpAndIncModal: FC<IExpAndIncModal> = React.memo(({  }) => {
 
       <View style={styles.item}>
         <Text style={[globalStyles.p1, styles.itemText]}>Выберите категорию:</Text>
+      </View>
+
+      <View style={{marginTop: 20}}>
+        <CategoriesList />
       </View>
 
       <View style={styles.item}>
