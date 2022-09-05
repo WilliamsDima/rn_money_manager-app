@@ -4,13 +4,12 @@ import { COLORS } from '../../../services/colors'
 export const styles = StyleSheet.create({
   container: {
     height: 90,
-    width: '50%',
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    //backgroundColor: '#222',
+    backgroundColor: '#222',
     padding: 10,
-    marginRight: 5,
+    //marginLeft: 5,
     marginBottom: 10
   },
   icon: {
