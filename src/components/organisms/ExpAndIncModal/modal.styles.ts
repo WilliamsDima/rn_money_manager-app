@@ -7,6 +7,13 @@ export const styles = StyleSheet.create({
     backgroundColor: COLORS.colorBlack,
     padding: 10,
     borderRadius: 10,
+    position: 'relative',
+    height: '100%',
+    alignItems: 'center',
+  },
+  btn: {
+    position: 'absolute',
+    bottom: 20,
   },
   title: {
     ...globalStyles.h1,
@@ -26,6 +33,8 @@ export const styles = StyleSheet.create({
     textAlign: 'center'
   },
   item: {
+    width: '100%',
+    alignItems: 'flex-start',
     marginTop: 40
   },
   itemText: {

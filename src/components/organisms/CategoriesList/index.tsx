@@ -25,19 +25,26 @@ const CategoriesList: FC<ICategories> = ({}) => {
     const {x, y, width, height} = event.nativeEvent.layout
     setSize(width / 3)
   }
-
-  console.log(size);
   
-
+  let countHandlerMarginRow = 2
+  
   return (
     <ScrollView 
     style={[styles.list, {height: size * 3}]} 
     horizontal={true} 
     pagingEnabled={true}>
       {res.map((it, i) => {
-        return <View style={[styles.row, {backgroundColor: i ? '#ccc' : 'red'}]} key={i} onLayout={getRowWidth}>
-          {it.map((item) => {
-              return <CategoriItem key={item.id} item={item} size={size - 20}/>
+        return <View style={[styles.row]} key={i} onLayout={getRowWidth}>
+          {it.map((item, j) => {
+              let margin = {}
+              if (countHandlerMarginRow === j + 1) {
+                countHandlerMarginRow += 3
+                margin = {marginLeft: 10, marginRight: 10}
+              }
+              if (j === 8) {
+                countHandlerMarginRow = 2
+              }
+              return <CategoriItem overStyle={margin} key={item.id} item={item} size={size - 20}/>
           })}
         </View>
       })}

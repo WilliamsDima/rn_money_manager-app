@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
     width: Dimensions.get('window').width - globalStyles.spaceHorizontal.paddingHorizontal * 4,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    backgroundColor: 'red',
+    //backgroundColor: 'red',
     justifyContent: 'center',
     alignItems: 'center'
   }

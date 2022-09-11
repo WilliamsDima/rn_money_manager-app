@@ -7,9 +7,9 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#222',
+    //backgroundColor: '#222',
     padding: 10,
-    //marginLeft: 5,
+    //marginLeft: 10,
     marginBottom: 10
   },
   icon: {
