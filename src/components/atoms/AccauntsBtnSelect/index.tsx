@@ -1,5 +1,6 @@
 import React, { FC } from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
+import { numberConverter } from '../../../hooks/helpers'
 import { IconSvg } from '../../../services/icons'
 import { HEART } from '../../../services/iconsName'
 import { globalStyles } from '../../../services/styles'
@@ -22,7 +23,7 @@ const AccauntsBtnSelect: FC<IAccauntsBtnSelect> = ({data, overStyle,
         <Text style={[globalStyles.p1]}>{name()}</Text>
       </View>
       <View style={styles.item}>
-        <Text style={[globalStyles.p1, styles.item]}>{count} p</Text>
+        <Text style={[globalStyles.p1, styles.item]}>{numberConverter(count)} p</Text>
         <View style={[styles.circle, idSelect === id && styles.active]}/>
       </View>
     </TouchableOpacity>

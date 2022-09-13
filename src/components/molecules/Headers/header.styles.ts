@@ -7,4 +7,20 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     flexWrap: 'wrap',
   },
+  wrapp: {
+    width: `${100 / 3}%`,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  container: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+  },
+  content: {
+    marginRight: 10,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
 })

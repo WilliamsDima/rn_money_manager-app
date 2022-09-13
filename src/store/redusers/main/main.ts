@@ -30,7 +30,7 @@ const initialState: IStore = {
         {
             icon: WALLET,
             bg: '#3AC750',
-            name: (lang = true) => lang ? 'Наличка': 'Engl version',
+            name: (lang = true) => lang ? 'Наличные': 'Engl version',
             id: 2,
             count: 5000
         },

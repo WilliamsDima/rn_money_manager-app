@@ -6,14 +6,10 @@ import AccauntsBtnSelect from '../../atoms/AccauntsBtnSelect'
 import { styles } from './modal.styles'
 import { IExpAndIncModal } from './modal.types'
 
-const AccauntsModal: FC<IExpAndIncModal> = React.memo(({close}) => {
-
-  const { accounts } = useAppSelector(state => state.main)
-
-  const [accauntsId, setAccauntsId] = useState(0)
+const AccauntsModal: FC<IExpAndIncModal> = React.memo(({close, setId, idSelect, list}) => {
 
   const setAccauntsHandler = (id) => {
-    setAccauntsId(id)
+    setId(id)
     close()
   }
 
@@ -28,11 +24,11 @@ const AccauntsModal: FC<IExpAndIncModal> = React.memo(({close}) => {
         <Text style={globalStyles.h3}>Счета:</Text>
 
         <ScrollView style={{marginTop: 20, width: '100%'}}>
-          {accounts.map((item) => {
+          {list.map((item) => {
             return <AccauntsBtnSelect 
             key={item.id} 
             data={item} 
-            idSelect={accauntsId}
+            idSelect={idSelect}
             setAccauntsHandler={setAccauntsHandler}/>
           })}
         </ScrollView>

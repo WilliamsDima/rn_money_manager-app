@@ -1,11 +1,16 @@
 import React, { FC, useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
-import { View, Text } from 'react-native'
+import { View, Text,TouchableOpacity } from 'react-native'
 import { styles } from './header.styles'
-import HeaderAccaunt from '../HeaderAccaunt'
 import HistoryBtn from '../../atoms/HistoryBtn'
 import CustomModal from '../../atoms/Modal'
 import AccauntsModal from '../../organisms/AccauntsModal'
+import { useAppSelector } from '../../../hooks/hooks'
+import { IconSvg } from '../../../services/icons'
+import { getItemFromList, numberConverter } from '../../../hooks/helpers'
+import { IAccounts } from '../../../store/redusers/main/types'
+import { globalStyles } from '../../../services/styles'
+import { ARROW_SELECT } from '../../../services/iconsName'
 
 interface IHeaderMain {
   
@@ -14,19 +19,49 @@ interface IHeaderMain {
 const HeaderMain: FC<IHeaderMain> = ({routeName}) => {
 
   const navigation = useNavigation()
+  const { accounts } = useAppSelector(state => state.main)
 
   const [modal, setModal] = useState(false)
+  const [accauntsId, setAccauntsId] = useState(0)
+  const accauntSelect: IAccounts = getItemFromList(accauntsId, accounts)
 
   return (
     <View style={styles.header}>
-      <HeaderAccaunt onPress={() => setModal(!modal)}/>
-      <HistoryBtn />
 
+      <View style={[styles.wrapp, {alignItems: 'flex-start'}]}>
+        <View style={styles.content}>
+            <IconSvg 
+              name={accauntSelect.icon} 
+              color={'#fff'} 
+              style={{width: 20, height: 20}}/>
+            <Text style={[globalStyles.p1, {marginLeft: 10}]} numberOfLines={1}>{accauntSelect.name()}</Text>
+        </View>
+      </View>
+
+      <View style={styles.wrapp}>
+        <TouchableOpacity 
+          style={styles.container} 
+          onPress={() => setModal(!modal)}>
+          <Text style={[globalStyles.p2, {marginRight: 10}]}>
+            {numberConverter(accauntSelect.count)} p
+          </Text>
+          <IconSvg name={ARROW_SELECT} marginTop={-5}/>     
+        </TouchableOpacity>
+      </View>
+
+      <View style={[styles.wrapp, {alignItems: 'flex-end'}]}>
+        <HistoryBtn />   
+      </View>
+    
       <CustomModal
       visible={modal}
       animationType={'fade'}
       closeHandler={setModal}>
-        <AccauntsModal close={() => setModal(false)}/>
+        <AccauntsModal 
+        idSelect={accauntsId} 
+        list={accounts}
+        setId={setAccauntsId} 
+        close={() => setModal(false)}/>
       </CustomModal>
     </View>
   )
