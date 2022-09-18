@@ -5,7 +5,7 @@ import CategoriItem from '../../molecules/CategoriItem'
 import { styles } from './list.styles'
 import { ICategories } from './list.types'
 
-const CategoriesList: FC<ICategories> = ({}) => {
+const CategoriesList: FC<ICategories> = ({categoriId, setCategoriId}) => {
 
   const countItemForRow = 9
 
@@ -44,7 +44,13 @@ const CategoriesList: FC<ICategories> = ({}) => {
               if (j === 8) {
                 countHandlerMarginRow = 2
               }
-              return <CategoriItem overStyle={margin} key={item.id} item={item} size={size - 20}/>
+              return <CategoriItem
+              categoriId={categoriId} 
+              setCategoriId={setCategoriId}
+              overStyle={margin} 
+              key={item.id} 
+              item={item} 
+              size={size - 20}/>
           })}
         </View>
       })}

@@ -1,16 +1,17 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { View, Text,TouchableOpacity } from 'react-native'
 import { styles } from './header.styles'
 import HistoryBtn from '../../atoms/HistoryBtn'
 import CustomModal from '../../atoms/Modal'
 import AccauntsModal from '../../organisms/AccauntsModal'
-import { useAppSelector } from '../../../hooks/hooks'
+import { useAppDispatch, useAppSelector } from '../../../hooks/hooks'
 import { IconSvg } from '../../../services/icons'
 import { getItemFromList, numberConverter } from '../../../hooks/helpers'
 import { IAccounts } from '../../../store/redusers/main/types'
 import { globalStyles } from '../../../services/styles'
 import { ARROW_SELECT } from '../../../services/iconsName'
+import { setAllCauntAccaunts } from '../../../store/redusers/main/main'
 
 interface IHeaderMain {
   
@@ -20,10 +21,15 @@ const HeaderMain: FC<IHeaderMain> = ({routeName}) => {
 
   const navigation = useNavigation()
   const { accounts } = useAppSelector(state => state.main)
+  const dispatch = useAppDispatch()
 
   const [modal, setModal] = useState(false)
   const [accauntsId, setAccauntsId] = useState(0)
   const accauntSelect: IAccounts = getItemFromList(accauntsId, accounts)
+
+  useEffect(() => {
+    dispatch(setAllCauntAccaunts())
+  }, [])
 
   return (
     <View style={styles.header}>

@@ -1,8 +1,10 @@
 import React, { FC, useState } from 'react'
-import { Text, TouchableOpacity, View, ScrollView } from 'react-native'
-import { useAppSelector } from '../../../hooks/hooks'
+import { Text, TouchableOpacity, View, ScrollView, ToastAndroid, Alert } from 'react-native'
+import { getItemFromList, numberConverter } from '../../../hooks/helpers'
+import { useAppDispatch, useAppSelector } from '../../../hooks/hooks'
 import { COLORS } from '../../../services/colors'
 import { globalStyles } from '../../../services/styles'
+import { IAccounts, IExpIncom } from '../../../store/redusers/main/types'
 import Button from '../../atoms/Button'
 import Input from '../../atoms/Input'
 import CustomModal from '../../atoms/Modal'
@@ -11,13 +13,47 @@ import CategoriesList from '../CategoriesList'
 import { styles } from './modal.styles'
 import { IExpAndIncModal } from './modal.types'
 
-const ExpAndIncModal: FC<IExpAndIncModal> = React.memo(({  }) => {
+const ExpAndIncModal: FC<IExpAndIncModal> = React.memo(({expOrEncome}) => {
+
+  const dispatch = useAppDispatch()
 
   const { accounts } = useAppSelector(state => state.main)
   const filterAccaunts = accounts.filter((it) => it.id)
 
   const [modal, setModal] = useState(false)
-  const [accauntsId, setAccauntsId] = useState(0)
+
+  const [accauntsId, setAccauntsId] = useState()
+  const [categoriId, setCategoriId] = useState()
+  const [count, setCount] = useState('')
+  const [text, setText] = useState('')
+  const selectAccaunt: IAccounts = getItemFromList(accauntsId, accounts)
+
+  const addHandler = () => {
+    const money = expOrEncome ? 
+    +selectAccaunt?.count + +count.replace(',', '.') 
+    : selectAccaunt?.count - +count.replace(',', '.')
+    
+    if (money < 0) {
+      Alert.alert('Error', `Не хватает средств на счёте - ${selectAccaunt?.name()}`);
+    }
+    
+    if(accauntsId && categoriId && count && money >= 0) {
+      const data: IExpIncom = {
+        accounts: accauntsId,
+        categori: categoriId,
+        date: new Date(),
+        id: + new Date(),
+        count: count.replace(',', '.'),
+        text: text,
+        income: expOrEncome
+      }
+      console.log('new ADD', data);
+      //dispatch()
+      ToastAndroid.show('добавлено', 2000);
+    }
+
+    //Alert.alert('Error', `Не хватает средств на счёте - ${currentAccaunt.name()}`);
+  }
 
   return (
     <View style={[styles.content]}>
@@ -26,6 +62,8 @@ const ExpAndIncModal: FC<IExpAndIncModal> = React.memo(({  }) => {
         <Input 
             overStyle={styles.input} 
             maxLength={10}
+            value={count}
+            onChange={({nativeEvent}) => setCount(nativeEvent.text)}
             placeholder={'0'}
             placeholderTextColor={'#333'}
             autoFocus={true} 
@@ -38,7 +76,10 @@ const ExpAndIncModal: FC<IExpAndIncModal> = React.memo(({  }) => {
 
         <TouchableOpacity style={{marginTop: 10}}
         onPress={() => setModal(true)}>
-          <Text style={[globalStyles.p1, {color: 'red'}]}>счёт не выбран</Text>
+          <Text style={[globalStyles.p1, selectAccaunt ? {color: COLORS.mainColor} 
+            : {color: 'red'}]}>
+            {selectAccaunt ? selectAccaunt.name()  : 'счёт не выбран'}
+          </Text>
         </TouchableOpacity>
       </View>
       <ScrollView style={{flex: 1, marginTop: 10}}>
@@ -48,13 +89,15 @@ const ExpAndIncModal: FC<IExpAndIncModal> = React.memo(({  }) => {
         </View>
 
         <View style={{marginTop: 20}}>
-          <CategoriesList />
+          <CategoriesList categoriId={categoriId} setCategoriId={setCategoriId}/>
         </View>
 
         <View style={[styles.item, {paddingBottom: 100}]}>
           <Text style={[globalStyles.p1, styles.itemText]}>Комментарий:</Text>
           <View style={[styles.inputWrapper, {width: '100%'}]}>
             <Input
+              value={text}
+              onChange={({nativeEvent}) => setText(nativeEvent.text)}
               overStyle={{width: '100%'}}
               numberOfLines={2}
               placeholderTextColor={'#333'}
@@ -65,8 +108,10 @@ const ExpAndIncModal: FC<IExpAndIncModal> = React.memo(({  }) => {
       </ScrollView>
 
       <View style={styles.btn}>
-        <Button>
-          <Text style={[globalStyles.p2, {color: COLORS.colorBlack}]}>ДОБАВИТЬ</Text>
+        <Button onPress={addHandler}>
+          <Text style={[globalStyles.p2, {color: COLORS.colorBlack}]}>
+            ДОБАВИТЬ
+          </Text>
         </Button>
       </View>
 

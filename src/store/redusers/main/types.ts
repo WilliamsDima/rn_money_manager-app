@@ -16,7 +16,7 @@ export interface ICategories {
 
 export interface IExpIncom {
     id: number
-    money: string
+    count: string | number
     accounts: null | number
     categori: null | number
     date: Date
@@ -26,7 +26,7 @@ export interface IExpIncom {
 
 export interface ITransaction {
     id: number
-    money: number,
+    count: number,
     accauntsWay: [number | null, number | null]
     date: Date
     text: string

@@ -11,6 +11,7 @@ import { styles } from './main.styles'
 
 const MainTemplate = () => {
 
+  const [expOrEncome, setExpOrEncome] = useState(false)
   const [expAndEncomeModal, setExpAndEncomeModal] = useState(false)
 
   return (
@@ -26,7 +27,7 @@ const MainTemplate = () => {
         <MainContetn />
 
         <CustomModal visible={expAndEncomeModal} closeHandler={setExpAndEncomeModal}>
-            <ExpAndIncModal />
+            <ExpAndIncModal expOrEncome={expOrEncome}/>
         </CustomModal>
 
       </>

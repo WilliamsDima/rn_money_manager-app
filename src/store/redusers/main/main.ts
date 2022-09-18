@@ -11,7 +11,6 @@ const initialState: IStore = {
     sortPeriod: null,
     allCountSort: 0,
     allCategiesSort: 0,
-
     accounts: [
         {
             icon: MONEY_BAG,
@@ -178,4 +177,4 @@ export const mainReducer = (state = initialState, action) => {
     return counterSlice.reducer(state, action);
 };
 
-export const {countIncrementAC, countDiscrementAC} = counterSlice.actions;
+export const {setAllCauntAccaunts} = counterSlice.actions;
