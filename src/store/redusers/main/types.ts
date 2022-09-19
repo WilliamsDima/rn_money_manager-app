@@ -12,6 +12,7 @@ export interface ICategories {
     bg: string
     id: number
     count: number
+    income: boolean
 }
 
 export interface IExpIncom {
@@ -34,14 +35,13 @@ export interface ITransaction {
 
 export interface IStore {
     accountsIdSelected: number
+    tabExpOrIncome: boolean
     sort: string
     sortPeriod: null | string
     allCountSort: number
-    allCategiesSort: number
+    sumCategiesCountSort: number
     accounts: IAccounts[]
     categories: ICategories[]
-    expenses: IExpIncom[],
-    categoriesIncomes: ICategories[]
+    expensesAndIncomes: IExpIncom[],
     transaction: ITransaction[],
-    incomes: IExpIncom[]
 }

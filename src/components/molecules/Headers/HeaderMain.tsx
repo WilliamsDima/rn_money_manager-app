@@ -11,7 +11,7 @@ import { getItemFromList, numberConverter } from '../../../hooks/helpers'
 import { IAccounts } from '../../../store/redusers/main/types'
 import { globalStyles } from '../../../services/styles'
 import { ARROW_SELECT } from '../../../services/iconsName'
-import { setAllCauntAccaunts } from '../../../store/redusers/main/main'
+import { setAllCauntAccaunts, sumCategiesCount } from '../../../store/redusers/main/main'
 
 interface IHeaderMain {
   
@@ -20,16 +20,20 @@ interface IHeaderMain {
 const HeaderMain: FC<IHeaderMain> = ({routeName}) => {
 
   const navigation = useNavigation()
-  const { accounts } = useAppSelector(state => state.main)
+  const { accounts, categories, expensesAndIncomes, tabExpOrIncome } = useAppSelector(state => state.main)
   const dispatch = useAppDispatch()
+
+  const categoriesExpOrIncomFilter = categories.filter((c) => c.income === tabExpOrIncome)
+  
 
   const [modal, setModal] = useState(false)
   const [accauntsId, setAccauntsId] = useState(0)
   const accauntSelect: IAccounts = getItemFromList(accauntsId, accounts)
 
   useEffect(() => {
+    dispatch(sumCategiesCount(categoriesExpOrIncomFilter))
     dispatch(setAllCauntAccaunts())
-  }, [])
+  }, [expensesAndIncomes, tabExpOrIncome])
 
   return (
     <View style={styles.header}>
@@ -49,7 +53,7 @@ const HeaderMain: FC<IHeaderMain> = ({routeName}) => {
           style={styles.container} 
           onPress={() => setModal(!modal)}>
           <Text style={[globalStyles.p2, {marginRight: 10}]}>
-            {numberConverter(accauntSelect.count)} p
+            {numberConverter(accauntSelect.count)} P
           </Text>
           <IconSvg name={ARROW_SELECT} marginTop={-5}/>     
         </TouchableOpacity>

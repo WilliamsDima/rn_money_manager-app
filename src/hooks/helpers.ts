@@ -9,4 +9,5 @@ export const countSumItemsFromList = (list: any[]) => list.reduce(
         return 0
       }
     }, 0
-  );
+  )
+export const countInterest = (count, x) => ((x * 100) / count).toFixed(2)

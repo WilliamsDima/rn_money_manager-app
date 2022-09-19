@@ -10,15 +10,16 @@ const CategoriesList: FC<ICategories> = ({categoriId, setCategoriId}) => {
   const countItemForRow = 9
 
   const [size, setSize] = useState(0)
-  const { categories } = useAppSelector(state => state.main)
+  const { categories, tabExpOrIncome } = useAppSelector(state => state.main)
+  const categoriesFilter = categories.filter((c) => c.income === tabExpOrIncome)
 
   let res = []
-  const count = parseInt(categories.length / countItemForRow)
+  const count = parseInt(categoriesFilter.length / countItemForRow)
   for (let i = 0; i < count; i++) {
-    res.push(categories.slice(i * countItemForRow, i * countItemForRow + countItemForRow))
+    res.push(categoriesFilter.slice(i * countItemForRow, i * countItemForRow + countItemForRow))
   }
-  if (count * countItemForRow < categories.length) {
-    res.push(categories.slice(count * countItemForRow))
+  if (count * countItemForRow < categoriesFilter.length) {
+    res.push(categoriesFilter.slice(count * countItemForRow))
   }
 
   const getRowWidth = (event) => {

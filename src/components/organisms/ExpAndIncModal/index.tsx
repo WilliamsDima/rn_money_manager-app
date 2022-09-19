@@ -4,6 +4,7 @@ import { getItemFromList, numberConverter } from '../../../hooks/helpers'
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks'
 import { COLORS } from '../../../services/colors'
 import { globalStyles } from '../../../services/styles'
+import { addTransaction } from '../../../store/redusers/main/main'
 import { IAccounts, IExpIncom } from '../../../store/redusers/main/types'
 import Button from '../../atoms/Button'
 import Input from '../../atoms/Input'
@@ -13,11 +14,11 @@ import CategoriesList from '../CategoriesList'
 import { styles } from './modal.styles'
 import { IExpAndIncModal } from './modal.types'
 
-const ExpAndIncModal: FC<IExpAndIncModal> = React.memo(({expOrEncome}) => {
+const ExpAndIncModal: FC<IExpAndIncModal> = React.memo(({setExpAndEncomeModal}) => {
 
   const dispatch = useAppDispatch()
 
-  const { accounts } = useAppSelector(state => state.main)
+  const { accounts, tabExpOrIncome } = useAppSelector(state => state.main)
   const filterAccaunts = accounts.filter((it) => it.id)
 
   const [modal, setModal] = useState(false)
@@ -29,7 +30,7 @@ const ExpAndIncModal: FC<IExpAndIncModal> = React.memo(({expOrEncome}) => {
   const selectAccaunt: IAccounts = getItemFromList(accauntsId, accounts)
 
   const addHandler = () => {
-    const money = expOrEncome ? 
+    const money = tabExpOrIncome ? 
     +selectAccaunt?.count + +count.replace(',', '.') 
     : selectAccaunt?.count - +count.replace(',', '.')
     
@@ -45,11 +46,12 @@ const ExpAndIncModal: FC<IExpAndIncModal> = React.memo(({expOrEncome}) => {
         id: + new Date(),
         count: count.replace(',', '.'),
         text: text,
-        income: expOrEncome
+        income: tabExpOrIncome
       }
       console.log('new ADD', data);
-      //dispatch()
+      dispatch(addTransaction(data))
       ToastAndroid.show('добавлено', 2000);
+      setExpAndEncomeModal(false)
     }
 
     //Alert.alert('Error', `Не хватает средств на счёте - ${currentAccaunt.name()}`);
@@ -57,7 +59,7 @@ const ExpAndIncModal: FC<IExpAndIncModal> = React.memo(({expOrEncome}) => {
 
   return (
     <View style={[styles.content]}>
-      <Text style={styles.title}>затраты</Text>
+      <Text style={styles.title}>{tabExpOrIncome ? 'доход' : 'затраты'}</Text>
       <View style={styles.inputWrapper}>
         <Input 
             overStyle={styles.input} 

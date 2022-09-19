@@ -6,12 +6,11 @@ import GreenWrapper from '../../atoms/GreenWrapper'
 import FilterContent from '../../molecules/FilterContent'
 import HeaderMain from '../../molecules/HeaderMain'
 import ExpAndIncModal from '../../organisms/ExpAndIncModal'
-import MainContetn from '../../organisms/MainContent'
+import MainContent from '../../organisms/MainContent'
 import { styles } from './main.styles'
 
 const MainTemplate = () => {
 
-  const [expOrEncome, setExpOrEncome] = useState(false)
   const [expAndEncomeModal, setExpAndEncomeModal] = useState(false)
 
   return (
@@ -24,10 +23,10 @@ const MainTemplate = () => {
           <FilterContent setExpAndEncomeModal={setExpAndEncomeModal}/>
         </View>
 
-        <MainContetn />
+        <MainContent />
 
         <CustomModal visible={expAndEncomeModal} closeHandler={setExpAndEncomeModal}>
-            <ExpAndIncModal expOrEncome={expOrEncome}/>
+            <ExpAndIncModal setExpAndEncomeModal={setExpAndEncomeModal}/>
         </CustomModal>
 
       </>

@@ -7,10 +7,11 @@ import { IStore } from './types';
 
 const initialState: IStore = {
     accountsIdSelected: 1,
+    tabExpOrIncome: false,
     sort: 'Month',
     sortPeriod: null,
     allCountSort: 0,
-    allCategiesSort: 0,
+    sumCategiesCountSort: 0,
     accounts: [
         {
             icon: MONEY_BAG,
@@ -49,6 +50,7 @@ const initialState: IStore = {
             bg: '#FA4442',
             id: 1,
             count: 0,
+            income: false,
         },
         {
             name: (lang = true) => lang ? 'Транспорт': 'Engl version',
@@ -56,6 +58,7 @@ const initialState: IStore = {
             bg: '#4EA0E7',
             id: 2,
             count: 0,
+            income: false,
         },
         {
             name: (lang = true) => lang ? 'Продукты': 'Engl version',
@@ -63,6 +66,7 @@ const initialState: IStore = {
             bg: '#6ED3CF',
             id: 3,
             count: 0,
+            income: false,
         },
         {
             name: (lang = true) => lang ? 'Подарки': 'Engl version',
@@ -70,6 +74,7 @@ const initialState: IStore = {
             bg: '#9BB592',
             id: 4,
             count: 0,
+            income: false,
         },
         {
             name: (lang = true) => lang ? 'Кафе': 'Engl version',
@@ -77,6 +82,7 @@ const initialState: IStore = {
             bg: '#F0CB50',
             id: 5,
             count: 0,
+            income: false,
         },
         {
             name: (lang = true) => lang ? 'ЖКХ': 'Engl version',
@@ -84,6 +90,7 @@ const initialState: IStore = {
             bg: '#85D35C',
             id: 6,
             count: 0,
+            income: false,
         },
         {
             name: (lang = true) => lang ? 'Спорт': 'Engl version',
@@ -91,6 +98,7 @@ const initialState: IStore = {
             bg: '#84D161',
             id: 7,
             count: 0,
+            income: false,
         },
         {
             name: (lang = true) => lang ? 'Образование': 'Engl version',
@@ -98,6 +106,7 @@ const initialState: IStore = {
             bg: '#F4497D',
             id: 8,
             count: 0,
+            income: false,
         },
         {
             name: (lang = true) => lang ? 'Семья': 'Engl version',
@@ -105,6 +114,7 @@ const initialState: IStore = {
             bg: '#FA4442',
             id: 9,
             count: 0,
+            income: false,
         },
         {
             name: (lang = true) => lang ? 'Игры': 'Engl version',
@@ -112,6 +122,7 @@ const initialState: IStore = {
             bg: '#6BD3D0',
             id: 10,
             count: 0,
+            income: false,
         },
         {
             name: (lang = true) => lang ? 'Благотворительность': 'Engl version',
@@ -119,6 +130,7 @@ const initialState: IStore = {
             bg: '#FA4442',
             id: 11,
             count: 0,
+            income: false,
         },
         {
             name: (lang = true) => lang ? 'Другое': 'Engl version',
@@ -126,45 +138,43 @@ const initialState: IStore = {
             bg: '#FA4442',
             id: 12,
             count: 0,
+            income: false,
         },
-    ],
-
-    expenses: [],
-
-    categoriesIncomes: [
         {
             name: (lang = true) => lang ? 'Зарплата': 'Engl version',
             icon: TAB_ACCAUNTS,
             bg: '#FA4442',
-            id: 1,
+            id: 13,
             count: 0,
+            income: true,
         },
         {
             name: (lang = true) => lang ? 'Кэшбэк': 'Engl version',
             icon: REFUND,
             bg: '#4EA0E7',
-            id: 2,
+            id: 14,
             count: 0,
+            income: true,
         },
         {
             name: (lang = true) => lang ? 'Подарок': 'Engl version',
             icon: GIFT,
             bg: '#6ED3CF',
-            id: 3,
+            id: 15,
             count: 0,
+            income: true,
         },
         {
             name: (lang = true) => lang ? 'Возврат': 'Engl version',
             icon: REFUND_REPO,
             bg: '#9BB592',
-            id: 4,
+            id: 16,
             count: 0,
+            income: true,
         },
     ],
-
+    expensesAndIncomes: [],
     transaction: [],
-
-    incomes: []
 };
 
 const counterSlice = createSlice({
@@ -177,4 +187,5 @@ export const mainReducer = (state = initialState, action) => {
     return counterSlice.reducer(state, action);
 };
 
-export const {setAllCauntAccaunts} = counterSlice.actions;
+export const {setAllCauntAccaunts, addTransaction, 
+    sumCategiesCount, setTabExpOrIncome} = counterSlice.actions;

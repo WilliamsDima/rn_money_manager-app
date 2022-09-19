@@ -8,7 +8,7 @@ const CountSumMoney: FC<ICount> = ({}) => {
   
   return (
     <View style={[styles.container]}>
-      <Text style={[globalStyles.p2]}>5 000 p</Text>
+      <Text style={[globalStyles.p2]}>5 000 P</Text>
     </View>
   )
 }

@@ -4,16 +4,20 @@ import { IMain } from './main.types'
 import { View } from 'react-native'
 import FilterList from '../../atoms/FilterList'
 import ListData from '../../molecules/ListData'
+import { useAppSelector } from '../../../hooks/hooks'
 
-const MainContetn: FC<IMain> = () => {
+const MainContent: FC<IMain> = ({}) => {
+
+  const { categories, tabExpOrIncome } = useAppSelector(state => state.main)
+  const categoriesFilter = categories.filter((c) => c.income === tabExpOrIncome && c.count)
 
   return (
     <View style={[styles.view]}>
         <FilterList />
-        <ListData />
+        <ListData data={categoriesFilter} />
 
     </View>
   )
 }
 
-export default MainContetn
+export default MainContent

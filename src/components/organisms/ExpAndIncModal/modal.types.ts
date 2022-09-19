@@ -1,3 +1,3 @@
 export interface IExpAndIncModal {
-    expOrEncome: boolean
+    setExpAndEncomeModal: () => void
 }
