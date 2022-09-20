@@ -11,3 +11,12 @@ export const countSumItemsFromList = (list: any[]) => list.reduce(
     }, 0
   )
 export const countInterest = (count, x) => ((x * 100) / count).toFixed(2)
+
+// Поскольку массив заморожен в строгом режиме, нужно скопировать массив перед его сортировкой поэтому использую slice
+export const categoriesFilterMaxValue = (categories, max) => categories 
+&& categories.slice().sort((a, b) => {
+  if (max) {
+    return b.count - a.count
+  }
+  return a.count - b.count
+});

@@ -10,7 +10,7 @@ const initialState: IStore = {
     tabExpOrIncome: false,
     sort: 'Month',
     sortPeriod: null,
-    allCountSort: 0,
+    sumMoneySort: 0,
     sumCategiesCountSort: 0,
     accounts: [
         {
@@ -188,4 +188,4 @@ export const mainReducer = (state = initialState, action) => {
 };
 
 export const {setAllCauntAccaunts, addTransaction, 
-    sumCategiesCount, setTabExpOrIncome} = counterSlice.actions;
+    sumCategiesCount, setTabExpOrIncome, setSumMoneySort} = counterSlice.actions;

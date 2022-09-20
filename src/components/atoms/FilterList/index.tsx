@@ -5,14 +5,22 @@ import { ARROW_SELECT } from '../../../services/iconsName'
 import { globalStyles } from '../../../services/styles'
 import { styles } from './filter.styles'
 
-const FilterList: FC = ({}) => {
+interface IFilter {
+  setFilter: () => void
+  filter: boolean
+}
+
+const FilterList: FC<IFilter> = ({setFilter, filter}) => {
   
   return (
     <View style={[styles.container]}>
-      <TouchableOpacity style={styles.btn}>
-        <Text style={[globalStyles.p1, {marginRight: 10}]}>По возрастанию</Text>
+      <TouchableOpacity style={styles.btn} onPress={() => setFilter(!filter)}>
+        <Text style={[globalStyles.p1, {marginRight: 10}]}>
+          {filter ? 'По возрастанию' : 'По убыванию'}
+        </Text>
 
-        <View style={{marginTop: -5}}>
+        <View style={[{marginTop: -5}, !filter 
+          && {transform: [{rotate: '-180deg'}], marginTop: 5}]}>
           <IconSvg name={ARROW_SELECT} />
         </View>
       </TouchableOpacity>

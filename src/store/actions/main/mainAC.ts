@@ -1,12 +1,12 @@
-import { PayloadAction } from "@reduxjs/toolkit"
 import { countSumItemsFromList } from "../../../hooks/helpers"
 import { IACMain } from "./types"
-
-// сделать тип state глобальным чтоб были подсказки
 
 export const reducers: IACMain = {
     setTabExpOrIncome: (state, {payload}) => {
         state.tabExpOrIncome = payload
+    },
+    setSumMoneySort: (state, {payload}) => {
+        state.sumMoneySort = payload
     },
     setAllCauntAccaunts: (state) => {
         const sum = countSumItemsFromList(state.accounts)

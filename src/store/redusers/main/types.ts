@@ -38,7 +38,7 @@ export interface IStore {
     tabExpOrIncome: boolean
     sort: string
     sortPeriod: null | string
-    allCountSort: number
+    sumMoneySort: number
     sumCategiesCountSort: number
     accounts: IAccounts[]
     categories: ICategories[]
