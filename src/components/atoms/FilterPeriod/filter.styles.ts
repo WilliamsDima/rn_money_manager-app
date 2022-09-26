@@ -11,7 +11,12 @@ export const styles = StyleSheet.create({
   item: {
     width: '25%',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    paddingBottom: 5,
+  },
+  active: {
+    borderBottomWidth: 1,
+    borderColor: COLORS.colorPriamry,
   },
   line: {
     position: 'absolute',

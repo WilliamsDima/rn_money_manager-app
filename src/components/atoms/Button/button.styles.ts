@@ -10,4 +10,7 @@ export const styles = StyleSheet.create({
     paddingVertical: 10,
     borderRadius: 20
   },
+  disabled: {
+    backgroundColor: COLORS.colorSecondary
+  }
 })

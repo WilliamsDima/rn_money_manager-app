@@ -6,6 +6,11 @@ import { reducers } from "../../actions/main/mainAC";
 import { IStore } from './types';
 
 const initialState: IStore = {
+    sortData: [
+    {title: 'День', value: 'Day'}, 
+    {title: 'Неделя', value: 'Week'},
+    {title: 'Месяц', value: 'Month'},
+    {title: 'Год', value: 'Year'}],
     accountsIdSelected: 1,
     tabExpOrIncome: false,
     sort: 'Month',
@@ -188,4 +193,4 @@ export const mainReducer = (state = initialState, action) => {
 };
 
 export const {setAllCauntAccaunts, addTransaction, 
-    sumCategiesCount, setTabExpOrIncome, setSumMoneySort} = counterSlice.actions;
+    sumCategiesCount, setTabExpOrIncome, setSumMoneySort, setSortValue} = counterSlice.actions;

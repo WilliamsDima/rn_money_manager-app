@@ -33,10 +33,18 @@ export interface ITransaction {
     text: string
 }
 
+type TsortFilter = 'Day' | 'Week' | 'Month' | 'Year'
+
+interface ISortData {
+    title: string
+    value: string
+}
+
 export interface IStore {
+    sortData: ISortData[]
     accountsIdSelected: number
     tabExpOrIncome: boolean
-    sort: string
+    sort: TsortFilter
     sortPeriod: null | string
     sumMoneySort: number
     sumCategiesCountSort: number

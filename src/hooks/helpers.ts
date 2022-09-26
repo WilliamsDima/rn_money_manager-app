@@ -20,3 +20,25 @@ export const categoriesFilterMaxValue = (categories, max) => categories
   }
   return a.count - b.count
 });
+
+export const months = ["January", "February", "March", "April", "May", "June",
+"July", "August", "September", "October", "November", "December"];
+
+export const periodSort = (periodSelect, arrayMoney, date) => {
+
+  const startWeek = new Date(+date - (86400000 * 7));
+  const endWeek = new Date(date);
+
+  const methodDate = {
+    'Day': () => arrayMoney.filter((ex) => new Date(ex.date).toLocaleDateString() === new Date(date).toLocaleDateString()), 
+
+    'Week': () => arrayMoney.filter((ex) => +new Date(ex.date) >= +startWeek && +new Date(ex.date) <= +endWeek + 86400000),
+
+    'Month': () => arrayMoney.filter((ex) => new Date(ex.date).getMonth() === new Date(date).getMonth()
+      && new Date(ex.date).getFullYear() === new Date(date).getFullYear()),
+
+    'Year': () => arrayMoney.filter((ex) => new Date(ex.date).getFullYear() === new Date(date).getFullYear()), 
+  };
+
+  return arrayMoney.length && methodDate[periodSelect]();
+};

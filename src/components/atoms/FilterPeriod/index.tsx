@@ -1,28 +1,31 @@
 import React, { FC } from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
+import { useAppDispatch, useAppSelector } from '../../../hooks/hooks'
 import { globalStyles } from '../../../services/styles'
+import { setSortValue } from '../../../store/redusers/main/main'
 import { styles } from './filter.styles'
 import { IFilterPeriod } from './filter.types'
 
 const FilterPeriod: FC<IFilterPeriod> = ({}) => {
 
-  // перемещение линии вычислять математически через useRef
+  const dispatch = useAppDispatch()
+  const { sortData, sort } = useAppSelector(state => state.main)
+
+  const changeSortHandler = (value) => {
+    dispatch(setSortValue(value))
+  }
   
   return (
     <View style={[styles.container]}>
-      <TouchableOpacity style={styles.item}>
-        <Text style={[globalStyles.p1]}>День</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.item}>
-        <Text style={[globalStyles.p1]}>Неделя</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.item}>
-        <Text style={[globalStyles.p1]}>Месяц</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.item}>
-        <Text style={[globalStyles.p1]}>Год</Text>
-      </TouchableOpacity>
-      <View style={styles.line}/>
+      {sortData.map((item, i) => <TouchableOpacity 
+      key={i}
+      style={[styles.item, sort === item.value && styles.active]}
+      onPress={() => changeSortHandler(item.value)}>
+        <Text style={[globalStyles.p1]}>
+          {item.title}
+        </Text>
+      </TouchableOpacity>)}
+      {/* <View style={styles.line}/> */}
     </View>
   )
 }

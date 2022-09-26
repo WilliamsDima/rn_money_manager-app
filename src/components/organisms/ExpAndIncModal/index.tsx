@@ -29,10 +29,13 @@ const ExpAndIncModal: FC<IExpAndIncModal> = React.memo(({setExpAndEncomeModal}) 
   const [text, setText] = useState('')
   const selectAccaunt: IAccounts = getItemFromList(accauntsId, accounts)
 
+  const money = tabExpOrIncome ? 
+  +selectAccaunt?.count + +count.replace(',', '.') 
+  : selectAccaunt?.count - +count.replace(',', '.')
+
+  const disabled = accauntsId && categoriId && count && money >= 0
+
   const addHandler = () => {
-    const money = tabExpOrIncome ? 
-    +selectAccaunt?.count + +count.replace(',', '.') 
-    : selectAccaunt?.count - +count.replace(',', '.')
     
     if (money < 0) {
       Alert.alert('Error', `Не хватает средств на счёте - ${selectAccaunt?.name()}`);
@@ -53,8 +56,6 @@ const ExpAndIncModal: FC<IExpAndIncModal> = React.memo(({setExpAndEncomeModal}) 
       ToastAndroid.show('добавлено', 2000);
       setExpAndEncomeModal(false)
     }
-
-    //Alert.alert('Error', `Не хватает средств на счёте - ${currentAccaunt.name()}`);
   }
 
   return (
@@ -110,7 +111,7 @@ const ExpAndIncModal: FC<IExpAndIncModal> = React.memo(({setExpAndEncomeModal}) 
       </ScrollView>
 
       <View style={styles.btn}>
-        <Button onPress={addHandler}>
+        <Button onPress={addHandler} disabled={!disabled}>
           <Text style={[globalStyles.p2, {color: COLORS.colorBlack}]}>
             ДОБАВИТЬ
           </Text>

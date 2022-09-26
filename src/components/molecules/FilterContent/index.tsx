@@ -11,6 +11,8 @@ import { styles } from './filter.styles'
 
 const FilterContent: FC = React.memo(({setExpAndEncomeModal}) => {
 
+  const filterPeriod = ['Day', 'Week', 'Month', 'Year'];
+
   const dispatch = useAppDispatch()
   const { expensesAndIncomes, tabExpOrIncome } = useAppSelector(state => state.main)
 

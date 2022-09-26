@@ -42,4 +42,7 @@ export const reducers: IACMain = {
         const sum = countSumItemsFromList(payload)
         state.sumCategiesCountSort = sum
     },
+    setSortValue: (state, {payload}) => {
+        state.sort = payload
+    },
 };

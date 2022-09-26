@@ -3,11 +3,12 @@ import { TouchableOpacity } from 'react-native'
 import { styles } from './button.styles'
 import { IButton } from './button.types'
 
-const Button: FC<IButton> = ({onPress, children, overStyle}) => {
+const Button: FC<IButton> = ({onPress, children, overStyle, disabled}) => {
   
   return (
     <TouchableOpacity
-      style={[styles.button, overStyle]}
+      disabled={disabled}
+      style={[styles.button, overStyle, disabled && styles.disabled]}
       onPress={onPress}
     >
      {children}
