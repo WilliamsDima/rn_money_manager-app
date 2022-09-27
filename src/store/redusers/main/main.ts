@@ -14,9 +14,10 @@ const initialState: IStore = {
     accountsIdSelected: 1,
     tabExpOrIncome: false,
     sort: 'Month',
-    sortPeriod: null,
+    sortDatePeriod: null,
     sumMoneySort: 0,
     sumCategiesCountSort: 0,
+    categoriesSortData: [],
     accounts: [
         {
             icon: MONEY_BAG,
@@ -193,4 +194,6 @@ export const mainReducer = (state = initialState, action) => {
 };
 
 export const {setAllCauntAccaunts, addTransaction, 
-    sumCategiesCount, setTabExpOrIncome, setSumMoneySort, setSortValue} = counterSlice.actions;
+    sumCategiesCount, setTabExpOrIncome, setSumMoneySort, 
+    setSortValue, setSortDatePeriod, 
+    setDataOnPeriodFilter, } = counterSlice.actions;

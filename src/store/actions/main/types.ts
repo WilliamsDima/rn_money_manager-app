@@ -11,4 +11,6 @@ export interface IACMain {
         transaction: boolean | undefined) => void
     sumCategiesCount: (state: IStore, payload: PayloadAction<ICategories[]>) => void
     setSortValue: (state: IStore, payload: PayloadAction<filterPeriod>) => void
+    setSortDatePeriod: (state: IStore, payload: PayloadAction<Date>) => void
+    setDataOnPeriodFilter: (state: IStore, payload: PayloadAction<ICategories[] | []>) => void
 }

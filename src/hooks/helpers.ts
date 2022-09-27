@@ -19,26 +19,49 @@ export const categoriesFilterMaxValue = (categories, max) => categories
     return b.count - a.count
   }
   return a.count - b.count
-});
+})
 
-export const months = ["January", "February", "March", "April", "May", "June",
-"July", "August", "September", "October", "November", "December"];
+const getSort = (moneyArray, id) => {
+  return moneyArray.find((e) => e.categori === id)
+}
+
+export const getSortCategories = (moneyArray, categories) => {
+  return moneyArray.length && categories.filter((c) => {
+
+    const moneyObj = getSort(moneyArray, c.id)
+
+      if (moneyObj) {
+          // делаем копию объекта так как строгий режим не позволит редактировать объект "c" 
+          // на прямую (c.count += +expens.money) - // error - Attempted to assign to readonly property
+          const objCopy = {...moneyObj}
+          objCopy.count += +moneyObj.money
+          return objCopy
+      }
+  })
+}
+
+export const months = ["Января", "Февраля", "Марта", "Апреля", "Мая", "Июня",
+"Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря"]
 
 export const periodSort = (periodSelect, arrayMoney, date) => {
 
-  const startWeek = new Date(+date - (86400000 * 7));
-  const endWeek = new Date(date);
+  const startWeek = new Date(+date - (86400000 * 7))
+  const endWeek = new Date(date)
 
   const methodDate = {
-    'Day': () => arrayMoney.filter((ex) => new Date(ex.date).toLocaleDateString() === new Date(date).toLocaleDateString()), 
+    'Day': () => arrayMoney.filter((ex) => new Date(ex.date).toLocaleDateString() 
+    === new Date(date).toLocaleDateString()), 
 
-    'Week': () => arrayMoney.filter((ex) => +new Date(ex.date) >= +startWeek && +new Date(ex.date) <= +endWeek + 86400000),
+    'Week': () => arrayMoney.filter((ex) => +new Date(ex.date) >= +startWeek 
+    && +new Date(ex.date) <= +endWeek + 86400000),
 
-    'Month': () => arrayMoney.filter((ex) => new Date(ex.date).getMonth() === new Date(date).getMonth()
-      && new Date(ex.date).getFullYear() === new Date(date).getFullYear()),
+    'Month': () => arrayMoney.filter((ex) => new Date(ex.date).getMonth() 
+    === new Date(date).getMonth() && new Date(ex.date).getFullYear() 
+    === new Date(date).getFullYear()),
 
-    'Year': () => arrayMoney.filter((ex) => new Date(ex.date).getFullYear() === new Date(date).getFullYear()), 
+    'Year': () => arrayMoney.filter((ex) => new Date(ex.date).getFullYear() 
+    === new Date(date).getFullYear()), 
   };
 
-  return arrayMoney.length && methodDate[periodSelect]();
-};
+  return arrayMoney.length && methodDate[periodSelect]()
+}

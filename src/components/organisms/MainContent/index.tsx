@@ -11,8 +11,11 @@ import DataListEmpty from '../../atoms/DataListEmpty'
 const MainContent: FC<IMain> = ({}) => {
 
   const [filter, setFilter] = useState(true)
-  const { categories, tabExpOrIncome } = useAppSelector(state => state.main)
-  const categoriesFilter = categories.filter((c) => c.income === tabExpOrIncome && c.count)
+  const { tabExpOrIncome, categoriesSortData } = useAppSelector(state => state.main)
+
+  const categoriesFilter = categoriesSortData.filter((c) => c.income === tabExpOrIncome 
+  && c.count)
+
   const filterMaxValue = categoriesFilterMaxValue(categoriesFilter, filter)
 
   return (

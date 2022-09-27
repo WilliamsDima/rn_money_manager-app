@@ -16,19 +16,24 @@ const ItemList: FC<IItem> = ({item, data}) => {
   return (
     <TouchableOpacity style={[styles.item]}>
 
-      <View style={styles.avatar}>
+      <View style={[styles.avatar, {width: '40%'}]}>
         <Avatar overStyle={styles.icon} bg={item.bg}>
           <IconSvg name={HEART} />
         </Avatar>
-        <Text style={[globalStyles.p1, {width: '50%'}]} numberOfLines={1}>{item.name()}</Text>
+        <Text style={[globalStyles.p1]} numberOfLines={1}>{item.name()}</Text>
       </View>
 
-      <Text style={globalStyles.p1}>
-        {countInterest(+sumCategiesCountSort, +item.count)} %
-      </Text> 
-      <Text style={globalStyles.p1}>
-        {numberConverter(item.count)} P
-      </Text> 
+      <View style={{width: '30%', alignItems: 'flex-end'}}>
+        <Text style={[globalStyles.p1]}>
+          {countInterest(+sumCategiesCountSort, +item.count)} %
+        </Text> 
+      </View>
+
+      <View style={{width: '30%', alignItems: 'flex-end'}}>
+        <Text style={[globalStyles.p1]}>
+          {numberConverter(item.count)} P
+        </Text> 
+      </View>
     </TouchableOpacity>
   )
 }

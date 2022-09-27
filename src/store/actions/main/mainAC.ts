@@ -45,4 +45,10 @@ export const reducers: IACMain = {
     setSortValue: (state, {payload}) => {
         state.sort = payload
     },
+    setSortDatePeriod: (state, {payload}) => {
+        state.sortDatePeriod = payload
+    },
+    setDataOnPeriodFilter: (state, {payload}) => {
+        state.categoriesSortData = payload
+    },
 };
