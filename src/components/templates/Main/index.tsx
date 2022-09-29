@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View } from 'react-native'
+import { Animated, View } from 'react-native'
 import { globalStyles } from '../../../services/styles'
 import CustomModal from '../../atoms/Modal'
 import GreenWrapper from '../../atoms/GreenWrapper'
@@ -13,6 +13,17 @@ const MainTemplate = () => {
 
   const [expAndEncomeModal, setExpAndEncomeModal] = useState(false)
 
+  const [hideDiogram, setHideDiogram] = useState(false)
+
+  const onScroll = (e) => {
+    if (e.nativeEvent.contentOffset.y > 70) {
+      setHideDiogram(true)
+    }
+    if (e.nativeEvent.contentOffset.y === 0) {
+      setHideDiogram(false)
+    }
+  }
+
   return (
       <>
         <GreenWrapper>
@@ -20,10 +31,12 @@ const MainTemplate = () => {
         </GreenWrapper>
 
         <View style={globalStyles.spaceHorizontal}>
-          <FilterContent setExpAndEncomeModal={setExpAndEncomeModal}/>
+          <FilterContent 
+          hideDiogram={hideDiogram}
+          setExpAndEncomeModal={setExpAndEncomeModal}/>
         </View>
 
-        <MainContent />
+        <MainContent onScroll={onScroll}/>
 
         <CustomModal visible={expAndEncomeModal} closeHandler={setExpAndEncomeModal}>
             <ExpAndIncModal setExpAndEncomeModal={setExpAndEncomeModal}/>

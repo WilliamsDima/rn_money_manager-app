@@ -1,12 +1,11 @@
 import React from 'react'
-import Countainer from '../../components/atoms/Container'
-import ListData from '../../components/molecules/ListData'
+import Container from '../../components/atoms/Container'
 import MainTemplate from '../../components/templates/Main'
 
 const Main = () => {
-  return <Countainer>
+  return <Container>
     <MainTemplate />
-  </Countainer>
+  </Container>
   
 }
 

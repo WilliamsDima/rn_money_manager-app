@@ -9,6 +9,5 @@ export const styles = StyleSheet.create({
     borderBottomLeftRadius: 70,
     borderBottomRightRadius: 70,
     ...globalStyles.spaceHorizontal,
-    ...globalStyles.spaceVertical
   }
 })

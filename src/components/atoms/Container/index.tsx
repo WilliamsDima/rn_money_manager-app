@@ -3,7 +3,7 @@ import { SafeAreaView } from 'react-native'
 import { styles } from './container.styles'
 import { ICountainer } from './container.types'
 
-const Countainer: FC<ICountainer> = ({children, overStyle}) => {
+const Container: FC<ICountainer> = ({children, overStyle}) => {
 
   return (
     <SafeAreaView style={[styles.container, {...overStyle}]}>
@@ -12,4 +12,4 @@ const Countainer: FC<ICountainer> = ({children, overStyle}) => {
   )
 }
 
-export default Countainer
+export default Container

@@ -9,7 +9,7 @@ const HeaderMain = () => {
 
   return (
     <View style={styles.container}>
-        <Rate />
+        {/* <Rate /> */}
         <ButtonsTabMain />
     </View>
   )

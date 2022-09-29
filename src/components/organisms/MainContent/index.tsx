@@ -8,7 +8,7 @@ import { useAppSelector } from '../../../hooks/hooks'
 import { categoriesFilterMaxValue } from '../../../hooks/helpers'
 import DataListEmpty from '../../atoms/DataListEmpty'
 
-const MainContent: FC<IMain> = ({}) => {
+const MainContent: FC<IMain> = ({onScroll}) => {
 
   const [filter, setFilter] = useState(true)
   const { tabExpOrIncome, categoriesSortData } = useAppSelector(state => state.main)
@@ -21,7 +21,8 @@ const MainContent: FC<IMain> = ({}) => {
   return (
     <View style={[styles.view]}>
         <FilterList filter={filter} setFilter={setFilter}/>
-        {filterMaxValue?.length ? <ListData data={filterMaxValue} /> 
+        {filterMaxValue?.length 
+        ? <ListData data={filterMaxValue} onScroll={onScroll}/> 
         : <DataListEmpty text={tabExpOrIncome ? 'доходов' : 'траты'} />}
         
     </View>

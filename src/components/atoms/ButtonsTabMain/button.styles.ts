@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
   tabs: {
     width: '80%',
     flexDirection: 'row',
-    marginTop: 20,
+    marginTop: 10,
     justifyContent: 'space-between',
     position: 'relative',
   },

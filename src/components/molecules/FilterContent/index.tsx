@@ -12,14 +12,15 @@ import { styles } from './filter.styles'
 
 interface IFilter {
   setExpAndEncomeModal: () => void
+  hideDiogram: boolean
 }
 
-const FilterContent: FC<IFilter> = React.memo(({setExpAndEncomeModal}) => {
+const FilterContent: FC<IFilter> = React.memo(({setExpAndEncomeModal, hideDiogram}) => {
 
   const dispatch = useAppDispatch()
   const { expensesAndIncomes, categories, 
     tabExpOrIncome, sort, sortDatePeriod } = useAppSelector(state => state.main)
-
+    
   // фильтр трат и доходов
   const expensesAndIncomFilter = expensesAndIncomes.filter((c) => c.income === tabExpOrIncome)
   // сортировка по выбранному периоду
@@ -42,7 +43,7 @@ const FilterContent: FC<IFilter> = React.memo(({setExpAndEncomeModal}) => {
     <View style={styles.container}>
         <FilterPeriod />
         <CarouselFilter />
-        <Diogramma />
+        <Diogramma sortArray={sortArray} hideDiogram={hideDiogram}/>
         <CountSumMoney />
 
         <View style={styles.addBtn}>

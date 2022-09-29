@@ -5,6 +5,72 @@ import { BURGER, BUS, CHARITY, EDUCATION, ENERGY, FAMILY, GAME,
 import { reducers } from "../../actions/main/mainAC";
 import { IStore } from './types';
 
+const mok = [
+    {
+        accounts: 1,
+        categori: 3,
+        date: "2022-09-29T10:38:00.162Z",
+        id: 1664447880162,
+        count: 500,
+        text: "",
+        income: false
+    },
+    {
+        accounts: 1,
+        categori: 2,
+        date: "2022-09-29T11:05:16.471Z",
+        id: 1664449516471,
+        count: 500,
+        text: "",
+        income: false
+    },
+    {
+        accounts: 1,
+        categori: 1,
+        date: "2022-09-29T11:05:32.054Z",
+        id: 1664449532054,
+        count: 700,
+        text: "",
+        income: false
+    },
+    {
+        accounts: 3,
+        categori: 9,
+        date: "2022-09-29T11:05:58.607Z",
+        id: 1664449558607,
+        count: 500,
+        text: "",
+        income: false
+    },
+    {
+        accounts: 2,
+        categori: 5,
+        dat: "2022-09-29T11:08:14.962Z",
+        id: 1664449694962,
+        count: 400,
+        text: "",
+        income: false
+    },
+    {
+        accounts: 2,
+        categori: 9,
+        date: "2022-09-29T11:08:26.851Z",
+        id: 1664449706851,
+        count: 200,
+        text: "",
+        income: false
+    },
+    {
+        accounts: 3,
+        categori: 11,
+        date: "2022-09-29T11:08:46.241Z",
+        id: 1664449726241,
+        count: 600,
+        text: "",
+        income: false
+    }
+]
+
 const initialState: IStore = {
     sortData: [
     {title: 'День', value: 'Day'}, 

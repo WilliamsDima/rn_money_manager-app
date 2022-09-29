@@ -12,7 +12,11 @@ const CountSumMoney: FC<ICount> = ({}) => {
   
   return (
     <View style={[styles.container]}>
-      <Text style={[globalStyles.p2]}>{numberConverter(sumMoneySort)} P</Text>
+      <Text style={globalStyles.p1}>58 $</Text>
+      <Text style={[globalStyles.p2, {paddingHorizontal: 20}]}>
+        {numberConverter(sumMoneySort)} P
+      </Text>
+      <Text style={globalStyles.p1}>62 E</Text>
     </View>
   )
 }
