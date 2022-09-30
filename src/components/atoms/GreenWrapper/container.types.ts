@@ -1,3 +1,3 @@
 export interface ICountainer {
-    children: JSX.Element
+    children?: JSX.Element
 }

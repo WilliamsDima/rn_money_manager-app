@@ -1,4 +1,4 @@
-import { COLORS } from "../services/colors";
+import { COLORS } from "../services/colors"
 
 export const screenOptions = {
   headerStyle: {
@@ -9,4 +9,5 @@ export const screenOptions = {
     shadowOpacity: 0,
     backgroundColor:  COLORS.colorHeader,
   },
+  headerLeft: () => null
 }

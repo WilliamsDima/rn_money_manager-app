@@ -5,6 +5,7 @@ import { RoutesNames } from '../routes-names'
 import Main from '../../screens/Main'
 import { screenOptions } from '../routes-config'
 import Header from '../../components/organisms/Header'
+import History from '../../screens/History'
 
 const MainStack = createStackNavigator()
 
@@ -18,6 +19,7 @@ const MainRoutes = () => {
       }}
     >
       <MainStack.Screen name={RoutesNames.Main.HomeStack} component={Main} />
+      <MainStack.Screen name={RoutesNames.History.Home} component={History} />
     </MainStack.Navigator>
   )
 }

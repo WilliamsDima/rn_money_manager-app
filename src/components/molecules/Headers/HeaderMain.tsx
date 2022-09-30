@@ -12,6 +12,7 @@ import { IAccounts } from '../../../store/redusers/main/types'
 import { globalStyles } from '../../../services/styles'
 import { ARROW_SELECT } from '../../../services/iconsName'
 import { setAllCauntAccaunts, sumCategiesCount } from '../../../store/redusers/main/main'
+import { RoutesNames } from '../../../navigation/routes-names'
 
 interface IHeaderMain {
   
@@ -20,7 +21,8 @@ interface IHeaderMain {
 const HeaderMain: FC<IHeaderMain> = ({routeName}) => {
 
   const navigation = useNavigation()
-  const { accounts, categories, expensesAndIncomes, tabExpOrIncome } = useAppSelector(state => state.main)
+  const { accounts, categories, 
+    expensesAndIncomes, tabExpOrIncome } = useAppSelector(state => state.main)
   const dispatch = useAppDispatch()
 
   const categoriesExpOrIncomFilter = categories.filter((c) => c.income === tabExpOrIncome)
@@ -29,6 +31,10 @@ const HeaderMain: FC<IHeaderMain> = ({routeName}) => {
   const [modal, setModal] = useState(false)
   const [accauntsId, setAccauntsId] = useState(0)
   const accauntSelect: IAccounts = getItemFromList(accauntsId, accounts)
+
+  const toHistory = () => {
+    navigation.navigate(RoutesNames.History.Home)
+  }
 
   useEffect(() => {
     dispatch(sumCategiesCount(categoriesExpOrIncomFilter))
@@ -59,9 +65,11 @@ const HeaderMain: FC<IHeaderMain> = ({routeName}) => {
         </TouchableOpacity>
       </View>
 
-      <View style={[styles.wrapp, {alignItems: 'flex-end'}]}>
+      <TouchableOpacity
+      onPress={toHistory} 
+      style={[styles.wrapp, {alignItems: 'flex-end'}]}>
         <HistoryBtn />   
-      </View>
+      </TouchableOpacity>
     
       <CustomModal
       visible={modal}

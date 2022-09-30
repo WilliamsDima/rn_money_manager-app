@@ -15,4 +15,7 @@ export const RoutesNames = {
     Home: 'MoreMain',
     HomeStack: 'More',
   },
+  History: {
+    Home: 'HistoryMain',
+  },
 }

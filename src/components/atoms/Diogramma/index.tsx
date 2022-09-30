@@ -9,8 +9,6 @@ import DiogrammaLine from '../DiogrammaLine'
 
 const Diogramma: FC<IDiogramma> = ({sortArray, hideDiogram}) => {
 
-  const height = hideDiogram ? 0 : 150
-
   const widthAndHeight = 150
   const series = []
   const sliceColor = []
@@ -21,8 +19,6 @@ const Diogramma: FC<IDiogramma> = ({sortArray, hideDiogram}) => {
       sliceColor.push(c.bg);
     });
   }
-
-  console.log('height', height);
 
   const diogramm = hideDiogram ? <DiogrammaLine sortArray={sortArray}/>
   : <PieChart
