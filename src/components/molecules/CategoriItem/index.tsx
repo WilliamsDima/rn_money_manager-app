@@ -27,7 +27,7 @@ const CategoriItem: FC<ICategoriItem> = React.memo(({item, size,
         <Text
         style={[globalStyles.p1, id === categoriId ? 
           {color: COLORS.colorPriamry} : {color: bg}]} 
-        numberOfLines={1}>{name()}</Text>
+        numberOfLines={1}>{name}</Text>
     </TouchableOpacity>
   )
 })

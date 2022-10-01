@@ -38,7 +38,7 @@ const ExpAndIncModal: FC<IExpAndIncModal> = React.memo(({setExpAndEncomeModal}) 
   const addHandler = () => {
     
     if (money < 0) {
-      Alert.alert('Error', `Не хватает средств на счёте - ${selectAccaunt?.name()}`);
+      Alert.alert('Error', `Не хватает средств на счёте - ${selectAccaunt?.name}`);
     }
     
     if(accauntsId && categoriId && count && money >= 0) {
@@ -47,12 +47,12 @@ const ExpAndIncModal: FC<IExpAndIncModal> = React.memo(({setExpAndEncomeModal}) 
         categori: categoriId,
         date: new Date(),
         id: + new Date(),
-        count: count.replace(',', '.'),
+        count: +count.replace(',', '.'),
         text: text,
         income: tabExpOrIncome
       }
       console.log('new ADD', data);
-      dispatch(addTransaction(data))
+      dispatch(addTransaction({data}))
       ToastAndroid.show('добавлено', 2000);
       setExpAndEncomeModal(false)
     }
@@ -81,7 +81,7 @@ const ExpAndIncModal: FC<IExpAndIncModal> = React.memo(({setExpAndEncomeModal}) 
         onPress={() => setModal(true)}>
           <Text style={[globalStyles.p1, selectAccaunt ? {color: COLORS.mainColor} 
             : {color: 'red'}]}>
-            {selectAccaunt ? selectAccaunt.name()  : 'счёт не выбран'}
+            {selectAccaunt ? selectAccaunt.name  : 'счёт не выбран'}
           </Text>
         </TouchableOpacity>
       </View>

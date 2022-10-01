@@ -1,11 +1,11 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useState, useEffect } from 'react'
 import { styles } from './main.styles'
 import { IMain } from './main.types'
 import { View } from 'react-native'
 import FilterList from '../../atoms/FilterList'
 import ListData from '../../molecules/ListData'
 import { useAppSelector } from '../../../hooks/hooks'
-import { categoriesFilterMaxValue } from '../../../hooks/helpers'
+import { dataFilterMaxValue } from '../../../hooks/helpers'
 import DataListEmpty from '../../atoms/DataListEmpty'
 
 const MainContent: FC<IMain> = ({onScroll}) => {
@@ -16,7 +16,7 @@ const MainContent: FC<IMain> = ({onScroll}) => {
   const categoriesFilter = categoriesSortData.filter((c) => c.income === tabExpOrIncome 
   && c.count)
 
-  const filterMaxValue = categoriesFilterMaxValue(categoriesFilter, filter)
+  const filterMaxValue = dataFilterMaxValue(categoriesFilter, filter)
 
   return (
     <View style={[styles.view]}>

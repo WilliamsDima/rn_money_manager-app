@@ -9,6 +9,8 @@ export const styles = StyleSheet.create({
     backgroundColor:COLORS.colorBlack,
     borderRadius: 10,
     marginTop: 10,
-    height: '93%'
+    height: '93%',
+    ...globalStyles.spaceHorizontal,
+    paddingVertical: 10,
   }
 })

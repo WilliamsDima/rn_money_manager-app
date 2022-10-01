@@ -9,9 +9,9 @@ import Avatar from '../Avatar'
 import { styles } from './item.styles'
 import { IItem } from './item.types'
 
-const ItemList: FC<IItem> = ({item, data}) => {
+const ItemList: FC<IItem> = ({item}) => {
 
-  const { sumCategiesCountSort } = useAppSelector(state => state.main) 
+  const { sumMoneySort } = useAppSelector(state => state.main)
   
   return (
     <TouchableOpacity style={[styles.item]}>
@@ -20,12 +20,12 @@ const ItemList: FC<IItem> = ({item, data}) => {
         <Avatar overStyle={styles.icon} bg={item.bg}>
           <IconSvg name={HEART} />
         </Avatar>
-        <Text style={[globalStyles.p1]} numberOfLines={1}>{item.name()}</Text>
+        <Text style={[globalStyles.p1]} numberOfLines={1}>{item.name}</Text>
       </View>
 
       <View style={{width: '30%', alignItems: 'flex-end'}}>
         <Text style={[globalStyles.p1]}>
-          {countInterest(+sumCategiesCountSort, +item.count)} %
+          {countInterest(+sumMoneySort, +item.count)} %
         </Text> 
       </View>
 

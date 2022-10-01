@@ -1,13 +1,13 @@
 export interface IAccounts {
     icon: string
     bg: string
-    name: (lang1?: string) => string,
+    name: string,
     id: number
     count: number
 }
 
 export interface ICategories {
-    name: (lang1?: string) => string
+    name: string
     icon: string
     bg: string
     id: number
@@ -42,7 +42,7 @@ interface ISortData {
 
 export interface IStore {
     sortData: ISortData[]
-    accountsIdSelected: number
+    accountsIdSelected: number | string
     tabExpOrIncome: boolean
     sort: TsortFilter
     sortDatePeriod: null | Date

@@ -35,15 +35,18 @@ const FilterContent: FC<IFilter> = React.memo(({setExpAndEncomeModal, hideDiogra
   }
 
   useEffect(() => {
+    console.log('FilterContent');
+    
     dispatch(setSumMoneySort(sumMoney))
     dispatch(setDataOnPeriodFilter(sortArray))
-  }, [expensesAndIncomes, tabExpOrIncome, sort, sortDatePeriod])
+
+  }, [expensesAndIncomes, tabExpOrIncome, sort, sortDatePeriod, categories])
 
   return (
     <View style={styles.container}>
         <FilterPeriod />
         <CarouselFilter />
-        <Diogramma sortArray={sortArray} hideDiogram={hideDiogram}/>
+        {/* <Diogramma sortArray={sortArray} hideDiogram={hideDiogram}/> */}
         <CountSumMoney />
 
         <View style={styles.addBtn}>

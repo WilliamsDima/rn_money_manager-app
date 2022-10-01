@@ -11,35 +11,39 @@ import { getItemFromList, numberConverter } from '../../../hooks/helpers'
 import { IAccounts } from '../../../store/redusers/main/types'
 import { globalStyles } from '../../../services/styles'
 import { ARROW_SELECT } from '../../../services/iconsName'
-import { setAllCauntAccaunts, sumCategiesCount } from '../../../store/redusers/main/main'
+import { setAllCauntAccaunts, sumCategiesCount, setAccauntId } from '../../../store/redusers/main/main'
 import { RoutesNames } from '../../../navigation/routes-names'
 
 interface IHeaderMain {
   
 }
 
-const HeaderMain: FC<IHeaderMain> = ({routeName}) => {
+const HeaderMain: FC<IHeaderMain> = (props) => {
 
   const navigation = useNavigation()
   const { accounts, categories, 
-    expensesAndIncomes, tabExpOrIncome } = useAppSelector(state => state.main)
+    tabExpOrIncome, accountsIdSelected } = useAppSelector(state => state.main)
   const dispatch = useAppDispatch()
 
   const categoriesExpOrIncomFilter = categories.filter((c) => c.income === tabExpOrIncome)
-  
 
   const [modal, setModal] = useState(false)
-  const [accauntsId, setAccauntsId] = useState(0)
-  const accauntSelect: IAccounts = getItemFromList(accauntsId, accounts)
+  const accauntSelect: IAccounts = getItemFromList(accountsIdSelected, accounts)
 
   const toHistory = () => {
-    navigation.navigate(RoutesNames.History.Home)
+    navigation.navigate(RoutesNames.History.Home as never)
+  }
+
+  const setAccauntsIdHandler = (id: number) => {
+    dispatch(setAccauntId(id))
   }
 
   useEffect(() => {
+    console.log('HeaderMain')
     dispatch(sumCategiesCount(categoriesExpOrIncomFilter))
     dispatch(setAllCauntAccaunts())
-  }, [expensesAndIncomes, tabExpOrIncome])
+
+  }, [tabExpOrIncome])
 
   return (
     <View style={styles.header}>
@@ -47,10 +51,12 @@ const HeaderMain: FC<IHeaderMain> = ({routeName}) => {
       <View style={[styles.wrapp, {alignItems: 'flex-start'}]}>
         <View style={styles.content}>
             <IconSvg 
-              name={accauntSelect.icon} 
+              name={accauntSelect?.icon} 
               color={'#fff'} 
               style={{width: 20, height: 20}}/>
-            <Text style={[globalStyles.p1, {marginLeft: 10}]} numberOfLines={1}>{accauntSelect.name()}</Text>
+            <Text style={[globalStyles.p1, {marginLeft: 10}]} numberOfLines={1}>
+              {accauntSelect?.name}
+            </Text>
         </View>
       </View>
 
@@ -59,7 +65,7 @@ const HeaderMain: FC<IHeaderMain> = ({routeName}) => {
           style={styles.container} 
           onPress={() => setModal(!modal)}>
           <Text style={[globalStyles.p2, {marginRight: 10}]}>
-            {numberConverter(accauntSelect.count)} P
+            {numberConverter(accauntSelect?.count)} P
           </Text>
           <IconSvg name={ARROW_SELECT} marginTop={-5}/>     
         </TouchableOpacity>
@@ -76,9 +82,9 @@ const HeaderMain: FC<IHeaderMain> = ({routeName}) => {
       animationType={'fade'}
       closeHandler={setModal}>
         <AccauntsModal 
-        idSelect={accauntsId} 
+        idSelect={accountsIdSelected} 
         list={accounts}
-        setId={setAccauntsId} 
+        setId={setAccauntsIdHandler} 
         close={() => setModal(false)}/>
       </CustomModal>
     </View>

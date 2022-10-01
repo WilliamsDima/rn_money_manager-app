@@ -20,7 +20,7 @@ const AccauntsBtnSelect: FC<IAccauntsBtnSelect> = ({data, overStyle,
         <Avatar overStyle={styles.icon} bg={bg}>
           <IconSvg name={icon} color={'#fff'}/>
         </Avatar>
-        <Text style={[globalStyles.p1]}>{name()}</Text>
+        <Text style={[globalStyles.p1]}>{name}</Text>
       </View>
       <View style={styles.item}>
         <Text style={[globalStyles.p1, styles.item]}>{numberConverter(count)} p</Text>

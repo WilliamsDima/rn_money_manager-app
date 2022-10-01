@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Text, View } from 'react-native'
 import { globalStyles } from '../../../services/styles'
 import ScrollContainer from '../../atoms/Container/ScrollContainer'
@@ -8,12 +8,14 @@ import HistoryList from '../../organisms/HistoryList'
 import { styles } from './history.styles'
 
 const HistoryTemplate = () => {
+
+  const [filter, setFilter] = useState(true)
   return (
     <>
       <View style={globalStyles.spaceHorizontal}>
 
-        <HistoryFilter />
-        <HistoryList />
+        <HistoryFilter setFilter={setFilter} filter={filter}/>
+        <HistoryList filter={filter}/>
       </View>
     </>
   )

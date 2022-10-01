@@ -7,6 +7,10 @@ export const styles = StyleSheet.create({
     backgroundColor:COLORS.colorBlack,
     borderRadius: 10,
     marginTop: -50,
-    height: 50
+    height: 50,
+    ...globalStyles.spaceHorizontal,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
   }
 })

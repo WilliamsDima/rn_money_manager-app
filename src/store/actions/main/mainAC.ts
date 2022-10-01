@@ -1,9 +1,14 @@
+import { localAPI } from "../../../api/asyncStorage";
 import { countSumItemsFromList } from "../../../hooks/helpers"
-import { IACMain } from "./types"
+import { IACMain, LOCAL_NAME } from "./types"
 
 export const reducers: IACMain = {
     setTabExpOrIncome: (state, {payload}) => {
         state.tabExpOrIncome = payload
+    },
+    setAccauntId: (state, {payload}) => {
+        state.accountsIdSelected = payload
+        localAPI.set(LOCAL_NAME.ACCAUNT_SELECT, payload)
     },
     setSumMoneySort: (state, {payload}) => {
         state.sumMoneySort = payload
@@ -18,24 +23,43 @@ export const reducers: IACMain = {
             return ac
         })
     },
-    addTransaction: (state, { payload }, transaction) => {
-        state.expensesAndIncomes.push(payload)
 
-        if (!transaction) {
+    addLocalExpAndIncome:(state, { payload }) => {
+        state.expensesAndIncomes = payload
+    },
+
+    addLocalCategories:(state, { payload }) => {
+        state.categories = payload
+    },
+
+    addLocalAccaunts:(state, { payload }) => {
+        state.accounts = payload
+    },
+
+    addTransaction: (state, { payload }) => {
+
+        state.expensesAndIncomes.push(payload.data)
+
+        localAPI.set(LOCAL_NAME.EPENSES_INCOME, state.expensesAndIncomes)
+
+        if (!payload.transaction) {
             state.categories = state.categories.map((cat) => {
-                if(cat.id === payload.categori) {
-                    cat.count += +payload.count
+                if(cat.id === payload.data.categori) {
+                    cat.count += +payload.data.count
                 }
                 return cat
             })
 
             state.accounts = state.accounts.map((ac) => {
-                if(ac.id === payload.accounts) {
-                    ac.count = payload.income ? +ac.count + +payload.count 
-                    : +ac.count - +payload.count 
+                if(ac.id === payload.data.accounts) {
+                    ac.count = payload.data.income ? +ac.count + +payload.data.count 
+                    : +ac.count - +payload.data.count 
                 }
                 return ac
             })
+
+            localAPI.set(LOCAL_NAME.CATEGORIES, state.categories)
+            localAPI.set(LOCAL_NAME.ACCAUNTS, state.accounts)
         }
     },
     sumCategiesCount: (state, { payload }) => {
