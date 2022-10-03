@@ -179,7 +179,6 @@ const initialState: IStore = {
             income: true,
         },
     ],
-    expensesAndIncomes: [],
     transaction: [],
 };
 

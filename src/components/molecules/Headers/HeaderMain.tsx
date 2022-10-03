@@ -21,7 +21,7 @@ interface IHeaderMain {
 const HeaderMain: FC<IHeaderMain> = (props) => {
 
   const navigation = useNavigation()
-  const { accounts, categories, 
+  const { accounts, categories, transaction,
     tabExpOrIncome, accountsIdSelected } = useAppSelector(state => state.main)
   const dispatch = useAppDispatch()
 
@@ -39,11 +39,11 @@ const HeaderMain: FC<IHeaderMain> = (props) => {
   }
 
   useEffect(() => {
-    console.log('HeaderMain')
+    console.log('Header')
     dispatch(sumCategiesCount(categoriesExpOrIncomFilter))
     dispatch(setAllCauntAccaunts())
 
-  }, [tabExpOrIncome])
+  }, [tabExpOrIncome, transaction])
 
   return (
     <View style={styles.header}>

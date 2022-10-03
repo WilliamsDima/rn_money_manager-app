@@ -8,12 +8,12 @@ import { countInterest } from '../../../hooks/helpers'
 const DiogrammaLine: FC<IDiogramma> = ({sortArray}) => {
 
   const { sumCategiesCountSort } = useAppSelector(state => state.main) 
-
+  
   return (
     <View style={[styles.container]}>
       {sortArray.map((item) => {
         const interest = countInterest(+sumCategiesCountSort, +item.count) + '%'
-        return <View style={[{width: interest, backgroundColor: item.bg}]}/>
+        return <View key={item.id} style={[{width: interest, backgroundColor: item.bg}]}/>
       })}
     </View>
   )

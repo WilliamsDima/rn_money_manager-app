@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useEffect } from 'react'
 import { View, Text } from 'react-native'
 import { styles } from './diogramma.styles'
 import { IDiogramma } from './diogramma.types'
@@ -6,8 +6,11 @@ import PieChart from 'react-native-pie-chart'
 import { COLORS } from '../../../services/colors'
 import { globalStyles } from '../../../services/styles'
 import DiogrammaLine from '../DiogrammaLine'
+import { useAppSelector } from '../../../hooks/hooks'
 
 const Diogramma: FC<IDiogramma> = ({sortArray, hideDiogram}) => {
+
+  const { categories } = useAppSelector(state => state.main) 
 
   const widthAndHeight = 150
   const series = []
@@ -15,8 +18,10 @@ const Diogramma: FC<IDiogramma> = ({sortArray, hideDiogram}) => {
 
   if (sortArray.length) {
     sortArray.forEach((c) => {
-      series.push(+c.count);
-      sliceColor.push(c.bg);
+      if (c.count) {
+        series.push(+c.count);
+        sliceColor.push(c.bg);
+      }
     });
   }
 
@@ -30,10 +35,13 @@ const Diogramma: FC<IDiogramma> = ({sortArray, hideDiogram}) => {
     coverFill={COLORS.colorBlack}
   />
   
+  useEffect(() => {
+    console.log('Diogramma');
+  }, [categories])
   
   return (
     <View style={[styles.container]}>
-      {sortArray.length ? diogramm :
+      {sortArray.length && sliceColor.length ? diogramm :
       <Text style={[globalStyles.p1, {opacity: 0.6}]}>ПУСТО</Text>}
     </View>
   )

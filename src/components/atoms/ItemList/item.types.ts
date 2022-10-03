@@ -1,4 +1,4 @@
-import { ICategories, IExpIncom } from "../../../store/redusers/main/types"
+import { ICategories, ITransaction } from "../../../store/redusers/main/types"
 
 export interface IItem{
   item: ICategories

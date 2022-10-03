@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from '../../../hooks/hooks'
 import { COLORS } from '../../../services/colors'
 import { globalStyles } from '../../../services/styles'
 import { addTransaction } from '../../../store/redusers/main/main'
-import { IAccounts, IExpIncom } from '../../../store/redusers/main/types'
+import { IAccounts, ITransaction } from '../../../store/redusers/main/types'
 import Button from '../../atoms/Button'
 import Input from '../../atoms/Input'
 import CustomModal from '../../atoms/Modal'
@@ -42,17 +42,18 @@ const ExpAndIncModal: FC<IExpAndIncModal> = React.memo(({setExpAndEncomeModal}) 
     }
     
     if(accauntsId && categoriId && count && money >= 0) {
-      const data: IExpIncom = {
+      const data: ITransaction = {
         accounts: accauntsId,
         categori: categoriId,
         date: new Date(),
         id: + new Date(),
         count: +count.replace(',', '.'),
         text: text,
-        income: tabExpOrIncome
+        income: tabExpOrIncome,
+        transaction: false
       }
       console.log('new ADD', data);
-      dispatch(addTransaction({data}))
+      dispatch(addTransaction(data))
       ToastAndroid.show('добавлено', 2000);
       setExpAndEncomeModal(false)
     }

@@ -8,13 +8,25 @@ import { IHistory } from './list.types'
 
 const HistoryFilter: FC<IHistory> = React.memo(({ filter, setFilter }) => {
 
+  // ЛЕВЫЙ ПИКЕР - ПО КАТЕГОРИИ
+
+  // ПРАВЫЙ ПИКЕ ИЗ пяти ПУНКТОВ
+  // - ВСЕ
+  // - ДОХОДЫ
+  // - ТРАТЫ
+  // - ПО УБЫВАНИЮ
+  // - ПО ВОЗРАСТАНИЮ
+
+  // ПРИ ВЫБОРЕ ДАТЫ БУДЕТ ОТКРЫВАТЬСЯ ДАТА ПИКЕР
+  // СОРТИРОВКА ПО ДАТЕ БУДЕТ КАК НА ГЛАВНОМ ЭКРАНЕ
+
   return (
     <View style={styles.container}>
-      <Text style={globalStyles.p1}>picer</Text>
-      <FilterList 
-      overStyle={{width: 'auto'}}
-      filter={filter} 
-      setFilter={setFilter}/>
+      <Text style={globalStyles.p1}>тут сортировка по дате с главного экрана</Text>
+      <View style={styles.item}>
+          <Text style={globalStyles.p1}>ПИКЕР</Text>
+          <Text style={globalStyles.p1}>ПИКЕР</Text>
+      </View>
     </View>
   )
 })

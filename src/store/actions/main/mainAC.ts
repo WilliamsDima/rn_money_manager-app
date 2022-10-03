@@ -25,7 +25,7 @@ export const reducers: IACMain = {
     },
 
     addLocalExpAndIncome:(state, { payload }) => {
-        state.expensesAndIncomes = payload
+        state.transaction = payload
     },
 
     addLocalCategories:(state, { payload }) => {
@@ -38,29 +38,32 @@ export const reducers: IACMain = {
 
     addTransaction: (state, { payload }) => {
 
-        state.expensesAndIncomes.push(payload.data)
-
-        localAPI.set(LOCAL_NAME.EPENSES_INCOME, state.expensesAndIncomes)
+        state.transaction.push(payload)
 
         if (!payload.transaction) {
             state.categories = state.categories.map((cat) => {
-                if(cat.id === payload.data.categori) {
-                    cat.count += +payload.data.count
+                if(cat.id === payload.categori) {
+                    cat.count += +payload.count
                 }
                 return cat
             })
 
             state.accounts = state.accounts.map((ac) => {
-                if(ac.id === payload.data.accounts) {
-                    ac.count = payload.data.income ? +ac.count + +payload.data.count 
-                    : +ac.count - +payload.data.count 
+                if(ac.id === payload.accounts) {
+                    ac.count = payload.income ? +ac.count + +payload.count 
+                    : +ac.count - +payload.count 
                 }
                 return ac
             })
-
-            localAPI.set(LOCAL_NAME.CATEGORIES, state.categories)
-            localAPI.set(LOCAL_NAME.ACCAUNTS, state.accounts)
         }
+
+        if (payload.transaction) {
+            // ПЕРЕВОД С ОДНОГО СЧЁТА НА ДРУГОЙ
+        }
+
+        localAPI.set(LOCAL_NAME.EPENSES_INCOME, state.transaction)
+        localAPI.set(LOCAL_NAME.CATEGORIES, state.categories)
+        localAPI.set(LOCAL_NAME.ACCAUNTS, state.accounts)
     },
     sumCategiesCount: (state, { payload }) => {
         const sum = countSumItemsFromList(payload)

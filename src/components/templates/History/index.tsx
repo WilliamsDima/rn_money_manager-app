@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
-import { Text, View } from 'react-native'
+import { View } from 'react-native'
 import { globalStyles } from '../../../services/styles'
-import ScrollContainer from '../../atoms/Container/ScrollContainer'
-import GreenWrapper from '../../atoms/GreenWrapper'
 import HistoryFilter from '../../molecules/HistoryFilter'
+import HistoryStatisticList from '../../molecules/HistoryStatisticList'
 import HistoryList from '../../organisms/HistoryList'
 import { styles } from './history.styles'
 
@@ -15,6 +14,7 @@ const HistoryTemplate = () => {
       <View style={globalStyles.spaceHorizontal}>
 
         <HistoryFilter setFilter={setFilter} filter={filter}/>
+        <HistoryStatisticList />
         <HistoryList filter={filter}/>
       </View>
     </>

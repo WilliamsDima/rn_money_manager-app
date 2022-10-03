@@ -15,22 +15,15 @@ export interface ICategories {
     income: boolean
 }
 
-export interface IExpIncom {
-    id: number
-    count: string | number
-    accounts: null | number
-    categori: null | number
-    date: Date
-    text: string
-    income: boolean
-}
-
 export interface ITransaction {
     id: number
     count: number,
-    accauntsWay: [number | null, number | null]
+    accounts: number | number[]
+    categori: number
     date: Date
     text: string
+    income: boolean
+    transaction: boolean
 }
 
 type TsortFilter = 'Day' | 'Week' | 'Month' | 'Year'
@@ -51,6 +44,5 @@ export interface IStore {
     categoriesSortData: ICategories[] | []
     accounts: IAccounts[]
     categories: ICategories[]
-    expensesAndIncomes: IExpIncom[],
     transaction: ITransaction[],
 }

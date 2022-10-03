@@ -10,6 +10,11 @@ export const styles = StyleSheet.create({
     height: 50,
     ...globalStyles.spaceHorizontal,
     alignItems: 'center',
+    justifyContent: 'center',
+  },
+  item: {
+    width: '100%',
+    alignItems: 'center',
     justifyContent: 'space-between',
     flexDirection: 'row',
   }

@@ -55,6 +55,21 @@ export const globalStyles = StyleSheet.create({
       color: COLORS.colorPriamry,
       fontSize: 16,
       fontWeight: '700'
-    }
+    },
+    s1: {
+      color: COLORS.colorPriamry,
+      fontSize: 8,
+      fontWeight: '600'
+    },
+    s2: {
+      color: COLORS.colorPriamry,
+      fontSize: 10,
+      fontWeight: '600'
+    },
+    s3: {
+      color: COLORS.colorPriamry,
+      fontSize: 12,
+      fontWeight: '600'
+    },
   })
   

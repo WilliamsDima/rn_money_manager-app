@@ -8,4 +8,5 @@ export enum COLORS {
     colorSecondary = '#444',
     colorBgModal = 'rgba(0, 0, 0, 0.8)',
     colorYellow = '#F0CB50',
+    colorRed = 'red',
 }

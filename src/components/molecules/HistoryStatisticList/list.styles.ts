@@ -4,11 +4,10 @@ import { globalStyles } from '../../../services/styles'
 
 export const styles = StyleSheet.create({
   container: {
-    position: 'relative',
-    zIndex: 100,
-    backgroundColor:COLORS.colorBlack,
-    borderRadius: 10,
-    height: '93%',
     paddingVertical: 10,
+    ...globalStyles.spaceHorizontal,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
   }
 })
