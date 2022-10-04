@@ -1,3 +1,5 @@
+import { ITransaction } from "../store/redusers/main/types"
+
 export const getItemFromList = (id: number | string, list: any[]) => list.find((it) => it.id === id)
 // создаю шаблон для чисел, разделяю запятой
 export const numberConverter = (num) => num && num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
@@ -65,3 +67,20 @@ export const periodSort = (periodSelect, arrayMoney, date) => {
 
   return arrayMoney.length && methodDate[periodSelect]()
 }
+
+//подсчет суммы вместе с доходами, тратами и транзакциями
+export const countSumTransaction = (list: ITransaction[]) => list.reduce(
+  (prev, next) => {
+    if(!next.transaction) {
+
+      if (next.income) {
+        return +prev + +next.count
+      } else {
+        return +prev - +next.count
+      }
+      
+    } else {
+      return +next.count
+    }
+  }, 0
+)

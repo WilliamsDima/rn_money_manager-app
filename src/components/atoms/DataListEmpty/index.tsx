@@ -11,7 +11,7 @@ const DataListEmpty: FC<IEmpty> = ({text, overStyle}) => {
     <View style={globalStyles.spaceHorizontal}>
       <View style={[styles.contetn, overStyle]}>
         <Text style={[globalStyles.h2, {color: COLORS.colorSecondary, textAlign: 'center'}]}>
-          Нет {text} за выбранный период
+          {text}
         </Text>
       </View>
     </View>

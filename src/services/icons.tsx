@@ -20,11 +20,11 @@ export const ICONS_SVG = {
     [TAB_ACCAUNTS]: (props) => <AccauntsSvg color={props.color} {...props}/>,
     [TAB_CATEGORIES]: (props) => <CategoriesSvg color={props.color} {...props}/>,
     [TAB_MORE]: (props) => <MoreSvg color={props.color} {...props}/>,
+    //
+
     [MONEY_BAG]: (props) => <MoneyBagSvg color={props.color} {...props}/>,
     [WALLET]: (props) => <WalletSvg color={props.color} {...props}/>,
     [PIGGY_BANK]: (props) => <PiggyBankSvg color={props.color} {...props}/>,
-    //
-
     [HEADER_LEFT]: (props) => <HeaderLeftSvg color={props.color} {...props}/>,
     [ARROW_SELECT]: (props) => <ArrowSelectSvg color={props.color} {...props}/>,
     [HISTORY]: (props) => <HistorySvg color={props.color} {...props}/>,

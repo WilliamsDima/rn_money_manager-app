@@ -23,7 +23,8 @@ const MainContent: FC<IMain> = ({onScroll}) => {
         <FilterList filter={filter} setFilter={setFilter}/>
         {filterMaxValue?.length 
         ? <ListData data={filterMaxValue} onScroll={onScroll}/> 
-        : <DataListEmpty text={tabExpOrIncome ? 'доходов' : 'траты'} />}
+        : <DataListEmpty text={tabExpOrIncome ? 'нет доходов за выбранный период' 
+        : 'нет трат за выбранный период'} />}
         
     </View>
   )
