@@ -10,6 +10,7 @@ import HistoryFilterModal from '../../organisms/HistoryFilterModal'
 import { useAppSelector } from '../../../hooks/hooks'
 import { dataFilterMaxValue, periodSort } from '../../../hooks/helpers'
 import DataListEmpty from '../../atoms/DataListEmpty'
+import PickerCategories from '../../molecules/PickerCategories'
 
 interface IFilterData {
   type: boolean | string
@@ -21,9 +22,11 @@ const HistoryTemplate = () => {
   const { transaction, sort, sortDatePeriod } = useAppSelector(state => state.main)
 
   const [filter, setFilter] = useState(false)
+  const [categori, setCategori] = useState(false)
 
   const [filterType, setFilterType]: boolean | 'all' = useState('all')
   const [filterOrder, setFilterOrder]: boolean | 'all' = useState('all')
+  const [categorySelect, setCategorySelect]: number | null = useState(null)
 
   let res = [...transaction].reverse()
 
@@ -48,7 +51,7 @@ const HistoryTemplate = () => {
     <>
       <View style={globalStyles.spaceHorizontal}>
 
-        <HistoryFilter setFilter={setFilter}/>
+        <HistoryFilter setFilter={setFilter} setCategori={setCategori}/>
         <HistoryStatisticList data={res} filterType={filterType}/>
         {res.length ? <HistoryList data={res}/> 
         : <DataListEmpty text={'ничего не найдено'} /> }
@@ -63,6 +66,16 @@ const HistoryTemplate = () => {
           sortOrderValue={filterOrder}
           submit={filterSubmit}
           close={() => setFilter(false)}/>
+        </CustomModal>
+
+        <CustomModal
+        visible={categori}
+        animationType={'fade'}
+        closeHandler={setCategori}>
+          <PickerCategories
+          value={categorySelect}
+          setId={setCategorySelect}
+          close={() => setCategori(false)}/>
         </CustomModal>
       </View>
     </>

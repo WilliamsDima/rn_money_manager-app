@@ -10,19 +10,7 @@ import { IHistory } from './list.types'
 import FilterPeriod from '../../atoms/FilterPeriod'
 import CarouselFilter from '../CarouselFilter'
 
-const HistoryFilter: FC<IHistory> = React.memo(({ setFilter }) => {
-
-  // ЛЕВЫЙ ПИКЕР - ПО КАТЕГОРИИ
-
-  // ПРАВЫЙ ПИКЕ ИЗ пяти ПУНКТОВ
-  // - ВСЕ
-  // - ДОХОДЫ
-  // - ТРАТЫ
-  // - ПО УБЫВАНИЮ
-  // - ПО ВОЗРАСТАНИЮ
-
-  // ПРИ ВЫБОРЕ ДАТЫ БУДЕТ ОТКРЫВАТЬСЯ ДАТА ПИКЕР
-  // СОРТИРОВКА ПО ДАТЕ БУДЕТ КАК НА ГЛАВНОМ ЭКРАНЕ
+const HistoryFilter: FC<IHistory> = React.memo(({ setFilter, setCategori }) => {
 
   return (
     <View style={styles.container}>
@@ -30,7 +18,7 @@ const HistoryFilter: FC<IHistory> = React.memo(({ setFilter }) => {
       <CarouselFilter />
       <View style={styles.item}>
 
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => setCategori(true)}>
             <Text style={globalStyles.p1}>Категории</Text>
           </TouchableOpacity>
           

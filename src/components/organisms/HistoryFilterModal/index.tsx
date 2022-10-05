@@ -55,8 +55,6 @@ const HistoryFilterModal: FC<IHistoryModal> = React.memo(({close, submit,
     }
     submit(data)
   }
-
-  console.log('type', type);
   
 
   return (

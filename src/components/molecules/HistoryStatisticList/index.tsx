@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { ScrollView, Text, View } from 'react-native'
-import { countSumTransaction, numberConverter } from '../../../hooks/helpers'
+import { countSumTransaction, getItemFromList, numberConverter } from '../../../hooks/helpers'
 import { useAppSelector } from '../../../hooks/hooks'
 import { COLORS } from '../../../services/colors'
 import { globalStyles } from '../../../services/styles'
@@ -9,9 +9,30 @@ import { IHistory } from './list.types'
 
 const HistoryStatisticList: FC<IHistory> = React.memo(({ data, filterType }) => {
 
-  // ТОП ПО КАТЕГОРИИ БУДЕТ СЧИТЫВАТЬСЯ ИЗ КОЛИЧЕСТВА ID ИСПОЛЬЗУЕМОЙ КАТЕГОРИИ 
-  // А НЕ ИЗ КОЛИЧЕСТВА ДЕНЕНГ
+  const { categories } = useAppSelector(state => state.main)
 
+  // собираю самый часто повторяющийся id категории
+  const topCategory = {}
+  let count = 0
+  let maxCount = data[0]?.categori
+
+  for (let i = 0; i < data.length; i++) {
+    const categoriId = data[i].categori
+
+    if (topCategory[categoriId]) {
+      topCategory[categoriId]++
+    } else {
+      topCategory[categoriId] = 1
+    }
+
+    if (topCategory[categoriId] > maxCount) {
+      count = topCategory[categoriId]
+      maxCount = categoriId
+    }
+    
+  }
+
+  const topItemCategory = maxCount && getItemFromList(maxCount, categories)
   const sum = countSumTransaction(data)
 
   let colorSum = {}
@@ -19,7 +40,7 @@ const HistoryStatisticList: FC<IHistory> = React.memo(({ data, filterType }) => 
 
   return (
     <View style={styles.container}>
-      <Text style={globalStyles.p1}>ТОП: название категории</Text>
+      <Text style={globalStyles.p1}>ТОП: {topItemCategory?.name}</Text>
       <Text style={globalStyles.p1}>ИТОГО:
         <Text 
         style={colorSum}> {sum < 0 ? numberConverter(sum * -1) 
