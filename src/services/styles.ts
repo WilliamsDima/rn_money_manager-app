@@ -3,15 +3,13 @@ import { COLORS } from "./colors";
 
 export const globalStyles = StyleSheet.create({
     shadow: {
-      shadowColor: COLORS.colorShadow,
+      shadowColor: COLORS.mainColor,
       shadowOpacity: 0.08,
       shadowOffset: {
         width: 3,
         height: 5,
       },
       shadowRadius: 15,
-      // IOS
-      elevation: 11,
     },
     radiusTwoCorners: {
       borderTopLeftRadius: 15,

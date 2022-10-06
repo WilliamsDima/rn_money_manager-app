@@ -14,16 +14,32 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  circle: {
+  done: {
     marginLeft: 20,
     width: 20,
     height: 20,
-    borderRadius: 10,
+    borderRadius: 2,
     borderWidth: 1,
-    borderColor: COLORS.colorLightBlack
+    borderColor: COLORS.colorLightBlack,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   active: {
     borderColor: COLORS.mainColor,
-    backgroundColor: COLORS.mainColor,
+  },
+  icon: {
+    height: 40,
+    width: 40,
+    borderRadius: 20,
+    marginRight: 20
+  },
+  check: {
+    marginTop: -3,
+    width: '40%',
+    height: '40%',
+    borderBottomWidth: 1,
+    borderRightWidth: 1,
+    borderColor: COLORS.mainColor,
+    transform: [{rotate: '45deg'}]
   }
 })

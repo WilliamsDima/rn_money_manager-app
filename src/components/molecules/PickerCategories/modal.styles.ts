@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     marginTop: 15,
     width: '90%',
-    maxHeight: '50%',
+    maxHeight: '80%',
     alignItems: 'center',
   },
   btnGroup: {

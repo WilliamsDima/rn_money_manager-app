@@ -24,26 +24,36 @@ const HistoryTemplate = () => {
   const [filter, setFilter] = useState(false)
   const [categori, setCategori] = useState(false)
 
-  const [filterType, setFilterType]: boolean | 'all' = useState('all')
-  const [filterOrder, setFilterOrder]: boolean | 'all' = useState('all')
-  const [categorySelect, setCategorySelect]: number | null = useState(null)
+  const [filterType, setFilterType] = useState('all')
+  const [filterOrder, setFilterOrder] = useState('all')
+  const [categorySelect, setCategorySelect] = useState([])
 
   let res = [...transaction].reverse()
 
+  // сортирую по выбранным категориями если они есть
+  if (categorySelect.length) {
+    console.log('categorySelect', categorySelect[0]);
+    
+    res = res.filter((item) => categorySelect.some((id) => id === item.categori))
+  }
+
+  // сортировка по дате
   res = periodSort(sort, res, sortDatePeriod)
 
+  // сортировка по типу - доход или траты
   if (filterType !== 'all') {
     res = res.filter((c) => c.income === filterType && !c.transaction)
   }
 
+  // сортировка по порядвку - убывание, возрастани и т.д. 
   if (filterOrder !== 'all') {
     const filterTransaction = res.filter((c) => !c.transaction)
     res = dataFilterMaxValue(filterTransaction, filterOrder)
   }
 
-  const filterSubmit = (data: IFilterData) => {
-    setFilterType(data.type)
-    setFilterOrder(data.sortOrder)
+  const filterSubmit = (data: IFilterData | null) => {
+    setFilterType(data ? data.type : 'all')
+    setFilterOrder(data ? data.sortOrder : 'all')
     setFilter(false)
   }
 

@@ -5,5 +5,5 @@ export interface ICategorySelect {
   overStyle?: ViewStyle
   data: ICategories
   setIdSelect: () => void
-  idSelect: number
+  idSelect: number[] | undefined[]
 }

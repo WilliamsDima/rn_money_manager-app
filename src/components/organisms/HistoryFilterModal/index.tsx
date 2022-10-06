@@ -55,6 +55,10 @@ const HistoryFilterModal: FC<IHistoryModal> = React.memo(({close, submit,
     }
     submit(data)
   }
+
+  const resetFilter = () => {
+    submit(null)
+  }
   
 
   return (
@@ -89,6 +93,10 @@ const HistoryFilterModal: FC<IHistoryModal> = React.memo(({close, submit,
           <TouchableOpacity
           onPress={() => close(false)}>
             <Text style={[globalStyles.p1, {color: COLORS.colorRed}]}>Отмена</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+          onPress={resetFilter}>
+            <Text style={[globalStyles.p1]}>Сброс</Text>
           </TouchableOpacity>
           <TouchableOpacity
           onPress={submitHandler}>

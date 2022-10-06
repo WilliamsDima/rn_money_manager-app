@@ -11,7 +11,6 @@ export const HISTORY = 'HISTORY' // история
 export const PLUS_CIRCLE = 'PLUS_CIRCLE' // плюсик в кружочке
 export const HEART = 'HEART' // сердце
 export const MEDIC = 'MEDIC'; // крест медецина
-export const MONEY = 'MONEY'; // пачка денег
 export const MUSIC = 'MUSIC'; // музыка, нота
 export const PIGGY_BANK = 'PIGGY_BANK'; // копила в виде свинки
 export const STEAM = 'STEAM'; // стим
@@ -53,7 +52,7 @@ export const TECHNIK = 'TECHNIK'; // бытовая техника, электр
 export const TIKET = 'TIKET'; // билет
 export const WALLET = 'WALLET'; // кошелек
 
-export const ICONS = [MONEY, TAB_HOME, TAB_ACCAUNTS, TAB_ACCAUNTS, TAB_MORE, MEDIC, MUSIC, 
+export const ICONS = [TAB_HOME, TAB_ACCAUNTS, TAB_ACCAUNTS, TAB_MORE, MEDIC, MUSIC, 
     PIGGY_BANK, STEAM, GAS, GEAR, FILL, TAXI, TOOTCH, 
     TOOTHPASTE, BANK, REFUND, REFUND_REPO, ANIMAL, BASKET, BURGER, BUS, CAR, CHARITY, CLOTHES, COSMETICS, EDUCATION,
     ENERGY, FAMILY, FLIGHT, GAME, GIFT, GLASS, GLASSES, HEART, INTERNET, MAP, MONEY_BAG, PHONE, PRODUCTS, QUESTION,

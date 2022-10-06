@@ -2,6 +2,6 @@ import { IAccounts } from "../../../store/redusers/main/types"
 
 export interface IPickerCategory {
     close: () => void
-    value: number | null
+    value: number [] | undefined []
     setId: () => void
 }

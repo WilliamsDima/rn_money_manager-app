@@ -15,6 +15,25 @@ const PickerCategories: FC<IPickerCategory> = React.memo(({close, setId, value})
 
   const submitHandler = () => {
     setId(categori)
+    close(false)
+  }
+
+  const resetFilter = () => {
+    setId([])
+    close(false)
+  }
+
+  const addIdHandler = (id) => {
+    const isId = categori.some((it) => it === id)
+
+    let arry = [...categori]
+    if (isId) {
+      arry = arry.filter((it) => it !== id)
+    } else {
+      arry = [...arry, id]
+    }
+    
+    setCategori(arry)
   }
   
 
@@ -35,7 +54,7 @@ const PickerCategories: FC<IPickerCategory> = React.memo(({close, setId, value})
             key={item.id} 
             data={item} 
             idSelect={categori}
-            setIdSelect={setCategori}/>
+            setIdSelect={addIdHandler}/>
           })}
         </ScrollView>
 
@@ -43,6 +62,10 @@ const PickerCategories: FC<IPickerCategory> = React.memo(({close, setId, value})
           <TouchableOpacity
           onPress={() => close(false)}>
             <Text style={[globalStyles.p1, {color: COLORS.colorRed}]}>Отмена</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+          onPress={resetFilter}>
+            <Text style={[globalStyles.p1]}>Сброс</Text>
           </TouchableOpacity>
           <TouchableOpacity
           onPress={submitHandler}>

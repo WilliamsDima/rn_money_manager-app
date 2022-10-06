@@ -33,7 +33,7 @@ const HistoryStatisticList: FC<IHistory> = React.memo(({ data, filterType }) => 
   }
 
   const topItemCategory = maxCount && getItemFromList(maxCount, categories)
-  const sum = countSumTransaction(data)
+  const sum = data.length ? countSumTransaction(data) : 0
 
   let colorSum = {}
   colorSum = sum > 0 ? {color: COLORS.mainColor} : {color: COLORS.colorRed}
