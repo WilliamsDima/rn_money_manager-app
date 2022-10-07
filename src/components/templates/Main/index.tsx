@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Animated, View } from 'react-native'
+import { View } from 'react-native'
 import { globalStyles } from '../../../services/styles'
 import CustomModal from '../../atoms/Modal'
 import GreenWrapper from '../../atoms/GreenWrapper'

@@ -6,12 +6,17 @@ import { globalStyles } from '../../../services/styles'
 import { IAccounts } from '../../../store/redusers/main/types'
 import Button from '../../atoms/Button'
 import Input from '../../atoms/Input'
+import IconsList from '../../molecules/IconsList'
 import { styles } from './modal.styles'
 import { IAccauntCreateModal } from './modal.types'
+import CustomModal from '../../atoms/Modal'
+import ColorModal from '../../molecules/ColorModal'
 
 const CreateAccauntModal: FC<IAccauntCreateModal> = React.memo(({setModal}) => {
 
   const dispatch = useAppDispatch()
+
+  const [colorModal, setColorModal] = useState(false)
 
   const [count, setCount] = useState('0')
   const [icon, setIcon] = useState('')
@@ -37,12 +42,23 @@ const CreateAccauntModal: FC<IAccauntCreateModal> = React.memo(({setModal}) => {
     }
   }
 
+  const setColorHandler = (color) => {
+    setBg(color)
+  }
+
   return (
     <View style={[styles.content]}>
+
+      <CustomModal visible={colorModal} closeHandler={setColorModal}>
+        <ColorModal close={setColorModal} submin={setColorHandler} />
+      </CustomModal>
+
       <Text style={styles.title}>
         Создание счёта
       </Text>
-      
+
+      <ScrollView style={{flex: 1, marginTop: 10}}>
+
       <View style={styles.inputWrapper}>
         <Input 
             overStyle={styles.input} 
@@ -53,28 +69,34 @@ const CreateAccauntModal: FC<IAccauntCreateModal> = React.memo(({setModal}) => {
             placeholderTextColor={'#333'}
             autoFocus={true} 
             keyboardType={'number-pad'}/>
-        <Text style={globalStyles.h2}>RUB</Text>
-      </View>
-
-      <ScrollView style={{flex: 1, marginTop: 10}}>
-
-        <View style={styles.item}>
-          <Text style={[globalStyles.p1, styles.itemText]}>Иконка:</Text>
-        </View>
-
-        <View style={{marginTop: 20}}>
-          {/* <CategoriesList categoriId={categoriId} setCategoriId={setCategoriId}/> */}
+          <Text style={globalStyles.h2}>RUB</Text>
         </View>
 
         <View style={styles.item}>
-          <Text style={[globalStyles.p1, styles.itemText]}>Цвет:</Text>
+          <Text style={[globalStyles.p1,
+            icon ? {color: COLORS.mainColor} :styles.itemText ]}>
+            Иконка:
+          </Text>
         </View>
 
         <View style={{marginTop: 20}}>
-          {/* <CategoriesList categoriId={categoriId} setCategoriId={setCategoriId}/> */}
+          <IconsList iconName={icon} setId={setIcon} bg={bg}/>
         </View>
 
-        <View style={[styles.item, {paddingBottom: 0}]}>
+        <View style={[styles.item, {marginTop: -20}]}>
+          <Text style={[globalStyles.p1, 
+            bg ? {color: COLORS.mainColor} : styles.itemText]}>
+            Цвет:
+          </Text>
+        </View>
+
+        <TouchableOpacity 
+        onPress={() => setColorModal(true)}
+        style={{marginTop: 20}}>
+            <View style={[styles.circle, bg && {backgroundColor: bg}]}/>
+        </TouchableOpacity>
+
+        <View style={[styles.item, {paddingBottom: 70}]}>
           <Text style={[globalStyles.p1, styles.itemText]}>Название:</Text>
           <View style={[styles.inputWrapper, {width: '100%', marginTop: 0}]}>
             <Input

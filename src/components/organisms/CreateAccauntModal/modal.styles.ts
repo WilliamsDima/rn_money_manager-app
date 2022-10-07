@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native'
 import { COLORS } from '../../../services/colors'
 import { globalStyles } from '../../../services/styles'
+import ColorModal from '../../molecules/ColorModal'
 
 export const styles = StyleSheet.create({
   content: {
@@ -35,9 +36,15 @@ export const styles = StyleSheet.create({
   item: {
     width: '100%',
     alignItems: 'flex-start',
-    marginTop: 40
+    marginTop: 20
   },
   itemText: {
     opacity: 0.3
+  },
+  circle: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: COLORS.colorRed
   }
 })
