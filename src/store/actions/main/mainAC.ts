@@ -36,6 +36,43 @@ export const reducers: IACMain = {
         state.accounts = payload
     },
 
+    addAccaunt: (state, { payload }) => {
+        state.accounts.push(payload)
+        localAPI.set(LOCAL_NAME.ACCAUNTS, state.accounts)
+    },
+
+    deleteAccaunt: (state, { payload }) => {
+        state.accounts = state.accounts.filter((ac) => ac.id !== payload.id)
+
+        state.accounts = state.accounts.map((ac) => {
+            if (ac.id === 1) {
+                ac.count = ac.count + +payload.count
+            }
+            return ac
+        })
+
+        if (state.accountsIdSelected === payload.id) {
+            state.accountsIdSelected = 1
+            localAPI.set(LOCAL_NAME.ACCAUNT_SELECT, 1)
+        }
+        localAPI.set(LOCAL_NAME.ACCAUNTS, state.accounts)
+    },
+
+    editeAccaunt: (state, { payload }) => {
+
+        state.accounts = state.accounts.map((ac) => {
+            if (payload.id === ac.id) {
+                ac.name = payload.name
+                ac.count = payload.count
+                ac.bg = payload.bg
+                ac.icon = payload.icon
+            }
+            return ac
+        })
+        
+        localAPI.set(LOCAL_NAME.ACCAUNTS, state.accounts)
+    },
+
     addTransaction: (state, { payload }) => {
 
         state.transaction.push(payload)
@@ -58,7 +95,15 @@ export const reducers: IACMain = {
         }
 
         if (payload.transaction) {
-            // ПЕРЕВОД С ОДНОГО СЧЁТА НА ДРУГОЙ
+            state.accounts = state.accounts.map((ac) => {
+                if(ac.id === payload.accounts[0]) {
+                    ac.count = ac.count - payload.count
+                }
+                if(ac.id === payload.accounts[1]) {
+                    ac.count = ac.count + +payload.count
+                }
+                return ac
+            })
         }
 
         localAPI.set(LOCAL_NAME.EPENSES_INCOME, state.transaction)

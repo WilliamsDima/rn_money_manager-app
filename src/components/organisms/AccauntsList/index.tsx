@@ -5,12 +5,12 @@ import AccauntItem from '../../atoms/AccauntItem'
 import { styles } from './list.styles'
 import { ICategoryList } from './list.types'
 
-const AccauntsList: FC<ICategoryList> = ({}) => {
+const AccauntsList: FC<ICategoryList> = ({onPress}) => {
 
   const { accounts } = useAppSelector(state => state.main)
 
   const renderItem = ({ item }) => {
-      return <AccauntItem data={item} />
+      return <AccauntItem data={item} onPress={onPress}/>
   };
 
   return (

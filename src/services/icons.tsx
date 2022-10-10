@@ -9,7 +9,7 @@ import HeartSvg from '../assets/svg/categories/HeartSvg'
 import { MoreSvg } from "../assets/svg/MoreSvg";
 import { PlusSvg } from "../assets/svg/PlusSvg";
 import { ANIMAL, ARROW_SELECT, BANK, BASKET, BURGER, BUS, CAR, CHARITY, CLOTHES, 
-    COSMETICS, EDUCATION, ENERGY, FAMILY, FILL, FLIGHT, GAME, GAS, GEAR, GIFT,
+    COSMETICS, DELETE, EDUCATION, ENERGY, FAMILY, FILL, FLIGHT, GAME, GAS, GEAR, GIFT,
      GLASS, GLASSES, HEADER_LEFT, HEART, HISTORY, INTERNET, MAP, 
      MEDIC, 
      MONEY_BAG, MUSIC, PHONE, PIGGY_BANK, PLUS_CIRCLE, PRODUCTS, 
@@ -56,6 +56,7 @@ import { GasSvg } from "../assets/svg/categories/GasSvg";
 import { SteamSvg } from "../assets/svg/categories/SteamSvg";
 import { MusicSvg } from "../assets/svg/categories/MusicSvg";
 import { MedicineSvg } from "../assets/svg/categories/MedicineSvg";
+import DeleteSvg from "../assets/svg/DeleteSvg";
 
 export const ICONS_SVG = {
     // tab
@@ -111,6 +112,7 @@ export const ICONS_SVG = {
     [STEAM]: (props) => <SteamSvg color={props.color} {...props}/>,
     [MUSIC]: (props) => <MusicSvg color={props.color} {...props}/>,
     [MEDIC]: (props) => <MedicineSvg color={props.color} {...props}/>,
+    [DELETE]: (props) => <DeleteSvg color={props.color} {...props}/>,
 }
 
 interface IIconSvg {

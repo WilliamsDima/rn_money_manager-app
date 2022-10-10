@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { BURGER, BUS, CHARITY, EDUCATION, ENERGY, FAMILY, GAME, 
-    GIFT, MEDIC, MONEY, MONEY_BAG, PIGGY_BANK, PRODUCTS, QUESTION, 
+    GIFT, MEDIC, MONEY_BAG, PIGGY_BANK, PRODUCTS, QUESTION, 
     REFUND, REFUND_REPO, SPORT, TAB_ACCAUNTS, WALLET } from '../../../services/iconsName'
 import { reducers } from "../../actions/main/mainAC"
 import { IStore } from './types'
@@ -24,28 +24,16 @@ const initialState: IStore = {
             bg: 'red',
             name: 'Всего',
             id: 0,
-            count: 0
+            count: 0,
+            delete: false,
         },
         {
-            icon: TAB_ACCAUNTS,
-            bg: '#004242',
-            name: 'Карта',
+            icon: QUESTION,
+            bg: 'red',
+            name: 'Другое',
             id: 1,
-            count: 15000
-        },
-        {
-            icon: WALLET,
-            bg: '#3AC750',
-            name: 'Наличные',
-            id: 2,
-            count: 5000
-        },
-        {
-            icon: PIGGY_BANK,
-            bg: '#318CE7',
-            name: 'Сбережения',
-            id: 3,
-            count: 8000
+            count: 0,
+            delete: false,
         },
     ],
 
@@ -195,5 +183,5 @@ export const mainReducer = (state = initialState, action) => {
 export const {setAllCauntAccaunts, addTransaction, 
     sumCategiesCount, setTabExpOrIncome, setSumMoneySort, 
     setSortValue, setSortDatePeriod, addLocalCategories,
-    addLocalAccaunts, 
+    addLocalAccaunts, addAccaunt, editeAccaunt, deleteAccaunt,
     setDataOnPeriodFilter, setAccauntId, addLocalExpAndIncome } = counterSlice.actions;

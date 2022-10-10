@@ -10,6 +10,11 @@ export const LOCAL_NAME =  {
     ACCAUNTS: 'accounts',
 }
 
+interface IDeleteAccaunt {
+    id: number
+    count: number
+}
+
 export interface IACMain {
     setTabExpOrIncome: (state: IStore, payload: PayloadAction<boolean>) => void
     setAccauntId: (state: IStore, payload: PayloadAction<number>) => void
@@ -18,7 +23,13 @@ export interface IACMain {
     addLocalExpAndIncome: (state: IStore, payload: PayloadAction<ITransaction[]>) => void
     addLocalCategories: (state: IStore, payload: PayloadAction<ICategories[]>) => void
     addLocalAccaunts: (state: IStore, payload: PayloadAction<IAccounts[]>) => void
+
+    addAccaunt: (state: IStore, payload: PayloadAction<IAccounts>) => void
+    editeAccaunt: (state: IStore, payload: PayloadAction<IAccounts>) => void
+    deleteAccaunt: (state: IStore, payload: PayloadAction<IDeleteAccaunt>) => void
+
     addTransaction: (state: IStore, payload: PayloadAction<ITransaction>) => void
+
     sumCategiesCount: (state: IStore, payload: PayloadAction<ICategories[]>) => void
     setSortValue: (state: IStore, payload: PayloadAction<filterPeriod>) => void
     setSortDatePeriod: (state: IStore, payload: PayloadAction<Date>) => void

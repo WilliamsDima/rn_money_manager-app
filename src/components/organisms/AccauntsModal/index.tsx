@@ -16,7 +16,7 @@ const AccauntsModal: FC<IExpAndIncModal> = React.memo(({close, setId, idSelect, 
   return (
     <TouchableOpacity 
     activeOpacity={1}
-    onPress={() => close(false)}
+    onPress={() => close()}
     style={[styles.container]}>
       <TouchableOpacity 
       activeOpacity={1}

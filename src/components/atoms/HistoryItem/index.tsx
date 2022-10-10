@@ -7,7 +7,7 @@ import { styles } from './list.styles'
 import { IHistory } from './list.types'
 import Avatar from '../../atoms/Avatar'
 import { IconSvg } from '../../../services/icons'
-import { HEART } from '../../../services/iconsName'
+import { HEART, REFUND, REFUND_REPO } from '../../../services/iconsName'
 import { ICategories } from '../../../store/redusers/main/types'
 import { COLORS } from '../../../services/colors'
 
@@ -15,14 +15,16 @@ const HistoryItem: FC<IHistory> = ({ data }) => {
 
   const { categories, accounts } = useAppSelector(state => state.main)
 
-  const currentCategori: ICategories = getItemFromList(data.categori, categories)
+  const currentCategori: ICategories = getItemFromList(data?.categori, categories)
   let currentAccaunt = ''
 
-  if (data.transaction) {
-    currentAccaunt = getItemFromList(data.accounts[0], accounts).name
-    + ' -> ' +  getItemFromList(data.accounts[1], accounts).name
+  if (data?.transaction) {
+    const accOne = getItemFromList(data.accounts[0], accounts)
+    const accTwo = getItemFromList(data.accounts[1], accounts)
+    currentAccaunt = accOne && accTwo ? accOne?.name + ' -> ' 
+    +  accTwo?.name : ''
   } else {
-    currentAccaunt = getItemFromList(data.accounts, accounts).name
+    currentAccaunt = getItemFromList(data?.accounts, accounts)?.name
   }
 
   const dateConverter = (i) => {
@@ -32,7 +34,7 @@ const HistoryItem: FC<IHistory> = ({ data }) => {
     return i
   }
 
-  const date = new Date(data.date)
+  const date = new Date(data?.date)
   const dateDisplay = dateConverter(date.getDate()) + '/' + dateConverter(date.getMonth()) 
   + '/'+ date.getFullYear()
   const timeDisplay = dateConverter(date.getHours()) + ':' + dateConverter(date.getMinutes()) 
@@ -42,11 +44,11 @@ const HistoryItem: FC<IHistory> = ({ data }) => {
   return (
     <TouchableOpacity style={[styles.item]}>
       <View style={[styles.avatar, {width: '40%'}]}>
-        <Avatar overStyle={styles.icon} bg={currentCategori.bg}>
-          <IconSvg name={HEART} />
+        <Avatar overStyle={styles.icon} bg={currentCategori?.bg}>
+          <IconSvg name={currentCategori?.icon || REFUND} color={COLORS.colorPriamry} />
         </Avatar>
         <Text style={[globalStyles.p1]} numberOfLines={1}>
-          {currentCategori.name}
+          {currentCategori?.name || 'перевод'}
         </Text>
       </View>
 
@@ -57,13 +59,13 @@ const HistoryItem: FC<IHistory> = ({ data }) => {
 
       <View style={{width: '30%', alignItems: 'flex-end'}}>
         <Text style={[globalStyles.p1, {marginBottom: 5}]}>
-          <Text style={{color: data.income ? COLORS.mainColor : COLORS.colorRed}}>
-            {data.income ? ' + ' : ' - '}
+          <Text style={{color: data?.income ? COLORS.mainColor : COLORS.colorRed}}>
+            {data?.transaction ? '' : data?.income ? ' + ' : ' - ' }
           </Text>
-          {numberConverter(data.count)} P
+          {numberConverter(data?.count)} P
         </Text> 
         <Text style={[globalStyles.s2, {opacity: 0.6}]}>
-          {currentAccaunt}
+          {currentAccaunt || 'счёт удален'}
         </Text>
       </View>
     </TouchableOpacity>

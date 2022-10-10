@@ -9,7 +9,7 @@ import IconBtn from '../../atoms/IconBtn'
 import { styles } from './button.styles'
 import { IButton } from './button.types'
 
-const AccauntsBtn: FC<IButton> = ({setModal}) => {
+const AccauntsBtn: FC<IButton> = ({setModal, setModalTransaction}) => {
 
   const navigation = useNavigation()
 
@@ -28,7 +28,7 @@ const AccauntsBtn: FC<IButton> = ({setModal}) => {
           </Text>
         </View>
         <View style={[styles.btn]}>
-          <IconBtn name={REFUND}/>
+          <IconBtn name={REFUND} onPress={() => setModalTransaction(true)}/>
           <Text style={[globalStyles.p2, styles.btnText]}>
             Перевод
           </Text>

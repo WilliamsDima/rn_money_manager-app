@@ -2,8 +2,8 @@ import React, { FC } from 'react'
 import { TouchableOpacity, Text, View } from 'react-native'
 import { countInterest, numberConverter } from '../../../hooks/helpers'
 import { useAppSelector } from '../../../hooks/hooks'
+import { COLORS } from '../../../services/colors'
 import { IconSvg } from '../../../services/icons'
-import { HEART } from '../../../services/iconsName'
 import { globalStyles } from '../../../services/styles'
 import Avatar from '../Avatar'
 import { styles } from './item.styles'
@@ -18,7 +18,7 @@ const ItemList: FC<IItem> = ({item}) => {
 
       <View style={[styles.avatar, {width: '40%'}]}>
         <Avatar overStyle={styles.icon} bg={item.bg}>
-          <IconSvg name={HEART} />
+          <IconSvg name={item.icon} color={COLORS.colorPriamry}/>
         </Avatar>
         <Text style={[globalStyles.p1]} numberOfLines={1}>{item.name}</Text>
       </View>

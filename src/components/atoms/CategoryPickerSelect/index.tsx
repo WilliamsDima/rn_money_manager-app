@@ -5,7 +5,7 @@ import { styles } from './btn.styles'
 import { ICategorySelect } from './btn.types'
 import Avatar from '../Avatar'
 import { IconSvg } from '../../../services/icons'
-import { HEART } from '../../../services/iconsName'
+import { COLORS } from '../../../services/colors'
 
 const CategoryPickerSelect: FC<ICategorySelect> = ({data, overStyle, 
   idSelect, setIdSelect}) => {
@@ -17,7 +17,7 @@ const CategoryPickerSelect: FC<ICategorySelect> = ({data, overStyle,
     onPress={() => setIdSelect(data.id)}>
       <View style={styles.item}>
         <Avatar overStyle={styles.icon} bg={data.bg}>
-          <IconSvg name={HEART} color={'#fff'}/>
+          <IconSvg name={data.icon} color={COLORS.colorPriamry}/>
         </Avatar>
         <Text style={[globalStyles.p1]}>{data.name}</Text>
       </View>

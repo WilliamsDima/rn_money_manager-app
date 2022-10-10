@@ -1,7 +1,6 @@
 import { StyleSheet } from 'react-native'
 import { COLORS } from '../../../services/colors'
 import { globalStyles } from '../../../services/styles'
-import ColorModal from '../../molecules/ColorModal'
 
 export const styles = StyleSheet.create({
   content: {
@@ -12,12 +11,10 @@ export const styles = StyleSheet.create({
     height: '100%',
     alignItems: 'center',
   },
+
   btn: {
     position: 'absolute',
     bottom: 20,
-    width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'space-around'
   },
   title: {
     ...globalStyles.h1,
@@ -39,15 +36,9 @@ export const styles = StyleSheet.create({
   item: {
     width: '100%',
     alignItems: 'flex-start',
-    marginTop: 20
+    marginTop: 40
   },
   itemText: {
     opacity: 0.3
-  },
-  circle: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: COLORS.colorRed
   }
 })

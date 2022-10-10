@@ -9,6 +9,7 @@ export const styles = StyleSheet.create({
     marginBottom: 10,
     padding: 10,
     borderRadius: 10,
+    width: '100%',
     backgroundColor: COLORS.colorBlack,
   },
   icon: {
@@ -20,5 +21,10 @@ export const styles = StyleSheet.create({
   avatar: {
     flexDirection: 'row',
     alignItems: 'center'
-  }
+  },
+  container: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 })

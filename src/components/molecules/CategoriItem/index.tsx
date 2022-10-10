@@ -22,7 +22,7 @@ const CategoriItem: FC<ICategoriItem> = React.memo(({item, size,
       {width: size, height: size }, overStyle]}
     onPress={() => setCategoriId(id)}>
         <Avatar bg={bg} overStyle={styles.icon}>
-          <IconSvg name={HEART} />
+          <IconSvg name={icon} color={COLORS.colorPriamry}/>
         </Avatar>
         <Text
         style={[globalStyles.p1, id === categoriId ? 

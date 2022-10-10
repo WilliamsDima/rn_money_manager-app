@@ -4,6 +4,7 @@ export interface IAccounts {
     name: string,
     id: number
     count: number
+    delete: boolean
 }
 
 export interface ICategories {
@@ -19,7 +20,7 @@ export interface ITransaction {
     id: number
     count: number,
     accounts: number | number[]
-    categori: number
+    categori: number | null
     date: Date
     text: string
     income: boolean

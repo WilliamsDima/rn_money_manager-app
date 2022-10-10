@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react'
-import { Text, TouchableOpacity, View, ScrollView, ToastAndroid } from 'react-native'
-import { useAppDispatch } from '../../../hooks/hooks'
+import { Text, TouchableOpacity, View, ScrollView, ToastAndroid, Alert } from 'react-native'
+import { useAppDispatch, useAppSelector } from '../../../hooks/hooks'
 import { COLORS } from '../../../services/colors'
 import { globalStyles } from '../../../services/styles'
 import { IAccounts } from '../../../store/redusers/main/types'
@@ -11,17 +11,22 @@ import { styles } from './modal.styles'
 import { IAccauntCreateModal } from './modal.types'
 import CustomModal from '../../atoms/Modal'
 import ColorModal from '../../molecules/ColorModal'
+import { addAccaunt, deleteAccaunt, editeAccaunt, setAllCauntAccaunts } from '../../../store/redusers/main/main'
+import { getItemFromList } from '../../../hooks/helpers'
 
-const CreateAccauntModal: FC<IAccauntCreateModal> = React.memo(({setModal}) => {
+const CreateAccauntModal: FC<IAccauntCreateModal> = React.memo(({setModal, editeMode}) => {
 
   const dispatch = useAppDispatch()
+  const { accounts } = useAppSelector(state => state.main)
 
   const [colorModal, setColorModal] = useState(false)
 
-  const [count, setCount] = useState('0')
-  const [icon, setIcon] = useState('')
-  const [name, setName] = useState('')
-  const [bg, setBg] = useState('')
+  const [count, setCount] = useState(editeMode?.count?.toString() || '0')
+  const [icon, setIcon] = useState(editeMode?.icon || '')
+  const [name, setName] = useState(editeMode?.name || '')
+  const [bg, setBg] = useState(editeMode?.bg || '')
+
+  const accauntOther: IAccounts = getItemFromList(1, accounts)
 
   const disabled = icon && name && bg && count
 
@@ -34,12 +39,55 @@ const CreateAccauntModal: FC<IAccauntCreateModal> = React.memo(({setModal}) => {
         name,
         id: + new Date(),
         count: +count.replace(',', '.'),
+        delete: true,
       }
       console.log('new ADD Accaunt', data);
-      // dispatch(addTransaction(data))
+      dispatch(addAccaunt(data))
+      dispatch(setAllCauntAccaunts())
       ToastAndroid.show('добавлено', 2000);
-      // setModal(false)
+      setModal(false)
     }
+  }
+
+  const saveHandler = () => {
+    
+    if (disabled && editeMode?.id) {
+      const data: IAccounts = {
+        icon,
+        bg,
+        name,
+        id: editeMode?.id,
+        count: +count.replace(',', '.'),
+        delete: true,
+      }
+      dispatch(editeAccaunt(data))
+      dispatch(setAllCauntAccaunts())
+      ToastAndroid.show('изменено', 2000);
+      setModal(false)
+    }
+  }
+
+  const deleteHandler = () => {
+    Alert.alert(
+      "Удаление",
+      `Удалить счёт "${editeMode.name}"? Весь остаток будет перемещён в "${accauntOther.name}"`,
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        { text: "OK", onPress: () => {
+          const data = {
+            id: editeMode?.id,
+            count: editeMode?.count
+          }
+            dispatch(deleteAccaunt(data))
+            ToastAndroid.show('удалено', 2000);
+            setModal(false)
+        } }
+      ]
+    );
   }
 
   const setColorHandler = (color) => {
@@ -54,23 +102,24 @@ const CreateAccauntModal: FC<IAccauntCreateModal> = React.memo(({setModal}) => {
       </CustomModal>
 
       <Text style={styles.title}>
-        Создание счёта
+        {editeMode ? 'Редактирование' : 'Создание счёта'}
       </Text>
 
       <ScrollView style={{flex: 1, marginTop: 10}}>
 
-      <View style={styles.inputWrapper}>
-        <Input 
-            overStyle={styles.input} 
-            maxLength={10}
-            value={count}
-            onChange={({nativeEvent}) => setCount(nativeEvent.text)}
-            placeholder={'0'}
-            placeholderTextColor={'#333'}
-            autoFocus={true} 
-            keyboardType={'number-pad'}/>
-          <Text style={globalStyles.h2}>RUB</Text>
-        </View>
+      {(!editeMode || editeMode?.id ? true : false) && (<View style={styles.inputWrapper}>
+          <Input 
+              overStyle={styles.input} 
+              maxLength={10}
+              value={count}
+              onChange={({nativeEvent}) => setCount(nativeEvent.text)}
+              placeholder={'0'}
+              placeholderTextColor={'#333'}
+              autoFocus={true} 
+              keyboardType={'number-pad'}/>
+            <Text style={globalStyles.h2}>RUB</Text>
+        </View>)}
+
 
         <View style={styles.item}>
           <Text style={[globalStyles.p1,
@@ -97,7 +146,7 @@ const CreateAccauntModal: FC<IAccauntCreateModal> = React.memo(({setModal}) => {
         </TouchableOpacity>
 
         <View style={[styles.item, {paddingBottom: 70}]}>
-          <Text style={[globalStyles.p1, styles.itemText]}>Название:</Text>
+          <Text style={[globalStyles.p1, name ? {color: COLORS.mainColor} : styles.itemText]}>Название:</Text>
           <View style={[styles.inputWrapper, {width: '100%', marginTop: 0}]}>
             <Input
               value={name}
@@ -112,9 +161,17 @@ const CreateAccauntModal: FC<IAccauntCreateModal> = React.memo(({setModal}) => {
       </ScrollView>
 
       <View style={styles.btn}>
-        <Button onPress={addHandler} disabled={!disabled}>
+        {(editeMode && editeMode?.delete) && <Button 
+        onPress={deleteHandler} 
+        overStyle={{backgroundColor: 'transparent'}}>
+          <Text style={[globalStyles.p2, {color: COLORS.colorRed}]}>
+            УДАЛИТЬ
+          </Text>
+        </Button>}
+
+        <Button onPress={editeMode ? saveHandler : addHandler} disabled={!disabled}>
           <Text style={[globalStyles.p2, {color: COLORS.colorBlack}]}>
-            ДОБАВИТЬ
+            {editeMode ? 'СОХРАНИТЬ' : 'ДОБАВИТЬ'}
           </Text>
         </Button>
       </View>

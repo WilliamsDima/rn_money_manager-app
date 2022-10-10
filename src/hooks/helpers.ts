@@ -71,16 +71,10 @@ export const periodSort = (periodSelect, arrayMoney, date) => {
 //подсчет суммы вместе с доходами, тратами и транзакциями
 export const countSumTransaction = (list: ITransaction[]) => list.reduce(
   (prev, next) => {
-    if(!next.transaction) {
-
       if (next.income) {
         return +prev + +next.count
       } else {
         return +prev - +next.count
       }
-      
-    } else {
-      return +next.count
-    }
   }, 0
 )
