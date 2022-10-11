@@ -5,13 +5,15 @@ import CategoriItem from '../../molecules/CategoriItem'
 import { styles } from './list.styles'
 import { ICategories } from './list.types'
 
-const CategoriesList: FC<ICategories> = ({categoriId, setCategoriId}) => {
+const CategoriesList: FC<ICategories> = ({categoriId, setCategoriId, expOrIncom}) => {
 
   const countItemForRow = 9
 
   const [size, setSize] = useState(0)
   const { categories, tabExpOrIncome } = useAppSelector(state => state.main)
-  const categoriesFilter = categories.filter((c) => c.income === tabExpOrIncome)
+
+  const isExpOrIncom = expOrIncom !== undefined ? expOrIncom : tabExpOrIncome
+  const categoriesFilter = categories.filter((c) => c.income === isExpOrIncom)
 
   let res = []
   const count = parseInt(categoriesFilter.length / countItemForRow)

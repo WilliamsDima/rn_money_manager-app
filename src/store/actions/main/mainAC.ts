@@ -1,5 +1,6 @@
 import { localAPI } from "../../../api/asyncStorage";
-import { countSumItemsFromList } from "../../../hooks/helpers"
+import { countSumItemsFromList, getItemFromList } from "../../../hooks/helpers"
+import { ICategories, ITransaction } from "../../redusers/main/types";
 import { IACMain, LOCAL_NAME } from "./types"
 
 export const reducers: IACMain = {
@@ -93,7 +94,7 @@ export const reducers: IACMain = {
                 return ac
             })
         }
-
+       
         if (payload.transaction) {
             state.accounts = state.accounts.map((ac) => {
                 if(ac.id === payload.accounts[0]) {

@@ -11,7 +11,7 @@ import { HEART, REFUND, REFUND_REPO } from '../../../services/iconsName'
 import { ICategories } from '../../../store/redusers/main/types'
 import { COLORS } from '../../../services/colors'
 
-const HistoryItem: FC<IHistory> = ({ data }) => {
+const HistoryItem: FC<IHistory> = ({ data, setData }) => {
 
   const { categories, accounts } = useAppSelector(state => state.main)
 
@@ -42,7 +42,9 @@ const HistoryItem: FC<IHistory> = ({ data }) => {
 
 
   return (
-    <TouchableOpacity style={[styles.item]}>
+    <TouchableOpacity 
+    onPress={() => setData(data)}
+    style={[styles.item]}>
       <View style={[styles.avatar, {width: '40%'}]}>
         <Avatar overStyle={styles.icon} bg={currentCategori?.bg}>
           <IconSvg name={currentCategori?.icon || REFUND} color={COLORS.colorPriamry} />

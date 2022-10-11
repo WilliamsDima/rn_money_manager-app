@@ -14,26 +14,33 @@ import CategoriesList from '../CategoriesList'
 import { styles } from './modal.styles'
 import { IExpAndIncModal } from './modal.types'
 
-const ExpAndIncModal: FC<IExpAndIncModal> = React.memo(({setExpAndEncomeModal}) => {
+const ExpAndIncModal: FC<IExpAndIncModal> = React.memo(({setExpAndEncomeModal, data}) => {
 
   const dispatch = useAppDispatch()
-
-  const { accounts, tabExpOrIncome } = useAppSelector(state => state.main)
+  
+  const { accounts, tabExpOrIncome, categories } = useAppSelector(state => state.main)
   const filterAccaunts = accounts.filter((it) => it.id)
 
   const [modal, setModal] = useState(false)
 
-  const [accauntsId, setAccauntsId] = useState()
-  const [categoriId, setCategoriId] = useState()
-  const [count, setCount] = useState('')
-  const [text, setText] = useState('')
+  const [accauntsId, setAccauntsId] = useState(data?.accounts)
+  const [categoriId, setCategoriId] = useState(data?.categori)
+  const [date, setDate] = useState(data?.date || new Date())
+  const [count, setCount] = useState(data?.count?.toString() || '')
+  const [text, setText] = useState(data?.text || '')
+
+   // выбранный счёт существует
   const selectAccaunt: IAccounts = getItemFromList(accauntsId, accounts)
 
-  const money = tabExpOrIncome ? 
-  +selectAccaunt?.count + +count.replace(',', '.') 
-  : selectAccaunt?.count - +count.replace(',', '.')
+  // выбранная категория существует
+  const isCategoryExist = categoriId && getItemFromList(categoriId, categories)
 
-  const disabled = accauntsId && categoriId && count && money >= 0
+
+  const money = data ? data.income : tabExpOrIncome ? 
+  selectAccaunt ? +selectAccaunt?.count + +count.replace(',', '.') : +count.replace(',', '.')
+  : selectAccaunt ? selectAccaunt?.count - +count.replace(',', '.') : +count.replace(',', '.')
+
+  const disabled = selectAccaunt && isCategoryExist && count && false
 
   const addHandler = () => {
     
@@ -42,26 +49,27 @@ const ExpAndIncModal: FC<IExpAndIncModal> = React.memo(({setExpAndEncomeModal}) 
     }
     
     if(accauntsId && categoriId && count && money >= 0) {
-      const data: ITransaction = {
+      const dataTransaction: ITransaction = {
         accounts: accauntsId,
         categori: categoriId,
-        date: new Date(),
-        id: + new Date(),
+        date,
+        id: data ? data?.id : +new Date(),
         count: +count.replace(',', '.'),
         text: text,
-        income: tabExpOrIncome,
-        transaction: false
+        income: data ? data?.income : tabExpOrIncome,
+        transaction: data ? data?.transaction : false
       }
-      console.log('new ADD', data);
-      dispatch(addTransaction(data))
-      ToastAndroid.show('добавлено', 2000);
+
+      dispatch(addTransaction(dataTransaction))
+      ToastAndroid.show(data ? 'изменено' : 'добавлено', 2000);
       setExpAndEncomeModal(false)
     }
   }
 
   return (
     <View style={[styles.content]}>
-      <Text style={styles.title}>{tabExpOrIncome ? 'доход' : 'затраты'}</Text>
+      <Text style={styles.title}>{tabExpOrIncome 
+      || data?.income ? 'доход' : 'затраты'}</Text>
       <View style={styles.inputWrapper}>
         <Input 
             overStyle={styles.input} 
@@ -76,24 +84,29 @@ const ExpAndIncModal: FC<IExpAndIncModal> = React.memo(({setExpAndEncomeModal}) 
       </View>
 
       <View style={styles.item}>
-        <Text style={[globalStyles.p1, styles.itemText]}>Выберите счёт:</Text>
+        <Text style={[globalStyles.p1, selectAccaunt ? {color: COLORS.mainColor} 
+          : styles.itemText]}>Выберите счёт:</Text>
 
         <TouchableOpacity style={{marginTop: 10}}
         onPress={() => setModal(true)}>
           <Text style={[globalStyles.p1, selectAccaunt ? {color: COLORS.mainColor} 
             : {color: 'red'}]}>
-            {selectAccaunt ? selectAccaunt.name  : 'счёт не выбран'}
+            {selectAccaunt ? selectAccaunt.name  : data ? 'счёт удалён' : 'счёт не выбран'}
           </Text>
         </TouchableOpacity>
       </View>
       <ScrollView style={{flex: 1, marginTop: 10}}>
 
         <View style={styles.item}>
-          <Text style={[globalStyles.p1, styles.itemText]}>Выберите категорию:</Text>
+          <Text style={[globalStyles.p1, isCategoryExist ? {color: COLORS.mainColor} 
+            : styles.itemText]}>Выберите категорию:</Text>
         </View>
 
         <View style={{marginTop: 20}}>
-          <CategoriesList categoriId={categoriId} setCategoriId={setCategoriId}/>
+          <CategoriesList 
+          expOrIncom={data?.income}
+          categoriId={categoriId} 
+          setCategoriId={setCategoriId}/>
         </View>
 
         <View style={[styles.item, {paddingBottom: 100}]}>
@@ -114,7 +127,7 @@ const ExpAndIncModal: FC<IExpAndIncModal> = React.memo(({setExpAndEncomeModal}) 
       <View style={styles.btn}>
         <Button onPress={addHandler} disabled={!disabled}>
           <Text style={[globalStyles.p2, {color: COLORS.colorBlack}]}>
-            ДОБАВИТЬ
+            {data ? 'ИЗМЕНИТЬ' : 'ДОБАВИТЬ'}
           </Text>
         </Button>
       </View>

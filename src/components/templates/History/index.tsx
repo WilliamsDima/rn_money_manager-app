@@ -32,8 +32,6 @@ const HistoryTemplate = () => {
 
   // сортирую по выбранным категориями если они есть
   if (categorySelect.length) {
-    console.log('categorySelect', categorySelect[0]);
-    
     res = res.filter((item) => categorySelect.some((id) => id === item.categori))
   }
 
@@ -62,7 +60,7 @@ const HistoryTemplate = () => {
       <View style={globalStyles.spaceHorizontal}>
 
         <HistoryFilter setFilter={setFilter} setCategori={setCategori}/>
-        <HistoryStatisticList data={res} filterType={filterType}/>
+        <HistoryStatisticList data={res.length ? res : []} filterType={filterType}/>
         {res.length ? <HistoryList data={res}/> 
         : <DataListEmpty text={'ничего не найдено'} /> }
         
