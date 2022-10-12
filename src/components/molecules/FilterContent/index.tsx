@@ -21,9 +21,6 @@ const FilterContent: FC<IFilter> = React.memo(({setExpAndEncomeModal, hideDiogra
   const { transaction, categories, 
     tabExpOrIncome, sort, sortDatePeriod } = useAppSelector(state => state.main)
 
-    console.log(categories);
-    
-    
   // фильтр трат и доходов
   const expensesAndIncomFilter = transaction.filter((c) => c.income === tabExpOrIncome)
   // сортировка по выбранному периоду

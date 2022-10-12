@@ -40,7 +40,7 @@ const ExpAndIncModal: FC<IExpAndIncModal> = React.memo(({setExpAndEncomeModal, d
   selectAccaunt ? +selectAccaunt?.count + +count.replace(',', '.') : +count.replace(',', '.')
   : selectAccaunt ? selectAccaunt?.count - +count.replace(',', '.') : +count.replace(',', '.')
 
-  const disabled = selectAccaunt && isCategoryExist && count && false
+  const disabled = selectAccaunt && isCategoryExist && count
 
   const addHandler = () => {
     

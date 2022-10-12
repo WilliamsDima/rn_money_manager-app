@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import { Text, TouchableOpacity, View, ScrollView, ToastAndroid, Alert } from 'react-native'
 import { getItemFromList } from '../../../hooks/helpers'
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks'
@@ -27,6 +27,7 @@ const TransactionModal: FC<IExpAndIncModal> = React.memo(({setModal}) => {
   const [accauntSecond, setAccauntSecond] = useState(null)
   const [count, setCount] = useState('')
   const [text, setText] = useState('')
+  const [date, setDate] = useState(new Date())
 
   const selectAccauntFirst: IAccounts = accauntFirst 
   && getItemFromList(accauntFirst, accounts)
@@ -35,9 +36,9 @@ const TransactionModal: FC<IExpAndIncModal> = React.memo(({setModal}) => {
   && getItemFromList(accauntSecond, accounts)
 
   const filterAccauntsForFirst = accounts.filter((it) => it.id 
-  && (it.id !== accauntFirst))
-  const filterAccauntsForSecond = accounts.filter((it) => it.id 
   && (it.id !== accauntSecond))
+  const filterAccauntsForSecond = accounts.filter((it) => it.id 
+  && (it.id !== accauntFirst))
 
   const money = selectAccauntFirst && selectAccauntFirst.count - +count.replace(',', '.') 
 
@@ -53,8 +54,8 @@ const TransactionModal: FC<IExpAndIncModal> = React.memo(({setModal}) => {
       const data: ITransaction = {
         accounts: [selectAccauntFirst.id, selectAccauntSecond.id],
         categori: null,
-        date: new Date(),
-        id: + new Date(),
+        date,
+        id: +date,
         count: +count.replace(',', '.'),
         text: text,
         income: true,
@@ -66,6 +67,13 @@ const TransactionModal: FC<IExpAndIncModal> = React.memo(({setModal}) => {
       setModal(false)
     }
   }
+
+
+  
+  useEffect(() => {
+    console.log('TransactionModal', selectAccauntFirst);
+  }, [accauntFirst, accauntSecond])
+
 
   return (
     <View style={[styles.content]}>
@@ -138,6 +146,7 @@ const TransactionModal: FC<IExpAndIncModal> = React.memo(({setModal}) => {
         closeHandler={setAccauntsModalFirst}>
           <AccauntsModal 
           list={filterAccauntsForFirst}
+          idSelect={selectAccauntFirst?.id}
           setId={setAccauntFirst} 
           close={() => setAccauntsModalFirst(false)}/>
       </CustomModal>
@@ -148,6 +157,7 @@ const TransactionModal: FC<IExpAndIncModal> = React.memo(({setModal}) => {
         closeHandler={setAccauntsModalSecond}>
           <AccauntsModal 
           list={filterAccauntsForSecond}
+          idSelect={selectAccauntSecond?.id}
           setId={setAccauntSecond} 
           close={() => setAccauntsModalSecond(false)}/>
       </CustomModal>

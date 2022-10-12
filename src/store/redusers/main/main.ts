@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { BURGER, BUS, CHARITY, EDUCATION, ENERGY, FAMILY, GAME, 
+import { ANIMAL, BURGER, BUS, CHARITY, EDUCATION, ENERGY, FAMILY, GAME, 
     GIFT, MEDIC, MONEY_BAG, PIGGY_BANK, PRODUCTS, QUESTION, 
     REFUND, REFUND_REPO, SPORT, TAB_ACCAUNTS, WALLET } from '../../../services/iconsName'
 import { reducers } from "../../actions/main/mainAC"
@@ -33,6 +33,22 @@ const initialState: IStore = {
             name: 'Другое',
             id: 1,
             count: 0,
+            delete: false,
+        },
+        {
+            icon: PIGGY_BANK,
+            bg: 'orange',
+            name: 'Test',
+            id: 2,
+            count: 5000,
+            delete: false,
+        },
+        {
+            icon: ANIMAL,
+            bg: 'blue',
+            name: 'Test 2',
+            id: 3,
+            count: 1000,
             delete: false,
         },
     ],

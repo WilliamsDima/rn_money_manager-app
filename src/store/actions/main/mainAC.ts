@@ -1,6 +1,9 @@
-import { localAPI } from "../../../api/asyncStorage";
+import { localAPI } from "../../../api/asyncStorage"
 import { countSumItemsFromList, getItemFromList } from "../../../hooks/helpers"
-import { ICategories, ITransaction } from "../../redusers/main/types";
+import { ICategories, ITransaction } from "../../redusers/main/types"
+import { changeTransaction, countAccaunts, countAccauntsTransaction, 
+    countAccountsChange, countCategories, countCategoriesChange, 
+    deleteAccountHandler, editeAccauntHandler } from "./helpers"
 import { IACMain, LOCAL_NAME } from "./types"
 
 export const reducers: IACMain = {
@@ -45,12 +48,7 @@ export const reducers: IACMain = {
     deleteAccaunt: (state, { payload }) => {
         state.accounts = state.accounts.filter((ac) => ac.id !== payload.id)
 
-        state.accounts = state.accounts.map((ac) => {
-            if (ac.id === 1) {
-                ac.count = ac.count + +payload.count
-            }
-            return ac
-        })
+        state.accounts = deleteAccountHandler(state.accounts, payload)
 
         if (state.accountsIdSelected === payload.id) {
             state.accountsIdSelected = 1
@@ -61,50 +59,32 @@ export const reducers: IACMain = {
 
     editeAccaunt: (state, { payload }) => {
 
-        state.accounts = state.accounts.map((ac) => {
-            if (payload.id === ac.id) {
-                ac.name = payload.name
-                ac.count = payload.count
-                ac.bg = payload.bg
-                ac.icon = payload.icon
-            }
-            return ac
-        })
-        
+        state.accounts = editeAccauntHandler(state.accounts, payload)
         localAPI.set(LOCAL_NAME.ACCAUNTS, state.accounts)
     },
 
     addTransaction: (state, { payload }) => {
 
-        state.transaction.push(payload)
+        const isTransaction = getItemFromList(payload.id, state.transaction)
 
-        if (!payload.transaction) {
-            state.categories = state.categories.map((cat) => {
-                if(cat.id === payload.categori) {
-                    cat.count += +payload.count
-                }
-                return cat
-            })
+        if (!isTransaction) {
 
-            state.accounts = state.accounts.map((ac) => {
-                if(ac.id === payload.accounts) {
-                    ac.count = payload.income ? +ac.count + +payload.count 
-                    : +ac.count - +payload.count 
-                }
-                return ac
-            })
+            state.transaction.push(payload)
+
+            if (!payload.transaction) {
+                state.categories = countCategories(state.categories, payload)
+                state.accounts = countAccaunts(state.accounts, payload)
+            }
+           
+            if (payload.transaction) {
+                state.accounts = countAccauntsTransaction(state.accounts, payload)
+            }
         }
-       
-        if (payload.transaction) {
-            state.accounts = state.accounts.map((ac) => {
-                if(ac.id === payload.accounts[0]) {
-                    ac.count = ac.count - payload.count
-                }
-                if(ac.id === payload.accounts[1]) {
-                    ac.count = ac.count + +payload.count
-                }
-                return ac
-            })
+
+        if (isTransaction && !payload.transaction) {
+            state.categories = countCategoriesChange(state.categories, payload, isTransaction)
+            state.accounts = countAccountsChange(state.accounts, payload, isTransaction)
+            state.transaction = changeTransaction(state.transaction, payload)
         }
 
         localAPI.set(LOCAL_NAME.EPENSES_INCOME, state.transaction)
