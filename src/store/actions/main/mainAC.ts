@@ -3,7 +3,7 @@ import { countSumItemsFromList, getItemFromList } from "../../../hooks/helpers"
 import { ICategories, ITransaction } from "../../redusers/main/types"
 import { changeTransaction, countAccaunts, countAccauntsTransaction, 
     countAccountsChange, countCategories, countCategoriesChange, 
-    deleteAccountHandler, editeAccauntHandler } from "./helpers"
+    deleteAccountHandler, deleteAccounTransactionHandler, deleteTransactionHandler, editeAccauntHandler, editeCategoriHandler } from "./helpers"
 import { IACMain, LOCAL_NAME } from "./types"
 
 export const reducers: IACMain = {
@@ -91,6 +91,17 @@ export const reducers: IACMain = {
         localAPI.set(LOCAL_NAME.CATEGORIES, state.categories)
         localAPI.set(LOCAL_NAME.ACCAUNTS, state.accounts)
     },
+    deleteTransaction: (state, { payload }) => {
+
+        state.transaction = state.transaction.filter((ac) => ac.id !== payload.id)
+        state.categories = deleteTransactionHandler(state.categories, payload)
+        state.accounts = deleteAccounTransactionHandler(state.accounts, payload)
+
+
+        localAPI.set(LOCAL_NAME.EPENSES_INCOME, state.transaction)
+        localAPI.set(LOCAL_NAME.CATEGORIES, state.categories)
+        localAPI.set(LOCAL_NAME.ACCAUNTS, state.accounts)
+    },
     sumCategiesCount: (state, { payload }) => {
         const sum = countSumItemsFromList(payload)
         state.sumCategiesCountSort = sum
@@ -103,5 +114,24 @@ export const reducers: IACMain = {
     },
     setDataOnPeriodFilter: (state, {payload}) => {
         state.categoriesSortData = payload
+    },
+
+    addCategori: (state, {payload}) => {
+
+        state.categories.push(payload)
+
+        localAPI.set(LOCAL_NAME.CATEGORIES, state.categories)
+    },
+
+    editeCategori: (state, { payload }) => {
+
+        state.categories = editeCategoriHandler(state.categories, payload)
+        localAPI.set(LOCAL_NAME.CATEGORIES, state.categories)
+    },
+
+    deleteCategori: (state, { payload }) => {
+        state.categories = state.categories.filter((ac) => ac.id !== payload.id)
+
+        localAPI.set(LOCAL_NAME.CATEGORIES, state.categories)
     },
 };

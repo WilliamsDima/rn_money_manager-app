@@ -19,3 +19,10 @@ export const RoutesNames = {
     Home: 'HistoryMain',
   },
 }
+
+export const routesTitle = {
+  Accaunts: 'Счета',
+  Categories: 'Категории',
+  More: 'Ещё',
+  History: 'История',
+}

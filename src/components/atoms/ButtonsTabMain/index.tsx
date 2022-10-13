@@ -6,14 +6,15 @@ import { setTabExpOrIncome } from '../../../store/redusers/main/main'
 import { styles } from './button.styles'
 import { IButtonTabMain } from './button.types'
 
-const ButtonsTabMain: FC<IButtonTabMain> = ({}) => {
+const ButtonsTabMain: FC<IButtonTabMain> = ({setTab, tabValue}) => {
 
   const dispatch = useAppDispatch()
 
   const { tabExpOrIncome } = useAppSelector(state => state.main)
   
   const tabHandler = (value) => {
-    dispatch(setTabExpOrIncome(value))
+    !setTab && dispatch(setTabExpOrIncome(value))
+    setTab && setTab(value)
   }
   
   return (
@@ -25,7 +26,8 @@ const ButtonsTabMain: FC<IButtonTabMain> = ({}) => {
       <TouchableOpacity style={styles.item} onPress={() => tabHandler(true)}>
         <Text style={[globalStyles.p2, styles.text]}>доходы</Text>
       </TouchableOpacity>
-      <View style={[styles.line, tabExpOrIncome ? {right: 0} : {left: 0} ]}/>
+      <View style={[styles.line, tabValue !== undefined ? tabValue ? {right: 0} : {left: 0}
+        : tabExpOrIncome ? {right: 0} : {left: 0} ]}/>
     </View>
   )
 }

@@ -133,3 +133,53 @@ export const deleteAccountHandler = (accounts: IAccounts[], payload) => {
         return ac
     })
 }
+
+export const deleteTransactionHandler = (categories: ICategories[], 
+    payload: ITransaction) => {
+
+    return categories.map((cat) => {
+        if (cat.id === payload.categori) {
+            cat.count -= payload.count
+        }
+        return cat
+    })
+}
+
+export const deleteAccounTransactionHandler = (accounts: IAccounts[], 
+    payload: ITransaction) => {
+        
+    return accounts.map((ac) => {
+        if (payload.transaction) {
+
+            if (ac.id === payload.accounts[0]) {
+                ac.count += payload.count
+            }
+
+            if (ac.id === payload.accounts[1]) {
+                ac.count -= payload.count
+            }
+        } else {
+
+            if (ac.id === payload.accounts && !payload.income) {
+                ac.count += payload.count
+            }
+            if (ac.id === payload.accounts && payload.income) {
+                ac.count -= payload.count
+            }
+        }
+
+        return ac
+    })
+}
+
+export const editeCategoriHandler = (categories: ICategories[], payload: ICategories) => {
+    return categories.map((cat) => {
+        if (payload.id === cat.id) {
+            cat.name = payload.name
+            cat.bg = payload.bg
+            cat.icon = payload.icon
+            cat.income = payload.income
+        }
+        return cat
+    })
+}

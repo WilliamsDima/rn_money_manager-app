@@ -1,20 +1,22 @@
 import React, { FC, useEffect, useState } from 'react'
-import { ScrollView, Text, TouchableOpacity, View } from 'react-native'
+import { ScrollView, Text, TouchableOpacity, View, Alert, ToastAndroid } from 'react-native'
 import { getItemFromList, months, numberConverter } from '../../../hooks/helpers'
-import { useAppSelector } from '../../../hooks/hooks'
+import { useAppDispatch, useAppSelector } from '../../../hooks/hooks'
 import { COLORS } from '../../../services/colors'
 import { IconSvg } from '../../../services/icons'
 import { EDIT } from '../../../services/iconsName'
 import { globalStyles } from '../../../services/styles'
+import { deleteTransaction } from '../../../store/redusers/main/main'
 import { IAccounts, ICategories } from '../../../store/redusers/main/types'
 import Avatar from '../../atoms/Avatar'
 import CustomModal from '../../atoms/Modal'
 import ExpAndIncModal from '../../organisms/ExpAndIncModal'
-import TransactionModal from '../../organisms/TransactionModal'
 import { styles } from './modal.styles'
 import { IHistoryInfo } from './modal.types'
 
 const HistoryInfoModal: FC<IHistoryInfo> = React.memo(({close, data}) => {
+
+  const dispatch = useAppDispatch()
 
   const [editModal, setEditModal] = useState(false)
 
@@ -23,7 +25,7 @@ const HistoryInfoModal: FC<IHistoryInfo> = React.memo(({close, data}) => {
   const isTransaction = getItemFromList(data.id, transaction)
 
   const currentCategori: ICategories = isTransaction 
-  && getItemFromList(isTransaction.categori, categories)
+  && getItemFromList(isTransaction.categori, categories) || ''
 
   const currentAccaunt: IAccounts = isTransaction 
   && getItemFromList(isTransaction.accounts, accounts)
@@ -32,6 +34,25 @@ const HistoryInfoModal: FC<IHistoryInfo> = React.memo(({close, data}) => {
 
   const dateDisplay = date.getDate() + ' ' + months[date.getMonth()] + ' ' 
   + date.getFullYear()
+
+  const deleteHandler = () => {
+    Alert.alert(
+      "Удаление",
+      `Удалить транзакцию "${currentCategori?.name || 'перевод'}" ${data?.count} P?`,
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        { text: "OK", onPress: () => {
+            dispatch(deleteTransaction(data))
+            ToastAndroid.show('удалено', 2000);
+            close()
+        } }
+      ]
+    );
+  }
 
   useEffect(() => {
     console.log('HistoryInfoModal');
@@ -127,7 +148,7 @@ const HistoryInfoModal: FC<IHistoryInfo> = React.memo(({close, data}) => {
               <Text style={globalStyles.p1}>Отмена</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity>
+            <TouchableOpacity onPress={deleteHandler}>
               <Text style={[globalStyles.p1, {color: COLORS.colorRed}]}>
                 Удалить
               </Text>

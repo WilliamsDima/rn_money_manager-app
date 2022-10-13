@@ -9,5 +9,4 @@ export const screenOptions = {
     shadowOpacity: 0,
     backgroundColor:  COLORS.colorHeader,
   },
-  headerLeft: () => null
 }

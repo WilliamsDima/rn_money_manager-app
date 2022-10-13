@@ -200,4 +200,5 @@ export const {setAllCauntAccaunts, addTransaction,
     sumCategiesCount, setTabExpOrIncome, setSumMoneySort, 
     setSortValue, setSortDatePeriod, addLocalCategories,
     addLocalAccaunts, addAccaunt, editeAccaunt, deleteAccaunt,
+    deleteTransaction, addCategori, editeCategori, deleteCategori,
     setDataOnPeriodFilter, setAccauntId, addLocalExpAndIncome } = counterSlice.actions;

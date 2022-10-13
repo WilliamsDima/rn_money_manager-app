@@ -1,11 +1,12 @@
 import React, { FC, useState } from 'react'
-import { ScrollView, Text, View } from 'react-native'
+import { ScrollView, Text, View, Dimensions } from 'react-native'
 import { useAppSelector } from '../../../hooks/hooks'
+import { globalStyles } from '../../../services/styles'
 import CategoriItem from '../../molecules/CategoriItem'
 import { styles } from './list.styles'
 import { ICategories } from './list.types'
 
-const CategoriesList: FC<ICategories> = ({categoriId, setCategoriId, expOrIncom}) => {
+const CategoriesList: FC<ICategories> = ({categoriId, setCategoriId, expOrIncom, rowSize}) => {
 
   const countItemForRow = 9
 
@@ -28,6 +29,9 @@ const CategoriesList: FC<ICategories> = ({categoriId, setCategoriId, expOrIncom}
     const {x, y, width, height} = event.nativeEvent.layout
     setSize(width / 3)
   }
+
+  const rowWidth = Dimensions.get('window').width 
+  - globalStyles.spaceHorizontal.paddingHorizontal * (rowSize || 4)
   
   let countHandlerMarginRow = 2
   
@@ -37,7 +41,7 @@ const CategoriesList: FC<ICategories> = ({categoriId, setCategoriId, expOrIncom}
     horizontal={true} 
     pagingEnabled={true}>
       {res.map((it, i) => {
-        return <View style={[styles.row]} key={i} onLayout={getRowWidth}>
+        return <View style={[styles.row, {width: rowWidth}]} key={i} onLayout={getRowWidth}>
           {it.map((item, j) => {
               let margin = {}
               if (countHandlerMarginRow === j + 1) {
@@ -53,7 +57,7 @@ const CategoriesList: FC<ICategories> = ({categoriId, setCategoriId, expOrIncom}
               overStyle={margin} 
               key={item.id} 
               item={item} 
-              size={size - 20}/>
+              size={size - 10}/>
           })}
         </View>
       })}

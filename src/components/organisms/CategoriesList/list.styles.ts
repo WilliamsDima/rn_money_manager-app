@@ -1,11 +1,9 @@
-import { Dimensions, StyleSheet } from 'react-native'
-import { globalStyles } from '../../../services/styles'
+import { StyleSheet } from 'react-native'
 
 export const styles = StyleSheet.create({
   list: {
   },
   row: {
-    width: Dimensions.get('window').width - globalStyles.spaceHorizontal.paddingHorizontal * 4,
     flexDirection: 'row',
     flexWrap: 'wrap',
     //backgroundColor: 'red',

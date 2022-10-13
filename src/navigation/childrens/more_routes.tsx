@@ -1,9 +1,9 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
-import { RoutesNames } from '../routes-names'
+import { RoutesNames, routesTitle } from '../routes-names'
 import { screenOptions } from '../routes-config'
-import Header from '../../components/organisms/Header'
 import More from '../../screens/More'
+import { COLORS } from '../../services/colors'
 
 const MoreStack = createStackNavigator()
 
@@ -13,8 +13,8 @@ const MoreRoutes = () => {
       screenOptions={{
         ...screenOptions,
         headerShown: true,
-        headerTintColor: 'red',
-        headerTitle: (props) => <Header {...props} />,
+        title: routesTitle.More,
+        headerTintColor: COLORS.colorPriamry,
       }}
     >
       <MoreStack.Screen name={RoutesNames.More.HomeStack} component={More} />

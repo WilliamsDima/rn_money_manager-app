@@ -29,9 +29,14 @@ export interface IACMain {
     deleteAccaunt: (state: IStore, payload: PayloadAction<IDeleteAccaunt>) => void
 
     addTransaction: (state: IStore, payload: PayloadAction<ITransaction>) => void
+    deleteTransaction: (state: IStore, payload: PayloadAction<ITransaction>) => void
 
     sumCategiesCount: (state: IStore, payload: PayloadAction<ICategories[]>) => void
     setSortValue: (state: IStore, payload: PayloadAction<filterPeriod>) => void
     setSortDatePeriod: (state: IStore, payload: PayloadAction<Date>) => void
     setDataOnPeriodFilter: (state: IStore, payload: PayloadAction<ICategories[] | []>) => void
+
+    addCategori: (state: IStore, payload: PayloadAction<ICategories>) => void
+    editeCategori: (state: IStore, payload: PayloadAction<ICategories>) => void
+    deleteCategori: (state: IStore, payload: PayloadAction<ICategories>) => void
 }
