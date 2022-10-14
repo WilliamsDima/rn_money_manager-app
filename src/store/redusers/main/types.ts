@@ -46,4 +46,7 @@ export interface IStore {
     accounts: IAccounts[]
     categories: ICategories[]
     transaction: ITransaction[],
+    currencySelect: string
+    currency: {} | null
+    currencies: string[]
 }

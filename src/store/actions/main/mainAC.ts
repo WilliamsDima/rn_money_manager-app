@@ -22,7 +22,7 @@ export const reducers: IACMain = {
 
         state.accounts = state.accounts.map((ac) => {
             if(ac.id === 0) {
-                ac.count = sum
+                ac.count = sum.toFixed(2)
             }
             return ac
         })
@@ -133,5 +133,9 @@ export const reducers: IACMain = {
         state.categories = state.categories.filter((ac) => ac.id !== payload.id)
 
         localAPI.set(LOCAL_NAME.CATEGORIES, state.categories)
+    },
+
+    setCurrency:(state, { payload }) => {
+        state.currency = payload
     },
 };

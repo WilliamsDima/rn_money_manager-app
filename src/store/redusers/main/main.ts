@@ -184,6 +184,10 @@ const initialState: IStore = {
         },
     ],
     transaction: [],
+
+    currencySelect: 'USDRUB,EURRUB',
+    currency: null,
+    currencies: [],
 };
 
 const counterSlice = createSlice({
@@ -201,4 +205,5 @@ export const {setAllCauntAccaunts, addTransaction,
     setSortValue, setSortDatePeriod, addLocalCategories,
     addLocalAccaunts, addAccaunt, editeAccaunt, deleteAccaunt,
     deleteTransaction, addCategori, editeCategori, deleteCategori,
+    setCurrency,
     setDataOnPeriodFilter, setAccauntId, addLocalExpAndIncome } = counterSlice.actions;

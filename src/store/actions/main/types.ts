@@ -39,4 +39,6 @@ export interface IACMain {
     addCategori: (state: IStore, payload: PayloadAction<ICategories>) => void
     editeCategori: (state: IStore, payload: PayloadAction<ICategories>) => void
     deleteCategori: (state: IStore, payload: PayloadAction<ICategories>) => void
+
+    setCurrency: (state: IStore, payload: PayloadAction<{}>) => void
 }

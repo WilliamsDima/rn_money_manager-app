@@ -47,7 +47,6 @@ const FilterContent: FC<IFilter> = React.memo(({setExpAndEncomeModal, hideDiogra
         <FilterPeriod />
         <CarouselFilter />
         <Diogramma sortArray={sortArray} hideDiogram={hideDiogram}/>
-        <CountSumMoney />
 
         <View style={styles.addBtn}>
           <AddBtn onPress={openModal}/>

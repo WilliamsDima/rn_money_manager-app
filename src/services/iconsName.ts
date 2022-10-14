@@ -54,6 +54,7 @@ export const WALLET = 'WALLET'; // кошелек
 
 export const DELETE = 'DELETE'; // корзина - удалить
 export const EDIT = 'EDIT'; // редактировать - ручка
+export const STAR = 'STAR'; // звезда
 
 export const ICONS = [TAB_HOME, TAB_ACCAUNTS, TAB_MORE, MEDIC, MUSIC, 
     PIGGY_BANK, STEAM, GAS, GEAR, FILL, TAXI, TOOTCH, 

@@ -94,8 +94,8 @@ export const changeTransaction = (transaction: ITransaction[], payload: ITransac
 export const countAccaunts = (accounts: IAccounts[], payload: ITransaction) => {
     return accounts.map((ac) => {
         if(ac.id === payload.accounts) {
-            ac.count = payload.income ? +ac.count + +payload.count 
-            : +ac.count - +payload.count 
+            ac.count = +(payload.income ? +ac.count + +payload.count 
+            : +ac.count - +payload.count).toFixed(2)
         }
         return ac
     })
@@ -104,10 +104,10 @@ export const countAccaunts = (accounts: IAccounts[], payload: ITransaction) => {
 export const countAccauntsTransaction = (accounts: IAccounts[], payload: ITransaction) => {
     return accounts.map((ac) => {
         if(ac.id === payload.accounts[0]) {
-            ac.count = ac.count - payload.count
+            ac.count = +(ac.count - payload.count).toFixed(2)
         }
         if(ac.id === payload.accounts[1]) {
-            ac.count = ac.count + +payload.count
+            ac.count = +(ac.count + +payload.count).toFixed(2)
         }
         return ac
     })

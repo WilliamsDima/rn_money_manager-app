@@ -23,6 +23,7 @@ const HeaderMain: FC<IHeaderMain> = (props) => {
   const navigation = useNavigation()
   const { accounts, categories, transaction,
     tabExpOrIncome, accountsIdSelected } = useAppSelector(state => state.main)
+
   const dispatch = useAppDispatch()
 
   const categoriesExpOrIncomFilter = categories.filter((c) => c.income === tabExpOrIncome)

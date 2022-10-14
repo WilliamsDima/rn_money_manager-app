@@ -14,6 +14,7 @@ export const RoutesNames = {
   More: {
     Home: 'MoreMain',
     HomeStack: 'More',
+    AboutApp: 'AboutApp',
   },
   History: {
     Home: 'HistoryMain',
@@ -25,4 +26,5 @@ export const routesTitle = {
   Categories: 'Категории',
   More: 'Ещё',
   History: 'История',
+  AboutApp: 'О приложении'
 }

@@ -4,6 +4,7 @@ import { RoutesNames, routesTitle } from '../routes-names'
 import { screenOptions } from '../routes-config'
 import More from '../../screens/More'
 import { COLORS } from '../../services/colors'
+import AboutApp from '../../screens/More/aboutApp'
 
 const MoreStack = createStackNavigator()
 
@@ -18,6 +19,13 @@ const MoreRoutes = () => {
       }}
     >
       <MoreStack.Screen name={RoutesNames.More.HomeStack} component={More} />
+
+      <MoreStack.Screen 
+      options={{
+        title: routesTitle.AboutApp,
+      }} 
+      name={RoutesNames.More.AboutApp} 
+      component={AboutApp} />
     </MoreStack.Navigator>
   )
 }

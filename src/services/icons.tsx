@@ -13,7 +13,7 @@ import { ANIMAL, ARROW_SELECT, BANK, BASKET, BURGER, BUS, CAR, CHARITY, CLOTHES,
      GLASS, GLASSES, HEADER_LEFT, HEART, HISTORY, INTERNET, MAP, 
      MEDIC, 
      MONEY_BAG, MUSIC, PHONE, PIGGY_BANK, PLUS_CIRCLE, PRODUCTS, 
-     QUESTION, REFUND, REFUND_REPO, RESTAURANT, SPORT, STEAM, TAB_ACCAUNTS, 
+     QUESTION, REFUND, REFUND_REPO, RESTAURANT, SPORT, STAR, STEAM, TAB_ACCAUNTS, 
      TAB_CATEGORIES, TAB_HOME, TAB_MORE, TAG, TAXI, TECHNIK, TICONS, TIKET, 
      TOOTCH, TOOTHPASTE, WALLET } from "./iconsName";
 import { MoneyBagSvg } from "../assets/svg/categories/MoneyBagSvg";
@@ -58,6 +58,7 @@ import { MusicSvg } from "../assets/svg/categories/MusicSvg";
 import { MedicineSvg } from "../assets/svg/categories/MedicineSvg";
 import DeleteSvg from "../assets/svg/DeleteSvg";
 import EditSvg from "../assets/svg/EditSvg";
+import StarSvg from "../assets/svg/StarSvg";
 
 export const ICONS_SVG = {
     // tab
@@ -115,6 +116,7 @@ export const ICONS_SVG = {
     [MEDIC]: (props) => <MedicineSvg color={props.color} {...props}/>,
     [DELETE]: (props) => <DeleteSvg color={props.color} {...props}/>,
     [EDIT]: (props) => <EditSvg color={props.color} {...props}/>,
+    [STAR]: (props) => <StarSvg color={props.color} {...props}/>,
 }
 
 interface IIconSvg {
