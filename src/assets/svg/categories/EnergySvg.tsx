@@ -3,19 +3,12 @@ import Svg, { Path } from "react-native-svg"
 import { COLORS } from "../../../services/colors"
 
 export const EnergySvg = (props) => (
-  <Svg
-    xmlns="http://www.w3.org/2000/svg"
-    style={{
-      enableBackground: "new 0 0 88.408 88.408",
-    }}
-    xmlSpace="preserve"
-    {...props}
-  >
-    <Path 
-    
+  <Svg xmlns="http://www.w3.org/2000/svg" width={40} height={40} {...props}>
+    <Path
     fill={props.color || COLORS.colorPriamry}
     stroke={props.color || COLORS.colorPriamry}
-    d="M67.41 0H34.256L20.999 47.732h13.284L22.988 88.408h3.979l38.451-47.734H45.939z" />
+      d="M30.64 0H15.57L9.547 21.695h6.035l-5.133 18.489h1.809l17.476-21.696h-8.851Zm0 0"
+    />
   </Svg>
 )
 

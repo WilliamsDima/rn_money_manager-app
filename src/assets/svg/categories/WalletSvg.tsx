@@ -4,6 +4,8 @@ import Svg, { Path } from "react-native-svg"
 export const WalletSvg = (props) => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
+    width={37}
+    height={37}
     viewBox="0 0 277.5 277.5"
     style={{
       enableBackground: "new 0 0 277.5 277.5",

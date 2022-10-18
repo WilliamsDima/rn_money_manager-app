@@ -7,8 +7,7 @@ import FilterContent from '../../molecules/FilterContent'
 import HeaderMain from '../../molecules/HeaderMain'
 import ExpAndIncModal from '../../organisms/ExpAndIncModal'
 import MainContent from '../../organisms/MainContent'
-import { styles } from './main.styles'
-
+ 
 const MainTemplate = () => {
 
   const [expAndEncomeModal, setExpAndEncomeModal] = useState(false)

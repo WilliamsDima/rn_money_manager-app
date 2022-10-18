@@ -5,6 +5,8 @@ import { COLORS } from "../../../services/colors"
 export const TaxiSvg = (props) => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
+    width={40}
+    height={40}
     viewBox="0 0 206.498 206.498"
     style={{
       enableBackground: "new 0 0 206.498 206.498",

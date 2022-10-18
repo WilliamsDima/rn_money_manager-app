@@ -5,6 +5,8 @@ import { COLORS } from "../../../services/colors"
 export const GiftSvg = (props) => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
+    width={37}
+    height={37}
     viewBox="796 796 200 200"
     xmlSpace="preserve"
     {...props}

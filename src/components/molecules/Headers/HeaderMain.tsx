@@ -53,8 +53,7 @@ const HeaderMain: FC<IHeaderMain> = (props) => {
         <View style={styles.content}>
             <IconSvg 
               name={accauntSelect?.icon} 
-              color={'#fff'} 
-              style={{width: 20, height: 20}}/>
+              color={'#fff'} width={20}/>
             <Text style={[globalStyles.p1, {marginLeft: 10}]} numberOfLines={1}>
               {accauntSelect?.name}
             </Text>

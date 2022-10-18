@@ -17,7 +17,7 @@ const AccauntItem: FC<IAccauntItem> = ({ data, onPress }) => {
       <TouchableOpacity style={[styles.item]} onPress={ () => onPress(data)}>
         <View style={[styles.avatar, {width: '50%'}]}>
           <Avatar overStyle={styles.icon} bg={data.bg}>
-            <IconSvg name={data.icon} color={COLORS.colorPriamry}/>
+            <IconSvg name={data.icon} color={COLORS.colorPriamry} width={25}/>
           </Avatar>
           <Text style={[globalStyles.p1]} numberOfLines={1}>
             {data.name}

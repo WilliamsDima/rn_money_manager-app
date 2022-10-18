@@ -67,7 +67,7 @@ export const LINKEDIN = 'LINKEDIN'; // логотип линкедина
 
 export const REACT = 'REACT'; // логотип реакта
 
-export const ICONS = [TAB_HOME, TAB_ACCAUNTS, TAB_MORE, MEDIC, MUSIC, 
+export const ICONS = [MEDIC, MUSIC, 
     PIGGY_BANK, STEAM, GAS, GEAR, FILL, TAXI, TOOTCH, 
     TOOTHPASTE, BANK, REFUND, REFUND_REPO, ANIMAL, BASKET, BURGER, BUS, 
     CAR, CHARITY, CLOTHES, COSMETICS, EDUCATION,

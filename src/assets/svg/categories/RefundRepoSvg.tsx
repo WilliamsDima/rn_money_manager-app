@@ -9,8 +9,8 @@ export const RefundRepoSvg = (props) => (
     style={{
       enableBackground: "new 0 0 511.999 511.999",
     }}
-    width={20}
-    height={20}
+    width={37}
+    height={37}
     xmlSpace="preserve"
     {...props}
   >

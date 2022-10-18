@@ -4,6 +4,8 @@ import Svg, { Path } from "react-native-svg"
 const HeartSvg = (props) => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
+    width={40}
+    height={40}
     viewBox="0 0 403.326 403.326"
     style={{
       enableBackground: "new 0 0 403.326 403.326",

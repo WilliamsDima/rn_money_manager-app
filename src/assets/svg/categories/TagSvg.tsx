@@ -5,6 +5,8 @@ import { COLORS } from "../../../services/colors"
 export const TagSvg = (props) => (
   <Svg 
   xmlns="http://www.w3.org/2000/svg" 
+  width={37}
+  height={37}
   viewBox="0 0 512 512" 
   {...props}>
 

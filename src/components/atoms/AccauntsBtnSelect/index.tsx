@@ -2,7 +2,6 @@ import React, { FC } from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
 import { numberConverter } from '../../../hooks/helpers'
 import { IconSvg } from '../../../services/icons'
-import { HEART } from '../../../services/iconsName'
 import { globalStyles } from '../../../services/styles'
 import Avatar from '../Avatar'
 import { styles } from './btn.styles'
@@ -18,7 +17,7 @@ const AccauntsBtnSelect: FC<IAccauntsBtnSelect> = ({data, overStyle,
     onPress={() => setAccauntsHandler(id)}>
       <View style={styles.item}>
         <Avatar overStyle={styles.icon} bg={bg}>
-          <IconSvg name={icon} color={'#fff'}/>
+          <IconSvg name={icon} color={'#fff'} width={25}/>
         </Avatar>
         <Text style={[globalStyles.p1]}>{name}</Text>
       </View>

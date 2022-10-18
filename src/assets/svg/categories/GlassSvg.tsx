@@ -5,6 +5,8 @@ import { COLORS } from "../../../services/colors"
 export const GlassSvg = (props) => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
+    width={35}
+    height={35}
     viewBox="0 0 213.138 213.138"
     style={{
       enableBackground: "new 0 0 213.138 213.138",

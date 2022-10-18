@@ -9,8 +9,8 @@ const RefundMoney = (props: SvgProps) => (
     style={{
       enableBackground: "new 0 0 489.2 489.2",
     }}
-    width={20}
-    height={20}
+    width={30}
+    height={30}
     xmlSpace="preserve"
     {...props}
   >

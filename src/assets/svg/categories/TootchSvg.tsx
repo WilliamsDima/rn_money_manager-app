@@ -5,6 +5,8 @@ import { COLORS } from "../../../services/colors"
 export const TootchSvg = (props) => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
+    width={40}
+    height={40}
     viewBox="0 0 206.351 206.351"
     style={{
       enableBackground: "new 0 0 206.351 206.351",
