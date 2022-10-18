@@ -9,13 +9,14 @@ import HeartSvg from '../assets/svg/categories/HeartSvg'
 import { MoreSvg } from "../assets/svg/MoreSvg";
 import { PlusSvg } from "../assets/svg/PlusSvg";
 import { ANIMAL, ARROW_SELECT, BANK, BASKET, BURGER, BUS, CAR, CHARITY, CLOTHES, 
+    COIN, 
     COSMETICS, DELETE, EDIT, EDUCATION, ENERGY, FAMILY, FILL, FLIGHT, GAME, GAS, GEAR, GIFT,
-     GLASS, GLASSES, HEADER_LEFT, HEART, HISTORY, INTERNET, MAP, 
+     GLASS, GLASSES, HEADER_LEFT, HEART, HISTORY, INST, INTERNET, LINKEDIN, MAP, 
      MEDIC, 
      MONEY_BAG, MUSIC, PHONE, PIGGY_BANK, PLUS_CIRCLE, PRODUCTS, 
-     QUESTION, REFUND, REFUND_REPO, RESTAURANT, SPORT, STAR, STEAM, TAB_ACCAUNTS, 
-     TAB_CATEGORIES, TAB_HOME, TAB_MORE, TAG, TAXI, TECHNIK, TICONS, TIKET, 
-     TOOTCH, TOOTHPASTE, WALLET } from "./iconsName";
+     QUESTION, REACT, REFUND, REFUND_REPO, RESTAURANT, SETTING, SPORT, STAR, STEAM, TAB_ACCAUNTS, 
+     TAB_CATEGORIES, TAB_HOME, TAB_MORE, TAG, TAXI, TECHNIK, TELEGRAM, TICONS, TIKET, 
+     TOOTCH, TOOTHPASTE, TWITTER, VK, WALLET } from "./iconsName";
 import { MoneyBagSvg } from "../assets/svg/categories/MoneyBagSvg";
 import { WalletSvg } from "../assets/svg/categories/WalletSvg";
 import { PiggyBankSvg } from "../assets/svg/categories/PiggyBankSvg";
@@ -59,6 +60,14 @@ import { MedicineSvg } from "../assets/svg/categories/MedicineSvg";
 import DeleteSvg from "../assets/svg/DeleteSvg";
 import EditSvg from "../assets/svg/EditSvg";
 import StarSvg from "../assets/svg/StarSvg";
+import CoinSvg from "../assets/svg/CoinSvg";
+import { ReactSvg } from "../assets/svg/socials/ReactSvg";
+import { SettingSvg } from "../assets/svg/SettingSvg";
+import { VkSvg } from "../assets/svg/socials/VkSvg";
+import { InstSvg } from "../assets/svg/socials/InstSvg";
+import { TwitterSvg } from "../assets/svg/socials/TwitterSvg";
+import { TelegaSvg } from "../assets/svg/socials/TelegaSvg";
+import LinkedinSvg from "../assets/svg/socials/LinkedinSvg";
 
 export const ICONS_SVG = {
     // tab
@@ -117,6 +126,15 @@ export const ICONS_SVG = {
     [DELETE]: (props) => <DeleteSvg color={props.color} {...props}/>,
     [EDIT]: (props) => <EditSvg color={props.color} {...props}/>,
     [STAR]: (props) => <StarSvg color={props.color} {...props}/>,
+    [COIN]: (props) => <CoinSvg color={props.color} {...props}/>,
+    [REACT]: (props) => <ReactSvg color={props.color} {...props}/>,
+    [SETTING]: (props) => <SettingSvg color={props.color} {...props}/>,
+
+    [VK]: (props) => <VkSvg color={props.color} {...props}/>,
+    [INST]: (props) => <InstSvg color={props.color} {...props}/>,
+    [TWITTER]: (props) => <TwitterSvg color={props.color} {...props}/>,
+    [TELEGRAM]: (props) => <TelegaSvg color={props.color} {...props}/>,
+    [LINKEDIN]: (props) => <LinkedinSvg color={props.color} {...props}/>,
 }
 
 interface IIconSvg {

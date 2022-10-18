@@ -55,13 +55,24 @@ export const WALLET = 'WALLET'; // кошелек
 export const DELETE = 'DELETE'; // корзина - удалить
 export const EDIT = 'EDIT'; // редактировать - ручка
 export const STAR = 'STAR'; // звезда
+export const COIN = 'COIN'; // монетка доллар
+export const GOOGLE_PLAY = 'GOOGLE_PLAY'; // плей маркет иконка
+export const SETTING = 'SETTING'; // настройки
+
+export const VK = 'VK'; // логотип вк
+export const INST = 'INST'; // логотип инсты
+export const TELEGRAM = 'TELEGRAM'; // логотип телеграмма
+export const TWITTER = 'TWITTER'; // логотип твитера
+export const LINKEDIN = 'LINKEDIN'; // логотип линкедина
+
+export const REACT = 'REACT'; // логотип реакта
 
 export const ICONS = [TAB_HOME, TAB_ACCAUNTS, TAB_MORE, MEDIC, MUSIC, 
     PIGGY_BANK, STEAM, GAS, GEAR, FILL, TAXI, TOOTCH, 
     TOOTHPASTE, BANK, REFUND, REFUND_REPO, ANIMAL, BASKET, BURGER, BUS, 
     CAR, CHARITY, CLOTHES, COSMETICS, EDUCATION,
     ENERGY, FAMILY, FLIGHT, GAME, GIFT, GLASS, GLASSES, HEART, INTERNET, 
-    MAP, MONEY_BAG, PHONE, PRODUCTS, QUESTION,
+    MAP, MONEY_BAG, PHONE, PRODUCTS, QUESTION, COIN,
     RESTAURANT, SPORT, TAG, TECHNIK, TIKET, WALLET];
 
 type name<T> = T[keyof T]

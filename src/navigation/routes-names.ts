@@ -15,10 +15,17 @@ export const RoutesNames = {
     Home: 'MoreMain',
     HomeStack: 'More',
     AboutApp: 'AboutApp',
+    Statistic: 'Statistic',
+    RegularPayments: 'RegularPayments',
+    Settings: 'Settings'
   },
   History: {
     Home: 'HistoryMain',
   },
+  Auth: {
+    Home: 'AuthMain',
+    AuthStack: 'AuthStack',
+  }
 }
 
 export const routesTitle = {
@@ -26,5 +33,9 @@ export const routesTitle = {
   Categories: 'Категории',
   More: 'Ещё',
   History: 'История',
-  AboutApp: 'О приложении'
+  AboutApp: 'О приложении',
+  Auth: 'Войти',
+  Statistic: 'Статистика',
+  RegularPayments: 'Регулярные платежи',
+  Settings: 'Настройки'
 }
