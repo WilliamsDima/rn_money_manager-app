@@ -89,7 +89,10 @@ const HistoryInfoModal: FC<IHistoryInfo> = React.memo(({close, data}) => {
             <View 
             style={{flexDirection: 'row', alignItems: 'center', marginTop: 10}}>
               {currentCategori?.name && <Avatar overStyle={styles.icon} bg={currentCategori?.bg}>
-                <IconSvg name={currentCategori?.icon} color={COLORS.colorPriamry} />
+                <IconSvg 
+                  name={currentCategori?.icon}
+                  color={COLORS.colorPriamry} 
+                  width={25}/>
               </Avatar>}
 
               <Text style={globalStyles.p1}>
@@ -107,7 +110,10 @@ const HistoryInfoModal: FC<IHistoryInfo> = React.memo(({close, data}) => {
             <View 
             style={{flexDirection: 'row', alignItems: 'center', marginTop: 10}}>
               {currentAccaunt?.name && <Avatar overStyle={styles.icon} bg={currentAccaunt?.bg}>
-                <IconSvg name={currentAccaunt?.icon} color={COLORS.colorPriamry} />
+                <IconSvg 
+                  name={currentAccaunt?.icon} 
+                  color={COLORS.colorPriamry} 
+                  width={25}/>
               </Avatar>}
 
               <Text style={globalStyles.p1}>

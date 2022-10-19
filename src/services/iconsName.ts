@@ -51,13 +51,17 @@ export const TAG = 'TAG'; // бирка
 export const TECHNIK = 'TECHNIK'; // бытовая техника, электроника
 export const TIKET = 'TIKET'; // билет
 export const WALLET = 'WALLET'; // кошелек
-
 export const DELETE = 'DELETE'; // корзина - удалить
 export const EDIT = 'EDIT'; // редактировать - ручка
 export const STAR = 'STAR'; // звезда
 export const COIN = 'COIN'; // монетка доллар
 export const GOOGLE_PLAY = 'GOOGLE_PLAY'; // плей маркет иконка
 export const SETTING = 'SETTING'; // настройки
+export const CARD = 'CARD'; // банковская карта
+export const SHARE = 'SHARE'; // поделиться
+export const USER = 'USER'; // аккаунт
+export const STATISTIC = 'STATISTIC'; // статистика
+export const EXCHANGE = 'EXCHANGE'; // обмена
 
 export const VK = 'VK'; // логотип вк
 export const INST = 'INST'; // логотип инсты
@@ -73,7 +77,7 @@ export const ICONS = [MEDIC, MUSIC,
     CAR, CHARITY, CLOTHES, COSMETICS, EDUCATION,
     ENERGY, FAMILY, FLIGHT, GAME, GIFT, GLASS, GLASSES, HEART, INTERNET, 
     MAP, MONEY_BAG, PHONE, PRODUCTS, QUESTION, COIN,
-    RESTAURANT, SPORT, TAG, TECHNIK, TIKET, WALLET];
+    RESTAURANT, SPORT, TAG, TECHNIK, TIKET, WALLET, CARD];
 
 type name<T> = T[keyof T]
 export type TICONS = name<typeof ICONS>

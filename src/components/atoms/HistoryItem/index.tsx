@@ -47,7 +47,7 @@ const HistoryItem: FC<IHistory> = ({ data, setData }) => {
     style={[styles.item]}>
       <View style={[styles.avatar, {width: '40%'}]}>
         <Avatar overStyle={styles.icon} bg={currentCategori?.bg}>
-          <IconSvg name={currentCategori?.icon || REFUND} color={COLORS.colorPriamry} />
+          <IconSvg name={currentCategori?.icon || REFUND} color={COLORS.colorPriamry} width={25}/>
         </Avatar>
         <Text style={[globalStyles.p1]} numberOfLines={1}>
           {currentCategori?.name || 'перевод'}

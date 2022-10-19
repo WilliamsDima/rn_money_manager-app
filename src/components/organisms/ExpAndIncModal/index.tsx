@@ -25,9 +25,12 @@ const ExpAndIncModal: FC<IExpAndIncModal> = React.memo(({setExpAndEncomeModal, d
 
   const [accauntsId, setAccauntsId] = useState(data?.accounts)
   const [categoriId, setCategoriId] = useState(data?.categori)
-  const [date, setDate] = useState(data?.date || new Date())
+  const [date, setDate] = useState(data?.date ? new Date(data?.date) : new Date())
   const [count, setCount] = useState(data?.count?.toString() || '')
   const [text, setText] = useState(data?.text || '')
+
+  const yesterday = new Date(+new Date() - 86400000)
+  const dayBeforeYesterday = new Date(+new Date() - 86400000 * 2)
 
    // выбранный счёт существует
   const selectAccaunt: IAccounts = getItemFromList(accauntsId, accounts)
@@ -107,6 +110,39 @@ const ExpAndIncModal: FC<IExpAndIncModal> = React.memo(({setExpAndEncomeModal, d
           expOrIncom={data?.income}
           categoriId={categoriId} 
           setCategoriId={setCategoriId}/>
+        </View>
+
+        <View style={styles.item}>
+          <Text style={[globalStyles.p1, styles.itemText]}>
+            Выбор даты:
+          </Text>
+
+          <View style={{flexDirection: 'row', marginTop: 10}}>
+            <TouchableOpacity 
+              onPress={() => setDate(dayBeforeYesterday)}
+              style={[styles.dataBtn, dayBeforeYesterday.getDate() === date.getDate()
+              && {backgroundColor: COLORS.mainColor}]}>
+              <Text style={[globalStyles.p1]}>
+                {dayBeforeYesterday.getDate()} / {dayBeforeYesterday.getMonth()}
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity 
+              onPress={() => setDate(yesterday)}
+              style={[styles.dataBtn, yesterday.getDate() === date.getDate()
+              && {backgroundColor: COLORS.mainColor}]}>
+              <Text style={[globalStyles.p1]}>
+                {yesterday.getDate()} / {yesterday.getMonth()}
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity 
+              onPress={() => setDate(new Date())}
+              style={[styles.dataBtn, new Date().getDate() === date.getDate()
+              && {backgroundColor: COLORS.mainColor}]}>
+              <Text style={[globalStyles.p1]}>
+                {new Date().getDate()} / {new Date().getMonth()}
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
 
         <View style={[styles.item, {paddingBottom: 100}]}>

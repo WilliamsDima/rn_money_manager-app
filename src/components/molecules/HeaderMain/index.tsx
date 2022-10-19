@@ -13,10 +13,10 @@ const HeaderMain = () => {
 
   const localStoreHandler = async () => {
 
-    localAPI.remove(LOCAL_NAME.ACCAUNT_SELECT)
-    localAPI.remove(LOCAL_NAME.EPENSES_INCOME)
-    localAPI.remove(LOCAL_NAME.CATEGORIES)
-    localAPI.remove(LOCAL_NAME.ACCAUNTS)
+    // localAPI.remove(LOCAL_NAME.ACCAUNT_SELECT)
+    // localAPI.remove(LOCAL_NAME.EPENSES_INCOME)
+    // localAPI.remove(LOCAL_NAME.CATEGORIES)
+    // localAPI.remove(LOCAL_NAME.ACCAUNTS)
 
     const accauntId = await localAPI.get(LOCAL_NAME.ACCAUNT_SELECT)
     if (accauntId || (accauntId === 0)) {

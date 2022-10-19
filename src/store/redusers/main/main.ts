@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { ANIMAL, BURGER, BUS, CHARITY, EDUCATION, ENERGY, FAMILY, GAME, 
+import { ANIMAL, BURGER, BUS, CARD, CHARITY, EDUCATION, ENERGY, FAMILY, GAME, 
     GIFT, MEDIC, MONEY_BAG, PIGGY_BANK, PRODUCTS, QUESTION, 
     REFUND, REFUND_REPO, SPORT, TAB_ACCAUNTS, WALLET } from '../../../services/iconsName'
 import { reducers } from "../../actions/main/mainAC"
@@ -152,7 +152,7 @@ const initialState: IStore = {
         },
         {
             name: 'Зарплата',
-            icon: TAB_ACCAUNTS,
+            icon: CARD,
             bg: '#FA4442',
             id: 13,
             count: 0,

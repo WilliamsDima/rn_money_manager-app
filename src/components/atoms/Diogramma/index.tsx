@@ -29,7 +29,12 @@ const Diogramma: FC<IDiogramma> = ({sortArray, hideDiogram}) => {
     });
   }
 
-  const diogramm = hideDiogram ? <DiogrammaLine sortArray={sortArray}/>
+  const diogramm = hideDiogram ? <View style={{alignItems: 'center'}}>
+    <DiogrammaLine sortArray={sortArray}/>
+    <Text style={[globalStyles.p2]}>
+          {numberConverter(sumMoneySort)} P
+        </Text>
+  </View> 
   : <View style={styles.wrapperDiagremm}>
       
       {currency && <Text style={globalStyles.p1}>
@@ -66,7 +71,7 @@ const Diogramma: FC<IDiogramma> = ({sortArray, hideDiogram}) => {
   }, [categories])
   
   return (
-    <View style={[styles.container, !hideDiogram && {marginBottom: 0}]}>
+    <View style={[styles.container, !hideDiogram ? {marginBottom: -10} : {marginBottom: 10}]}>
       {sortArray.length && sliceColor.length ? diogramm :
       <Text style={[globalStyles.p1, {opacity: 0.6}]}>ПУСТО</Text>}
     </View>

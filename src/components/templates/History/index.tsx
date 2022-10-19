@@ -11,6 +11,7 @@ import { useAppSelector } from '../../../hooks/hooks'
 import { dataFilterMaxValue, periodSort } from '../../../hooks/helpers'
 import DataListEmpty from '../../atoms/DataListEmpty'
 import PickerCategories from '../../molecules/PickerCategories'
+import { useRoute } from '@react-navigation/native'
 
 interface IFilterData {
   type: boolean | string
@@ -19,6 +20,10 @@ interface IFilterData {
 
 const HistoryTemplate = () => {
 
+  const route = useRoute()
+
+  const params = route?.params
+
   const { transaction, sort, sortDatePeriod } = useAppSelector(state => state.main)
 
   const [filter, setFilter] = useState(false)
@@ -26,7 +31,7 @@ const HistoryTemplate = () => {
 
   const [filterType, setFilterType] = useState('all')
   const [filterOrder, setFilterOrder] = useState('all')
-  const [categorySelect, setCategorySelect] = useState([])
+  const [categorySelect, setCategorySelect] = useState(params?.id ? [params?.id] : [])
 
   let res = [...transaction].reverse()
 

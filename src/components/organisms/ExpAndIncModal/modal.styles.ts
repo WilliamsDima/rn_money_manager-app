@@ -39,5 +39,16 @@ export const styles = StyleSheet.create({
   },
   itemText: {
     opacity: 0.3
-  }
+  },
+  dataBtn: {
+    width: 60,
+    height: 40,
+    padding: 10,
+    borderWidth: 1,
+    borderColor: COLORS.colorLightBlack,
+    borderRadius: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 10
+  },
 })

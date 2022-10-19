@@ -1,5 +1,5 @@
 import { localAPI } from "../../../api/asyncStorage"
-import { countSumItemsFromList, getItemFromList } from "../../../hooks/helpers"
+import { countSumItemsFromList, dataFilterMaxValue, getItemFromList } from "../../../hooks/helpers"
 import { ICategories, ITransaction } from "../../redusers/main/types"
 import { changeTransaction, countAccaunts, countAccauntsTransaction, 
     countAccountsChange, countCategories, countCategoriesChange, 
@@ -87,6 +87,8 @@ export const reducers: IACMain = {
             state.transaction = changeTransaction(state.transaction, payload)
         }
 
+        state.categories = dataFilterMaxValue(state.categories, true)
+
         localAPI.set(LOCAL_NAME.EPENSES_INCOME, state.transaction)
         localAPI.set(LOCAL_NAME.CATEGORIES, state.categories)
         localAPI.set(LOCAL_NAME.ACCAUNTS, state.accounts)
@@ -97,6 +99,7 @@ export const reducers: IACMain = {
         state.categories = deleteTransactionHandler(state.categories, payload)
         state.accounts = deleteAccounTransactionHandler(state.accounts, payload)
 
+        state.categories = dataFilterMaxValue(state.categories, true)
 
         localAPI.set(LOCAL_NAME.EPENSES_INCOME, state.transaction)
         localAPI.set(LOCAL_NAME.CATEGORIES, state.categories)

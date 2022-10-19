@@ -8,15 +8,15 @@ import HomeSvg from "../assets/svg/HomeSvg";
 import HeartSvg from '../assets/svg/categories/HeartSvg'
 import { MoreSvg } from "../assets/svg/MoreSvg";
 import { PlusSvg } from "../assets/svg/PlusSvg";
-import { ANIMAL, ARROW_SELECT, BANK, BASKET, BURGER, BUS, CAR, CHARITY, CLOTHES, 
+import { ANIMAL, ARROW_SELECT, BANK, BASKET, BURGER, BUS, CAR, CARD, CHARITY, CLOTHES, 
     COIN, 
-    COSMETICS, DELETE, EDIT, EDUCATION, ENERGY, FAMILY, FILL, FLIGHT, GAME, GAS, GEAR, GIFT,
-     GLASS, GLASSES, HEADER_LEFT, HEART, HISTORY, INST, INTERNET, LINKEDIN, MAP, 
+    COSMETICS, DELETE, EDIT, EDUCATION, ENERGY, EXCHANGE, FAMILY, FILL, FLIGHT, GAME, GAS, GEAR, GIFT,
+     GLASS, GLASSES, GOOGLE_PLAY, HEADER_LEFT, HEART, HISTORY, INST, INTERNET, LINKEDIN, MAP, 
      MEDIC, 
      MONEY_BAG, MUSIC, PHONE, PIGGY_BANK, PLUS_CIRCLE, PRODUCTS, 
-     QUESTION, REACT, REFUND, REFUND_REPO, RESTAURANT, SETTING, SPORT, STAR, STEAM, TAB_ACCAUNTS, 
+     QUESTION, REACT, REFUND, REFUND_REPO, RESTAURANT, SETTING, SHARE, SPORT, STAR, STATISTIC, STEAM, TAB_ACCAUNTS, 
      TAB_CATEGORIES, TAB_HOME, TAB_MORE, TAG, TAXI, TECHNIK, TELEGRAM, TICONS, TIKET, 
-     TOOTCH, TOOTHPASTE, TWITTER, VK, WALLET } from "./iconsName";
+     TOOTCH, TOOTHPASTE, TWITTER, USER, VK, WALLET } from "./iconsName";
 import { MoneyBagSvg } from "../assets/svg/categories/MoneyBagSvg";
 import { WalletSvg } from "../assets/svg/categories/WalletSvg";
 import { PiggyBankSvg } from "../assets/svg/categories/PiggyBankSvg";
@@ -68,6 +68,12 @@ import { InstSvg } from "../assets/svg/socials/InstSvg";
 import { TwitterSvg } from "../assets/svg/socials/TwitterSvg";
 import { TelegaSvg } from "../assets/svg/socials/TelegaSvg";
 import LinkedinSvg from "../assets/svg/socials/LinkedinSvg";
+import CardSvg from "../assets/svg/categories/CardSvg";
+import ShareSvg from "../assets/svg/ShareSvg";
+import UserSvg from "../assets/svg/UserSvg";
+import StatisticSvg from "../assets/svg/StatisticSvg";
+import ExchangeSvg from "../assets/svg/ExchangeSvg";
+import GooglePlaySvg from "../assets/svg/GooglePlaySvg";
 
 export const ICONS_SVG = {
     // tab
@@ -129,6 +135,12 @@ export const ICONS_SVG = {
     [COIN]: (props) => <CoinSvg color={props.color} {...props}/>,
     [REACT]: (props) => <ReactSvg color={props.color} {...props}/>,
     [SETTING]: (props) => <SettingSvg color={props.color} {...props}/>,
+    [CARD]: (props) => <CardSvg color={props.color} {...props}/>,
+    [SHARE]: (props) => <ShareSvg color={props.color} {...props}/>,
+    [USER]: (props) => <UserSvg color={props.color} {...props}/>,
+    [STATISTIC]: (props) => <StatisticSvg color={props.color} {...props}/>,
+    [EXCHANGE]: (props) => <ExchangeSvg color={props.color} {...props}/>,
+    [GOOGLE_PLAY]: (props) => <GooglePlaySvg color={props.color} {...props}/>,
 
     [VK]: (props) => <VkSvg color={props.color} {...props}/>,
     [INST]: (props) => <InstSvg color={props.color} {...props}/>,
