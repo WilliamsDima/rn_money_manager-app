@@ -65,7 +65,7 @@ const HeaderMain: FC<IHeaderMain> = (props) => {
           style={styles.container} 
           onPress={() => setModal(!modal)}>
           <Text style={[globalStyles.p2, {marginRight: 10}]}>
-            {numberConverter(accauntSelect?.count)} P
+            {numberConverter(accauntSelect?.count)} ₽
           </Text>
           <IconSvg name={ARROW_SELECT} marginTop={-5}/>     
         </TouchableOpacity>

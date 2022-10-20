@@ -83,7 +83,7 @@ const ExpAndIncModal: FC<IExpAndIncModal> = React.memo(({setExpAndEncomeModal, d
             placeholderTextColor={'#333'}
             autoFocus={true} 
             keyboardType={'number-pad'}/>
-        <Text style={globalStyles.h2}>RUB</Text>
+        <Text style={globalStyles.h2}>₽</Text>
       </View>
 
       <View style={styles.item}>

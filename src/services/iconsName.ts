@@ -62,6 +62,13 @@ export const SHARE = 'SHARE'; // поделиться
 export const USER = 'USER'; // аккаунт
 export const STATISTIC = 'STATISTIC'; // статистика
 export const EXCHANGE = 'EXCHANGE'; // обмена
+export const PERIOD = 'PERIOD'; // календарь
+export const PASSWORD = 'PASSWORD'; // пароль, пин
+export const LANGUAGE = 'LANGUAGE'; // язык, глобус
+export const DOLLAR = 'DOLLAR'; // валюта, доллар
+export const THEME = 'THEME'; // тема, лампочка
+export const CLEAR = 'CLEAR'; // отчистить
+export const HOME = 'HOME'; // домик
 
 export const VK = 'VK'; // логотип вк
 export const INST = 'INST'; // логотип инсты
@@ -71,7 +78,7 @@ export const LINKEDIN = 'LINKEDIN'; // логотип линкедина
 
 export const REACT = 'REACT'; // логотип реакта
 
-export const ICONS = [MEDIC, MUSIC, 
+export const ICONS = [MEDIC, MUSIC, HOME,
     PIGGY_BANK, STEAM, GAS, GEAR, FILL, TAXI, TOOTCH, 
     TOOTHPASTE, BANK, REFUND, REFUND_REPO, ANIMAL, BASKET, BURGER, BUS, 
     CAR, CHARITY, CLOTHES, COSMETICS, EDUCATION,

@@ -35,22 +35,6 @@ const initialState: IStore = {
             count: 0,
             delete: false,
         },
-        {
-            icon: PIGGY_BANK,
-            bg: 'orange',
-            name: 'Test',
-            id: 2,
-            count: 5000,
-            delete: false,
-        },
-        {
-            icon: ANIMAL,
-            bg: 'blue',
-            name: 'Test 2',
-            id: 3,
-            count: 1000,
-            delete: false,
-        },
     ],
 
     categories: [
@@ -188,6 +172,8 @@ const initialState: IStore = {
     currencySelect: 'USDRUB,EURRUB',
     currency: null,
     currencies: [],
+
+    pop: 0,
 };
 
 const counterSlice = createSlice({
@@ -205,5 +191,5 @@ export const {setAllCauntAccaunts, addTransaction,
     setSortValue, setSortDatePeriod, addLocalCategories,
     addLocalAccaunts, addAccaunt, editeAccaunt, deleteAccaunt,
     deleteTransaction, addCategori, editeCategori, deleteCategori,
-    setCurrency,
+    setCurrency, setPop,
     setDataOnPeriodFilter, setAccauntId, addLocalExpAndIncome } = counterSlice.actions;

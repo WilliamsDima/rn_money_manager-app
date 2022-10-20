@@ -45,7 +45,7 @@ const HistoryStatisticList: FC<IHistory> = React.memo(({ data, filterType }) => 
       <Text style={globalStyles.p1}>ИТОГО:
         <Text 
         style={colorSum}> {sum < 0 ? numberConverter(sum * -1) 
-        : numberConverter(sum)} P
+        : numberConverter(sum)} ₽
         </Text> 
       </Text>
     </View>

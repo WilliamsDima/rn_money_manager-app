@@ -49,4 +49,5 @@ export interface IStore {
     currencySelect: string
     currency: {} | null
     currencies: string[]
+    pop: number
 }

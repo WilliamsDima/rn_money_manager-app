@@ -24,7 +24,7 @@ const AccauntItem: FC<IAccauntItem> = ({ data, onPress }) => {
           </Text>
         </View>
         <Text style={[globalStyles.p1, {marginBottom: 5}]}>
-          {numberConverter(data.count)} P
+          {numberConverter(data.count)} ₽
         </Text> 
       </TouchableOpacity>
     </View>

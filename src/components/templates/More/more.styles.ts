@@ -10,5 +10,12 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
     marginBottom: 10,
-  }
+  },
+  pop: {
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    height: 200,
+    marginTop: 50
+  },
 })

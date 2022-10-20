@@ -64,7 +64,7 @@ const HistoryItem: FC<IHistory> = ({ data, setData }) => {
           <Text style={{color: data?.income ? COLORS.mainColor : COLORS.colorRed}}>
             {data?.transaction ? '' : data?.income ? ' + ' : ' - ' }
           </Text>
-          {numberConverter(data?.count)} P
+          {numberConverter(data?.count)} ₽
         </Text> 
         <Text style={[globalStyles.s2, {opacity: 0.6}]}>
           {currentAccaunt || 'счёт удален'}

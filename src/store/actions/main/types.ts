@@ -8,6 +8,7 @@ export const LOCAL_NAME =  {
     EPENSES_INCOME: 'transaction',
     CATEGORIES: 'categories',
     ACCAUNTS: 'accounts',
+    POP: 'POP',
 }
 
 interface IDeleteAccaunt {
@@ -41,4 +42,5 @@ export interface IACMain {
     deleteCategori: (state: IStore, payload: PayloadAction<ICategories>) => void
 
     setCurrency: (state: IStore, payload: PayloadAction<{}>) => void
+    setPop: (state: IStore, payload: PayloadAction<number>) => void
 }

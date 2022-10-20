@@ -40,7 +40,7 @@ const ItemList: FC<IItem> = ({item}) => {
 
       <View style={{width: '30%', alignItems: 'flex-end'}}>
         <Text style={[globalStyles.p1]}>
-          {numberConverter(item.count)} P
+          {numberConverter(item.count)} ₽
         </Text> 
       </View>
     </TouchableOpacity>

@@ -28,6 +28,9 @@ const CreateAccauntModal: FC<IAccauntCreateModal> = React.memo(({setModal, edite
 
   const accauntOther: IAccounts = getItemFromList(1, accounts)
 
+  console.log(editeMode);
+  
+
   const disabled = icon && name && bg && count
 
   const addHandler = () => {
@@ -117,7 +120,7 @@ const CreateAccauntModal: FC<IAccauntCreateModal> = React.memo(({setModal, edite
               placeholderTextColor={'#333'}
               autoFocus={true} 
               keyboardType={'number-pad'}/>
-            <Text style={globalStyles.h2}>RUB</Text>
+            <Text style={globalStyles.h2}>₽</Text>
         </View>)}
 
 

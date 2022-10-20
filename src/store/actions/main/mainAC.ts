@@ -7,6 +7,10 @@ import { changeTransaction, countAccaunts, countAccauntsTransaction,
 import { IACMain, LOCAL_NAME } from "./types"
 
 export const reducers: IACMain = {
+    setPop: (state, {payload}) => {
+        state.pop = payload
+        localAPI.set(LOCAL_NAME.POP, state.pop)
+    },
     setTabExpOrIncome: (state, {payload}) => {
         state.tabExpOrIncome = payload
     },

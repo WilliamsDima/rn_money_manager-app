@@ -32,7 +32,7 @@ const Diogramma: FC<IDiogramma> = ({sortArray, hideDiogram}) => {
   const diogramm = hideDiogram ? <View style={{alignItems: 'center'}}>
     <DiogrammaLine sortArray={sortArray}/>
     <Text style={[globalStyles.p2]}>
-          {numberConverter(sumMoneySort)} P
+          {numberConverter(sumMoneySort)} ₽
         </Text>
   </View> 
   : <View style={styles.wrapperDiagremm}>
@@ -53,7 +53,7 @@ const Diogramma: FC<IDiogramma> = ({sortArray, hideDiogram}) => {
       </Text>}
       <View style={styles.count}>
         <Text style={[globalStyles.p2]}>
-          {numberConverter(sumMoneySort)} P
+          {numberConverter(sumMoneySort)} ₽
         </Text>
       </View>
   </View>
