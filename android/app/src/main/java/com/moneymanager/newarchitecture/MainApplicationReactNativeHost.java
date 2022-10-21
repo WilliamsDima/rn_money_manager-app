@@ -1,4 +1,4 @@
-package com.moneymanager.newarchitecture;
+package com.eclipse.moneymanager.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -19,9 +19,9 @@ import com.facebook.react.fabric.CoreComponentsRegistry;
 import com.facebook.react.fabric.EmptyReactNativeConfig;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.moneymanager.BuildConfig;
-import com.moneymanager.newarchitecture.components.MainComponentsRegistry;
-import com.moneymanager.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import com.eclipse.moneymanager.BuildConfig;
+import com.eclipse.moneymanager.newarchitecture.components.MainComponentsRegistry;
+import com.eclipse.moneymanager.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 

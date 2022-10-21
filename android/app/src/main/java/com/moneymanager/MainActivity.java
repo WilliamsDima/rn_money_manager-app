@@ -1,4 +1,4 @@
-package com.moneymanager;
+package com.eclipse.moneymanager;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;

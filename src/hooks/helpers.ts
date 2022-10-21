@@ -1,5 +1,7 @@
 import { ITransaction } from "../store/redusers/main/types"
 
+export const urlAppStore = 'https://play.google.com/store/apps/details?id=com.moneymanager_williams'
+
 export const getItemFromList = (id: number | string, list: any[]) => list.find((it) => it.id === id)
 // создаю шаблон для чисел, разделяю запятой
 export const numberConverter = (num) => num && num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")

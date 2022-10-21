@@ -8,6 +8,7 @@ import { IconSvg } from '../../../services/icons'
 import { COIN, EXCHANGE, GEAR, GOOGLE_PLAY, SHARE, STATISTIC, USER } from '../../../services/iconsName'
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks'
 import { setPop } from '../../../store/redusers/main/main'
+import { urlAppStore } from '../../../hooks/helpers'
 
 const MoreTemplate = () => {
   
@@ -38,14 +39,13 @@ const MoreTemplate = () => {
   }
 
   const toGooglePlay = () => {
-    Linking.openURL('https://williams-dy.ru/')
+    Linking.openURL(urlAppStore)
   }
 
   const onShare = async () => {
     try {
       const result = await Share.share({
-        message:
-          'тут ссылка',
+        message: urlAppStore,
       });
       if (result.action === Share.sharedAction) {
         if (result.activityType) {

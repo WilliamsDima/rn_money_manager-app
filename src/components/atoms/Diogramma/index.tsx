@@ -71,7 +71,7 @@ const Diogramma: FC<IDiogramma> = ({sortArray, hideDiogram}) => {
   }, [categories])
   
   return (
-    <View style={[styles.container, !hideDiogram ? {marginBottom: -10} : {marginBottom: 10}]}>
+    <View style={[styles.container, !hideDiogram ? {marginBottom: 0} : {marginBottom: 10}]}>
       {sortArray.length && sliceColor.length ? diogramm :
       <Text style={[globalStyles.p1, {opacity: 0.6}]}>ПУСТО</Text>}
     </View>

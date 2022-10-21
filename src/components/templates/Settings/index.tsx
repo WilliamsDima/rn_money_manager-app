@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, DevSettings, Alert } from 'react-native'
 import { localAPI } from '../../../api/asyncStorage'
 import { COLORS } from '../../../services/colors'
 import { IconSvg } from '../../../services/icons'
-import { CLEAR, DOLLAR, LANGUAGE, PASSWORD, PERIOD, THEME } from '../../../services/iconsName'
+import { CLEAR, DOLLAR, EXCHANGE, LANGUAGE, PASSWORD, PERIOD, THEME } from '../../../services/iconsName'
 import { globalStyles } from '../../../services/styles'
 import { LOCAL_NAME } from '../../../store/actions/main/types'
 import ScrollContainer from '../../atoms/Container/ScrollContainer'
@@ -34,10 +34,16 @@ const SettingsTemplate = () => {
     );
   }
 
+  const inDevProgress = () => {
+    Alert.alert(
+      'В РАЗРАБОТКЕ...')
+  }
+
 
   return (
     <ScrollContainer overStyle={styles.container}>
-      <TouchableOpacity style={styles.item}>
+
+      <TouchableOpacity style={styles.item} onPress={inDevProgress}>
         <View style={{marginRight: 20}}>
           <IconSvg name={PASSWORD} width={25}/>
         </View>
@@ -45,7 +51,8 @@ const SettingsTemplate = () => {
           PIN
         </Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.item}>
+
+      <TouchableOpacity style={styles.item} onPress={inDevProgress}>
         <View style={{marginRight: 20}}>
           <IconSvg name={LANGUAGE} width={25}/>
         </View>
@@ -58,7 +65,22 @@ const SettingsTemplate = () => {
           </Text>
         </View>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.item}>
+
+      <TouchableOpacity style={styles.item} onPress={inDevProgress}>
+        <View style={{marginRight: 20}}>
+          <IconSvg name={EXCHANGE} width={25}/>
+        </View>
+        <View style={{justifyContent: 'flex-start'}}>
+          <Text style={[globalStyles.h2, {marginRight: 20, opacity: 0.6}]}>
+            Курс валют
+          </Text>
+          <Text style={[globalStyles.h2, {color: COLORS.mainColor}]}>
+            $ / E
+          </Text>
+        </View>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.item} onPress={inDevProgress}>
         <View style={{marginRight: 20}}>
           <IconSvg name={DOLLAR} width={25}/>
         </View>
@@ -71,7 +93,8 @@ const SettingsTemplate = () => {
           </Text>
         </View>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.item}>
+
+      <TouchableOpacity style={styles.item} onPress={inDevProgress}>
         <View style={{marginRight: 20}}>
           <IconSvg name={THEME} width={25}/>
         </View>
@@ -84,7 +107,8 @@ const SettingsTemplate = () => {
           </Text>
         </View>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.item}>
+
+      <TouchableOpacity style={styles.item} onPress={inDevProgress}>
         <View style={{marginRight: 20}}>
           <IconSvg name={PERIOD} width={25}/>
         </View>
@@ -97,6 +121,7 @@ const SettingsTemplate = () => {
           </Text>
         </View>
       </TouchableOpacity>
+
       <TouchableOpacity style={styles.item} onPress={deleteDate}>
         <View style={{marginRight: 20}}>
           <IconSvg name={CLEAR} width={25} color={COLORS.colorRed}/>
