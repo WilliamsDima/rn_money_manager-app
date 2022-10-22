@@ -16,7 +16,7 @@ const ItemList: FC<IItem> = ({item}) => {
   const navigation = useNavigation()
   
 
-  const { sumMoneySort } = useAppSelector(state => state.main)
+  const { sumMoneySort, currencyValue } = useAppSelector(state => state.main)
 
   const toHistory = () => {
     navigation.navigate(RoutesNames.History.Home, item)
@@ -40,7 +40,7 @@ const ItemList: FC<IItem> = ({item}) => {
 
       <View style={{width: '30%', alignItems: 'flex-end'}}>
         <Text style={[globalStyles.p1]}>
-          {numberConverter(item.count)} ₽
+          {numberConverter(item.count)} {currencyValue}
         </Text> 
       </View>
     </TouchableOpacity>

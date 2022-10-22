@@ -18,7 +18,7 @@ const ExpAndIncModal: FC<IExpAndIncModal> = React.memo(({setExpAndEncomeModal, d
 
   const dispatch = useAppDispatch()
   
-  const { accounts, tabExpOrIncome, categories } = useAppSelector(state => state.main)
+  const { accounts, tabExpOrIncome, categories, currencyValue } = useAppSelector(state => state.main)
   const filterAccaunts = accounts.filter((it) => it.id)
 
   const [modal, setModal] = useState(false)
@@ -60,6 +60,7 @@ const ExpAndIncModal: FC<IExpAndIncModal> = React.memo(({setExpAndEncomeModal, d
         count: +count.replace(',', '.'),
         text: text,
         income: data ? data?.income : tabExpOrIncome,
+        currency: currencyValue,
         transaction: data ? data?.transaction : false
       }
 
@@ -83,7 +84,7 @@ const ExpAndIncModal: FC<IExpAndIncModal> = React.memo(({setExpAndEncomeModal, d
             placeholderTextColor={'#333'}
             autoFocus={true} 
             keyboardType={'number-pad'}/>
-        <Text style={globalStyles.h2}>₽</Text>
+        <Text style={globalStyles.h2}>{currencyValue}</Text>
       </View>
 
       <View style={styles.item}>

@@ -25,11 +25,12 @@ export interface ITransaction {
     text: string
     income: boolean
     transaction: boolean
+    currency: string
 }
 
 type TsortFilter = 'Day' | 'Week' | 'Month' | 'Year'
 
-interface ISortData {
+export interface ISortData {
     title: string
     value: string
 }
@@ -48,6 +49,7 @@ export interface IStore {
     transaction: ITransaction[],
     currencySelect: string
     currency: {} | null
-    currencies: string[]
+    currencies: ISortData[]
+    currencyValue: string
     pop: number
 }

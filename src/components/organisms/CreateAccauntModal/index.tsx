@@ -17,7 +17,7 @@ import { getItemFromList } from '../../../hooks/helpers'
 const CreateAccauntModal: FC<IAccauntCreateModal> = React.memo(({setModal, editeMode}) => {
 
   const dispatch = useAppDispatch()
-  const { accounts } = useAppSelector(state => state.main)
+  const { accounts, currencyValue } = useAppSelector(state => state.main)
 
   const [colorModal, setColorModal] = useState(false)
 
@@ -27,9 +27,6 @@ const CreateAccauntModal: FC<IAccauntCreateModal> = React.memo(({setModal, edite
   const [bg, setBg] = useState(editeMode?.bg || '')
 
   const accauntOther: IAccounts = getItemFromList(1, accounts)
-
-  console.log(editeMode);
-  
 
   const disabled = icon && name && bg && count
 
@@ -120,7 +117,7 @@ const CreateAccauntModal: FC<IAccauntCreateModal> = React.memo(({setModal, edite
               placeholderTextColor={'#333'}
               autoFocus={true} 
               keyboardType={'number-pad'}/>
-            <Text style={globalStyles.h2}>₽</Text>
+            <Text style={globalStyles.h2}>{currencyValue}</Text>
         </View>)}
 
 

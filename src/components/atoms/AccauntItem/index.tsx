@@ -8,8 +8,11 @@ import Avatar from '../Avatar'
 import { IconSvg } from '../../../services/icons'
 import { DELETE, HEART } from '../../../services/iconsName'
 import { COLORS } from '../../../services/colors'
+import { useAppSelector } from '../../../hooks/hooks'
 
 const AccauntItem: FC<IAccauntItem> = ({ data, onPress }) => {
+
+  const { currencyValue } = useAppSelector(state => state.main)
 
 
   return (
@@ -24,7 +27,7 @@ const AccauntItem: FC<IAccauntItem> = ({ data, onPress }) => {
           </Text>
         </View>
         <Text style={[globalStyles.p1, {marginBottom: 5}]}>
-          {numberConverter(data.count)} ₽
+          {numberConverter(data.count)} {currencyValue}
         </Text> 
       </TouchableOpacity>
     </View>

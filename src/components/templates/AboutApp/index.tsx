@@ -1,17 +1,21 @@
 import React from 'react'
-import { Text, TouchableOpacity, View, Linking, Image  } from 'react-native'
+import { Text, TouchableOpacity, View, Linking  } from 'react-native'
 import { globalStyles } from '../../../services/styles'
 import { styles } from './app.styles'
 import ScrollContainer from '../../atoms/Container/ScrollContainer'
 import { IconSvg } from '../../../services/icons'
-import { GOOGLE_PLAY, INST, LINKEDIN, REACT, STAR, TELEGRAM, TWITTER, VK } from '../../../services/iconsName'
+import { INST, LINKEDIN, REACT, STAR, TELEGRAM, TWITTER, VK } from '../../../services/iconsName'
 import { COLORS } from '../../../services/colors'
 import { urlAppStore } from '../../../hooks/helpers'
 
 const AboutAppTemplate = () => {
-
+  
   const toMySite = () => {
     Linking.openURL('https://williams-dy.ru/')
+  }
+
+  const toPrivacy = () => {
+    Linking.openURL('https://pages.flycricket.io/upravlenie-finansami/privacy.html')
   }
 
   const toMyVk = () => {
@@ -54,7 +58,7 @@ const AboutAppTemplate = () => {
         </Text>
       </View>
       <View style={styles.item}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={toPrivacy}>
           <Text style={globalStyles.p1}>
             Политика конфидициальности
           </Text>

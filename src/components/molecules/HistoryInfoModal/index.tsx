@@ -20,7 +20,7 @@ const HistoryInfoModal: FC<IHistoryInfo> = React.memo(({close, data}) => {
 
   const [editModal, setEditModal] = useState(false)
 
-  const { categories, accounts, transaction } = useAppSelector(state => state.main)
+  const { categories, accounts, transaction, currencyValue } = useAppSelector(state => state.main)
 
   const isTransaction = getItemFromList(data.id, transaction)
 
@@ -38,7 +38,7 @@ const HistoryInfoModal: FC<IHistoryInfo> = React.memo(({close, data}) => {
   const deleteHandler = () => {
     Alert.alert(
       "Удаление",
-      `Удалить транзакцию "${currentCategori?.name || 'перевод'}" ${data?.count} ₽?`,
+      `Удалить транзакцию "${currentCategori?.name || 'перевод'}" ${data?.count} ${currencyValue}?`,
       [
         {
           text: "Cancel",
@@ -78,7 +78,7 @@ const HistoryInfoModal: FC<IHistoryInfo> = React.memo(({close, data}) => {
         <ScrollView style={{marginTop: 20, width: '100%'}}>
           <View style={styles.item}>
             <Text style={globalStyles.p1} style={{color: COLORS.mainColor}}>
-              Валюта: {numberConverter(isTransaction?.count)} ₽
+              Валюта: {numberConverter(isTransaction?.count)} {currencyValue}
             </Text>
           </View>
           <View style={styles.item}>

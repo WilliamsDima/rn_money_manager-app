@@ -3,7 +3,7 @@ import { View } from 'react-native'
 import { localAPI } from '../../../api/asyncStorage'
 import { useAppDispatch } from '../../../hooks/hooks'
 import { LOCAL_NAME } from '../../../store/actions/main/types'
-import { addLocalAccaunts, addLocalCategories, addLocalExpAndIncome, setAccauntId, setAllCauntAccaunts, setPop } from '../../../store/redusers/main/main'
+import { addLocalAccaunts, addLocalCategories, addLocalExpAndIncome, setAccauntId, setAllCauntAccaunts, setCurrencyValue, setPop, setSortValue } from '../../../store/redusers/main/main'
 import ButtonsTabMain from '../../atoms/ButtonsTabMain'
 import { styles } from './header.styles'
 
@@ -29,6 +29,12 @@ const HeaderMain = () => {
 
     const pop = await localAPI.get(LOCAL_NAME.POP)
     pop && dispatch(setPop(pop))
+
+    const period = await localAPI.get(LOCAL_NAME.PERIOD)
+    period && dispatch(setSortValue(period))
+
+    const currency = await localAPI.get(LOCAL_NAME.CURRENCY_VALUE)
+    currency && dispatch(setCurrencyValue(currency))
 
     dispatch(setAllCauntAccaunts())
   }

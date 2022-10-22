@@ -14,7 +14,7 @@ import { numberConverter } from '../../../hooks/helpers'
 const Diogramma: FC<IDiogramma> = ({sortArray, hideDiogram}) => {
 
   const dispatch = useAppDispatch()
-  const { categories, currency, currencySelect, sumMoneySort } = useAppSelector(state => state.main)
+  const { categories, currency, currencySelect, sumMoneySort, currencyValue } = useAppSelector(state => state.main)
 
   const widthAndHeight = 180
   const series = []
@@ -32,7 +32,7 @@ const Diogramma: FC<IDiogramma> = ({sortArray, hideDiogram}) => {
   const diogramm = hideDiogram ? <View style={{alignItems: 'center'}}>
     <DiogrammaLine sortArray={sortArray}/>
     <Text style={[globalStyles.p2]}>
-          {numberConverter(sumMoneySort)} ₽
+          {numberConverter(sumMoneySort)} {currencyValue}
         </Text>
   </View> 
   : <View style={styles.wrapperDiagremm}>
@@ -53,7 +53,7 @@ const Diogramma: FC<IDiogramma> = ({sortArray, hideDiogram}) => {
       </Text>}
       <View style={styles.count}>
         <Text style={[globalStyles.p2]}>
-          {numberConverter(sumMoneySort)} ₽
+          {numberConverter(sumMoneySort)} {currencyValue}
         </Text>
       </View>
   </View>

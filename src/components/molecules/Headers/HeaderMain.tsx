@@ -22,7 +22,7 @@ const HeaderMain: FC<IHeaderMain> = (props) => {
 
   const navigation = useNavigation()
   const { accounts, categories, transaction,
-    tabExpOrIncome, accountsIdSelected } = useAppSelector(state => state.main)
+    tabExpOrIncome, accountsIdSelected, currencyValue } = useAppSelector(state => state.main)
 
   const dispatch = useAppDispatch()
 
@@ -65,7 +65,7 @@ const HeaderMain: FC<IHeaderMain> = (props) => {
           style={styles.container} 
           onPress={() => setModal(!modal)}>
           <Text style={[globalStyles.p2, {marginRight: 10}]}>
-            {numberConverter(accauntSelect?.count)} ₽
+            {numberConverter(accauntSelect?.count)} {currencyValue}
           </Text>
           <IconSvg name={ARROW_SELECT} marginTop={-5}/>     
         </TouchableOpacity>

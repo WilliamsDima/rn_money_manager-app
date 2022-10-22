@@ -145,4 +145,8 @@ export const reducers: IACMain = {
     setCurrency:(state, { payload }) => {
         state.currency = payload
     },
+
+    setCurrencyValue:(state, { payload }) => {
+        state.currencyValue = payload
+    },
 };

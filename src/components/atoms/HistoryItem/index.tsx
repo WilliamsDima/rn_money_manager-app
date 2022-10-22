@@ -13,7 +13,7 @@ import { COLORS } from '../../../services/colors'
 
 const HistoryItem: FC<IHistory> = ({ data, setData }) => {
 
-  const { categories, accounts } = useAppSelector(state => state.main)
+  const { categories, accounts, currencyValue } = useAppSelector(state => state.main)
 
   const currentCategori: ICategories = getItemFromList(data?.categori, categories)
   let currentAccaunt = ''
@@ -64,7 +64,7 @@ const HistoryItem: FC<IHistory> = ({ data, setData }) => {
           <Text style={{color: data?.income ? COLORS.mainColor : COLORS.colorRed}}>
             {data?.transaction ? '' : data?.income ? ' + ' : ' - ' }
           </Text>
-          {numberConverter(data?.count)} ₽
+          {numberConverter(data?.count)} {data.currency || 'RUB'}
         </Text> 
         <Text style={[globalStyles.s2, {opacity: 0.6}]}>
           {currentAccaunt || 'счёт удален'}

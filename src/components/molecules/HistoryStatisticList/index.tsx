@@ -9,7 +9,7 @@ import { IHistory } from './list.types'
 
 const HistoryStatisticList: FC<IHistory> = React.memo(({ data, filterType }) => {
 
-  const { categories } = useAppSelector(state => state.main)
+  const { categories, currencyValue } = useAppSelector(state => state.main)
 
   // собираю самый часто повторяющийся id категории
   const topCategory = {}
@@ -45,7 +45,7 @@ const HistoryStatisticList: FC<IHistory> = React.memo(({ data, filterType }) => 
       <Text style={globalStyles.p1}>ИТОГО:
         <Text 
         style={colorSum}> {sum < 0 ? numberConverter(sum * -1) 
-        : numberConverter(sum)} ₽
+        : numberConverter(sum)} {currencyValue}
         </Text> 
       </Text>
     </View>
