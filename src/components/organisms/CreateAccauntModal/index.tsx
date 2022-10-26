@@ -13,10 +13,12 @@ import CustomModal from '../../atoms/Modal'
 import ColorModal from '../../molecules/ColorModal'
 import { addAccaunt, deleteAccaunt, editeAccaunt, setAllCauntAccaunts } from '../../../store/redusers/main/main'
 import { getItemFromList } from '../../../hooks/helpers'
+import { useTranslation } from 'react-i18next'
 
 const CreateAccauntModal: FC<IAccauntCreateModal> = React.memo(({setModal, editeMode}) => {
 
   const dispatch = useAppDispatch()
+  const { t } = useTranslation()
   const { accounts, currencyValue } = useAppSelector(state => state.main)
 
   const [colorModal, setColorModal] = useState(false)
@@ -62,15 +64,18 @@ const CreateAccauntModal: FC<IAccauntCreateModal> = React.memo(({setModal, edite
       }
       dispatch(editeAccaunt(data))
       dispatch(setAllCauntAccaunts())
-      ToastAndroid.show('изменено', 2000);
+      ToastAndroid.show(t('changed'), 2000);
       setModal(false)
     }
   }
 
   const deleteHandler = () => {
     Alert.alert(
-      "Удаление",
-      `Удалить счёт "${editeMode.name}"? Весь остаток будет перемещён в "${accauntOther.name}"`,
+      t('Removal'),
+      t('delete_account', {
+        acc: editeMode?.name,
+        to_acc: accauntOther.name,
+      }),
       [
         {
           text: "Cancel",
@@ -102,7 +107,7 @@ const CreateAccauntModal: FC<IAccauntCreateModal> = React.memo(({setModal, edite
       </CustomModal>
 
       <Text style={styles.title}>
-        {editeMode ? 'Редактирование' : 'Создание счёта'}
+        {editeMode ? t('Editing') : t('Create_account')}
       </Text>
 
       <ScrollView style={{flex: 1, marginTop: 10}}>
@@ -124,7 +129,7 @@ const CreateAccauntModal: FC<IAccauntCreateModal> = React.memo(({setModal, edite
         <View style={styles.item}>
           <Text style={[globalStyles.p1,
             icon ? {color: COLORS.mainColor} :styles.itemText ]}>
-            Иконка:
+            {t('icon')}:
           </Text>
         </View>
 
@@ -135,7 +140,7 @@ const CreateAccauntModal: FC<IAccauntCreateModal> = React.memo(({setModal, edite
         <View style={[styles.item, {marginTop: -20}]}>
           <Text style={[globalStyles.p1, 
             bg ? {color: COLORS.mainColor} : styles.itemText]}>
-            Цвет:
+            {t('color')}:
           </Text>
         </View>
 
@@ -146,7 +151,7 @@ const CreateAccauntModal: FC<IAccauntCreateModal> = React.memo(({setModal, edite
         </TouchableOpacity>
 
         <View style={[styles.item, {paddingBottom: 70}]}>
-          <Text style={[globalStyles.p1, name ? {color: COLORS.mainColor} : styles.itemText]}>Название:</Text>
+          <Text style={[globalStyles.p1, name ? {color: COLORS.mainColor} : styles.itemText]}>{t('name')}:</Text>
           <View style={[styles.inputWrapper, {width: '100%', marginTop: 0}]}>
             <Input
               value={name}
@@ -164,14 +169,14 @@ const CreateAccauntModal: FC<IAccauntCreateModal> = React.memo(({setModal, edite
         {(editeMode && editeMode?.delete) && <Button 
         onPress={deleteHandler} 
         overStyle={{backgroundColor: 'transparent'}}>
-          <Text style={[globalStyles.p2, {color: COLORS.colorRed}]}>
-            УДАЛИТЬ
+          <Text style={[globalStyles.p2, {color: COLORS.colorRed, textTransform: 'uppercase'}]}>
+            {t('delete')}
           </Text>
         </Button>}
 
         <Button onPress={editeMode ? saveHandler : addHandler} disabled={!disabled}>
-          <Text style={[globalStyles.p2, {color: COLORS.colorBlack}]}>
-            {editeMode ? 'СОХРАНИТЬ' : 'ДОБАВИТЬ'}
+          <Text style={[globalStyles.p2, {color: COLORS.colorBlack, textTransform: 'uppercase'}]}>
+            {editeMode ? t('save') : t('add')}
           </Text>
         </Button>
       </View>

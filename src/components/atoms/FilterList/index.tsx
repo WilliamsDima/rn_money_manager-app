@@ -4,6 +4,7 @@ import { IconSvg } from '../../../services/icons'
 import { ARROW_SELECT } from '../../../services/iconsName'
 import { globalStyles } from '../../../services/styles'
 import { styles } from './filter.styles'
+import { useTranslation } from 'react-i18next'
 
 interface IFilter {
   setFilter: () => void
@@ -12,12 +13,14 @@ interface IFilter {
 }
 
 const FilterList: FC<IFilter> = ({setFilter, filter, overStyle}) => {
+
+  const { t } = useTranslation()
   
   return (
     <View style={[styles.container, overStyle]}>
       <TouchableOpacity style={styles.btn} onPress={() => setFilter(!filter)}>
         <Text style={[globalStyles.p1, {marginRight: 10}]}>
-          {filter ? 'По возрастанию' : 'По убыванию'}
+          {filter ? t('Ascending') : t('Descending')}
         </Text>
 
         <View style={[{marginTop: -5}, !filter 

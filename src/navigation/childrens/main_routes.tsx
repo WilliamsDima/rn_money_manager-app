@@ -7,10 +7,14 @@ import { screenOptions } from '../routes-config'
 import Header from '../../components/organisms/Header'
 import History from '../../screens/History'
 import { COLORS } from '../../services/colors'
+import { useTranslation } from 'react-i18next'
 
 const MainStack = createStackNavigator()
 
 const MainRoutes = () => {
+
+  const { t } = useTranslation()
+
   return (
     <MainStack.Navigator
       screenOptions={{
@@ -28,7 +32,7 @@ const MainRoutes = () => {
 
       <MainStack.Screen 
       options={{
-        title: routesTitle.History,
+        title: t('History'),
       }} 
       name={RoutesNames.History.Home} 
       component={History} />

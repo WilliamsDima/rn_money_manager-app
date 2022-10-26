@@ -5,16 +5,20 @@ import { screenOptions } from '../routes-config'
 import Header from '../../components/organisms/Header'
 import Categories from '../../screens/Categories'
 import { COLORS } from '../../services/colors'
+import { useTranslation } from 'react-i18next'
 
 const CategoriesStack = createStackNavigator()
 
 const CategoriesRoutes = () => {
+
+  const { t } = useTranslation()
+
   return (
     <CategoriesStack.Navigator
       screenOptions={{
         ...screenOptions,
         headerShown: true,
-        title: routesTitle.Categories,
+        title: t('Categories'),
         headerTintColor: COLORS.colorPriamry,
       }}
     >

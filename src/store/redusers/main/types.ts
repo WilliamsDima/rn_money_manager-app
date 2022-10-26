@@ -52,4 +52,6 @@ export interface IStore {
     currencies: ISortData[]
     currencyValue: string
     pop: number
+    language: string
+    languageData: ISortData[]
 }

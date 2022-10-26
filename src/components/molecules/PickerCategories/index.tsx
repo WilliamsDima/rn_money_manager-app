@@ -6,10 +6,13 @@ import { globalStyles } from '../../../services/styles'
 import CategoryPickerSelect from '../../atoms/CategoryPickerSelect'
 import { styles } from './modal.styles'
 import { IPickerCategory } from './modal.types'
+import { useTranslation } from 'react-i18next'
 
 const PickerCategories: FC<IPickerCategory> = React.memo(({close, setId, value}) => {
 
   const { categories } = useAppSelector(state => state.main)
+
+  const { t } = useTranslation()
 
   const [categori, setCategori] = useState(value)
 
@@ -46,7 +49,7 @@ const PickerCategories: FC<IPickerCategory> = React.memo(({close, setId, value})
       activeOpacity={1}
       style={styles.content}>
 
-        <Text style={globalStyles.p2}>Категории:</Text>
+        <Text style={globalStyles.p2}>{t('Categories')}:</Text>
 
         <ScrollView style={{width: '100%'}}>
           {categories.map((item) => {
@@ -61,15 +64,15 @@ const PickerCategories: FC<IPickerCategory> = React.memo(({close, setId, value})
         <View style={styles.btnGroup}>
           <TouchableOpacity
           onPress={() => close(false)}>
-            <Text style={[globalStyles.p1, {color: COLORS.colorRed}]}>Отмена</Text>
+            <Text style={[globalStyles.p1, {color: COLORS.colorRed}]}>{t('cancel')}</Text>
           </TouchableOpacity>
           <TouchableOpacity
           onPress={resetFilter}>
-            <Text style={[globalStyles.p1]}>Сброс</Text>
+            <Text style={[globalStyles.p1]}>{t('reset')}</Text>
           </TouchableOpacity>
           <TouchableOpacity
           onPress={submitHandler}>
-            <Text style={[globalStyles.p1, {color: COLORS.mainColor}]}>Применить</Text>
+            <Text style={[globalStyles.p1, {color: COLORS.mainColor}]}>{t('apply')}</Text>
           </TouchableOpacity>
         </View>
       </TouchableOpacity>

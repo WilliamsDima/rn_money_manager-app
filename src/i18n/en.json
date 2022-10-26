@@ -1,0 +1,63 @@
+{
+  "VERSION": "Application version 1.1.0",
+  "privacy_policy": "Privacy policy",
+  "review": "Leave feedback",
+  "developer_contact": "Developer contacts:",
+  "developer_site": "Developer site:",
+
+  "language": "Language",
+  "Exchange_Rates": "Exchange Rates",
+  "currency": "Currency",
+  "theme": "Theme",
+  "period": "Period",
+  "delete_app_data": "Delete data",
+
+  "Descending": "Descending",
+  "Ascending": "Ascending",
+  "in_order": "In order",
+  "all": "All",
+
+  "expense": "Expense",
+  "income": "Income",
+
+  "regularize": "Regularize",
+  "type": "Type",
+
+  "cancel": "Cancel",
+  "reset": "Reset",
+  "apply": "Apply",
+
+  "filter": "Filter",
+  "top": "Top",
+  "total": "TOTAL",
+
+  "icon": "Icon",
+  "color": "Color",
+  "name": "Name",
+
+  "delete": "Delete",
+  "save": "Save",
+  "add": "Add",
+  "Editing": "Editing",
+  "Create_category": "Create a category",
+  "Create_account": "Creating an account",
+
+  "changed": "changed",
+  "Removal": "Removal",
+  "account_deleted": "account deleted",
+  "delete_account": "Delete account {{acc}}? All balance will be moved to {{to_acc}}",
+  "deleted": "deleted",
+  "category_deleted": "category deleted",
+
+  "Translation": "Translation",
+
+  "Accaunts": "Accounts",
+  "Categories": "Categories",
+  "More": "More",
+  "History": "History",
+  "AboutApp": "About app",
+  "Auth": "Auth",
+  "Statistic": "Statistics",
+  "RegularPayments": "Regular payments",
+  "Settings": "Settings"
+}

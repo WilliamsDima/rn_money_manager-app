@@ -5,9 +5,12 @@ import { globalStyles } from '../../../services/styles'
 import FilterBtnSelect from '../../atoms/FilterBtnSelect'
 import { styles } from './modal.styles'
 import { IHistoryModal } from './modal.types'
+import { useTranslation } from 'react-i18next'
 
 const HistoryFilterModal: FC<IHistoryModal> = React.memo(({close, submit, 
   typeValue, sortOrderValue}) => {
+
+  const { t } = useTranslation()
 
   const [type, setType] = useState(typeValue)
   const [sortOrder, setSortOrder] = useState(sortOrderValue)
@@ -15,17 +18,17 @@ const HistoryFilterModal: FC<IHistoryModal> = React.memo(({close, submit,
   const dataType = [
     {
       id: 0,
-      title: 'Все',
+      title: t('all'),
       value: 'all',
     },
     {
       id: 1,
-      title: 'Траты',
+      title: t('expense'),
       value: false,
     },
     {
       id: 2,
-      title: 'Доходы',
+      title: t('income'),
       value: true,
     },
   ]
@@ -33,17 +36,17 @@ const HistoryFilterModal: FC<IHistoryModal> = React.memo(({close, submit,
   const countType = [
     {
       id: 0,
-      title: 'По порядку',
+      title: t('in_order'),
       value: 'all',
     },
     {
       id: 1,
-      title: 'По убыванию',
+      title: t('Descending'),
       value: false,
     },
     {
       id: 2,
-      title: 'По возратанию',
+      title: t('Ascending'),
       value: true,
     },
   ]
@@ -71,7 +74,7 @@ const HistoryFilterModal: FC<IHistoryModal> = React.memo(({close, submit,
       style={styles.content}>
 
         <ScrollView style={{width: '100%'}}>
-          <Text style={globalStyles.p2}>Тип:</Text>
+          <Text style={globalStyles.p2}>{t('type')}:</Text>
           {dataType.map((item) => {
             return <FilterBtnSelect 
             key={item.id} 
@@ -79,7 +82,7 @@ const HistoryFilterModal: FC<IHistoryModal> = React.memo(({close, submit,
             isValue={type}
             setValue={setType}/>
           })}
-          <Text style={[globalStyles.p2, {marginTop: 10}]}>Упорядочить:</Text>
+          <Text style={[globalStyles.p2, {marginTop: 10}]}>{t('regularize')}:</Text>
           {countType.map((item) => {
             return <FilterBtnSelect 
             key={item.id} 
@@ -92,15 +95,15 @@ const HistoryFilterModal: FC<IHistoryModal> = React.memo(({close, submit,
         <View style={styles.btnGroup}>
           <TouchableOpacity
           onPress={() => close(false)}>
-            <Text style={[globalStyles.p1, {color: COLORS.colorRed}]}>Отмена</Text>
+            <Text style={[globalStyles.p1, {color: COLORS.colorRed}]}>{t('cancel')}</Text>
           </TouchableOpacity>
           <TouchableOpacity
           onPress={resetFilter}>
-            <Text style={[globalStyles.p1]}>Сброс</Text>
+            <Text style={[globalStyles.p1]}>{t('reset')}</Text>
           </TouchableOpacity>
           <TouchableOpacity
           onPress={submitHandler}>
-            <Text style={[globalStyles.p1, {color: COLORS.mainColor}]}>Применить</Text>
+            <Text style={[globalStyles.p1, {color: COLORS.mainColor}]}>{t('apply')}</Text>
           </TouchableOpacity>
         </View>
       </TouchableOpacity>

@@ -8,10 +8,12 @@ import AddBtn from '../../atoms/AddBtn'
 import IconBtn from '../../atoms/IconBtn'
 import { styles } from './button.styles'
 import { IButton } from './button.types'
+import { useTranslation } from 'react-i18next'
 
 const AccauntsBtn: FC<IButton> = ({setModal, setModalTransaction}) => {
 
   const navigation = useNavigation()
+  const { t } = useTranslation()
 
   const toHistory = () => {
     navigation.navigate(RoutesNames.History.Home)
@@ -24,13 +26,13 @@ const AccauntsBtn: FC<IButton> = ({setModal, setModalTransaction}) => {
         <View style={styles.btn}>
           <IconBtn name={HISTORY} onPress={toHistory}/>
           <Text style={[globalStyles.p2, styles.btnText]}>
-            История
+            {t('History')}
           </Text>
         </View>
         <View style={[styles.btn]}>
           <IconBtn name={REFUND} onPress={() => setModalTransaction(true)}/>
           <Text style={[globalStyles.p2, styles.btnText]}>
-            Перевод
+          {t('Translation')}
           </Text>
         </View>
       </View>

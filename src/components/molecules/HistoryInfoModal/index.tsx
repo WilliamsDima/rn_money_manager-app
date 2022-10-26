@@ -13,10 +13,12 @@ import CustomModal from '../../atoms/Modal'
 import ExpAndIncModal from '../../organisms/ExpAndIncModal'
 import { styles } from './modal.styles'
 import { IHistoryInfo } from './modal.types'
+import { useTranslation } from 'react-i18next'
 
 const HistoryInfoModal: FC<IHistoryInfo> = React.memo(({close, data}) => {
 
   const dispatch = useAppDispatch()
+  const { t } = useTranslation()
 
   const [editModal, setEditModal] = useState(false)
 
@@ -37,8 +39,10 @@ const HistoryInfoModal: FC<IHistoryInfo> = React.memo(({close, data}) => {
 
   const deleteHandler = () => {
     Alert.alert(
-      "Удаление",
-      `Удалить транзакцию "${currentCategori?.name || 'перевод'}" ${data?.count} ${currencyValue}?`,
+      t('Removal'),
+      t('delete_account', {
+        cat: currentCategori?.name || t('Translation'),
+      }) + `${data?.count} ${currencyValue}?`,
       [
         {
           text: "Cancel",
@@ -47,7 +51,7 @@ const HistoryInfoModal: FC<IHistoryInfo> = React.memo(({close, data}) => {
         },
         { text: "OK", onPress: () => {
             dispatch(deleteTransaction(data))
-            ToastAndroid.show('удалено', 2000);
+            ToastAndroid.show(t('deleted'), 2000);
             close()
         } }
       ]
@@ -96,8 +100,8 @@ const HistoryInfoModal: FC<IHistoryInfo> = React.memo(({close, data}) => {
               </Avatar>}
 
               <Text style={globalStyles.p1}>
-                {data.transaction ? 'перевод' : currentCategori?.name 
-                || 'категория удалена'}
+                {data.transaction ? t('Translation') : currentCategori?.name 
+                || t('category_deleted')}
               </Text>
             </View>
           </View>
@@ -117,7 +121,7 @@ const HistoryInfoModal: FC<IHistoryInfo> = React.memo(({close, data}) => {
               </Avatar>}
 
               <Text style={globalStyles.p1}>
-                {currentAccaunt?.name || 'счёт удален'}
+                {currentAccaunt?.name || t('account_deleted')}
               </Text>
             </View>
           </View>
@@ -151,12 +155,12 @@ const HistoryInfoModal: FC<IHistoryInfo> = React.memo(({close, data}) => {
           
           <View style={styles.btns}>
             <TouchableOpacity onPress={close}>
-              <Text style={globalStyles.p1}>Отмена</Text>
+              <Text style={globalStyles.p1}>{t('cancel')}</Text>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={deleteHandler}>
               <Text style={[globalStyles.p1, {color: COLORS.colorRed}]}>
-                Удалить
+                {t('delete')}
               </Text>
             </TouchableOpacity>
 

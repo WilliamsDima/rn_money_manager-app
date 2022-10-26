@@ -6,16 +6,19 @@ import More from '../../screens/More'
 import { COLORS } from '../../services/colors'
 import AboutApp from '../../screens/More/aboutApp'
 import Auth from '../../screens/Auth'
+import { useTranslation } from 'react-i18next'
 
 const AuthStack = createStackNavigator()
 
 const AuthRoutes = () => {
+
+  const { t } = useTranslation()
   return (
     <AuthStack.Navigator
       screenOptions={{
         ...screenOptions,
         headerShown: false,
-        title: routesTitle.Auth,
+        title: t('Auth'),
         headerTintColor: COLORS.colorPriamry,
       }}
     >

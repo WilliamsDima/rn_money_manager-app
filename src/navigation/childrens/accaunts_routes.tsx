@@ -6,16 +6,21 @@ import Header from '../../components/organisms/Header'
 import Accaunts from '../../screens/Accaunts'
 import History from '../../screens/History'
 import { COLORS } from '../../services/colors'
+import { useTranslation } from 'react-i18next'
 
 const AccauntsStack = createStackNavigator()
 
+
 const AccauntsRoutes = () => {
+
+  const { t } = useTranslation()
+
   return (
     <AccauntsStack.Navigator
       screenOptions={{
         ...screenOptions,
         headerShown: true,
-        title: routesTitle.Accaunts,
+        title: t('Accaunts'),
         headerTintColor: COLORS.colorPriamry,
       }}>
 
@@ -25,7 +30,7 @@ const AccauntsRoutes = () => {
 
       <AccauntsStack.Screen
       options={{
-        title: routesTitle.History,
+        title: t('History'),
       }} 
       name={RoutesNames.History.Home} 
       component={History} />

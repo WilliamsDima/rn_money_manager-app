@@ -176,6 +176,11 @@ const initialState: IStore = {
     currencies: currencies,
 
     pop: 0,
+
+    language: 'ru',
+    languageData:  [
+        {title: 'RU', value: 'ru'}, 
+        {title: 'EN', value: 'en'}],
 };
 
 const counterSlice = createSlice({
@@ -193,5 +198,5 @@ export const {setAllCauntAccaunts, addTransaction,
     setSortValue, setSortDatePeriod, addLocalCategories,
     addLocalAccaunts, addAccaunt, editeAccaunt, deleteAccaunt,
     deleteTransaction, addCategori, editeCategori, deleteCategori,
-    setCurrency, setPop, setCurrencyValue,
+    setCurrency, setPop, setCurrencyValue, setLanguage,
     setDataOnPeriodFilter, setAccauntId, addLocalExpAndIncome } = counterSlice.actions;

@@ -6,8 +6,11 @@ import { COLORS } from '../../../services/colors'
 import { globalStyles } from '../../../services/styles'
 import { styles } from './list.styles'
 import { IHistory } from './list.types'
+import { useTranslation } from 'react-i18next'
 
 const HistoryStatisticList: FC<IHistory> = React.memo(({ data, filterType }) => {
+
+  const { t } = useTranslation()
 
   const { categories, currencyValue } = useAppSelector(state => state.main)
 
@@ -41,8 +44,8 @@ const HistoryStatisticList: FC<IHistory> = React.memo(({ data, filterType }) => 
 
   return (
     <View style={styles.container}>
-      <Text style={globalStyles.p1}>ТОП: {topItemCategory?.name}</Text>
-      <Text style={globalStyles.p1}>ИТОГО:
+      <Text style={[globalStyles.p1, {textTransform: 'uppercase'}]}>{t('top')}: {topItemCategory?.name}</Text>
+      <Text style={globalStyles.p1}>{t('total')}:
         <Text 
         style={colorSum}> {sum < 0 ? numberConverter(sum * -1) 
         : numberConverter(sum)} {currencyValue}

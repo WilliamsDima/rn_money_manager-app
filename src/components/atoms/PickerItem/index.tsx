@@ -13,7 +13,7 @@ const PickerItem: FC<IPickerItem> = ({label, value, overStyle,
   return (
     <TouchableOpacity style={[styles.container, overStyle]}
     onPress={() => changeValue(value)}>
-      <Text style={[globalStyles.p1, styles.item]}>{label}</Text>
+      <Text style={[globalStyles.p1, styles.item, {width: '80%'}]} numberOfLines={1}>{label}</Text>
       <View style={[styles.circle, select === value && styles.active]}/>
     </TouchableOpacity>
   )

@@ -1,10 +1,11 @@
 import React, { FC } from "react";
-import AccauntsSvg from "../assets/svg/AccountsSvg";
+import AccauntsSvg from "../assets/svg/AccountsSvg";                // dont_work_icon
 import ArrowSelectSvg from "../assets/svg/ArrowSelectSvg";
 import CategoriesSvg from "../assets/svg/CategoriesSvg";
 import { HeaderLeftSvg } from "../assets/svg/HeaderLeftIconSvg";
 import { HistorySvg } from "../assets/svg/HistorySvg";
-import HomeSvg from "../assets/svg/HomeSvg";
+import HomeSvg from "../assets/svg/HomeSvg";                     
+import HomeCategorySvg from "../assets/svg/categories/HomeSvg";
 import HeartSvg from '../assets/svg/categories/HeartSvg'
 import { MoreSvg } from "../assets/svg/MoreSvg";
 import { PlusSvg } from "../assets/svg/PlusSvg";
@@ -80,11 +81,12 @@ import LanguageSvg from "../assets/svg/LanguageSvg";
 import DollarSvg from "../assets/svg/DollarSvg";
 import ThemeSvg from "../assets/svg/ThemeSvg";
 import ClearSvg from "../assets/svg/ClearSvg";
+import { TiketSvg } from "../assets/svg/categories/TiketSvg";
 
 export const ICONS_SVG = {
     // tab
-    [TAB_HOME]: (props) => <HomeSvg color={props.color} {...props}/>,
-    [TAB_ACCAUNTS]: (props) => <AccauntsSvg color={props.color} {...props}/>,
+    [TAB_HOME]: (props) => <HomeSvg color={props.color} {...props}/>,           
+    [TAB_ACCAUNTS]: (props) => <AccauntsSvg color={props.color} {...props}/>,      
     [TAB_CATEGORIES]: (props) => <CategoriesSvg color={props.color} {...props}/>,
     [TAB_MORE]: (props) => <MoreSvg color={props.color} {...props}/>,
     //
@@ -99,7 +101,7 @@ export const ICONS_SVG = {
     [HEART]: (props) => <HeartSvg color={props.color} {...props}/>,
     [REFUND]: (props) => <RefundMoney color={props.color} {...props}/>,
     [REFUND_REPO]: (props) => <RefundRepoSvg color={props.color} {...props}/>,
-    [TIKET]: (props) => <RefundRepoSvg color={props.color} {...props}/>,
+    [TIKET]: (props) => <TiketSvg color={props.color} {...props}/>,
     [TECHNIK]: (props) => <TechnikSvg color={props.color} {...props}/>,
     [TAG]: (props) => <TagSvg color={props.color} {...props}/>,
     [SPORT]: (props) => <SportSvg color={props.color} {...props}/>,
@@ -153,7 +155,7 @@ export const ICONS_SVG = {
     [DOLLAR]: (props) => <DollarSvg color={props.color} {...props}/>,
     [THEME]: (props) => <ThemeSvg color={props.color} {...props}/>,
     [CLEAR]: (props) => <ClearSvg color={props.color} {...props}/>,
-    [HOME]: (props) => <HomeSvg color={props.color} {...props}/>,
+    [HOME]: (props) => <HomeCategorySvg color={props.color} {...props}/>,
 
     [VK]: (props) => <VkSvg color={props.color} {...props}/>,
     [INST]: (props) => <InstSvg color={props.color} {...props}/>,

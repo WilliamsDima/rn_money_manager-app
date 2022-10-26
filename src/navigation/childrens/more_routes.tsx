@@ -9,16 +9,19 @@ import AuthRoutes from './auth_routes'
 import Statistic from '../../screens/Statistic'
 import RegularPayments from '../../screens/RegularPayments'
 import Settings from '../../screens/Settings'
+import { useTranslation } from 'react-i18next'
 
 const MoreStack = createStackNavigator()
 
 const MoreRoutes = () => {
+
+  const { t } = useTranslation()
   return (
     <MoreStack.Navigator
       screenOptions={{
         ...screenOptions,
         headerShown: false,
-        title: routesTitle.More,
+        title: t('More'),
         headerTintColor: COLORS.colorPriamry,
       }}
     >
@@ -26,7 +29,7 @@ const MoreRoutes = () => {
 
       <MoreStack.Screen 
       options={{
-        title: routesTitle.AboutApp,
+        title: t('AboutApp'),
         headerShown: true
       }} 
       name={RoutesNames.More.AboutApp} 
@@ -34,7 +37,7 @@ const MoreRoutes = () => {
 
       <MoreStack.Screen 
       options={{
-        title: routesTitle.Statistic,
+        title: t('Statistic'),
         headerShown: true
       }} 
       name={RoutesNames.More.Statistic} 
@@ -42,7 +45,7 @@ const MoreRoutes = () => {
 
       <MoreStack.Screen 
       options={{
-        title: routesTitle.RegularPayments,
+        title: t('RegularPayments'),
         headerShown: true
       }} 
       name={RoutesNames.More.RegularPayments} 
@@ -50,7 +53,7 @@ const MoreRoutes = () => {
 
       <MoreStack.Screen 
       options={{
-        title: routesTitle.Settings,
+        title: t('Settings'),
         headerShown: true
       }} 
       name={RoutesNames.More.Settings} 
@@ -58,7 +61,7 @@ const MoreRoutes = () => {
 
       <MoreStack.Screen 
       options={{
-        title: routesTitle.Auth,
+        title: t('Auth'),
         headerShown: true
       }} 
       name={RoutesNames.Auth.Home} 

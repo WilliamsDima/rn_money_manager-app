@@ -12,10 +12,12 @@ import { IAccauntCreateModal } from './modal.types'
 import CustomModal from '../../atoms/Modal'
 import ColorModal from '../../molecules/ColorModal'
 import { addCategori, deleteCategori, editeCategori } from '../../../store/redusers/main/main'
+import { useTranslation } from 'react-i18next'
 
 const CreateCategoriModal: FC<IAccauntCreateModal> = React.memo(({setModal, editeMode}) => {
 
   const dispatch = useAppDispatch()
+  const { t } = useTranslation()
 
   const [colorModal, setColorModal] = useState(false)
 
@@ -94,7 +96,7 @@ const CreateCategoriModal: FC<IAccauntCreateModal> = React.memo(({setModal, edit
       </CustomModal>
 
       <Text style={styles.title}>
-        {editeMode ? 'Редактирование' : 'Создание категории'}
+        {editeMode ? t('Editing') : t('Create_category')}
       </Text>
 
       <ScrollView style={{flex: 1, marginTop: 10}}>
@@ -102,7 +104,7 @@ const CreateCategoriModal: FC<IAccauntCreateModal> = React.memo(({setModal, edit
         <View style={styles.item}>
           <Text style={[globalStyles.p1,
             income !== undefined ? {color: COLORS.mainColor} : styles.itemText ]}>
-            Тип:
+            {t('type')}:
           </Text>
         </View>
 
@@ -111,7 +113,7 @@ const CreateCategoriModal: FC<IAccauntCreateModal> = React.memo(({setModal, edit
           onPress={() => setIncome(false)}
           style={[styles.btnSelect, {marginRight: 20}]}>
             <Text style={[globalStyles.p1, {marginRight: 10}, !income 
-              && {color: COLORS.mainColor}]}>Траты</Text>
+              && {color: COLORS.mainColor}]}>{t('expense')}</Text>
             <View style={[styles.income, !income && {backgroundColor: COLORS.mainColor}]}/>
           </TouchableOpacity>
 
@@ -119,7 +121,7 @@ const CreateCategoriModal: FC<IAccauntCreateModal> = React.memo(({setModal, edit
           onPress={() => setIncome(true)}
           style={[styles.btnSelect]}>
             <Text style={[globalStyles.p1, {marginRight: 10}, income 
-              && {color: COLORS.mainColor}]}>Доход</Text>
+              && {color: COLORS.mainColor}]}>{t('income')}</Text>
             <View style={[styles.income, income && {backgroundColor: COLORS.mainColor}]}/>
           </TouchableOpacity>
         </View>
@@ -127,7 +129,7 @@ const CreateCategoriModal: FC<IAccauntCreateModal> = React.memo(({setModal, edit
         <View style={styles.item}>
           <Text style={[globalStyles.p1,
             icon ? {color: COLORS.mainColor} :styles.itemText ]}>
-            Иконка:
+            {t('icon')}:
           </Text>
         </View>
 
@@ -138,7 +140,7 @@ const CreateCategoriModal: FC<IAccauntCreateModal> = React.memo(({setModal, edit
         <View style={[styles.item, {marginTop: -20}]}>
           <Text style={[globalStyles.p1, 
             bg ? {color: COLORS.mainColor} : styles.itemText]}>
-            Цвет:
+            {t('color')}:
           </Text>
         </View>
 
@@ -149,7 +151,7 @@ const CreateCategoriModal: FC<IAccauntCreateModal> = React.memo(({setModal, edit
         </TouchableOpacity>
 
         <View style={[styles.item, {paddingBottom: 70}]}>
-          <Text style={[globalStyles.p1, name ? {color: COLORS.mainColor} : styles.itemText]}>Название:</Text>
+          <Text style={[globalStyles.p1, name ? {color: COLORS.mainColor} : styles.itemText]}>{t('name')}:</Text>
           <View style={[styles.inputWrapper, {width: '100%', marginTop: 0}]}>
             <Input
               value={name}
@@ -167,14 +169,14 @@ const CreateCategoriModal: FC<IAccauntCreateModal> = React.memo(({setModal, edit
         {editeMode && <Button 
         onPress={deleteHandler} 
         overStyle={{backgroundColor: 'transparent'}}>
-          <Text style={[globalStyles.p2, {color: COLORS.colorRed}]}>
-            УДАЛИТЬ
+          <Text style={[globalStyles.p2, {color: COLORS.colorRed, textTransform: 'uppercase'}]}>
+            {t('delete')}
           </Text>
         </Button>}
 
         <Button onPress={editeMode ? saveHandler : addHandler} disabled={!disabled}>
-          <Text style={[globalStyles.p2, {color: COLORS.colorBlack}]}>
-            {editeMode ? 'СОХРАНИТЬ' : 'ДОБАВИТЬ'}
+          <Text style={[globalStyles.p2, {color: COLORS.colorBlack, textTransform: 'uppercase'}]}>
+            {editeMode ? t('save') : t('add')}
           </Text>
         </Button>
       </View>

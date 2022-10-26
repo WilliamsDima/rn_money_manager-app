@@ -1,0 +1,64 @@
+{
+  "VERSION": "Версия приложения 1.1.0",
+  "privacy_policy": "Политика конфидициальности",
+  "review": "Оставить отзыв",
+  "developer_contact": "Контакты разработчика:",
+  "developer_site": "Сайт разработчика:",
+
+  "language": "Язык",
+  "Exchange_Rates": "Курс валют",
+  "currency": "Валюта",
+  "theme": "Тема",
+  "period": "Период",
+  "delete_app_data": "Удалить данные",
+
+  "Descending": "По убыванию",
+  "Ascending": "По возрастанию",
+  "in_order": "По порядку",
+  "all": "Все",
+  
+  "expense": "Траты",
+  "income": "Доходы",
+
+  "regularize": "Упорядочить",
+  "type": "Тип",
+
+  "cancel": "Отмена",
+  "reset": "Сброс",
+  "apply": "Применить",
+
+  "filter": "Фильтр",
+  "top": "Топ",
+  "total": "ИТОГО",
+
+  "icon": "Иконка",
+  "color": "Цвет",
+  "name": "Название",
+
+  "delete": "Удалить",
+  "save": "Сохранить",
+  "add": "Добавить",
+  "Editing": "Редактирование",
+  "Create_category": "Создание категории",
+  "Create_account": "Создание счёта",
+
+  "changed": "изменено",
+  "Removal": "Удаление",
+  "account_deleted": "счёт удален",
+  "delete_account": "Удалить счёт {{acc}}? Весь остаток будет перемещён в {{to_acc}}",
+  "delete_transaction": "Удалить транзакцию {{cat}}?",
+  "deleted": "удалено",
+  "category_deleted": "категория удалена",
+
+  "Translation": "Перевод",
+
+  "Accaunts": "Счета",
+  "Categories": "Категории",
+  "More": "Ещё",
+  "History": "История",
+  "AboutApp": "О приложении",
+  "Auth": "Войти",
+  "Statistic": "Статистика",
+  "RegularPayments": "Регулярные платежи",
+  "Settings": "Настройки"
+}

@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { Text, TouchableOpacity } from 'react-native'
+import { TouchableOpacity } from 'react-native'
 import { COLORS } from '../../../services/colors'
 import { IconSvg } from '../../../services/icons'
 import { styles } from './button.styles'

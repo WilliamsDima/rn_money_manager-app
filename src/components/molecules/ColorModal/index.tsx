@@ -7,10 +7,13 @@ import { globalStyles } from '../../../services/styles'
 import AccauntsBtnSelect from '../../atoms/AccauntsBtnSelect'
 import { styles } from './modal.styles'
 import { IColorModal } from './modal.types'
+import { useTranslation } from 'react-i18next'
 
 const ColorModal: FC<IColorModal> = React.memo(({close, submin}) => {
 
   const [color, setColor] = useState('')
+
+  const { t } = useTranslation()
 
   const changeColor = (c) => {
     setColor(fromHsv(c))
@@ -37,11 +40,11 @@ const ColorModal: FC<IColorModal> = React.memo(({close, submin}) => {
         <View style={styles.btnGroup}>
             <TouchableOpacity
             onPress={() => close(false)}>
-              <Text style={[globalStyles.p1, {color: COLORS.colorRed}]}>Отмена</Text>
+              <Text style={[globalStyles.p1, {color: COLORS.colorRed}]}>{t('cancel')}</Text>
             </TouchableOpacity>
             <TouchableOpacity
             onPress={subminHandler}>
-              <Text style={[globalStyles.p1, {color: COLORS.mainColor}]}>Применить</Text>
+              <Text style={[globalStyles.p1, {color: COLORS.mainColor}]}>{t('apply')}</Text>
             </TouchableOpacity>
         </View>
       </TouchableOpacity>

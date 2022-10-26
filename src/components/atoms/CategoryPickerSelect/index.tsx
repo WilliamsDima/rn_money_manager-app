@@ -17,7 +17,7 @@ const CategoryPickerSelect: FC<ICategorySelect> = ({data, overStyle,
     onPress={() => setIdSelect(data.id)}>
       <View style={styles.item}>
         <Avatar overStyle={styles.icon} bg={data.bg}>
-          <IconSvg name={data.icon} color={COLORS.colorPriamry}/>
+          <IconSvg name={data.icon} color={COLORS.colorPriamry} width={25}/>
         </Avatar>
         <Text style={[globalStyles.p1]}>{data.name}</Text>
       </View>

@@ -1,6 +1,5 @@
 import { localAPI } from "../../../api/asyncStorage"
 import { countSumItemsFromList, dataFilterMaxValue, getItemFromList } from "../../../hooks/helpers"
-import { ICategories, ITransaction } from "../../redusers/main/types"
 import { changeTransaction, countAccaunts, countAccauntsTransaction, 
     countAccountsChange, countCategories, countCategoriesChange, 
     deleteAccountHandler, deleteAccounTransactionHandler, deleteTransactionHandler, editeAccauntHandler, editeCategoriHandler } from "./helpers"
@@ -148,5 +147,10 @@ export const reducers: IACMain = {
 
     setCurrencyValue:(state, { payload }) => {
         state.currencyValue = payload
+    },
+
+    setLanguage:(state, { payload }) => {
+        state.language = payload
+        localAPI.set(LOCAL_NAME.LANGUAGE, state.language)
     },
 };

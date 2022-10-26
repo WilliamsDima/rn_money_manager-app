@@ -9,16 +9,30 @@ import { LOCAL_NAME } from '../../../store/actions/main/types'
 import ScrollContainer from '../../atoms/Container/ScrollContainer'
 import { styles } from './settings.styles'
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks'
-import { setCurrencyValue, setSortValue } from '../../../store/redusers/main/main'
+import { setCurrencyValue, setLanguage, setSortValue } from '../../../store/redusers/main/main'
 import CustomModal from '../../atoms/Modal'
 import Picker from '../../molecules/Picker'
 import { currencies } from '../../../hooks/helpers'
+import { useTranslation } from 'react-i18next'
+import i18n from '../../../i18n/i18n'
 
 const SettingsTemplate = () => {
 
   const dispatch = useAppDispatch()
+  const { sort, sortData, currencyValue, languageData, language } = useAppSelector(state => state.main)
 
-  const { sort, sortData, currencyValue } = useAppSelector(state => state.main)
+  const { t } = useTranslation()
+
+  const languageSelect = languageData.find((item) => item.value === language)
+
+  const [languageModal, setLanguageModal] = useState(false);
+
+  const changeLanguage = (value) => {
+    i18n
+      .changeLanguage(value)
+      .then(() => dispatch(setLanguage(value)))
+      .catch(err => console.log(err));
+  };
 
   const period = sortData.find((item) => item.value === sort)
 
@@ -53,6 +67,9 @@ const SettingsTemplate = () => {
             localAPI.remove(LOCAL_NAME.CATEGORIES)
             localAPI.remove(LOCAL_NAME.ACCAUNTS)
             localAPI.remove(LOCAL_NAME.POP)
+            localAPI.remove(LOCAL_NAME.PERIOD)
+            localAPI.remove(LOCAL_NAME.CURRENCY_VALUE)
+          
             DevSettings.reload()
         } }
       ]
@@ -77,16 +94,24 @@ const SettingsTemplate = () => {
         </Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.item} onPress={inDevProgress}>
+      <TouchableOpacity style={styles.item} onPress={() => setLanguageModal(true)}>
         <View style={{marginRight: 20}}>
           <IconSvg name={LANGUAGE} width={25}/>
         </View>
+        <CustomModal visible={languageModal} closeHandler={setLanguageModal}>
+          <Picker 
+            overStyle={{maxHeight: '90%'}}
+            close={() => setLanguageModal(false)}
+            changeValue={changeLanguage} 
+            select={languageSelect?.value} 
+            list={languageData}/>
+        </CustomModal>
         <View style={{justifyContent: 'flex-start'}}>
           <Text style={[globalStyles.h2, {marginRight: 20, opacity: 0.6}]}>
-            Язык
+            {t('language')}
           </Text>
           <Text style={[globalStyles.h2, {color: COLORS.mainColor}]}>
-            Ru
+            {languageSelect?.title}
           </Text>
         </View>
       </TouchableOpacity>
@@ -97,7 +122,7 @@ const SettingsTemplate = () => {
         </View>
         <View style={{justifyContent: 'flex-start'}}>
           <Text style={[globalStyles.h2, {marginRight: 20, opacity: 0.6}]}>
-            Курс валют
+            {t('Exchange_Rates')}
           </Text>
           <Text style={[globalStyles.h2, {color: COLORS.mainColor}]}>
             $ / E
@@ -120,7 +145,7 @@ const SettingsTemplate = () => {
               list={currencies}/>
           </CustomModal>
           <Text style={[globalStyles.h2, {marginRight: 20, opacity: 0.6}]}>
-            Валюта
+            {t('currency')}
           </Text>
           <Text style={[globalStyles.h2, {color: COLORS.mainColor}]}>
             {currencyValue}
@@ -134,7 +159,7 @@ const SettingsTemplate = () => {
         </View>
         <View style={{justifyContent: 'flex-start'}}>
           <Text style={[globalStyles.h2, {marginRight: 20, opacity: 0.6}]}>
-            Тема
+            {t('theme')}
           </Text>
           <Text style={[globalStyles.h2, {color: COLORS.mainColor}]}>
             Темная
@@ -148,7 +173,7 @@ const SettingsTemplate = () => {
         </View>
         <View style={{justifyContent: 'flex-start'}}>
           <Text style={[globalStyles.h2, {marginRight: 20, opacity: 0.6}]}>
-            Период
+            {t('period')}
           </Text>
 
           <CustomModal visible={periodModal} closeHandler={setPeriodModal}>
@@ -171,7 +196,7 @@ const SettingsTemplate = () => {
         </View>
         <View style={{justifyContent: 'flex-start'}}>
           <Text style={[globalStyles.h2, {color: COLORS.colorRed}]}>
-            Удалить данные
+            {t('delete_app_data')}
           </Text>
         </View>
       </TouchableOpacity>
