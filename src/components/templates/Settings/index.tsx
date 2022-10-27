@@ -12,14 +12,14 @@ import { useAppDispatch, useAppSelector } from '../../../hooks/hooks'
 import { setCurrencyValue, setLanguage, setSortValue } from '../../../store/redusers/main/main'
 import CustomModal from '../../atoms/Modal'
 import Picker from '../../molecules/Picker'
-import { currencies } from '../../../hooks/helpers'
+import { currencies, sortData, themeApp } from '../../../hooks/helpers'
 import { useTranslation } from 'react-i18next'
 import i18n from '../../../i18n/i18n'
 
 const SettingsTemplate = () => {
 
   const dispatch = useAppDispatch()
-  const { sort, sortData, currencyValue, languageData, language } = useAppSelector(state => state.main)
+  const { sort, currencyValue, languageData, language } = useAppSelector(state => state.main)
 
   const { t } = useTranslation()
 
@@ -34,7 +34,7 @@ const SettingsTemplate = () => {
       .catch(err => console.log(err));
   };
 
-  const period = sortData.find((item) => item.value === sort)
+  const period = sortData().find((item) => item.value === sort)
 
   const [periodModal, setPeriodModal] = useState(false)
   const [currenciesModal, setCurrenciesModal] = useState(false)
@@ -53,8 +53,8 @@ const SettingsTemplate = () => {
   const deleteDate = () => {
 
     Alert.alert(
-      "ВНИМАНИЕ",
-      'Все данные приложения будут удалены без возможности восстановления, после подтверждения, приложение будет перезапущено.',
+      t('ATTENTION'),
+      t('delete_data'),
       [
         {
           text: "Cancel",
@@ -69,6 +69,7 @@ const SettingsTemplate = () => {
             localAPI.remove(LOCAL_NAME.POP)
             localAPI.remove(LOCAL_NAME.PERIOD)
             localAPI.remove(LOCAL_NAME.CURRENCY_VALUE)
+            localAPI.remove(LOCAL_NAME.LANGUAGE)
           
             DevSettings.reload()
         } }
@@ -78,7 +79,7 @@ const SettingsTemplate = () => {
 
   const inDevProgress = () => {
     Alert.alert(
-      'В РАЗРАБОТКЕ...')
+      `${t('In_developing').toLocaleUpperCase()}...`)
   }
 
 
@@ -162,7 +163,7 @@ const SettingsTemplate = () => {
             {t('theme')}
           </Text>
           <Text style={[globalStyles.h2, {color: COLORS.mainColor}]}>
-            Темная
+            {themeApp()[0].title}
           </Text>
         </View>
       </TouchableOpacity>
@@ -181,7 +182,7 @@ const SettingsTemplate = () => {
             close={() => setPeriodModal(false)}
             changeValue={changeSortHandler} 
             select={sort} 
-            list={sortData}/>
+            list={sortData()}/>
           </CustomModal>
 
           <Text style={[globalStyles.h2, {color: COLORS.mainColor}]}>

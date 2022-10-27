@@ -42,12 +42,20 @@
   "Create_category": "Create a category",
   "Create_account": "Creating an account",
 
+  "no_income_selected_period": "no income for the selected period",
+  "no_expense_elected_period": "no expense for the selected period",
+  "Nothing_found": "nothing found",
+
   "changed": "changed",
   "Removal": "Removal",
+  "added": "added",
   "account_deleted": "account deleted",
+  "Delete_category": "Delete category",
+  "account_not_selected": "account not selected",
   "delete_account": "Delete account {{acc}}? All balance will be moved to {{to_acc}}",
   "deleted": "deleted",
   "category_deleted": "category deleted",
+  "category": "Category",
 
   "Translation": "Translation",
 
@@ -59,5 +67,46 @@
   "Auth": "Auth",
   "Statistic": "Statistics",
   "RegularPayments": "Regular payments",
-  "Settings": "Settings"
+  "Settings": "Settings",
+  "Share": "Share",
+  "CHANGE": "change",
+  "Where": "Where",
+  "WHERE": "Where",
+  "CREATE": "CREATE",
+  "check": "Check",
+  "date": "Date",
+
+  "Day": "Day",
+  "Week": "Week",
+  "Month": "Month",
+  "Year": "Year",
+
+  "ATTENTION": "ATTENTION",
+  "delete_data": "All application data will be permanently deleted, after confirmation, the application will be restarted.",
+
+  "In_developing": "In developing",
+
+  "Not_funds_in_account": "Not enough funds in the account",
+  "Choose_account": "Choose an account",
+  "Select_category": "Select a category",
+  "Date_picker": "Date picker",
+  "Comment": "Comment",
+
+  "EMPTY": "EMPTY",
+
+  "dark": "Dark",
+  "light": "Light",
+
+  "January": "January",
+  "February": "February",
+  "Martha": "Martha",
+  "April": "April",
+  "May": "May",
+  "June": "June",
+  "July": "July",
+  "August": "August",
+  "September": "September",
+  "October": "October",
+  "November": "November",
+  "December": "December"
 }

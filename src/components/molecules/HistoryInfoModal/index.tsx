@@ -34,7 +34,7 @@ const HistoryInfoModal: FC<IHistoryInfo> = React.memo(({close, data}) => {
 
   const date = new Date(isTransaction?.date)
 
-  const dateDisplay = date.getDate() + ' ' + months[date.getMonth()] + ' ' 
+  const dateDisplay = date.getDate() + ' ' + months()[date.getMonth()].title + ' ' 
   + date.getFullYear()
 
   const deleteHandler = () => {
@@ -82,12 +82,12 @@ const HistoryInfoModal: FC<IHistoryInfo> = React.memo(({close, data}) => {
         <ScrollView style={{marginTop: 20, width: '100%'}}>
           <View style={styles.item}>
             <Text style={globalStyles.p1} style={{color: COLORS.mainColor}}>
-              Валюта: {numberConverter(isTransaction?.count)} {currencyValue}
+              {t('currency')}: {numberConverter(isTransaction?.count)} {currencyValue}
             </Text>
           </View>
           <View style={styles.item}>
             <Text style={[globalStyles.p1, {opacity: 0.6}]}>
-              Категория:
+              {t('category')}:
             </Text>
 
             <View 
@@ -108,7 +108,7 @@ const HistoryInfoModal: FC<IHistoryInfo> = React.memo(({close, data}) => {
 
           <View style={styles.item}>
             <Text style={[globalStyles.p1, {opacity: 0.6}]}>
-              Счёт:
+              {t('check')}:
             </Text>
 
             <View 
@@ -128,7 +128,7 @@ const HistoryInfoModal: FC<IHistoryInfo> = React.memo(({close, data}) => {
 
           <View style={styles.item}>
             <Text style={[globalStyles.p1, {opacity: 0.6}]}>
-              Дата:
+              {t('date')}:
             </Text>
 
             <View 
@@ -141,7 +141,7 @@ const HistoryInfoModal: FC<IHistoryInfo> = React.memo(({close, data}) => {
 
           { isTransaction?.text ? (<View style={styles.item}>
             <Text style={[globalStyles.p1, {opacity: 0.6}]}>
-              Комментарий:
+              {t('Comment')}:
             </Text>
 
             <View 

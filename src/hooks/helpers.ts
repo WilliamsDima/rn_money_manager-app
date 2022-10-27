@@ -1,4 +1,5 @@
 import { ITransaction } from "../store/redusers/main/types"
+import { useTranslation } from 'react-i18next'
 
 export const urlAppStore = 'https://play.google.com/store/apps/details?id=com.moneymanager_williams'
 
@@ -44,8 +45,15 @@ export const getSortCategories = (moneyArray, categories) => {
   })
 }
 
-export const months = ["Января", "Февраля", "Марта", "Апреля", "Мая", "Июня",
-"Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря"]
+export const months = () => {
+
+    const { t } = useTranslation()
+
+    return [
+        {title: t('January')}, {title: t('February')}, {title: t('Martha')}, {title: t('April')}, {title: t('May')},
+        {title: t('June')}, {title: t('July')}, {title: t('August')}, {title: t('September')}, {title: t('October')},
+        {title: t('November')}, {title: t('December')}]
+} 
 
 export const periodSort = (periodSelect, arrayMoney, date) => {
 
@@ -551,3 +559,23 @@ export const currencies = [
       "value": "ZMK"
   },
 ]
+
+export const sortData = () => {
+
+    const { t } = useTranslation()
+
+    return  [
+        {title: t('Day'), value: 'Day'}, 
+        {title: t('Week'), value: 'Week'},
+        {title: t('Month'), value: 'Month'},
+        {title: t('Year'), value: 'Year'}]
+}
+
+export const themeApp = () => {
+
+    const { t } = useTranslation()
+
+    return  [
+        {title: t('dark'), value: 'dark'}, 
+        {title: t('light'), value: 'light'},]
+}

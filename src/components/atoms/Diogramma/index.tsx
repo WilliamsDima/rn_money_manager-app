@@ -10,10 +10,12 @@ import { useAppDispatch, useAppSelector } from '../../../hooks/hooks'
 import { rateAPI } from '../../../api/http/rateAPI'
 import { setCurrency } from '../../../store/redusers/main/main'
 import { numberConverter } from '../../../hooks/helpers'
+import { useTranslation } from 'react-i18next'
 
 const Diogramma: FC<IDiogramma> = ({sortArray, hideDiogram}) => {
 
   const dispatch = useAppDispatch()
+  const { t } = useTranslation()
   const { categories, currency, currencySelect, sumMoneySort, currencyValue } = useAppSelector(state => state.main)
 
   const widthAndHeight = 180
@@ -73,7 +75,7 @@ const Diogramma: FC<IDiogramma> = ({sortArray, hideDiogram}) => {
   return (
     <View style={[styles.container, !hideDiogram ? {marginBottom: 0} : {marginBottom: 10}]}>
       {sortArray.length && sliceColor.length ? diogramm :
-      <Text style={[globalStyles.p1, {opacity: 0.6}]}>ПУСТО</Text>}
+      <Text style={[globalStyles.p1, {opacity: 0.6}]}>{t('EMPTY')}</Text>}
     </View>
   )
 }

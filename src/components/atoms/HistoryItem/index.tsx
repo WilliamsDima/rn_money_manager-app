@@ -7,13 +7,15 @@ import { styles } from './list.styles'
 import { IHistory } from './list.types'
 import Avatar from '../../atoms/Avatar'
 import { IconSvg } from '../../../services/icons'
-import { HEART, REFUND, REFUND_REPO } from '../../../services/iconsName'
+import { REFUND, } from '../../../services/iconsName'
 import { ICategories } from '../../../store/redusers/main/types'
 import { COLORS } from '../../../services/colors'
+import { useTranslation } from 'react-i18next'
 
 const HistoryItem: FC<IHistory> = ({ data, setData }) => {
 
-  const { categories, accounts, currencyValue } = useAppSelector(state => state.main)
+  const { categories, accounts } = useAppSelector(state => state.main)
+  const { t } = useTranslation()
 
   const currentCategori: ICategories = getItemFromList(data?.categori, categories)
   let currentAccaunt = ''
@@ -50,7 +52,7 @@ const HistoryItem: FC<IHistory> = ({ data, setData }) => {
           <IconSvg name={currentCategori?.icon || REFUND} color={COLORS.colorPriamry} width={25}/>
         </Avatar>
         <Text style={[globalStyles.p1]} numberOfLines={1}>
-          {currentCategori?.name || 'перевод'}
+          {currentCategori?.name || t('Translation')}
         </Text>
       </View>
 
@@ -67,7 +69,7 @@ const HistoryItem: FC<IHistory> = ({ data, setData }) => {
           {numberConverter(data?.count)} {data.currency || 'RUB'}
         </Text> 
         <Text style={[globalStyles.s2, {opacity: 0.6}]}>
-          {currentAccaunt || 'счёт удален'}
+          {currentAccaunt || t('account_deleted')}
         </Text>
       </View>
     </TouchableOpacity>

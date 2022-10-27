@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react'
 import { Text, TouchableOpacity, View, ScrollView, ToastAndroid, Alert } from 'react-native'
-import { getItemFromList, numberConverter } from '../../../hooks/helpers'
+import { getItemFromList } from '../../../hooks/helpers'
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks'
 import { COLORS } from '../../../services/colors'
 import { globalStyles } from '../../../services/styles'
@@ -13,10 +13,12 @@ import AccauntsModal from '../AccauntsModal'
 import CategoriesList from '../CategoriesList'
 import { styles } from './modal.styles'
 import { IExpAndIncModal } from './modal.types'
+import { useTranslation } from 'react-i18next'
 
 const ExpAndIncModal: FC<IExpAndIncModal> = React.memo(({setExpAndEncomeModal, data}) => {
 
   const dispatch = useAppDispatch()
+  const { t } = useTranslation()
   
   const { accounts, tabExpOrIncome, categories, currencyValue } = useAppSelector(state => state.main)
   const filterAccaunts = accounts.filter((it) => it.id)
@@ -48,7 +50,7 @@ const ExpAndIncModal: FC<IExpAndIncModal> = React.memo(({setExpAndEncomeModal, d
   const addHandler = () => {
     
     if (money < 0) {
-      Alert.alert('Error', `Не хватает средств на счёте - ${selectAccaunt?.name}`);
+      Alert.alert('Error', `${t('Not_funds_in_account')} - ${selectAccaunt?.name}`);
     }
     
     if(accauntsId && categoriId && count && money >= 0) {
@@ -65,7 +67,7 @@ const ExpAndIncModal: FC<IExpAndIncModal> = React.memo(({setExpAndEncomeModal, d
       }
 
       dispatch(addTransaction(dataTransaction))
-      ToastAndroid.show(data ? 'изменено' : 'добавлено', 2000);
+      ToastAndroid.show(data ? t('changed') : t('added'), 2000);
       setExpAndEncomeModal(false)
     }
   }
@@ -73,7 +75,7 @@ const ExpAndIncModal: FC<IExpAndIncModal> = React.memo(({setExpAndEncomeModal, d
   return (
     <View style={[styles.content]}>
       <Text style={styles.title}>{tabExpOrIncome 
-      || data?.income ? 'доход' : 'затраты'}</Text>
+      || data?.income ? t('income') : t('expense')}</Text>
       <View style={styles.inputWrapper}>
         <Input 
             overStyle={styles.input} 
@@ -89,13 +91,13 @@ const ExpAndIncModal: FC<IExpAndIncModal> = React.memo(({setExpAndEncomeModal, d
 
       <View style={styles.item}>
         <Text style={[globalStyles.p1, selectAccaunt ? {color: COLORS.mainColor} 
-          : styles.itemText]}>Выберите счёт:</Text>
+          : styles.itemText]}>{t('Choose_account')}:</Text>
 
         <TouchableOpacity style={{marginTop: 10}}
         onPress={() => setModal(true)}>
           <Text style={[globalStyles.p1, selectAccaunt ? {color: COLORS.mainColor} 
             : {color: 'red'}]}>
-            {selectAccaunt ? selectAccaunt.name  : data ? 'счёт удалён' : 'счёт не выбран'}
+            {selectAccaunt ? selectAccaunt?.name  : data ? t('account_deleted') : t('account_not_selected')}
           </Text>
         </TouchableOpacity>
       </View>
@@ -103,7 +105,7 @@ const ExpAndIncModal: FC<IExpAndIncModal> = React.memo(({setExpAndEncomeModal, d
 
         <View style={styles.item}>
           <Text style={[globalStyles.p1, isCategoryExist ? {color: COLORS.mainColor} 
-            : styles.itemText]}>Выберите категорию:</Text>
+            : styles.itemText]}>{t('Select_category')}:</Text>
         </View>
 
         <View style={{marginTop: 20}}>
@@ -115,7 +117,7 @@ const ExpAndIncModal: FC<IExpAndIncModal> = React.memo(({setExpAndEncomeModal, d
 
         <View style={styles.item}>
           <Text style={[globalStyles.p1, styles.itemText]}>
-            Выбор даты:
+            {t('Date_picker')}:
           </Text>
 
           <View style={{flexDirection: 'row', marginTop: 10}}>
@@ -147,7 +149,7 @@ const ExpAndIncModal: FC<IExpAndIncModal> = React.memo(({setExpAndEncomeModal, d
         </View>
 
         <View style={[styles.item, {paddingBottom: 100}]}>
-          <Text style={[globalStyles.p1, styles.itemText]}>Комментарий:</Text>
+          <Text style={[globalStyles.p1, styles.itemText]}>{t('Comment')}:</Text>
           <View style={[styles.inputWrapper, {width: '100%'}]}>
             <Input
               value={text}
@@ -164,7 +166,7 @@ const ExpAndIncModal: FC<IExpAndIncModal> = React.memo(({setExpAndEncomeModal, d
       <View style={styles.btn}>
         <Button onPress={addHandler} disabled={!disabled}>
           <Text style={[globalStyles.p2, {color: COLORS.colorBlack}]}>
-            {data ? 'ИЗМЕНИТЬ' : 'ДОБАВИТЬ'}
+            {data ? t('CHANGE').toLocaleUpperCase() : t('add').toLocaleUpperCase()}
           </Text>
         </Button>
       </View>

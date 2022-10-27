@@ -6,7 +6,6 @@ import { styles } from './list.styles'
 import { IAccauntItem } from './list.types'
 import Avatar from '../Avatar'
 import { IconSvg } from '../../../services/icons'
-import { DELETE, HEART } from '../../../services/iconsName'
 import { COLORS } from '../../../services/colors'
 import { useAppSelector } from '../../../hooks/hooks'
 

@@ -6,7 +6,6 @@ import { View } from 'react-native'
 import HeaderMain from '../../molecules/Headers/HeaderMain'
 
 const Header: FC<IHeader> = () => {
-  const route = useRoute()
   
   const renderHeader = () => {
         return <HeaderMain />

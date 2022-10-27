@@ -27,15 +27,3 @@ export const RoutesNames = {
     AuthStack: 'AuthStack',
   }
 }
-
-export const routesTitle = {
-  Accaunts: 'Счета',
-  Categories: 'Категории',
-  More: 'Ещё',
-  History: 'История',
-  AboutApp: 'О приложении',
-  Auth: 'Войти',
-  Statistic: 'Статистика',
-  RegularPayments: 'Регулярные платежи',
-  Settings: 'Настройки'
-}

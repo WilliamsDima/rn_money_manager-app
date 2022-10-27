@@ -3,14 +3,16 @@ import { Image, View, Text } from 'react-native'
 import { COLORS } from '../../../services/colors'
 import { globalStyles } from '../../../services/styles'
 import { styles } from './auth.styles'
+import { useTranslation } from 'react-i18next'
 
 const AuthTemplate = () => {
 
+  const { t } = useTranslation()
 
   return (
     <View style={styles.container}>
       <Text style={[globalStyles.h1, {color: COLORS.colorLightBlack, marginTop: 20}]}>
-        В разработке...
+        {t('In_developing')}...
       </Text>
       <Image 
       style={{transform: [{scale: 0.8}], position: 'absolute', bottom: -60}}

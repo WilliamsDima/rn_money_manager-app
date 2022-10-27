@@ -1,17 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { currencies } from '../../../hooks/helpers';
-import { ANIMAL, BURGER, BUS, CARD, CHARITY, EDUCATION, ENERGY, FAMILY, GAME, 
-    GIFT, MEDIC, MONEY_BAG, PIGGY_BANK, PRODUCTS, QUESTION, 
-    REFUND, REFUND_REPO, SPORT, TAB_ACCAUNTS, WALLET } from '../../../services/iconsName'
+import { BURGER, BUS, CARD, CHARITY, EDUCATION, ENERGY, FAMILY, GAME, 
+    GIFT, MEDIC, MONEY_BAG, PRODUCTS, QUESTION, 
+    REFUND, REFUND_REPO, SPORT } from '../../../services/iconsName'
 import { reducers } from "../../actions/main/mainAC"
 import { IStore } from './types'
 
 const initialState: IStore = {
-    sortData: [
-    {title: 'День', value: 'Day'}, 
-    {title: 'Неделя', value: 'Week'},
-    {title: 'Месяц', value: 'Month'},
-    {title: 'Год', value: 'Year'}],
     accountsIdSelected: 1,
     tabExpOrIncome: false,
     sort: 'Month',

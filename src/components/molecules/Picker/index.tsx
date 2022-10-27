@@ -1,6 +1,5 @@
 import React, { FC } from 'react'
-import { ScrollView, Text, TouchableOpacity, View } from 'react-native'
-import { globalStyles } from '../../../services/styles'
+import { ScrollView, TouchableOpacity } from 'react-native'
 import PickerItem from '../../atoms/PickerItem'
 import { styles } from './modal.styles'
 import { IPicker } from './modal.types'

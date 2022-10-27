@@ -36,7 +36,6 @@ export interface ISortData {
 }
 
 export interface IStore {
-    sortData: ISortData[]
     accountsIdSelected: number | string
     tabExpOrIncome: boolean
     sort: TsortFilter

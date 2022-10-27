@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react'
-import { ScrollView, Text, View, Dimensions } from 'react-native'
+import { ScrollView, View, Dimensions } from 'react-native'
 import { useAppSelector } from '../../../hooks/hooks'
 import { globalStyles } from '../../../services/styles'
 import CategoriItem from '../../molecules/CategoriItem'
@@ -26,7 +26,7 @@ const CategoriesList: FC<ICategories> = ({categoriId, setCategoriId, expOrIncom,
   }
 
   const getRowWidth = (event) => {
-    const {x, y, width, height} = event.nativeEvent.layout
+    const { width } = event.nativeEvent.layout
     setSize(width / 3)
   }
 

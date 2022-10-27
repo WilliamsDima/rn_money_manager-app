@@ -40,7 +40,7 @@ const CreateCategoriModal: FC<IAccauntCreateModal> = React.memo(({setModal, edit
         income,
       }
       dispatch(addCategori(data))
-      ToastAndroid.show('добавлено', 2000);
+      ToastAndroid.show(t('added'), 2000);
       setModal(false)
     }
   }
@@ -57,15 +57,15 @@ const CreateCategoriModal: FC<IAccauntCreateModal> = React.memo(({setModal, edit
         income,
       }
       dispatch(editeCategori(data))
-      ToastAndroid.show('изменено', 2000);
+      ToastAndroid.show(t('changed'), 2000);
       setModal(false)
     }
   }
 
   const deleteHandler = () => {
     Alert.alert(
-      "Удаление",
-      `Удалить категорию "${editeMode?.name}"?`,
+      t('Removal'),
+      `${t('Delete_category')} "${editeMode?.name}"?`,
       [
         {
           text: "Cancel",
@@ -77,7 +77,7 @@ const CreateCategoriModal: FC<IAccauntCreateModal> = React.memo(({setModal, edit
             id: editeMode?.id,
           }
             dispatch(deleteCategori(data))
-            ToastAndroid.show('удалено', 2000);
+            ToastAndroid.show(t('deleted'), 2000);
             setModal(false)
         } }
       ]

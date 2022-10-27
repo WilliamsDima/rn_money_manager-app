@@ -12,6 +12,14 @@ const HeaderMain = () => {
 
   const dispatch = useAppDispatch()
 
+  // localAPI.remove(LOCAL_NAME.ACCAUNT_SELECT)
+  // localAPI.remove(LOCAL_NAME.EPENSES_INCOME)
+  // localAPI.remove(LOCAL_NAME.CATEGORIES)
+  // localAPI.remove(LOCAL_NAME.ACCAUNTS)
+  // localAPI.remove(LOCAL_NAME.POP)
+  // localAPI.remove(LOCAL_NAME.PERIOD)
+  // localAPI.remove(LOCAL_NAME.CURRENCY_VALUE)
+
   const localStoreHandler = async () => {
 
     const accauntId = await localAPI.get(LOCAL_NAME.ACCAUNT_SELECT)

@@ -1,9 +1,6 @@
 import React, { FC } from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
-import { numberConverter } from '../../../hooks/helpers'
-import { IconSvg } from '../../../services/icons'
 import { globalStyles } from '../../../services/styles'
-import Avatar from '../Avatar'
 import { styles } from './btn.styles'
 import { IPickerItem } from './btn.types'
 

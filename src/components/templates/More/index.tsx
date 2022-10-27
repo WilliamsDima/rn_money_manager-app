@@ -9,10 +9,12 @@ import { COIN, EXCHANGE, GEAR, GOOGLE_PLAY, SHARE, STATISTIC, USER } from '../..
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks'
 import { setPop } from '../../../store/redusers/main/main'
 import { urlAppStore } from '../../../hooks/helpers'
+import { useTranslation } from 'react-i18next'
 
 const MoreTemplate = () => {
   
   const navigation = useNavigation()
+  const { t } = useTranslation()
 
   const dispatch = useAppDispatch()
   
@@ -77,43 +79,43 @@ const MoreTemplate = () => {
         <View style={{marginHorizontal: 10}}>
           <IconSvg name={USER} width={20}/>
         </View>
-        <Text style={globalStyles.h2}>Войти</Text>
+        <Text style={globalStyles.h2}>{t('Auth')}</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.btn} onPress={toStatistic}>
         <View style={{marginHorizontal: 10}}>
           <IconSvg name={STATISTIC} width={20}/>
         </View>
-        <Text style={globalStyles.h2}>Статистика</Text>
+        <Text style={globalStyles.h2}>{t('Statistic')}</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.btn} onPress={toRegularPayments}>
         <View style={{marginHorizontal: 10}}>
           <IconSvg name={EXCHANGE} width={20}/>
         </View>
-        <Text style={globalStyles.h2}>Регулярные платежи</Text>
+        <Text style={globalStyles.h2}>{t('RegularPayments')}</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.btn} onPress={onShare}>
         <View style={{marginHorizontal: 10}}>
           <IconSvg name={SHARE} width={20}/>
         </View>
-        <Text style={globalStyles.h2}>Поделиться</Text>
+        <Text style={globalStyles.h2}>{t('Share')}</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.btn} onPress={toSettings}>
         <View style={{marginHorizontal: 10}}>
           <IconSvg name={GEAR} width={20}/>
         </View>
-        <Text style={globalStyles.h2}>Настройки</Text>
+        <Text style={globalStyles.h2}>{t('Settings')}</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.btn} onPress={toGooglePlay}>
         <View style={{marginHorizontal: 10}}>
           <IconSvg name={GOOGLE_PLAY} width={20}/>
         </View>
-        <Text style={globalStyles.h2}>Оставить отзыв</Text>
+        <Text style={globalStyles.h2}>{t('review')}</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.btn} onPress={toAboutApp}>
         <View style={{marginHorizontal: 10}}>
           <IconSvg name={COIN} width={20}/>
         </View>
-        <Text style={globalStyles.h2}>О приложении</Text>
+        <Text style={globalStyles.h2}>{t('AboutApp')}</Text>
       </TouchableOpacity>
 
       <TouchableOpacity 

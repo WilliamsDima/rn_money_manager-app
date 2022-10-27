@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react'
-import { ScrollView, Text, View } from 'react-native'
+import { ScrollView, View } from 'react-native'
 import { ICONS } from '../../../services/iconsName'
 import IconItem from '../../atoms/IconItem'
 import { styles } from './list.styles'
@@ -28,7 +28,7 @@ const IconsList: FC<IIconsList> = ({iconName, setId, bg}) => {
   }
 
   const getRowWidth = (event) => {
-    const {x, y, width, height} = event.nativeEvent.layout
+    const { width } = event.nativeEvent.layout
     setSize(width / 3)
   }
   

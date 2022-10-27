@@ -1,6 +1,6 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
-import { RoutesNames, routesTitle } from '../routes-names'
+import { RoutesNames } from '../routes-names'
 
 import Main from '../../screens/Main'
 import { screenOptions } from '../routes-config'

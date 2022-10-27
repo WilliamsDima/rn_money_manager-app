@@ -67,7 +67,7 @@ const CarouselFilter: FC = React.memo((props) => {
   
     const text = {
       'Day': () => new Date(date).getDate() + ' ' 
-      + months[new Date(date).getMonth()] + ' ' 
+      + months()[new Date(date).getMonth()].title + ' ' 
       + new Date(date).getFullYear(), 
 
       'Week': () => {
@@ -75,17 +75,17 @@ const CarouselFilter: FC = React.memo((props) => {
         const currentWeek = +new Date(date) + 86400000;
 
         const prevTextWeek = new Date(prevWeek).getDate() + ' ' 
-        + months[new Date(prevWeek).getMonth()] + ' ' 
+        + months()[new Date(prevWeek).getMonth()].title + ' ' 
         + new Date(prevWeek).getFullYear()
 
         const currentTextWeek = new Date(currentWeek).getDate() + ' ' 
-        + months[new Date(currentWeek).getMonth()] + ' ' 
+        + months()[new Date(currentWeek).getMonth()].title + ' ' 
         + new Date(currentWeek).getFullYear()
 
         return prevTextWeek + ' - ' + currentTextWeek;
       }, 
 
-      'Month': () => months[new Date(date).getMonth()] + ' ' 
+      'Month': () => months()[new Date(date).getMonth()].title + ' ' 
       + new Date(date).getFullYear(), 
 
       'Year': () => new Date(date).getFullYear(), 

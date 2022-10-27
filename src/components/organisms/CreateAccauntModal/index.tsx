@@ -46,7 +46,7 @@ const CreateAccauntModal: FC<IAccauntCreateModal> = React.memo(({setModal, edite
       console.log('new ADD Accaunt', data);
       dispatch(addAccaunt(data))
       dispatch(setAllCauntAccaunts())
-      ToastAndroid.show('добавлено', 2000);
+      ToastAndroid.show(t('added'), 2000);
       setModal(false)
     }
   }
@@ -62,6 +62,7 @@ const CreateAccauntModal: FC<IAccauntCreateModal> = React.memo(({setModal, edite
         count: +count.replace(',', '.'),
         delete: true,
       }
+      console.log('save Accaunt', data);
       dispatch(editeAccaunt(data))
       dispatch(setAllCauntAccaunts())
       ToastAndroid.show(t('changed'), 2000);
@@ -74,7 +75,7 @@ const CreateAccauntModal: FC<IAccauntCreateModal> = React.memo(({setModal, edite
       t('Removal'),
       t('delete_account', {
         acc: editeMode?.name,
-        to_acc: accauntOther.name,
+        to_acc: accauntOther?.name,
       }),
       [
         {
@@ -88,7 +89,7 @@ const CreateAccauntModal: FC<IAccauntCreateModal> = React.memo(({setModal, edite
             count: editeMode?.count
           }
             dispatch(deleteAccaunt(data))
-            ToastAndroid.show('удалено', 2000);
+            ToastAndroid.show(t('deleted'), 2000);
             setModal(false)
         } }
       ]

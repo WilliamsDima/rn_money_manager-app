@@ -1,12 +1,14 @@
-import React, { FC, useState } from 'react'
-import { ScrollView, Text, TouchableOpacity, View } from 'react-native'
-import { useAppSelector } from '../../../hooks/hooks'
+import React, { FC } from 'react'
+import { ScrollView, Text, TouchableOpacity } from 'react-native'
 import { globalStyles } from '../../../services/styles'
 import AccauntsBtnSelect from '../../atoms/AccauntsBtnSelect'
 import { styles } from './modal.styles'
 import { IExpAndIncModal } from './modal.types'
+import { useTranslation } from 'react-i18next'
 
 const AccauntsModal: FC<IExpAndIncModal> = React.memo(({close, setId, idSelect, list}) => {
+
+  const { t } = useTranslation()
 
   const setAccauntsHandler = (id) => {
     setId(id)
@@ -21,7 +23,7 @@ const AccauntsModal: FC<IExpAndIncModal> = React.memo(({close, setId, idSelect, 
       <TouchableOpacity 
       activeOpacity={1}
       style={styles.content}>
-        <Text style={globalStyles.h3}>Счета:</Text>
+        <Text style={globalStyles.h3}>{t('Accaunts')}:</Text>
 
         <ScrollView style={{marginTop: 20, width: '100%'}}>
           {list.map((item) => {

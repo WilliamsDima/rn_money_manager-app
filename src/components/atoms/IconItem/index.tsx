@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { View, Text, TouchableOpacity, Dimensions } from 'react-native'
+import { TouchableOpacity } from 'react-native'
 import { COLORS } from '../../../services/colors'
 import { IconSvg } from '../../../services/icons'
 import Avatar from '../../atoms/Avatar'
@@ -8,9 +8,6 @@ import { IIconItem } from './item.types'
 
 const IconItem: FC<IIconItem> = React.memo(({size, iconName, bg,
   overStyle, idSelect, setId}) => {
-
-  const WIDTH = Dimensions.get('window').width
-  //const size = WIDTH / 4
 
   return (
     <TouchableOpacity 

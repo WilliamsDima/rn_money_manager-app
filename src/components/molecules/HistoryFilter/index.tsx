@@ -1,6 +1,5 @@
-import React, { FC, useState } from 'react'
-import { ScrollView, Text, View, TouchableOpacity } from 'react-native'
-import { useAppSelector } from '../../../hooks/hooks'
+import React, { FC } from 'react'
+import { Text, View, TouchableOpacity } from 'react-native'
 import { COLORS } from '../../../services/colors'
 import { IconSvg } from '../../../services/icons'
 import { TAB_CATEGORIES } from '../../../services/iconsName'

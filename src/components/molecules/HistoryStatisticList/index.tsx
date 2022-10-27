@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { ScrollView, Text, View } from 'react-native'
+import { Text, View } from 'react-native'
 import { countSumTransaction, getItemFromList, numberConverter } from '../../../hooks/helpers'
 import { useAppSelector } from '../../../hooks/hooks'
 import { COLORS } from '../../../services/colors'
@@ -8,7 +8,7 @@ import { styles } from './list.styles'
 import { IHistory } from './list.types'
 import { useTranslation } from 'react-i18next'
 
-const HistoryStatisticList: FC<IHistory> = React.memo(({ data, filterType }) => {
+const HistoryStatisticList: FC<IHistory> = React.memo(({ data }) => {
 
   const { t } = useTranslation()
 

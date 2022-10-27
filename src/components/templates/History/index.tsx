@@ -4,7 +4,6 @@ import { globalStyles } from '../../../services/styles'
 import HistoryFilter from '../../molecules/HistoryFilter'
 import HistoryStatisticList from '../../molecules/HistoryStatisticList'
 import HistoryList from '../../organisms/HistoryList'
-import { styles } from './history.styles'
 import CustomModal from '../../atoms/Modal'
 import HistoryFilterModal from '../../organisms/HistoryFilterModal'
 import { useAppSelector } from '../../../hooks/hooks'
@@ -12,6 +11,7 @@ import { dataFilterMaxValue, periodSort } from '../../../hooks/helpers'
 import DataListEmpty from '../../atoms/DataListEmpty'
 import PickerCategories from '../../molecules/PickerCategories'
 import { useRoute } from '@react-navigation/native'
+import { useTranslation } from 'react-i18next'
 
 interface IFilterData {
   type: boolean | string
@@ -21,6 +21,8 @@ interface IFilterData {
 const HistoryTemplate = () => {
 
   const route = useRoute()
+
+  const { t } = useTranslation()
 
   const params = route?.params
 
@@ -67,7 +69,7 @@ const HistoryTemplate = () => {
         <HistoryFilter setFilter={setFilter} setCategori={setCategori}/>
         <HistoryStatisticList data={res.length ? res : []} filterType={filterType}/>
         {res.length ? <HistoryList data={res}/> 
-        : <DataListEmpty text={'ничего не найдено'} /> }
+        : <DataListEmpty text={t('Nothing_found')} /> }
         
 
         <CustomModal

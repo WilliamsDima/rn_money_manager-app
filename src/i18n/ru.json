@@ -42,13 +42,21 @@
   "Create_category": "Создание категории",
   "Create_account": "Создание счёта",
 
+  "no_income_selected_period": "нет доходов за выбранный период",
+  "no_expense_elected_period": "нет трат за выбранный период",
+  "Nothing_found": "ничего не найдено",
+
   "changed": "изменено",
   "Removal": "Удаление",
-  "account_deleted": "счёт удален",
+  "added": "добавлено",
+  "account_deleted": "счёт удалён",
+  "Delete_category": "Удалить категорию",
+  "account_not_selected": "счёт не выбран",
   "delete_account": "Удалить счёт {{acc}}? Весь остаток будет перемещён в {{to_acc}}",
   "delete_transaction": "Удалить транзакцию {{cat}}?",
   "deleted": "удалено",
   "category_deleted": "категория удалена",
+  "category": "Категория",
 
   "Translation": "Перевод",
 
@@ -60,5 +68,46 @@
   "Auth": "Войти",
   "Statistic": "Статистика",
   "RegularPayments": "Регулярные платежи",
-  "Settings": "Настройки"
+  "Settings": "Настройки",
+  "Share": "Поделиться",
+  "CHANGE": "изменить",
+  "Where": "Откуда",
+  "WHERE": "Куда",
+  "CREATE": "СОЗДАТЬ",
+  "check": "Счёт",
+  "date": "Дата",
+
+  "Day": "День",
+  "Week": "Неделя",
+  "Month": "Месяц",
+  "Year": "Год",
+
+  "ATTENTION": "ВНИМАНИЕ",
+  "delete_data": "Все данные приложения будут удалены без возможности восстановления, после подтверждения, приложение будет перезапущено.",
+
+  "In_developing": "В разработке",
+
+  "Not_funds_in_account": "Не хватает средств на счёте",
+  "Choose_account": "Выберите счёт",
+  "Select_category": "Выберите категорию",
+  "Date_picker": "Выбор даты",
+  "Comment": "Комментарий",
+
+  "EMPTY": "ПУСТО",
+
+  "dark": "Тёмная",
+  "light": "Светлая",
+
+  "January": "Января",
+  "February": "Февраля",
+  "Martha": "Марта",
+  "April": "Апреля",
+  "May": "Мая",
+  "June": "Июня",
+  "July": "Июля",
+  "August": "Августа",
+  "September": "Сентября",
+  "October": "Октября",
+  "November": "Ноября",
+  "December": "Декабря"
 }

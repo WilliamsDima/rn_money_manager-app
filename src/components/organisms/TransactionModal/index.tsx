@@ -10,15 +10,16 @@ import Button from '../../atoms/Button'
 import Input from '../../atoms/Input'
 import CustomModal from '../../atoms/Modal'
 import AccauntsModal from '../AccauntsModal'
-import CategoriesList from '../CategoriesList'
 import { styles } from './modal.styles'
 import { IExpAndIncModal } from './modal.types'
+import { useTranslation } from 'react-i18next'
 
 const TransactionModal: FC<IExpAndIncModal> = React.memo(({setModal}) => {
 
   const dispatch = useAppDispatch()
+  const { t } = useTranslation()
 
-  const { accounts } = useAppSelector(state => state.main)
+  const { accounts,  currencyValue } = useAppSelector(state => state.main)
 
   const [accauntsModalFirst, setAccauntsModalFirst] = useState(false)
   const [accauntsModalSecond, setAccauntsModalSecond] = useState(false)
@@ -47,7 +48,7 @@ const TransactionModal: FC<IExpAndIncModal> = React.memo(({setModal}) => {
   const addHandler = () => {
     
     if (money < 0) {
-      Alert.alert('Error', `Не хватает средств на счёте - ${selectAccauntFirst?.name}`);
+      Alert.alert('Error', `${t('Not_funds_in_account')} - ${selectAccauntFirst?.name}`);
     }
     
     if(selectAccauntFirst && selectAccauntSecond && count && money >= 0) {
@@ -59,11 +60,12 @@ const TransactionModal: FC<IExpAndIncModal> = React.memo(({setModal}) => {
         count: +count.replace(',', '.'),
         text: text,
         income: true,
-        transaction: true
+        transaction: true,
+        currency: currencyValue,
       }
       console.log('new ADD', data);
       dispatch(addTransaction(data))
-      ToastAndroid.show('добавлено', 2000);
+      ToastAndroid.show(t('added'), 2000);
       setModal(false)
     }
   }
@@ -77,7 +79,7 @@ const TransactionModal: FC<IExpAndIncModal> = React.memo(({setModal}) => {
 
   return (
     <View style={[styles.content]}>
-      <Text style={styles.title}>ПЕРЕВОД</Text>
+      <Text style={styles.title}>{t('Translation').toLocaleUpperCase()}</Text>
       <ScrollView style={{flex: 1, marginTop: 10}}>
 
         <View style={styles.inputWrapper}>
@@ -90,35 +92,35 @@ const TransactionModal: FC<IExpAndIncModal> = React.memo(({setModal}) => {
               placeholderTextColor={'#333'}
               autoFocus={true} 
               keyboardType={'number-pad'}/>
-          <Text style={globalStyles.h2}>RUB</Text>
+          <Text style={globalStyles.h2}>{currencyValue}</Text>
         </View>
 
         <View style={styles.item}>
-          <Text style={[globalStyles.p1, styles.itemText]}>Откуда:</Text>
+          <Text style={[globalStyles.p1, styles.itemText]}>{t('Where')}:</Text>
 
           <TouchableOpacity style={{marginTop: 10}}
           onPress={() => setAccauntsModalFirst(true)}>
             <Text style={[globalStyles.p1, accauntFirst ? {color: COLORS.mainColor} 
               : {color: 'red'}]}>
-              {accauntFirst ? selectAccauntFirst?.name  : 'счёт не выбран'}
+              {accauntFirst ? selectAccauntFirst?.name  : t('account_not_selected')}
             </Text>
           </TouchableOpacity>
         </View>
 
         <View style={styles.item}>
-          <Text style={[globalStyles.p1, styles.itemText]}>Куда:</Text>
+          <Text style={[globalStyles.p1, styles.itemText]}>{t('WHERE')}:</Text>
 
           <TouchableOpacity style={{marginTop: 10}}
           onPress={() => setAccauntsModalSecond(true)}>
             <Text style={[globalStyles.p1, accauntSecond ? {color: COLORS.mainColor} 
               : {color: 'red'}]}>
-              {accauntSecond ? selectAccauntSecond?.name  : 'счёт не выбран'}
+              {accauntSecond ? selectAccauntSecond?.name  : t('account_not_selected')}
             </Text>
           </TouchableOpacity>
         </View>
 
         <View style={[styles.item, {paddingBottom: 100}]}>
-          <Text style={[globalStyles.p1, styles.itemText]}>Комментарий:</Text>
+          <Text style={[globalStyles.p1, styles.itemText]}>{t('Comment')}:</Text>
           <View style={[styles.inputWrapper, {width: '100%'}]}>
             <Input
               value={text}
@@ -135,7 +137,7 @@ const TransactionModal: FC<IExpAndIncModal> = React.memo(({setModal}) => {
       <View style={styles.btn}>
         <Button onPress={addHandler} disabled={!disabled}>
           <Text style={[globalStyles.p2, {color: COLORS.colorBlack}]}>
-            СОЗДАТЬ
+            {t('CREATE')}
           </Text>
         </Button>
       </View>
