@@ -1,8 +1,13 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosError } from 'axios'
 
+// ключ с бесплатным апи курса валют
+const key = 'r2NQ3RaZ7uQ7ioNorqK3e4gkfDnl8blL'
+
 const $axios: AxiosInstance = axios.create({
-  baseURL: 'https://currate.ru/api/',
-  headers: {},
+  baseURL: 'https://api.apilayer.com/currency_data/',
+  headers: {
+    apikey: key
+  },
 })
 
 $axios.interceptors.request.use(

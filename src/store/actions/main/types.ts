@@ -1,5 +1,5 @@
 import { PayloadAction } from "@reduxjs/toolkit"
-import { IAccounts, ICategories, ITransaction, IStore } from "../../redusers/main/types"
+import { IAccounts, ICategories, ITransaction, IStore, ICurrencySelect } from "../../redusers/main/types"
 
 type filterPeriod = 'Day' | 'Week' | 'Month' | 'Year'
 
@@ -44,7 +44,7 @@ export interface IACMain {
     editeCategori: (state: IStore, payload: PayloadAction<ICategories>) => void
     deleteCategori: (state: IStore, payload: PayloadAction<ICategories>) => void
 
-    setCurrency: (state: IStore, payload: PayloadAction<{}>) => void
+    setCurrency: (state: IStore, payload: PayloadAction<ICurrencySelect>) => void
     setPop: (state: IStore, payload: PayloadAction<number>) => void
 
     setCurrencyValue: (state: IStore, payload: PayloadAction<string>) => void

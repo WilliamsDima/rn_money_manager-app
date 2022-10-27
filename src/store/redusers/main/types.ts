@@ -35,6 +35,17 @@ export interface ISortData {
     value: string
 }
 
+export interface ICurrencySelect {
+    first: {
+        code: string
+        count: number
+    }
+    second: {
+        code: string
+        count: number
+    }
+}
+
 export interface IStore {
     accountsIdSelected: number | string
     tabExpOrIncome: boolean
@@ -46,8 +57,8 @@ export interface IStore {
     accounts: IAccounts[]
     categories: ICategories[]
     transaction: ITransaction[],
-    currencySelect: string
-    currency: {} | null
+    currencySelect: string[]
+    currency: ICurrencySelect| null
     currencies: ISortData[]
     currencyValue: string
     pop: number

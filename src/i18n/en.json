@@ -108,5 +108,16 @@
   "September": "September",
   "October": "October",
   "November": "November",
-  "December": "December"
+  "December": "December",
+
+
+
+
+
+  "UAH": "UAH Ukrainian Hryvnia",
+  "USD": "United States Dollar",
+  "AMD": "AMD Armenian Dram",
+  "AUD": "AUD Australian Dollar",
+  "AZN": "AZN Azerbaijani Manat",
+  "BGN": "BGN Bulgarian Lev",
 }

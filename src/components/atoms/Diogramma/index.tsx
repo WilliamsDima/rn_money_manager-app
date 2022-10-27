@@ -11,6 +11,7 @@ import { rateAPI } from '../../../api/http/rateAPI'
 import { setCurrency } from '../../../store/redusers/main/main'
 import { numberConverter } from '../../../hooks/helpers'
 import { useTranslation } from 'react-i18next'
+import { ICurrencySelect } from '../../../store/redusers/main/types'
 
 const Diogramma: FC<IDiogramma> = ({sortArray, hideDiogram}) => {
 
@@ -40,7 +41,7 @@ const Diogramma: FC<IDiogramma> = ({sortArray, hideDiogram}) => {
   : <View style={styles.wrapperDiagremm}>
       
       {currency && <Text style={globalStyles.p1}>
-        {(+currency?.data?.USDRUB).toFixed(2)} $
+        {currency?.first?.count} {currency?.first?.code} 
       </Text>}
     <PieChart
       widthAndHeight={widthAndHeight}
@@ -51,7 +52,7 @@ const Diogramma: FC<IDiogramma> = ({sortArray, hideDiogram}) => {
       coverFill={COLORS.colorBlack}
     />
       {currency && <Text style={globalStyles.p1}>
-        {(+currency?.data?.EURRUB).toFixed(2)} E
+        {currency?.second?.count} {currency?.second?.code} 
       </Text>}
       <View style={styles.count}>
         <Text style={[globalStyles.p2]}>
@@ -61,7 +62,19 @@ const Diogramma: FC<IDiogramma> = ({sortArray, hideDiogram}) => {
   </View>
 
   const getCurrency = async () => {
-    const data = await rateAPI.getCurrency(currencySelect)
+    const first = await rateAPI.getCurrency(currencyValue, currencySelect[0])
+    const second = await rateAPI.getCurrency(currencyValue, currencySelect[1])
+
+    const data: ICurrencySelect = {
+      first: {
+        code: first?.query?.from,
+        count: first?.result?.toFixed(2)
+      },
+      second: {
+        code: second?.query?.from,
+        count: second?.result?.toFixed(2)
+      }
+    }
     
     dispatch(setCurrency(data))
   }
@@ -70,7 +83,7 @@ const Diogramma: FC<IDiogramma> = ({sortArray, hideDiogram}) => {
   useEffect(() => {
     console.log('Diogramma');
     getCurrency()
-  }, [categories])
+  }, [categories, currencySelect])
   
   return (
     <View style={[styles.container, !hideDiogram ? {marginBottom: 0} : {marginBottom: 10}]}>

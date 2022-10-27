@@ -143,7 +143,7 @@ const SettingsTemplate = () => {
               close={() => setCurrenciesModal(false)}
               changeValue={changeCurrencyHandler} 
               select={currencyValue} 
-              list={currencies}/>
+              list={currencies()}/>
           </CustomModal>
           <Text style={[globalStyles.h2, {marginRight: 20, opacity: 0.6}]}>
             {t('currency')}

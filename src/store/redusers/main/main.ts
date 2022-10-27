@@ -165,7 +165,7 @@ const initialState: IStore = {
     ],
     transaction: [],
 
-    currencySelect: 'USDRUB,EURRUB',
+    currencySelect: ['USD', 'EUR'],
     currency: null,
     currencyValue: 'RUB',
     currencies: currencies,
