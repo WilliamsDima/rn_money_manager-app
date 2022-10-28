@@ -3,7 +3,7 @@ import NetAPI from "./http"
 class RateAPI extends NetAPI {
 
     getCurrencyUrl(to: string, from: string) {
-        return `convert?to=${to}&from=${from}&amount=1`
+        return `${from}/${to}.json`
     }
 
     async getCurrency(to: string, from: string) {

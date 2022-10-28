@@ -62,19 +62,22 @@ const Diogramma: FC<IDiogramma> = ({sortArray, hideDiogram}) => {
   </View>
 
   const getCurrency = async () => {
-    const first = await rateAPI.getCurrency(currencyValue, currencySelect[0])
-    const second = await rateAPI.getCurrency(currencyValue, currencySelect[1])
+    
+    const first = await rateAPI.getCurrency(currencyValue.toLocaleLowerCase(), currencySelect[0].toLocaleLowerCase())
+    const second = await rateAPI.getCurrency(currencyValue.toLocaleLowerCase(), currencySelect[1].toLocaleLowerCase())
 
     const data: ICurrencySelect = {
       first: {
-        code: first?.query?.from,
-        count: first?.result?.toFixed(2)
+        code: currencySelect[0],
+        count: first[currencyValue.toLocaleLowerCase()]?.toFixed(3)
       },
       second: {
-        code: second?.query?.from,
-        count: second?.result?.toFixed(2)
+        code: currencySelect[1],
+        count: second[currencyValue.toLocaleLowerCase()]?.toFixed(3)
       }
     }
+
+    console.log(data);
     
     dispatch(setCurrency(data))
   }
@@ -83,7 +86,7 @@ const Diogramma: FC<IDiogramma> = ({sortArray, hideDiogram}) => {
   useEffect(() => {
     console.log('Diogramma');
     getCurrency()
-  }, [categories, currencySelect])
+  }, [categories, currencySelect, currencyValue])
   
   return (
     <View style={[styles.container, !hideDiogram ? {marginBottom: 0} : {marginBottom: 10}]}>

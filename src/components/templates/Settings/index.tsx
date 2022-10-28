@@ -9,17 +9,18 @@ import { LOCAL_NAME } from '../../../store/actions/main/types'
 import ScrollContainer from '../../atoms/Container/ScrollContainer'
 import { styles } from './settings.styles'
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks'
-import { setCurrencyValue, setLanguage, setSortValue } from '../../../store/redusers/main/main'
+import { setCurrencyValue, setLanguage, setRate, setSortValue } from '../../../store/redusers/main/main'
 import CustomModal from '../../atoms/Modal'
 import Picker from '../../molecules/Picker'
 import { currencies, sortData, themeApp } from '../../../hooks/helpers'
 import { useTranslation } from 'react-i18next'
 import i18n from '../../../i18n/i18n'
+import PickerMulti from '../../molecules/PickerMulti'
 
 const SettingsTemplate = () => {
 
   const dispatch = useAppDispatch()
-  const { sort, currencyValue, languageData, language } = useAppSelector(state => state.main)
+  const { sort, currencyValue, languageData, language, currencySelect } = useAppSelector(state => state.main)
 
   const { t } = useTranslation()
 
@@ -38,6 +39,7 @@ const SettingsTemplate = () => {
 
   const [periodModal, setPeriodModal] = useState(false)
   const [currenciesModal, setCurrenciesModal] = useState(false)
+  const [rateModal, setRateModal] = useState(false)
   
 
   const changeSortHandler = (value) => {
@@ -48,6 +50,11 @@ const SettingsTemplate = () => {
   const changeCurrencyHandler = (value) => {
     dispatch(setCurrencyValue(value))
     localAPI.set(LOCAL_NAME.CURRENCY_VALUE, value)
+  }
+
+  const rateSubmit = (value) => {
+    const data = [value[0]?.value, value[1]?.value]
+    dispatch(setRate(data))
   }
 
   const deleteDate = () => {
@@ -70,6 +77,7 @@ const SettingsTemplate = () => {
             localAPI.remove(LOCAL_NAME.PERIOD)
             localAPI.remove(LOCAL_NAME.CURRENCY_VALUE)
             localAPI.remove(LOCAL_NAME.LANGUAGE)
+            localAPI.remove(LOCAL_NAME.RATE)
           
             DevSettings.reload()
         } }
@@ -117,16 +125,31 @@ const SettingsTemplate = () => {
         </View>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.item} onPress={inDevProgress}>
+      <TouchableOpacity style={styles.item} onPress={() => setRateModal(true)}>
         <View style={{marginRight: 20}}>
           <IconSvg name={EXCHANGE} width={25}/>
         </View>
         <View style={{justifyContent: 'flex-start'}}>
+          <CustomModal visible={rateModal} closeHandler={setRateModal}>
+            <PickerMulti 
+              overStyle={{maxHeight: '90%'}}
+              close={() => setRateModal(false)}
+              submit={rateSubmit} 
+              select={[
+                {
+                  value: currencySelect[0]
+                },
+                {
+                  value: currencySelect[1]
+                },
+              ]} 
+              data={currencies().filter((it) => it.value !== currencyValue)}/>
+          </CustomModal>
           <Text style={[globalStyles.h2, {marginRight: 20, opacity: 0.6}]}>
             {t('Exchange_Rates')}
           </Text>
           <Text style={[globalStyles.h2, {color: COLORS.mainColor}]}>
-            $ / E
+            {currencySelect[0]} / {currencySelect[1]}
           </Text>
         </View>
       </TouchableOpacity>

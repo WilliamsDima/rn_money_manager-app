@@ -1,13 +1,10 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosError } from 'axios'
 
-// ключ с бесплатным апи курса валют
-const key = 'r2NQ3RaZ7uQ7ioNorqK3e4gkfDnl8blL'
+// https://github.com/fawazahmed0/currency-api
 
 const $axios: AxiosInstance = axios.create({
-  baseURL: 'https://api.apilayer.com/currency_data/',
-  headers: {
-    apikey: key
-  },
+  baseURL: 'https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/',
+  headers: {},
 })
 
 $axios.interceptors.request.use(

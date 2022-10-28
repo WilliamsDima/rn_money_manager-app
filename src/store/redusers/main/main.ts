@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { currencies } from '../../../hooks/helpers';
 import { BURGER, BUS, CARD, CHARITY, EDUCATION, ENERGY, FAMILY, GAME, 
     GIFT, MEDIC, MONEY_BAG, PRODUCTS, QUESTION, 
     REFUND, REFUND_REPO, SPORT } from '../../../services/iconsName'
@@ -168,7 +167,6 @@ const initialState: IStore = {
     currencySelect: ['USD', 'EUR'],
     currency: null,
     currencyValue: 'RUB',
-    currencies: currencies,
 
     pop: 0,
 
@@ -193,5 +191,5 @@ export const {setAllCauntAccaunts, addTransaction,
     setSortValue, setSortDatePeriod, addLocalCategories,
     addLocalAccaunts, addAccaunt, editeAccaunt, deleteAccaunt,
     deleteTransaction, addCategori, editeCategori, deleteCategori,
-    setCurrency, setPop, setCurrencyValue, setLanguage,
+    setCurrency, setPop, setCurrencyValue, setLanguage, setRate,
     setDataOnPeriodFilter, setAccauntId, addLocalExpAndIncome } = counterSlice.actions;

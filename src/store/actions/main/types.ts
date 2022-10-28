@@ -11,7 +11,8 @@ export const LOCAL_NAME =  {
     POP: 'POP',
     PERIOD: 'PERIOD',
     CURRENCY_VALUE: 'CURRENCY_VALUE',
-    LANGUAGE: 'LANGUAGE'
+    LANGUAGE: 'LANGUAGE',
+    RATE: 'RATE'
 }
 
 interface IDeleteAccaunt {
@@ -45,6 +46,8 @@ export interface IACMain {
     deleteCategori: (state: IStore, payload: PayloadAction<ICategories>) => void
 
     setCurrency: (state: IStore, payload: PayloadAction<ICurrencySelect>) => void
+    setRate: (state: IStore, payload: PayloadAction<string[]>) => void
+
     setPop: (state: IStore, payload: PayloadAction<number>) => void
 
     setCurrencyValue: (state: IStore, payload: PayloadAction<string>) => void

@@ -145,6 +145,11 @@ export const reducers: IACMain = {
         state.currency = payload
     },
 
+    setRate:(state, { payload }) => {
+        state.currencySelect = payload
+        localAPI.set(LOCAL_NAME.RATE, state.currencySelect)
+    },
+
     setCurrencyValue:(state, { payload }) => {
         state.currencyValue = payload
     },
