@@ -12,8 +12,9 @@ import { IAccauntCreateModal } from './modal.types'
 import CustomModal from '../../atoms/Modal'
 import ColorModal from '../../molecules/ColorModal'
 import { addAccaunt, deleteAccaunt, editeAccaunt, setAllCauntAccaunts } from '../../../store/redusers/main/main'
-import { getItemFromList } from '../../../hooks/helpers'
+import { currencies, getItemFromList } from '../../../hooks/helpers'
 import { useTranslation } from 'react-i18next'
+import Picker from '../../molecules/Picker'
 
 const CreateAccauntModal: FC<IAccauntCreateModal> = React.memo(({setModal, editeMode}) => {
 
@@ -22,11 +23,17 @@ const CreateAccauntModal: FC<IAccauntCreateModal> = React.memo(({setModal, edite
   const { accounts, currencyValue } = useAppSelector(state => state.main)
 
   const [colorModal, setColorModal] = useState(false)
+  const [currenciesModal, setCurrenciesModal] = useState(false)
 
   const [count, setCount] = useState(editeMode?.count?.toString() || '0')
   const [icon, setIcon] = useState(editeMode?.icon || '')
   const [name, setName] = useState(editeMode?.name || '')
   const [bg, setBg] = useState(editeMode?.bg || '')
+  const [currencyAcc, setCurrencyAcc] = useState(editeMode?.currency || currencyValue)
+
+  const setCurrencyAccHandler = (value) => {
+    setCurrencyAcc(value)
+  }
 
   const accauntOther: IAccounts = getItemFromList(1, accounts)
 
@@ -42,6 +49,7 @@ const CreateAccauntModal: FC<IAccauntCreateModal> = React.memo(({setModal, edite
         id: + new Date(),
         count: +count.replace(',', '.'),
         delete: true,
+        currency: currencyAcc,
       }
       console.log('new ADD Accaunt', data);
       dispatch(addAccaunt(data))
@@ -61,6 +69,7 @@ const CreateAccauntModal: FC<IAccauntCreateModal> = React.memo(({setModal, edite
         id: editeMode?.id,
         count: +count.replace(',', '.'),
         delete: true,
+        currency: currencyAcc,
       }
       console.log('save Accaunt', data);
       dispatch(editeAccaunt(data))
@@ -107,6 +116,15 @@ const CreateAccauntModal: FC<IAccauntCreateModal> = React.memo(({setModal, edite
         <ColorModal close={setColorModal} submin={setColorHandler} />
       </CustomModal>
 
+      <CustomModal visible={currenciesModal} closeHandler={setCurrenciesModal}>
+        <Picker 
+          overStyle={{maxHeight: '90%'}}
+          close={() => setCurrenciesModal(false)}
+          changeValue={setCurrencyAccHandler} 
+          select={currencyAcc} 
+          list={currencies()}/>
+      </CustomModal>
+
       <Text style={styles.title}>
         {editeMode ? t('Editing') : t('Create_account')}
       </Text>
@@ -123,7 +141,7 @@ const CreateAccauntModal: FC<IAccauntCreateModal> = React.memo(({setModal, edite
               placeholderTextColor={'#333'}
               autoFocus={true} 
               keyboardType={'number-pad'}/>
-            <Text style={globalStyles.h2}>{currencyValue}</Text>
+            <Text style={globalStyles.h2}>{currencyAcc}</Text>
         </View>)}
 
 
@@ -139,6 +157,22 @@ const CreateAccauntModal: FC<IAccauntCreateModal> = React.memo(({setModal, edite
         </View>
 
         <View style={[styles.item, {marginTop: -20}]}>
+          <Text style={[globalStyles.p1, 
+            currencyAcc ? {color: COLORS.mainColor} : styles.itemText]}>
+            {t('check')}:
+          </Text>
+        </View>
+
+        <TouchableOpacity 
+        onPress={() => setCurrenciesModal(true)}
+        style={{marginTop: 20}}>
+            <Text style={[globalStyles.p1, currencyAcc ? {color: COLORS.mainColor} : styles.itemText]}>
+              {currencyAcc}
+            </Text>
+        </TouchableOpacity>
+
+
+        <View style={[styles.item, {marginTop: 20}]}>
           <Text style={[globalStyles.p1, 
             bg ? {color: COLORS.mainColor} : styles.itemText]}>
             {t('color')}:

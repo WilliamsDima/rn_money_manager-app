@@ -13,7 +13,7 @@ import { numberConverter } from '../../../hooks/helpers'
 import { useTranslation } from 'react-i18next'
 import { ICurrencySelect } from '../../../store/redusers/main/types'
 
-const Diogramma: FC<IDiogramma> = ({sortArray, hideDiogram}) => {
+const Diogramma: FC<IDiogramma> = React.memo(({sortArray, hideDiogram}) => {
 
   const dispatch = useAppDispatch()
   const { t } = useTranslation()
@@ -94,6 +94,6 @@ const Diogramma: FC<IDiogramma> = ({sortArray, hideDiogram}) => {
       <Text style={[globalStyles.p1, {opacity: 0.6}]}>{t('EMPTY')}</Text>}
     </View>
   )
-}
+})
 
 export default Diogramma

@@ -62,7 +62,7 @@ const ExpAndIncModal: FC<IExpAndIncModal> = React.memo(({setExpAndEncomeModal, d
         count: +count.replace(',', '.'),
         text: text,
         income: data ? data?.income : tabExpOrIncome,
-        currency: currencyValue,
+        currency: selectAccaunt?.currency || currencyValue,
         transaction: data ? data?.transaction : false
       }
 
@@ -86,7 +86,7 @@ const ExpAndIncModal: FC<IExpAndIncModal> = React.memo(({setExpAndEncomeModal, d
             placeholderTextColor={'#333'}
             autoFocus={true} 
             keyboardType={'number-pad'}/>
-        <Text style={globalStyles.h2}>{currencyValue}</Text>
+        <Text style={globalStyles.h2}>{selectAccaunt?.currency || currencyValue}</Text>
       </View>
 
       <View style={styles.item}>

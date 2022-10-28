@@ -1,7 +1,6 @@
 import React, { FC } from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
 import { numberConverter } from '../../../hooks/helpers'
-import { useAppSelector } from '../../../hooks/hooks'
 import { IconSvg } from '../../../services/icons'
 import { globalStyles } from '../../../services/styles'
 import Avatar from '../Avatar'
@@ -11,9 +10,7 @@ import { IAccauntsBtnSelect } from './btn.types'
 const AccauntsBtnSelect: FC<IAccauntsBtnSelect> = ({data, overStyle, 
   idSelect, setAccauntsHandler}) => {
 
-  const { currencyValue } = useAppSelector(state => state.main)
-
-  const {bg, count, id, icon, name} = data
+  const {bg, count, id, icon, name, currency} = data
   
   return (
     <TouchableOpacity style={[styles.container, overStyle]}
@@ -25,7 +22,7 @@ const AccauntsBtnSelect: FC<IAccauntsBtnSelect> = ({data, overStyle,
         <Text style={[globalStyles.p1]}>{name}</Text>
       </View>
       <View style={styles.item}>
-        <Text style={[globalStyles.p1, styles.item]}>{numberConverter(count)} {currencyValue}</Text>
+        <Text style={[globalStyles.p1, styles.item]}>{numberConverter(count)} {currency || 'RUB'}</Text>
         <View style={[styles.circle, idSelect === id && styles.active]}/>
       </View>
     </TouchableOpacity>

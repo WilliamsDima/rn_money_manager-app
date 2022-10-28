@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from 'react'
-import { Text, TouchableOpacity, View, ScrollView, ToastAndroid, Alert } from 'react-native'
+import { Text, TouchableOpacity, View, ScrollView, ToastAndroid, Alert, Keyboard } from 'react-native'
 import { getItemFromList } from '../../../hooks/helpers'
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks'
 import { COLORS } from '../../../services/colors'
@@ -70,29 +70,65 @@ const TransactionModal: FC<IExpAndIncModal> = React.memo(({setModal}) => {
     }
   }
 
+  const [inputFocus, setInputFocus] = useState(false)
+  const inputRef = React.createRef()
+          
+  const focusInputHandler = (value) => {
+      setInputFocus(value)
+
+      if (value) {
+        inputRef?.current?.focus()
+      }
+  }
+
+  const fucusHandler = () => {
+    
+      if (!inputFocus) {
+          focusInputHandler(true)
+      } else {
+          // addTodoHandler()
+      }
+  }
+
+  useEffect(() => {
+  
+    const hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
+        focusInputHandler(false)
+    })
+  
+    return () => {
+      hideSubscription.remove()
+    }
+    
+  }, [])
+
 
   
   useEffect(() => {
-    console.log('TransactionModal', selectAccauntFirst);
+    console.log('TransactionModal');
+
   }, [accauntFirst, accauntSecond])
 
 
   return (
     <View style={[styles.content]}>
       <Text style={styles.title}>{t('Translation').toLocaleUpperCase()}</Text>
+
+      <TouchableOpacity style={{width: 20, height: 20, backgroundColor: 'red'}} onPress={() => fucusHandler()}/>
+      
       <ScrollView style={{flex: 1, marginTop: 10}}>
 
         <View style={styles.inputWrapper}>
           <Input 
-              overStyle={styles.input} 
-              maxLength={10}
-              value={count}
-              onChange={({nativeEvent}) => setCount(nativeEvent.text)}
-              placeholder={'0'}
-              placeholderTextColor={'#333'}
-              autoFocus={true} 
-              keyboardType={'number-pad'}/>
-          <Text style={globalStyles.h2}>{currencyValue}</Text>
+            overStyle={styles.input} 
+            maxLength={10}
+            value={count}
+            onChange={({nativeEvent}) => setCount(nativeEvent.text)}
+            placeholder={'0'}
+            placeholderTextColor={'#333'}
+            // autoFocus={true}
+            ref={inputRef}
+            keyboardType={'number-pad'}/>
         </View>
 
         <View style={styles.item}>

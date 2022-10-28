@@ -120,6 +120,7 @@ export const editeAccauntHandler = (accounts: IAccounts[], payload: IAccounts) =
             ac.count = payload.count
             ac.bg = payload.bg
             ac.icon = payload.icon
+            ac.currency = payload.currency
         }
         return ac
     })

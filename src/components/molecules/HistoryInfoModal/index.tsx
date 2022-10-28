@@ -82,7 +82,7 @@ const HistoryInfoModal: FC<IHistoryInfo> = React.memo(({close, data}) => {
         <ScrollView style={{marginTop: 20, width: '100%'}}>
           <View style={styles.item}>
             <Text style={globalStyles.p1} style={{color: COLORS.mainColor}}>
-              {t('currency')}: {numberConverter(isTransaction?.count)} {currencyValue}
+              {t('currency')}: {numberConverter(isTransaction?.count)} {currentAccaunt?.currency || currencyValue}
             </Text>
           </View>
           <View style={styles.item}>

@@ -21,6 +21,7 @@ const initialState: IStore = {
             id: 0,
             count: 0,
             delete: false,
+            currency: 'RUB',
         },
         {
             icon: QUESTION,
@@ -29,6 +30,7 @@ const initialState: IStore = {
             id: 1,
             count: 0,
             delete: false,
+            currency: 'RUB',
         },
     ],
 

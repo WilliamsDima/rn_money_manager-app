@@ -7,12 +7,8 @@ import { IAccauntItem } from './list.types'
 import Avatar from '../Avatar'
 import { IconSvg } from '../../../services/icons'
 import { COLORS } from '../../../services/colors'
-import { useAppSelector } from '../../../hooks/hooks'
 
 const AccauntItem: FC<IAccauntItem> = ({ data, onPress }) => {
-
-  const { currencyValue } = useAppSelector(state => state.main)
-
 
   return (
     <View style={styles.container}>
@@ -26,7 +22,7 @@ const AccauntItem: FC<IAccauntItem> = ({ data, onPress }) => {
           </Text>
         </View>
         <Text style={[globalStyles.p1, {marginBottom: 5}]}>
-          {numberConverter(data.count)} {currencyValue}
+          {numberConverter(data.count)} {data.currency || 'RUB'}
         </Text> 
       </TouchableOpacity>
     </View>

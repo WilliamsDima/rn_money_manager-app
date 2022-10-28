@@ -5,6 +5,7 @@ export interface IAccounts {
     id: number
     count: number
     delete: boolean
+    currency: string
 }
 
 export interface ICategories {
@@ -59,7 +60,6 @@ export interface IStore {
     transaction: ITransaction[],
     currencySelect: string[]
     currency: ICurrencySelect| null
-    currencies: ISortData[]
     currencyValue: string
     pop: number
     language: string

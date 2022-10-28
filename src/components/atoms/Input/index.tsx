@@ -3,16 +3,12 @@ import { TextInput } from 'react-native'
 import { styles } from './Input.styles'
 import { IInput } from './Input.types'
 
-const Input: FC<IInput> = (props) => {
+const Input: FC<IInput> = React.forwardRef((props, ref) => {
 
-  const {overStyle} = props
-  
-  return (
-    <TextInput 
-      style={[styles.input, overStyle]}
-      {...props}
-    />
-  )
-}
+  return <TextInput 
+  style={[styles.input, props?.overStyle]}
+  {...props} 
+  ref={ref} />
+})
 
 export default Input
