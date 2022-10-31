@@ -47,6 +47,7 @@ const CategoriesTemplate = () => {
 
         <View style={{width: '100%', alignItems: 'center', height: 50, marginTop: 20}}>
             <ButtonsTabMain 
+            main={false}
             tabValue={expOrIncom}
             setTab={setExpOrIncom}/>
         </View>

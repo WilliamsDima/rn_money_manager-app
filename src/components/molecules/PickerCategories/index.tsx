@@ -49,7 +49,7 @@ const PickerCategories: FC<IPickerCategory> = React.memo(({close, setId, value})
       activeOpacity={1}
       style={styles.content}>
 
-        <Text style={globalStyles.p2}>{t('Categories')}:</Text>
+        <Text style={[globalStyles.p2, {color: COLORS.colorText}]}>{t('Categories')}:</Text>
 
         <ScrollView style={{width: '100%'}}>
           {categories.map((item) => {
@@ -68,7 +68,7 @@ const PickerCategories: FC<IPickerCategory> = React.memo(({close, setId, value})
           </TouchableOpacity>
           <TouchableOpacity
           onPress={resetFilter}>
-            <Text style={[globalStyles.p1]}>{t('reset')}</Text>
+            <Text style={[globalStyles.p1, {color: COLORS.colorText}]}>{t('reset')}</Text>
           </TouchableOpacity>
           <TouchableOpacity
           onPress={submitHandler}>

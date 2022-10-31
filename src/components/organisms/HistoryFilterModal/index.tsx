@@ -74,7 +74,7 @@ const HistoryFilterModal: FC<IHistoryModal> = React.memo(({close, submit,
       style={styles.content}>
 
         <ScrollView style={{width: '100%'}}>
-          <Text style={globalStyles.p2}>{t('type')}:</Text>
+          <Text style={[globalStyles.p2, {color: COLORS.colorText}]}>{t('type')}:</Text>
           {dataType.map((item) => {
             return <FilterBtnSelect 
             key={item.id} 
@@ -82,7 +82,7 @@ const HistoryFilterModal: FC<IHistoryModal> = React.memo(({close, submit,
             isValue={type}
             setValue={setType}/>
           })}
-          <Text style={[globalStyles.p2, {marginTop: 10}]}>{t('regularize')}:</Text>
+          <Text style={[globalStyles.p2, {marginTop: 10, color: COLORS.colorText}]}>{t('regularize')}:</Text>
           {countType.map((item) => {
             return <FilterBtnSelect 
             key={item.id} 
@@ -99,7 +99,7 @@ const HistoryFilterModal: FC<IHistoryModal> = React.memo(({close, submit,
           </TouchableOpacity>
           <TouchableOpacity
           onPress={resetFilter}>
-            <Text style={[globalStyles.p1]}>{t('reset')}</Text>
+            <Text style={[globalStyles.p1, {color: COLORS.colorText}]}>{t('reset')}</Text>
           </TouchableOpacity>
           <TouchableOpacity
           onPress={submitHandler}>

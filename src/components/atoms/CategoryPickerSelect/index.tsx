@@ -19,10 +19,10 @@ const CategoryPickerSelect: FC<ICategorySelect> = ({data, overStyle,
         <Avatar overStyle={styles.icon} bg={data.bg}>
           <IconSvg name={data.icon} color={COLORS.colorPriamry} width={25}/>
         </Avatar>
-        <Text style={[globalStyles.p1]}>{data.name}</Text>
+        <Text style={[globalStyles.p1, {color: COLORS.colorText}]}>{data.name}</Text>
       </View>
       <View style={styles.item}>
-        <View style={[styles.done, active && styles.active]}>
+        <View style={[styles.done, {borderColor: COLORS.colorText}, active && styles.active]}>
           <View style={active && styles.check}/>
         </View>
       </View>

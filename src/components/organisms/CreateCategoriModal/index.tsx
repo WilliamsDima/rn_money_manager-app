@@ -95,7 +95,7 @@ const CreateCategoriModal: FC<IAccauntCreateModal> = React.memo(({setModal, edit
         <ColorModal close={setColorModal} submin={setColorHandler} />
       </CustomModal>
 
-      <Text style={styles.title}>
+      <Text style={[styles.title, {color: COLORS.colorText}]}>
         {editeMode ? t('Editing') : t('Create_category')}
       </Text>
 
@@ -113,22 +113,22 @@ const CreateCategoriModal: FC<IAccauntCreateModal> = React.memo(({setModal, edit
           onPress={() => setIncome(false)}
           style={[styles.btnSelect, {marginRight: 20}]}>
             <Text style={[globalStyles.p1, {marginRight: 10}, !income 
-              && {color: COLORS.mainColor}]}>{t('expense')}</Text>
-            <View style={[styles.income, !income && {backgroundColor: COLORS.mainColor}]}/>
+              ? {color: COLORS.mainColor} : {color: COLORS.colorText}]}>{t('expense')}</Text>
+            <View style={[styles.income, !income && {backgroundColor: COLORS.mainColor, borderColor: COLORS.mainColor}]}/>
           </TouchableOpacity>
 
           <TouchableOpacity 
           onPress={() => setIncome(true)}
           style={[styles.btnSelect]}>
             <Text style={[globalStyles.p1, {marginRight: 10}, income 
-              && {color: COLORS.mainColor}]}>{t('income')}</Text>
-            <View style={[styles.income, income && {backgroundColor: COLORS.mainColor}]}/>
+              ? {color: COLORS.mainColor} : {color: COLORS.colorText}]}>{t('income')}</Text>
+            <View style={[styles.income, income && {backgroundColor: COLORS.mainColor, borderColor: COLORS.mainColor}]}/>
           </TouchableOpacity>
         </View>
 
         <View style={styles.item}>
-          <Text style={[globalStyles.p1,
-            icon ? {color: COLORS.mainColor} :styles.itemText ]}>
+          <Text style={[globalStyles.p1, {color: COLORS.colorText},
+            icon ? {color: COLORS.mainColor} : styles.itemText ]}>
             {t('icon')}:
           </Text>
         </View>
@@ -138,7 +138,7 @@ const CreateCategoriModal: FC<IAccauntCreateModal> = React.memo(({setModal, edit
         </View>
 
         <View style={[styles.item, {marginTop: -20}]}>
-          <Text style={[globalStyles.p1, 
+          <Text style={[globalStyles.p1, {color: COLORS.colorText},
             bg ? {color: COLORS.mainColor} : styles.itemText]}>
             {t('color')}:
           </Text>
@@ -151,7 +151,9 @@ const CreateCategoriModal: FC<IAccauntCreateModal> = React.memo(({setModal, edit
         </TouchableOpacity>
 
         <View style={[styles.item, {paddingBottom: 70}]}>
-          <Text style={[globalStyles.p1, name ? {color: COLORS.mainColor} : styles.itemText]}>{t('name')}:</Text>
+          <Text style={[globalStyles.p1, {color: COLORS.colorText}, 
+            name ? {color: COLORS.mainColor} : styles.itemText]}>
+            {t('name')}:</Text>
           <View style={[styles.inputWrapper, {width: '100%', marginTop: 0}]}>
             <Input
               value={name}

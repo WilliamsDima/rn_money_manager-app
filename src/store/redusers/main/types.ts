@@ -62,6 +62,7 @@ export interface IStore {
     currency: ICurrencySelect| null
     currencyValue: string
     pop: number
+    themeApp: string
     language: string
     languageData: ISortData[]
 }

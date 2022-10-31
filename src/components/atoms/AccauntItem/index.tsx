@@ -17,11 +17,11 @@ const AccauntItem: FC<IAccauntItem> = ({ data, onPress }) => {
           <Avatar overStyle={styles.icon} bg={data.bg}>
             <IconSvg name={data.icon} color={COLORS.colorPriamry} width={25}/>
           </Avatar>
-          <Text style={[globalStyles.p1]} numberOfLines={1}>
+          <Text style={[globalStyles.p1, {color: COLORS.colorText}]} numberOfLines={1}>
             {data.name}
           </Text>
         </View>
-        <Text style={[globalStyles.p1, {marginBottom: 5}]}>
+        <Text style={[globalStyles.p1, {marginBottom: 5, color: COLORS.colorText}]}>
           {numberConverter(data.count)} {data.currency || 'RUB'}
         </Text> 
       </TouchableOpacity>

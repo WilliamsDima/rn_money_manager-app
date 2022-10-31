@@ -9,6 +9,7 @@ import IconBtn from '../../atoms/IconBtn'
 import { styles } from './button.styles'
 import { IButton } from './button.types'
 import { useTranslation } from 'react-i18next'
+import { COLORS } from '../../../services/colors'
 
 const AccauntsBtn: FC<IButton> = ({setModal, setModalTransaction}) => {
 
@@ -25,13 +26,13 @@ const AccauntsBtn: FC<IButton> = ({setModal, setModalTransaction}) => {
       <View style={styles.buttons}>
         <View style={styles.btn}>
           <IconBtn name={HISTORY} onPress={toHistory}/>
-          <Text style={[globalStyles.p2, styles.btnText]}>
+          <Text style={[globalStyles.p2, styles.btnText, {color: COLORS.colorText}]}>
             {t('History')}
           </Text>
         </View>
         <View style={[styles.btn]}>
           <IconBtn name={REFUND} onPress={() => setModalTransaction(true)}/>
-          <Text style={[globalStyles.p2, styles.btnText]}>
+          <Text style={[globalStyles.p2, styles.btnText, {color: COLORS.colorText}]}>
           {t('Translation')}
           </Text>
         </View>

@@ -16,13 +16,13 @@ export const styles = StyleSheet.create({
   },
   active: {
     borderBottomWidth: 1,
-    borderColor: COLORS.colorPriamry,
+    borderColor: COLORS.colorText,
   },
   line: {
     position: 'absolute',
     width: '25%',
     height: 1,
-    backgroundColor: COLORS.colorPriamry,
+    backgroundColor: COLORS.colorText,
     bottom: -5,
   }
 })

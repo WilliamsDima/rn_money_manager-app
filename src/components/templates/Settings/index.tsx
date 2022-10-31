@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { View, Text, TouchableOpacity, DevSettings, Alert } from 'react-native'
 import { localAPI } from '../../../api/asyncStorage'
 import { COLORS } from '../../../services/colors'
@@ -9,18 +9,20 @@ import { LOCAL_NAME } from '../../../store/actions/main/types'
 import ScrollContainer from '../../atoms/Container/ScrollContainer'
 import { styles } from './settings.styles'
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks'
-import { setCurrencyValue, setLanguage, setRate, setSortValue } from '../../../store/redusers/main/main'
+import { setCurrencyValue, setLanguage, setRate, setSortValue, setThemeApp } from '../../../store/redusers/main/main'
 import CustomModal from '../../atoms/Modal'
 import Picker from '../../molecules/Picker'
-import { currencies, sortData, themeApp } from '../../../hooks/helpers'
+import { currencies, sortData, getThemeApp } from '../../../hooks/helpers'
 import { useTranslation } from 'react-i18next'
 import i18n from '../../../i18n/i18n'
 import PickerMulti from '../../molecules/PickerMulti'
+import { AppContext } from '../../../context/App'
 
 const SettingsTemplate = () => {
 
+  const { setThemeApp } = useContext(AppContext)
   const dispatch = useAppDispatch()
-  const { sort, currencyValue, languageData, language, currencySelect } = useAppSelector(state => state.main)
+  const { sort, currencyValue, languageData, language, currencySelect, themeApp } = useAppSelector(state => state.main)
 
   const { t } = useTranslation()
 
@@ -40,6 +42,7 @@ const SettingsTemplate = () => {
   const [periodModal, setPeriodModal] = useState(false)
   const [currenciesModal, setCurrenciesModal] = useState(false)
   const [rateModal, setRateModal] = useState(false)
+  const [themeModal, setThemeModal] = useState(false)
   
 
   const changeSortHandler = (value) => {
@@ -52,10 +55,16 @@ const SettingsTemplate = () => {
     localAPI.set(LOCAL_NAME.CURRENCY_VALUE, value)
   }
 
+  const changeThemeHandler = (value) => {
+    //dispatch(setThemeApp(value))
+    setThemeApp(value)
+  }
+
   const rateSubmit = (value) => {
     const data = [value[0]?.value, value[1]?.value]
     dispatch(setRate(data))
   }
+
 
   const deleteDate = () => {
 
@@ -78,8 +87,6 @@ const SettingsTemplate = () => {
             localAPI.remove(LOCAL_NAME.CURRENCY_VALUE)
             localAPI.remove(LOCAL_NAME.LANGUAGE)
             localAPI.remove(LOCAL_NAME.RATE)
-          
-            DevSettings.reload()
         } }
       ]
     );
@@ -90,22 +97,26 @@ const SettingsTemplate = () => {
       `${t('In_developing').toLocaleUpperCase()}...`)
   }
 
+  useEffect(() => {
+
+  }, [themeApp])
+
 
   return (
     <ScrollContainer overStyle={styles.container}>
 
       <TouchableOpacity style={styles.item} onPress={inDevProgress}>
         <View style={{marginRight: 20}}>
-          <IconSvg name={PASSWORD} width={25}/>
+          <IconSvg name={PASSWORD} width={25} color={COLORS.colorText}/>
         </View>
-        <Text style={[globalStyles.h2, {marginRight: 20}]}>
+        <Text style={[globalStyles.h2, {marginRight: 20, color: COLORS.colorText}]}>
           PIN
         </Text>
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.item} onPress={() => setLanguageModal(true)}>
         <View style={{marginRight: 20}}>
-          <IconSvg name={LANGUAGE} width={25}/>
+          <IconSvg name={LANGUAGE} width={25} color={COLORS.colorText}/>
         </View>
         <CustomModal visible={languageModal} closeHandler={setLanguageModal}>
           <Picker 
@@ -116,7 +127,7 @@ const SettingsTemplate = () => {
             list={languageData}/>
         </CustomModal>
         <View style={{justifyContent: 'flex-start'}}>
-          <Text style={[globalStyles.h2, {marginRight: 20, opacity: 0.6}]}>
+          <Text style={[globalStyles.h2, {marginRight: 20, opacity: 0.6, color: COLORS.colorText}]}>
             {t('language')}
           </Text>
           <Text style={[globalStyles.h2, {color: COLORS.mainColor}]}>
@@ -127,7 +138,7 @@ const SettingsTemplate = () => {
 
       <TouchableOpacity style={styles.item} onPress={() => setRateModal(true)}>
         <View style={{marginRight: 20}}>
-          <IconSvg name={EXCHANGE} width={25}/>
+          <IconSvg name={EXCHANGE} width={25} color={COLORS.colorText}/>
         </View>
         <View style={{justifyContent: 'flex-start'}}>
           <CustomModal visible={rateModal} closeHandler={setRateModal}>
@@ -145,7 +156,7 @@ const SettingsTemplate = () => {
               ]} 
               data={currencies().filter((it) => it.value !== currencyValue)}/>
           </CustomModal>
-          <Text style={[globalStyles.h2, {marginRight: 20, opacity: 0.6}]}>
+          <Text style={[globalStyles.h2, {marginRight: 20, opacity: 0.6, color: COLORS.colorText}]}>
             {t('Exchange_Rates')}
           </Text>
           <Text style={[globalStyles.h2, {color: COLORS.mainColor}]}>
@@ -156,7 +167,7 @@ const SettingsTemplate = () => {
 
       <TouchableOpacity style={styles.item} onPress={() => setCurrenciesModal(true)}>
         <View style={{marginRight: 20}}>
-          <IconSvg name={DOLLAR} width={25}/>
+          <IconSvg name={DOLLAR} width={25} color={COLORS.colorText}/>
         </View>
         <View style={{justifyContent: 'flex-start'}}>
 
@@ -168,7 +179,7 @@ const SettingsTemplate = () => {
               select={currencyValue} 
               list={currencies()}/>
           </CustomModal>
-          <Text style={[globalStyles.h2, {marginRight: 20, opacity: 0.6}]}>
+          <Text style={[globalStyles.h2, {marginRight: 20, opacity: 0.6, color: COLORS.colorText}]}>
             {t('currency')}
           </Text>
           <Text style={[globalStyles.h2, {color: COLORS.mainColor}]}>
@@ -177,26 +188,35 @@ const SettingsTemplate = () => {
         </View>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.item} onPress={inDevProgress}>
+      <TouchableOpacity style={styles.item} onPress={() => setThemeModal(true)}>
         <View style={{marginRight: 20}}>
-          <IconSvg name={THEME} width={25}/>
+          <IconSvg name={THEME} width={25} color={COLORS.colorText}/>
         </View>
+
+        <CustomModal visible={themeModal} closeHandler={setThemeModal}>
+            <Picker 
+              overStyle={{maxHeight: '90%'}}
+              close={() => setThemeModal(false)}
+              changeValue={changeThemeHandler} 
+              select={themeApp} 
+              list={getThemeApp()}/>
+        </CustomModal>
         <View style={{justifyContent: 'flex-start'}}>
-          <Text style={[globalStyles.h2, {marginRight: 20, opacity: 0.6}]}>
+          <Text style={[globalStyles.h2, {marginRight: 20, opacity: 0.6, color: COLORS.colorText}]}>
             {t('theme')}
           </Text>
           <Text style={[globalStyles.h2, {color: COLORS.mainColor}]}>
-            {themeApp()[0].title}
+            {getThemeApp()[0].title}
           </Text>
         </View>
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.item} onPress={() => setPeriodModal(true)}>
         <View style={{marginRight: 20}}>
-          <IconSvg name={PERIOD} width={25}/>
+          <IconSvg name={PERIOD} width={25} color={COLORS.colorText}/>
         </View>
         <View style={{justifyContent: 'flex-start'}}>
-          <Text style={[globalStyles.h2, {marginRight: 20, opacity: 0.6}]}>
+          <Text style={[globalStyles.h2, {marginRight: 20, opacity: 0.6, color: COLORS.colorText}]}>
             {t('period')}
           </Text>
 

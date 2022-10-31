@@ -4,7 +4,7 @@ import { getItemFromList, months, numberConverter } from '../../../hooks/helpers
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks'
 import { COLORS } from '../../../services/colors'
 import { IconSvg } from '../../../services/icons'
-import { EDIT } from '../../../services/iconsName'
+import { EDIT, REFUND } from '../../../services/iconsName'
 import { globalStyles } from '../../../services/styles'
 import { deleteTransaction } from '../../../store/redusers/main/main'
 import { IAccounts, ICategories } from '../../../store/redusers/main/types'
@@ -24,15 +24,21 @@ const HistoryInfoModal: FC<IHistoryInfo> = React.memo(({close, data}) => {
 
   const { categories, accounts, transaction, currencyValue } = useAppSelector(state => state.main)
 
-  const isTransaction = getItemFromList(data.id, transaction)
 
-  const currentCategori: ICategories = isTransaction 
-  && getItemFromList(isTransaction.categori, categories) || ''
+  const currentCategori: ICategories = data 
+  && getItemFromList(data?.categori, categories) || ''
+  
 
-  const currentAccaunt: IAccounts = isTransaction 
-  && getItemFromList(isTransaction.accounts, accounts)
+  let currentAccaunt: IAccounts = data 
+  && getItemFromList(data?.accounts, accounts)
 
-  const date = new Date(isTransaction?.date)
+  const firstAccaunt: IAccounts = data 
+  && getItemFromList(data?.accounts[0], accounts)
+
+  const secondAccaunt: IAccounts = data 
+  && getItemFromList(data?.accounts[1], accounts)
+
+  const date = new Date(data?.date)
 
   const dateDisplay = date.getDate() + ' ' + months()[date.getMonth()].title + ' ' 
   + date.getFullYear()
@@ -81,25 +87,25 @@ const HistoryInfoModal: FC<IHistoryInfo> = React.memo(({close, data}) => {
 
         <ScrollView style={{marginTop: 20, width: '100%'}}>
           <View style={styles.item}>
-            <Text style={globalStyles.p1} style={{color: COLORS.mainColor}}>
-              {t('currency')}: {numberConverter(isTransaction?.count)} {currentAccaunt?.currency || currencyValue}
+            <Text style={[globalStyles.p1]} style={{color: COLORS.mainColor}}>
+              {t('currency')}: {numberConverter(data?.count)} {currentAccaunt?.currency || currencyValue}
             </Text>
           </View>
           <View style={styles.item}>
-            <Text style={[globalStyles.p1, {opacity: 0.6}]}>
+            <Text style={[globalStyles.p1, {opacity: 0.6, color: COLORS.colorText}]}>
               {t('category')}:
             </Text>
 
             <View 
             style={{flexDirection: 'row', alignItems: 'center', marginTop: 10}}>
-              {currentCategori?.name && <Avatar overStyle={styles.icon} bg={currentCategori?.bg}>
+              <Avatar overStyle={styles.icon} bg={currentCategori?.bg}>
                 <IconSvg 
-                  name={currentCategori?.icon}
-                  color={COLORS.colorPriamry} 
+                  name={currentCategori?.icon || REFUND}
+                  color={currentCategori?.name ? COLORS.colorPriamry : COLORS.colorText} 
                   width={25}/>
-              </Avatar>}
+              </Avatar>
 
-              <Text style={globalStyles.p1}>
+              <Text style={[globalStyles.p1, {color: COLORS.colorText}]}>
                 {data.transaction ? t('Translation') : currentCategori?.name 
                 || t('category_deleted')}
               </Text>
@@ -107,7 +113,7 @@ const HistoryInfoModal: FC<IHistoryInfo> = React.memo(({close, data}) => {
           </View>
 
           <View style={styles.item}>
-            <Text style={[globalStyles.p1, {opacity: 0.6}]}>
+            <Text style={[globalStyles.p1, {opacity: 0.6, color: COLORS.colorText}]}>
               {t('check')}:
             </Text>
 
@@ -120,34 +126,35 @@ const HistoryInfoModal: FC<IHistoryInfo> = React.memo(({close, data}) => {
                   width={25}/>
               </Avatar>}
 
-              <Text style={globalStyles.p1}>
-                {currentAccaunt?.name || t('account_deleted')}
+              <Text style={[globalStyles.p1, {color: COLORS.colorText}]}>
+                {data.transaction ? firstAccaunt?.name + ' -> ' + secondAccaunt?.name 
+                : currentAccaunt?.name || t('account_deleted')}
               </Text>
             </View>
           </View>
 
           <View style={styles.item}>
-            <Text style={[globalStyles.p1, {opacity: 0.6}]}>
+            <Text style={[globalStyles.p1, {opacity: 0.6, color: COLORS.colorText}]}>
               {t('date')}:
             </Text>
 
             <View 
             style={{flexDirection: 'row', alignItems: 'center', marginTop: 10}}>
-              <Text style={globalStyles.p1}>
+              <Text style={[globalStyles.p1, {color: COLORS.colorText}]}>
                 {dateDisplay}
               </Text>
             </View>
           </View>
 
-          { isTransaction?.text ? (<View style={styles.item}>
-            <Text style={[globalStyles.p1, {opacity: 0.6}]}>
+          { data?.text ? (<View style={styles.item}>
+            <Text style={[globalStyles.p1, {opacity: 0.6, color: COLORS.colorText}]}>
               {t('Comment')}:
             </Text>
 
             <View 
             style={{flexDirection: 'row', alignItems: 'center', marginTop: 10}}>
-              <Text style={globalStyles.p1}>
-                {isTransaction.text}
+              <Text style={[globalStyles.p1, {color: COLORS.colorText}]}>
+                {data.text}
               </Text>
             </View>
           </View>) : null}
@@ -155,7 +162,7 @@ const HistoryInfoModal: FC<IHistoryInfo> = React.memo(({close, data}) => {
           
           <View style={styles.btns}>
             <TouchableOpacity onPress={close}>
-              <Text style={globalStyles.p1}>{t('cancel')}</Text>
+              <Text style={[globalStyles.p1, {color: COLORS.colorText}]}>{t('cancel')}</Text>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={deleteHandler}>
@@ -165,7 +172,7 @@ const HistoryInfoModal: FC<IHistoryInfo> = React.memo(({close, data}) => {
             </TouchableOpacity>
 
             {!data?.transaction && <TouchableOpacity
-            onPress={() => setEditModal(isTransaction)}>
+            onPress={() => setEditModal(data)}>
               <IconSvg name={EDIT} 
               color={COLORS.mainColor}
               style={{width: 30, height: 30}} />

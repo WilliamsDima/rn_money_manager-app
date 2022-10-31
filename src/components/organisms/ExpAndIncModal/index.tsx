@@ -74,23 +74,23 @@ const ExpAndIncModal: FC<IExpAndIncModal> = React.memo(({setExpAndEncomeModal, d
 
   return (
     <View style={[styles.content]}>
-      <Text style={styles.title}>{tabExpOrIncome 
+      <Text style={[styles.title, {color: COLORS.colorText}]}>{tabExpOrIncome 
       || data?.income ? t('income') : t('expense')}</Text>
       <View style={styles.inputWrapper}>
         <Input 
-            overStyle={styles.input} 
+            overStyle={[styles.input, {color: COLORS.colorText}]} 
             maxLength={10}
             value={count}
             onChange={({nativeEvent}) => setCount(nativeEvent.text)}
             placeholder={'0'}
-            placeholderTextColor={'#333'}
+            placeholderTextColor={COLORS.colorText}
             autoFocus={true} 
             keyboardType={'number-pad'}/>
-        <Text style={globalStyles.h2}>{selectAccaunt?.currency || currencyValue}</Text>
+        <Text style={[globalStyles.h2, {color: COLORS.colorText}]}>{selectAccaunt?.currency || currencyValue}</Text>
       </View>
 
       <View style={styles.item}>
-        <Text style={[globalStyles.p1, selectAccaunt ? {color: COLORS.mainColor} 
+        <Text style={[globalStyles.p1, {color: COLORS.colorText}, selectAccaunt ? {color: COLORS.mainColor} 
           : styles.itemText]}>{t('Choose_account')}:</Text>
 
         <TouchableOpacity style={{marginTop: 10}}
@@ -104,7 +104,7 @@ const ExpAndIncModal: FC<IExpAndIncModal> = React.memo(({setExpAndEncomeModal, d
       <ScrollView style={{flex: 1, marginTop: 10}}>
 
         <View style={styles.item}>
-          <Text style={[globalStyles.p1, isCategoryExist ? {color: COLORS.mainColor} 
+          <Text style={[globalStyles.p1, {color: COLORS.colorText}, isCategoryExist ? {color: COLORS.mainColor} 
             : styles.itemText]}>{t('Select_category')}:</Text>
         </View>
 
@@ -116,7 +116,7 @@ const ExpAndIncModal: FC<IExpAndIncModal> = React.memo(({setExpAndEncomeModal, d
         </View>
 
         <View style={styles.item}>
-          <Text style={[globalStyles.p1, styles.itemText]}>
+          <Text style={[globalStyles.p1, styles.itemText, {color: COLORS.colorText}]}>
             {t('Date_picker')}:
           </Text>
 
@@ -125,7 +125,7 @@ const ExpAndIncModal: FC<IExpAndIncModal> = React.memo(({setExpAndEncomeModal, d
               onPress={() => setDate(dayBeforeYesterday)}
               style={[styles.dataBtn, dayBeforeYesterday.getDate() === date.getDate()
               && {backgroundColor: COLORS.mainColor}]}>
-              <Text style={[globalStyles.p1]}>
+              <Text style={[globalStyles.p1, dayBeforeYesterday.getDate() !== date.getDate() && {color: COLORS.colorText}]}>
                 {dayBeforeYesterday.getDate()} / {dayBeforeYesterday.getMonth()}
               </Text>
             </TouchableOpacity>
@@ -133,7 +133,7 @@ const ExpAndIncModal: FC<IExpAndIncModal> = React.memo(({setExpAndEncomeModal, d
               onPress={() => setDate(yesterday)}
               style={[styles.dataBtn, yesterday.getDate() === date.getDate()
               && {backgroundColor: COLORS.mainColor}]}>
-              <Text style={[globalStyles.p1]}>
+              <Text style={[globalStyles.p1, yesterday.getDate() !== date.getDate() && {color: COLORS.colorText}]}>
                 {yesterday.getDate()} / {yesterday.getMonth()}
               </Text>
             </TouchableOpacity>
@@ -141,7 +141,7 @@ const ExpAndIncModal: FC<IExpAndIncModal> = React.memo(({setExpAndEncomeModal, d
               onPress={() => setDate(new Date())}
               style={[styles.dataBtn, new Date().getDate() === date.getDate()
               && {backgroundColor: COLORS.mainColor}]}>
-              <Text style={[globalStyles.p1]}>
+              <Text style={[globalStyles.p1, new Date().getDate() !== date.getDate() && {color: COLORS.colorText}]}>
                 {new Date().getDate()} / {new Date().getMonth()}
               </Text>
             </TouchableOpacity>
@@ -149,7 +149,7 @@ const ExpAndIncModal: FC<IExpAndIncModal> = React.memo(({setExpAndEncomeModal, d
         </View>
 
         <View style={[styles.item, {paddingBottom: 100}]}>
-          <Text style={[globalStyles.p1, styles.itemText]}>{t('Comment')}:</Text>
+          <Text style={[globalStyles.p1, styles.itemText, {color: COLORS.colorText}]}>{t('Comment')}:</Text>
           <View style={[styles.inputWrapper, {width: '100%'}]}>
             <Input
               value={text}

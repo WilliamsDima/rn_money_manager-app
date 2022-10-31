@@ -6,6 +6,7 @@ export const styles = StyleSheet.create({
   input: {
     borderBottomWidth: 1,
     borderBottomColor: COLORS.mainColor,
-    ...globalStyles.h2
+    ...globalStyles.h2,
+    color: COLORS.colorText
   }
 })

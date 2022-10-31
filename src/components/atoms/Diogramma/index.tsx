@@ -34,13 +34,13 @@ const Diogramma: FC<IDiogramma> = React.memo(({sortArray, hideDiogram}) => {
 
   const diogramm = hideDiogram ? <View style={{alignItems: 'center'}}>
     <DiogrammaLine sortArray={sortArray}/>
-    <Text style={[globalStyles.p2]}>
+    <Text style={[globalStyles.p2, {color: COLORS.colorText}]}>
           {numberConverter(sumMoneySort)} {currencyValue}
         </Text>
   </View> 
   : <View style={styles.wrapperDiagremm}>
       
-      {currency && <Text style={globalStyles.p1}>
+      {currency && <Text style={[globalStyles.p1, , {color: COLORS.colorText}]}>
         {currency?.first?.count} {currency?.first?.code} 
       </Text>}
     <PieChart
@@ -51,11 +51,11 @@ const Diogramma: FC<IDiogramma> = React.memo(({sortArray, hideDiogram}) => {
       coverRadius={0.5}
       coverFill={COLORS.colorBlack}
     />
-      {currency && <Text style={globalStyles.p1}>
+      {currency && <Text style={[globalStyles.p1, {color: COLORS.colorText}]}>
         {currency?.second?.count} {currency?.second?.code} 
       </Text>}
       <View style={styles.count}>
-        <Text style={[globalStyles.p2]}>
+        <Text style={[globalStyles.p2, {color: COLORS.colorText}]}>
           {numberConverter(sumMoneySort)} {currencyValue}
         </Text>
       </View>
@@ -91,7 +91,7 @@ const Diogramma: FC<IDiogramma> = React.memo(({sortArray, hideDiogram}) => {
   return (
     <View style={[styles.container, !hideDiogram ? {marginBottom: 0} : {marginBottom: 10}]}>
       {sortArray.length && sliceColor.length ? diogramm :
-      <Text style={[globalStyles.p1, {opacity: 0.6}]}>{t('EMPTY')}</Text>}
+      <Text style={[globalStyles.p1, {opacity: 0.6, color: COLORS.colorText}]}>{t('EMPTY')}</Text>}
     </View>
   )
 })

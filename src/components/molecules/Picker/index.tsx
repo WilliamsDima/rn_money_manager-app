@@ -5,6 +5,7 @@ import { styles } from './modal.styles'
 import { IPicker } from './modal.types'
 
 const Picker: FC<IPicker> = React.memo(({close, changeValue, select, list, overStyle}) => {
+  
 
   const setAccauntsHandler = (value) => {
     changeValue(value)

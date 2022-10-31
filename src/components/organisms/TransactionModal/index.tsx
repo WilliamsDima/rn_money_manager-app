@@ -19,7 +19,7 @@ const TransactionModal: FC<IExpAndIncModal> = React.memo(({setModal}) => {
   const dispatch = useAppDispatch()
   const { t } = useTranslation()
 
-  const { accounts,  currencyValue } = useAppSelector(state => state.main)
+  const { accounts } = useAppSelector(state => state.main)
 
   const [accauntsModalFirst, setAccauntsModalFirst] = useState(false)
   const [accauntsModalSecond, setAccauntsModalSecond] = useState(false)
@@ -61,7 +61,7 @@ const TransactionModal: FC<IExpAndIncModal> = React.memo(({setModal}) => {
         text: text,
         income: true,
         transaction: true,
-        currency: currencyValue,
+        currency: selectAccauntFirst?.currency,
       }
       console.log('new ADD', data);
       dispatch(addTransaction(data))
@@ -78,7 +78,7 @@ const TransactionModal: FC<IExpAndIncModal> = React.memo(({setModal}) => {
 
   return (
     <View style={[styles.content]}>
-      <Text style={styles.title}>{t('Translation').toLocaleUpperCase()}</Text>
+      <Text style={[styles.title, {color: COLORS.colorText}]}>{t('Translation').toLocaleUpperCase()}</Text>
       
       <ScrollView style={{flex: 1, marginTop: 10}}>
 
@@ -95,7 +95,7 @@ const TransactionModal: FC<IExpAndIncModal> = React.memo(({setModal}) => {
         </View>
 
         <View style={styles.item}>
-          <Text style={[globalStyles.p1, styles.itemText]}>{t('Where')}:</Text>
+          <Text style={[globalStyles.p1, styles.itemText, {color: COLORS.colorText}]}>{t('Where')}:</Text>
 
           <TouchableOpacity style={{marginTop: 10}}
           onPress={() => setAccauntsModalFirst(true)}>
@@ -107,7 +107,7 @@ const TransactionModal: FC<IExpAndIncModal> = React.memo(({setModal}) => {
         </View>
 
         <View style={styles.item}>
-          <Text style={[globalStyles.p1, styles.itemText]}>{t('WHERE')}:</Text>
+          <Text style={[globalStyles.p1, styles.itemText, {color: COLORS.colorText}]}>{t('WHERE')}:</Text>
 
           <TouchableOpacity style={{marginTop: 10}}
           onPress={() => setAccauntsModalSecond(true)}>
@@ -119,14 +119,13 @@ const TransactionModal: FC<IExpAndIncModal> = React.memo(({setModal}) => {
         </View>
 
         <View style={[styles.item, {paddingBottom: 100}]}>
-          <Text style={[globalStyles.p1, styles.itemText]}>{t('Comment')}:</Text>
+          <Text style={[globalStyles.p1, styles.itemText, {color: COLORS.colorText}]}>{t('Comment')}:</Text>
           <View style={[styles.inputWrapper, {width: '100%'}]}>
             <Input
               value={text}
               onChange={({nativeEvent}) => setText(nativeEvent.text)}
               overStyle={{width: '100%'}}
               numberOfLines={2}
-              placeholderTextColor={'#333'}
               multiline={true}/>
           </View>
         </View>

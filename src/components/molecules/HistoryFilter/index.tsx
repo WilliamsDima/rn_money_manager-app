@@ -21,16 +21,16 @@ const HistoryFilter: FC<IHistory> = React.memo(({ setFilter, setCategori }) => {
       <View style={styles.item}>
 
           <TouchableOpacity onPress={() => setCategori(true)}>
-            <Text style={globalStyles.p1}>{t('Categories')}</Text>
+            <Text style={[globalStyles.p1, {color: COLORS.colorText}]}>{t('Categories')}</Text>
           </TouchableOpacity>
           
           <TouchableOpacity 
           style={styles.btn} 
           onPress={() => setFilter(true)}>
-            <Text style={[globalStyles.p1, {marginRight: 5}]}>
+            <Text style={[globalStyles.p1, {marginRight: 5, color: COLORS.colorText}]}>
               {t('filter')}
             </Text>
-            <IconSvg name={TAB_CATEGORIES} color={COLORS.colorPriamry}/>
+            <IconSvg name={TAB_CATEGORIES} color={COLORS.colorText}/>
           </TouchableOpacity>
       </View>
     </View>

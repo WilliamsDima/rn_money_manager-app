@@ -12,7 +12,8 @@ export const LOCAL_NAME =  {
     PERIOD: 'PERIOD',
     CURRENCY_VALUE: 'CURRENCY_VALUE',
     LANGUAGE: 'LANGUAGE',
-    RATE: 'RATE'
+    RATE: 'RATE',
+    THEME_APP: 'THEME_APP',
 }
 
 interface IDeleteAccaunt {
@@ -53,4 +54,5 @@ export interface IACMain {
     setCurrencyValue: (state: IStore, payload: PayloadAction<string>) => void
 
     setLanguage: (state: IStore, payload: PayloadAction<string>) => void
+    setThemeApp: (state: IStore, payload: PayloadAction<string>) => void
 }

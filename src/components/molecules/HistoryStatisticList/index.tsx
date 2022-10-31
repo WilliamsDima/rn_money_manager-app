@@ -44,8 +44,9 @@ const HistoryStatisticList: FC<IHistory> = React.memo(({ data }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={[globalStyles.p1, {textTransform: 'uppercase'}]}>{t('top')}: {topItemCategory?.name}</Text>
-      <Text style={globalStyles.p1}>{t('total')}:
+      <Text style={[globalStyles.p1, {color: COLORS.colorText}, {textTransform: 'uppercase'}]}>{t('top')} 
+      : {topItemCategory?.name}</Text>
+      <Text style={[globalStyles.p1, {color: COLORS.colorText}]}>{t('total')}:
         <Text 
         style={colorSum}> {sum < 0 ? numberConverter(sum * -1) 
         : numberConverter(sum)} {currencyValue}

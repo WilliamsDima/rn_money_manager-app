@@ -57,15 +57,15 @@ const AboutAppTemplate = () => {
   return (
     <ScrollContainer overStyle={styles.container}>
       <View style={styles.item}>
-        <Text style={globalStyles.p1}>{t('VERSION')}</Text>
+        <Text style={[globalStyles.p1, {color: COLORS.colorText}]}>{t('VERSION')}</Text>
       </View>
       <View style={styles.item}>
         <TouchableOpacity onPress={toPrivacy}>
-          <Text style={globalStyles.p1}>{t('privacy_policy')}</Text>
+          <Text style={[globalStyles.p1, {color: COLORS.colorText}]}>{t('privacy_policy')}</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.item}>
-        <Text style={globalStyles.p1}>{t('review')}</Text>
+        <Text style={[globalStyles.p1, {color: COLORS.colorText}]}>{t('review')}</Text>
         <TouchableOpacity style={styles.review} onPress={toGoogleStore}>
           <IconSvg name={STAR}/>
           <IconSvg name={STAR}/>
@@ -75,7 +75,7 @@ const AboutAppTemplate = () => {
         </TouchableOpacity>
       </View>
       <View style={styles.item}>
-        <Text style={globalStyles.p1}>{t('developer_contact')}</Text>
+        <Text style={[globalStyles.p1, {color: COLORS.colorText}]}>{t('developer_contact')}</Text>
       </View>
       <View style={styles.item}>
         <TouchableOpacity onPress={toMySite}>

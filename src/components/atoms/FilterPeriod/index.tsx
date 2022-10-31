@@ -2,6 +2,7 @@ import React, { FC } from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
 import { sortData } from '../../../hooks/helpers'
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks'
+import { COLORS } from '../../../services/colors'
 import { globalStyles } from '../../../services/styles'
 import { setSortValue } from '../../../store/redusers/main/main'
 import { styles } from './filter.styles'
@@ -22,7 +23,7 @@ const FilterPeriod: FC<IFilterPeriod> = ({}) => {
       key={i}
       style={[styles.item, sort === item.value && styles.active]}
       onPress={() => changeSortHandler(item.value)}>
-        <Text style={[globalStyles.p1]}>
+        <Text style={[globalStyles.p1, {color: COLORS.colorText}]}>
           {item.title}
         </Text>
       </TouchableOpacity>)}

@@ -158,4 +158,9 @@ export const reducers: IACMain = {
         state.language = payload
         localAPI.set(LOCAL_NAME.LANGUAGE, state.language)
     },
+
+    setThemeApp:(state, { payload }) => {
+        state.themeApp = payload
+        localAPI.set(LOCAL_NAME.THEME_APP, state.themeApp)
+    },
 };

@@ -10,6 +10,7 @@ import { useAppDispatch, useAppSelector } from '../../../hooks/hooks'
 import { setPop } from '../../../store/redusers/main/main'
 import { urlAppStore } from '../../../hooks/helpers'
 import { useTranslation } from 'react-i18next'
+import { COLORS } from '../../../services/colors'
 
 const MoreTemplate = () => {
   
@@ -77,45 +78,45 @@ const MoreTemplate = () => {
     <ScrollView style={styles.container}>
       <TouchableOpacity style={styles.btn} onPress={toAuth}>
         <View style={{marginHorizontal: 10}}>
-          <IconSvg name={USER} width={20}/>
+          <IconSvg name={USER} width={20} color={COLORS.colorText}/>
         </View>
-        <Text style={globalStyles.h2}>{t('Auth')}</Text>
+        <Text style={[globalStyles.h2, {color: COLORS.colorText}]}>{t('Auth')}</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.btn} onPress={toStatistic}>
         <View style={{marginHorizontal: 10}}>
-          <IconSvg name={STATISTIC} width={20}/>
+          <IconSvg name={STATISTIC} width={20} color={COLORS.colorText}/>
         </View>
-        <Text style={globalStyles.h2}>{t('Statistic')}</Text>
+        <Text style={[globalStyles.h2, {color: COLORS.colorText}]}>{t('Statistic')}</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.btn} onPress={toRegularPayments}>
         <View style={{marginHorizontal: 10}}>
-          <IconSvg name={EXCHANGE} width={20}/>
+          <IconSvg name={EXCHANGE} width={20} color={COLORS.colorText}/>
         </View>
-        <Text style={globalStyles.h2}>{t('RegularPayments')}</Text>
+        <Text style={[globalStyles.h2, {color: COLORS.colorText}]}>{t('RegularPayments')}</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.btn} onPress={onShare}>
         <View style={{marginHorizontal: 10}}>
-          <IconSvg name={SHARE} width={20}/>
+          <IconSvg name={SHARE} width={20} color={COLORS.colorText}/>
         </View>
-        <Text style={globalStyles.h2}>{t('Share')}</Text>
+        <Text style={[globalStyles.h2, {color: COLORS.colorText}]}>{t('Share')}</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.btn} onPress={toSettings}>
         <View style={{marginHorizontal: 10}}>
-          <IconSvg name={GEAR} width={20}/>
+          <IconSvg name={GEAR} width={20} color={COLORS.colorText}/>
         </View>
-        <Text style={globalStyles.h2}>{t('Settings')}</Text>
+        <Text style={[globalStyles.h2, {color: COLORS.colorText}]}>{t('Settings')}</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.btn} onPress={toGooglePlay}>
         <View style={{marginHorizontal: 10}}>
-          <IconSvg name={GOOGLE_PLAY} width={20}/>
+          <IconSvg name={GOOGLE_PLAY} width={20} color={COLORS.colorText}/>
         </View>
-        <Text style={globalStyles.h2}>{t('review')}</Text>
+        <Text style={[globalStyles.h2, {color: COLORS.colorText}]}>{t('review')}</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.btn} onPress={toAboutApp}>
         <View style={{marginHorizontal: 10}}>
-          <IconSvg name={COIN} width={20}/>
+          <IconSvg name={COIN} width={20} color={COLORS.colorText}/>
         </View>
-        <Text style={globalStyles.h2}>{t('AboutApp')}</Text>
+        <Text style={[globalStyles.h2, {color: COLORS.colorText}]}>{t('AboutApp')}</Text>
       </TouchableOpacity>
 
       <TouchableOpacity 
@@ -132,7 +133,7 @@ const MoreTemplate = () => {
         style={{transform: [{scale: 0.8}]}}
         source={require('../../../assets/image/pop.png')} />}
 
-        <Text style={[globalStyles.h2, {position: 'absolute', right: 40}]}>
+        <Text style={[globalStyles.h2, {position: 'absolute', right: 40, color: COLORS.colorText}]}>
           pop: {pop}
         </Text>
       </TouchableOpacity>

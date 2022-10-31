@@ -171,6 +171,7 @@ const initialState: IStore = {
     currencyValue: 'RUB',
 
     pop: 0,
+    themeApp: 'light',
 
     language: 'ru',
     languageData:  [
@@ -193,5 +194,5 @@ export const {setAllCauntAccaunts, addTransaction,
     setSortValue, setSortDatePeriod, addLocalCategories,
     addLocalAccaunts, addAccaunt, editeAccaunt, deleteAccaunt,
     deleteTransaction, addCategori, editeCategori, deleteCategori,
-    setCurrency, setPop, setCurrencyValue, setLanguage, setRate,
+    setCurrency, setPop, setCurrencyValue, setLanguage, setRate, setThemeApp,
     setDataOnPeriodFilter, setAccauntId, addLocalExpAndIncome } = counterSlice.actions;

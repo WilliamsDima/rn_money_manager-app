@@ -47,28 +47,29 @@ const HistoryItem: FC<IHistory> = ({ data, setData }) => {
     <TouchableOpacity 
     onPress={() => setData(data)}
     style={[styles.item]}>
-      <View style={[styles.avatar, {width: '40%'}]}>
+      <View style={[styles.avatar, {width: '50%'}]}>
         <Avatar overStyle={styles.icon} bg={currentCategori?.bg}>
-          <IconSvg name={currentCategori?.icon || REFUND} color={COLORS.colorPriamry} width={25}/>
+          <IconSvg name={currentCategori?.icon || REFUND} 
+          color={currentCategori?.icon ? COLORS.colorPriamry : COLORS.colorText} width={25}/>
         </Avatar>
-        <Text style={[globalStyles.p1]} numberOfLines={1}>
+        <Text style={[globalStyles.p1, {color: COLORS.colorText, width: '70%'}]} numberOfLines={1}>
           {currentCategori?.name || t('Translation')}
         </Text>
       </View>
 
-      <View style={[{width: '30%', alignItems: 'center', opacity: 0.6}]}>
-        <Text style={[globalStyles.s2]}>{dateDisplay}</Text>
-        <Text style={[globalStyles.s2]}>{timeDisplay}</Text>
+      <View style={[{width: '20%', alignItems: 'center', opacity: 0.6}]}>
+        <Text style={[globalStyles.s2, {color: COLORS.colorText}]}>{dateDisplay}</Text>
+        <Text style={[globalStyles.s2, {color: COLORS.colorText}]}>{timeDisplay}</Text>
       </View>
 
       <View style={{width: '30%', alignItems: 'flex-end'}}>
-        <Text style={[globalStyles.p1, {marginBottom: 5}]}>
+        <Text style={[globalStyles.p1, {marginBottom: 5, color: COLORS.colorText}]}>
           <Text style={{color: data?.income ? COLORS.mainColor : COLORS.colorRed}}>
             {data?.transaction ? '' : data?.income ? ' + ' : ' - ' }
           </Text>
           {numberConverter(data?.count)} {data.currency || 'RUB'}
         </Text> 
-        <Text style={[globalStyles.s2, {opacity: 0.6}]}>
+        <Text style={[globalStyles.s2, {color: COLORS.colorText}, {opacity: 0.6}]}>
           {currentAccaunt || t('account_deleted')}
         </Text>
       </View>

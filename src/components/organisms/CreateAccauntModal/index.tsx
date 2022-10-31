@@ -125,7 +125,7 @@ const CreateAccauntModal: FC<IAccauntCreateModal> = React.memo(({setModal, edite
           list={currencies()}/>
       </CustomModal>
 
-      <Text style={styles.title}>
+      <Text style={[styles.title, {color: COLORS.colorText}]}>
         {editeMode ? t('Editing') : t('Create_account')}
       </Text>
 
@@ -138,16 +138,15 @@ const CreateAccauntModal: FC<IAccauntCreateModal> = React.memo(({setModal, edite
               value={count}
               onChange={({nativeEvent}) => setCount(nativeEvent.text)}
               placeholder={'0'}
-              placeholderTextColor={'#333'}
               autoFocus={true} 
               keyboardType={'number-pad'}/>
-            <Text style={globalStyles.h2}>{currencyAcc}</Text>
+            <Text style={[globalStyles.h2, {color: COLORS.colorText}]}>{currencyAcc}</Text>
         </View>)}
 
 
         <View style={styles.item}>
-          <Text style={[globalStyles.p1,
-            icon ? {color: COLORS.mainColor} :styles.itemText ]}>
+          <Text style={[globalStyles.p1, {color: COLORS.colorText},
+            icon ? {color: COLORS.mainColor} : styles.itemText ]}>
             {t('icon')}:
           </Text>
         </View>
@@ -159,7 +158,7 @@ const CreateAccauntModal: FC<IAccauntCreateModal> = React.memo(({setModal, edite
         <View style={[styles.item, {marginTop: -20}]}>
           <Text style={[globalStyles.p1, 
             currencyAcc ? {color: COLORS.mainColor} : styles.itemText]}>
-            {t('check')}:
+            {t('currency')}:
           </Text>
         </View>
 
@@ -173,7 +172,7 @@ const CreateAccauntModal: FC<IAccauntCreateModal> = React.memo(({setModal, edite
 
 
         <View style={[styles.item, {marginTop: 20}]}>
-          <Text style={[globalStyles.p1, 
+          <Text style={[globalStyles.p1, {color: COLORS.colorText},
             bg ? {color: COLORS.mainColor} : styles.itemText]}>
             {t('color')}:
           </Text>
@@ -186,14 +185,14 @@ const CreateAccauntModal: FC<IAccauntCreateModal> = React.memo(({setModal, edite
         </TouchableOpacity>
 
         <View style={[styles.item, {paddingBottom: 70}]}>
-          <Text style={[globalStyles.p1, name ? {color: COLORS.mainColor} : styles.itemText]}>{t('name')}:</Text>
+          <Text style={[globalStyles.p1, {color: COLORS.colorText}, name ? {color: COLORS.mainColor} 
+            : styles.itemText]}>{t('name')}:</Text>
           <View style={[styles.inputWrapper, {width: '100%', marginTop: 0}]}>
             <Input
               value={name}
               onChange={({nativeEvent}) => setName(nativeEvent.text)}
               overStyle={{width: '100%'}}
               maxLength={40}
-              placeholderTextColor={'#333'}
               multiline={true}/>
           </View>
         </View>

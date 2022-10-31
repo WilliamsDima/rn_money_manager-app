@@ -15,7 +15,7 @@ export const countSumItemsFromList = (list: any[]) => list.reduce(
       }
     }, 0
   )
-export const countInterest = (count, x) => ((x * 100) / count).toFixed(2)
+export const countInterest = (count, x) => ((x * 100) / count).toFixed(0)
 
 // Поскольку массив заморожен в строгом режиме, нужно скопировать массив перед его сортировкой поэтому использую slice
 export const dataFilterMaxValue = (categories, max) => categories 
@@ -204,7 +204,7 @@ export const sortData = () => {
         {title: t('Year'), value: 'Year'}]
 }
 
-export const themeApp = () => {
+export const getThemeApp = () => {
 
     const { t } = useTranslation()
 
