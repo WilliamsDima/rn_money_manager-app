@@ -9,12 +9,17 @@ import IconBtn from '../../atoms/IconBtn'
 import { styles } from './button.styles'
 import { IButton } from './button.types'
 import { useTranslation } from 'react-i18next'
-import { COLORS } from '../../../services/colors'
+import { getThemeApp } from '../../../services/colors'
+import { useAppSelector } from '../../../hooks/hooks'
 
 const AccauntsBtn: FC<IButton> = ({setModal, setModalTransaction}) => {
 
   const navigation = useNavigation()
   const { t } = useTranslation()
+
+  const { themeApp } = useAppSelector(state => state.main)
+
+  const COLORS = getThemeApp(themeApp)
 
   const toHistory = () => {
     navigation.navigate(RoutesNames.History.Home)

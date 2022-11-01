@@ -1,6 +1,5 @@
 import * as React from "react"
 import Svg, { Path } from "react-native-svg"
-import { COLORS } from "../../../services/colors"
 
 export const ToothpasteSvg = (props) => (
   <Svg
@@ -15,8 +14,8 @@ export const ToothpasteSvg = (props) => (
     {...props}
   >
     <Path 
-    fill={props.color || COLORS.colorPriamry}
-    stroke={props.color || COLORS.colorPriamry}
+    fill={props.color || '#fff'}
+    stroke={props.color || '#fff'}
     d="m496.427 441.173-151.48-152.268 
     110.519-133.598c2.56-3.413 2.56-7.68-.853-11.093l-3.23-3.23 
     46.75-75.276c2.56-3.413 1.707-7.68 0-10.24l-30.72-30.72c-2.56-2.56-6.827-2.56-10.24-.853L381.37 

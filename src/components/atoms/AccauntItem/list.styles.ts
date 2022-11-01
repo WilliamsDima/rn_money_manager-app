@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native'
-import { COLORS } from '../../../services/colors'
 
 export const styles = StyleSheet.create({
   item: {
@@ -10,7 +9,6 @@ export const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 10,
     width: '100%',
-    backgroundColor: COLORS.colorBlack,
   },
   icon: {
     height: 40,

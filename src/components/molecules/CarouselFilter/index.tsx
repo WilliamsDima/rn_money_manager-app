@@ -11,13 +11,15 @@ import { months } from '../../../hooks/helpers'
 import { setSortDatePeriod } from '../../../store/redusers/main/main'
 import { IconSvg } from '../../../services/icons'
 import { ARROW_SELECT } from '../../../services/iconsName'
-import { COLORS } from '../../../services/colors'
+import { getThemeApp } from '../../../services/colors'
 
 const CarouselFilter: FC = React.memo((props) => {
 
-  const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch()
 
-  const { sort } = useAppSelector(state => state.main);
+  const { sort, themeApp } = useAppSelector(state => state.main)
+
+  const COLORS = getThemeApp(themeApp)
 
   const [date, setDate] = useState(new Date())
 
@@ -107,7 +109,7 @@ const CarouselFilter: FC = React.memo((props) => {
             <IconSvg name={ARROW_SELECT} color={COLORS.colorText}/>
           </TouchableOpacity>
 
-          <Text style={[styles.text, {color: COLORS.colorText}]}>{getTextPeriod(sort)}</Text>
+          <Text style={{color: COLORS.colorText}}>{getTextPeriod(sort)}</Text>
 
           <TouchableOpacity 
             style={[styles.next, styles.arrow]}

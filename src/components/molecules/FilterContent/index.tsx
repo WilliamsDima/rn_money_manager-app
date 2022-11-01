@@ -2,6 +2,7 @@ import React, { FC, useEffect } from 'react'
 import { View } from 'react-native'
 import { countSumItemsFromList, getSortCategories, periodSort } from '../../../hooks/helpers'
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks'
+import { getThemeApp } from '../../../services/colors'
 import { setDataOnPeriodFilter, setSumMoneySort } from '../../../store/redusers/main/main'
 import AddBtn from '../../atoms/AddBtn'
 import Diogramma from '../../atoms/Diogramma'
@@ -18,7 +19,9 @@ const FilterContent: FC<IFilter> = React.memo(({setExpAndEncomeModal, hideDiogra
 
   const dispatch = useAppDispatch()
   const { transaction, categories, 
-    tabExpOrIncome, sort, sortDatePeriod } = useAppSelector(state => state.main)
+    tabExpOrIncome, sort, sortDatePeriod, themeApp } = useAppSelector(state => state.main)
+
+  const COLORS = getThemeApp(themeApp)
 
   // фильтр трат и доходов
   const expensesAndIncomFilter = transaction.filter((c) => c.income === tabExpOrIncome)
@@ -42,7 +45,7 @@ const FilterContent: FC<IFilter> = React.memo(({setExpAndEncomeModal, hideDiogra
   }, [transaction, tabExpOrIncome, sort, sortDatePeriod, categories])
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: COLORS.colorBlack }]}>
         <FilterPeriod />
         <CarouselFilter />
         <Diogramma sortArray={sortArray} hideDiogram={hideDiogram}/>

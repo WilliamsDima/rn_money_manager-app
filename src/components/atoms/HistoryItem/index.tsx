@@ -9,12 +9,15 @@ import Avatar from '../../atoms/Avatar'
 import { IconSvg } from '../../../services/icons'
 import { REFUND, } from '../../../services/iconsName'
 import { ICategories } from '../../../store/redusers/main/types'
-import { COLORS } from '../../../services/colors'
+import { getThemeApp } from '../../../services/colors'
 import { useTranslation } from 'react-i18next'
 
 const HistoryItem: FC<IHistory> = ({ data, setData }) => {
 
-  const { categories, accounts } = useAppSelector(state => state.main)
+  const { categories, accounts, themeApp } = useAppSelector(state => state.main)
+
+  const COLORS = getThemeApp(themeApp)
+
   const { t } = useTranslation()
 
   const currentCategori: ICategories = getItemFromList(data?.categori, categories)

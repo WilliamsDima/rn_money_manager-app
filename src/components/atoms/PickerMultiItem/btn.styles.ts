@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native'
-import { COLORS } from '../../../services/colors'
 
 export const styles = StyleSheet.create({
   container: {
@@ -20,12 +19,8 @@ export const styles = StyleSheet.create({
     height: 20,
     borderRadius: 2,
     borderWidth: 1,
-    borderColor: COLORS.colorLightBlack,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  active: {
-    borderColor: COLORS.mainColor,
   },
   icon: {
     height: 40,
@@ -39,7 +34,6 @@ export const styles = StyleSheet.create({
     height: '40%',
     borderBottomWidth: 1,
     borderRightWidth: 1,
-    borderColor: COLORS.mainColor,
     transform: [{rotate: '45deg'}]
   }
 })

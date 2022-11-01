@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native'
-import { COLORS } from '../../../services/colors'
 
 export const styles = StyleSheet.create({
   button: {
@@ -7,9 +6,6 @@ export const styles = StyleSheet.create({
     padding: 15,
     alignItems: 'center',
     justifyContent: 'center'
-  },
-  focus: {
-    backgroundColor: COLORS.mainColor,
   },
   image: {
     width: 24,

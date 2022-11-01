@@ -5,13 +5,18 @@ import { styles } from './app.styles'
 import ScrollContainer from '../../atoms/Container/ScrollContainer'
 import { IconSvg } from '../../../services/icons'
 import { INST, LINKEDIN, REACT, STAR, TELEGRAM, TWITTER, VK } from '../../../services/iconsName'
-import { COLORS } from '../../../services/colors'
+import { getThemeApp } from '../../../services/colors'
 import { urlAppStore } from '../../../hooks/helpers'
 import { useTranslation } from 'react-i18next'
+import { useAppSelector } from '../../../hooks/hooks'
 
 const AboutAppTemplate = () => {
 
   const { t } = useTranslation()
+
+  const { themeApp } = useAppSelector(state => state.main)
+
+  const COLORS = getThemeApp(themeApp)
   
   
   const toMySite = () => {
@@ -55,7 +60,7 @@ const AboutAppTemplate = () => {
     Linking.openURL('https://www.facebook.com/people/Дмитрий-Леметин/100009919381940/')
   }
   return (
-    <ScrollContainer overStyle={styles.container}>
+    <ScrollContainer overStyle={[styles.container, {backgroundColor: COLORS.colorLightBlack}]}>
       <View style={styles.item}>
         <Text style={[globalStyles.p1, {color: COLORS.colorText}]}>{t('VERSION')}</Text>
       </View>

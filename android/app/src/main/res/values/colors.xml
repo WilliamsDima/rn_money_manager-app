@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary_dark">#2EE5AC</color>
-    <color name="status_bar_color">#2EE5AC</color>
+    <color name="primary_dark">#3A8050</color>
+    <color name="status_bar_color">#3A8050</color>
 </resources>

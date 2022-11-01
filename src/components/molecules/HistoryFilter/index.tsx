@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { Text, View, TouchableOpacity } from 'react-native'
-import { COLORS } from '../../../services/colors'
+import { getThemeApp } from '../../../services/colors'
 import { IconSvg } from '../../../services/icons'
 import { TAB_CATEGORIES } from '../../../services/iconsName'
 import { globalStyles } from '../../../services/styles'
@@ -9,13 +9,18 @@ import { IHistory } from './list.types'
 import FilterPeriod from '../../atoms/FilterPeriod'
 import CarouselFilter from '../CarouselFilter'
 import { useTranslation } from 'react-i18next'
+import { useAppSelector } from '../../../hooks/hooks'
 
 const HistoryFilter: FC<IHistory> = React.memo(({ setFilter, setCategori }) => {
+
+  const { themeApp } = useAppSelector(state => state.main)
+
+  const COLORS = getThemeApp(themeApp)
 
   const { t } = useTranslation()
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor:COLORS.colorBlack }]}>
       <FilterPeriod />
       <CarouselFilter />
       <View style={styles.item}>

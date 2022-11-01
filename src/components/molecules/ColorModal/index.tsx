@@ -1,15 +1,20 @@
 import React, { FC, useState } from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
 import { ColorPicker, fromHsv } from 'react-native-color-picker'
-import { COLORS } from '../../../services/colors'
+import { getThemeApp } from '../../../services/colors'
 import { globalStyles } from '../../../services/styles'
 import { styles } from './modal.styles'
 import { IColorModal } from './modal.types'
 import { useTranslation } from 'react-i18next'
+import { useAppSelector } from '../../../hooks/hooks'
 
 const ColorModal: FC<IColorModal> = React.memo(({close, submin}) => {
 
   const [color, setColor] = useState('')
+
+  const { themeApp } = useAppSelector(state => state.main)
+
+  const COLORS = getThemeApp(themeApp)
 
   const { t } = useTranslation()
 
@@ -29,7 +34,7 @@ const ColorModal: FC<IColorModal> = React.memo(({close, submin}) => {
     style={[styles.container]}>
       <TouchableOpacity 
       activeOpacity={1}
-      style={styles.content}>
+      style={[styles.content, { backgroundColor: COLORS.colorBlack }]}>
         <ColorPicker
           onColorChange={changeColor}
           onColorSelected={subminHandler}

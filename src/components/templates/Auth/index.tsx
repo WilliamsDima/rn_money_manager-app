@@ -1,16 +1,21 @@
 import React from 'react'
 import { Image, View, Text } from 'react-native'
-import { COLORS } from '../../../services/colors'
+import { getThemeApp } from '../../../services/colors'
 import { globalStyles } from '../../../services/styles'
 import { styles } from './auth.styles'
 import { useTranslation } from 'react-i18next'
+import { useAppSelector } from '../../../hooks/hooks'
 
 const AuthTemplate = () => {
 
   const { t } = useTranslation()
 
+  const { themeApp } = useAppSelector(state => state.main)
+
+  const COLORS = getThemeApp(themeApp)
+
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: COLORS.colorPriamry }]}>
       <Text style={[globalStyles.h1, {color: COLORS.colorLightBlack, marginTop: 20}]}>
         {t('In_developing')}...
       </Text>

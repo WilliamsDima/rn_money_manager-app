@@ -1,14 +1,18 @@
 import React, { FC, useState } from 'react'
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native'
-import { COLORS } from '../../../services/colors'
+import { getThemeApp } from '../../../services/colors'
 import { globalStyles } from '../../../services/styles'
-import CategoryPickerSelect from '../../atoms/CategoryPickerSelect'
 import { styles } from './modal.styles'
 import { IPickerMulti } from './modal.types'
 import { useTranslation } from 'react-i18next'
 import PickerMultiItem from '../../atoms/PickerMultiItem'
+import { useAppSelector } from '../../../hooks/hooks'
 
 const PickerMulti: FC<IPickerMulti> = React.memo(({close, submit, select, data, maxMinSelect = 2}) => {
+
+  const { themeApp } = useAppSelector(state => state.main)
+
+  const COLORS = getThemeApp(themeApp)
 
   const { t } = useTranslation()
 
@@ -44,7 +48,7 @@ const PickerMulti: FC<IPickerMulti> = React.memo(({close, submit, select, data, 
     style={[styles.container]}>
       <TouchableOpacity 
       activeOpacity={1}
-      style={styles.content}>
+      style={[styles.content, { backgroundColor: COLORS.colorBlack }]}>
 
         <ScrollView style={{width: '100%'}}>
           {data.map((item, i) => {

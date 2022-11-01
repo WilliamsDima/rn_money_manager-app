@@ -1,6 +1,4 @@
 import { StyleSheet } from 'react-native'
-import { COLORS } from '../../../services/colors'
-import { globalStyles } from '../../../services/styles'
 
 export const styles = StyleSheet.create({
   container: {
@@ -25,7 +23,6 @@ export const styles = StyleSheet.create({
     marginRight: 10
   },
   content: {
-    backgroundColor: COLORS.colorBlack,
     padding: 10,
     borderRadius: 10,
     width: '90%',

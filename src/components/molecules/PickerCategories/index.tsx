@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react'
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native'
 import { useAppSelector } from '../../../hooks/hooks'
-import { COLORS } from '../../../services/colors'
+import { getThemeApp } from '../../../services/colors'
 import { globalStyles } from '../../../services/styles'
 import CategoryPickerSelect from '../../atoms/CategoryPickerSelect'
 import { styles } from './modal.styles'
@@ -10,7 +10,9 @@ import { useTranslation } from 'react-i18next'
 
 const PickerCategories: FC<IPickerCategory> = React.memo(({close, setId, value}) => {
 
-  const { categories } = useAppSelector(state => state.main)
+  const { categories, themeApp } = useAppSelector(state => state.main)
+
+  const COLORS = getThemeApp(themeApp)
 
   const { t } = useTranslation()
 
@@ -47,7 +49,7 @@ const PickerCategories: FC<IPickerCategory> = React.memo(({close, setId, value})
     style={[styles.container]}>
       <TouchableOpacity 
       activeOpacity={1}
-      style={styles.content}>
+      style={[styles.content, { backgroundColor: COLORS.colorBlack }]}>
 
         <Text style={[globalStyles.p2, {color: COLORS.colorText}]}>{t('Categories')}:</Text>
 

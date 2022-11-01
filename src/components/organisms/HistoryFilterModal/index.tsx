@@ -1,14 +1,19 @@
 import React, { FC, useState } from 'react'
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native'
-import { COLORS } from '../../../services/colors'
+import { getThemeApp } from '../../../services/colors'
 import { globalStyles } from '../../../services/styles'
 import FilterBtnSelect from '../../atoms/FilterBtnSelect'
 import { styles } from './modal.styles'
 import { IHistoryModal } from './modal.types'
 import { useTranslation } from 'react-i18next'
+import { useAppSelector } from '../../../hooks/hooks'
 
 const HistoryFilterModal: FC<IHistoryModal> = React.memo(({close, submit, 
   typeValue, sortOrderValue}) => {
+
+  const { themeApp } = useAppSelector(state => state.main)
+
+  const COLORS = getThemeApp(themeApp)
 
   const { t } = useTranslation()
 
@@ -71,7 +76,7 @@ const HistoryFilterModal: FC<IHistoryModal> = React.memo(({close, submit,
     style={[styles.container]}>
       <TouchableOpacity 
       activeOpacity={1}
-      style={styles.content}>
+      style={[styles.content, { backgroundColor: COLORS.colorBlack }]}>
 
         <ScrollView style={{width: '100%'}}>
           <Text style={[globalStyles.p2, {color: COLORS.colorText}]}>{t('type')}:</Text>

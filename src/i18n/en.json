@@ -82,7 +82,9 @@
   "Year": "Year",
 
   "ATTENTION": "ATTENTION",
-  "delete_data": "All application data will be permanently deleted, after confirmation, restart the application.",
+  "delete_data": "All application data will be permanently deleted, after confirmation, the application will restart.",
+  "change_theme": "After changing the theme, the application will restart.",
+  "theme_ATTENTION": "Theme changes",
 
   "In_developing": "In developing",
 

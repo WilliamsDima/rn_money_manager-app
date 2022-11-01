@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import { Text, View } from 'react-native'
 import { countSumTransaction, getItemFromList, numberConverter } from '../../../hooks/helpers'
 import { useAppSelector } from '../../../hooks/hooks'
-import { COLORS } from '../../../services/colors'
+import { getThemeApp } from '../../../services/colors'
 import { globalStyles } from '../../../services/styles'
 import { styles } from './list.styles'
 import { IHistory } from './list.types'
@@ -12,7 +12,9 @@ const HistoryStatisticList: FC<IHistory> = React.memo(({ data }) => {
 
   const { t } = useTranslation()
 
-  const { categories, currencyValue } = useAppSelector(state => state.main)
+  const { categories, currencyValue, themeApp } = useAppSelector(state => state.main)
+
+  const COLORS = getThemeApp(themeApp)
 
   // собираю самый часто повторяющийся id категории
   const topCategory = {}

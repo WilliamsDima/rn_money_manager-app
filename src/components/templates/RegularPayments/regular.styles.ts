@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native'
-import { COLORS } from '../../../services/colors'
 
 export const styles = StyleSheet.create({
   container: {
@@ -8,7 +7,6 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
     position: 'relative',
-    backgroundColor: COLORS.colorPriamry
   },
 
 })

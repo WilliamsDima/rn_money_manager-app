@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from 'react'
 import { Text, TouchableOpacity, View, ScrollView, ToastAndroid, Alert, Keyboard } from 'react-native'
 import { getItemFromList } from '../../../hooks/helpers'
 import { useAppDispatch, useAppSelector, useAutoFocus } from '../../../hooks/hooks'
-import { COLORS } from '../../../services/colors'
+import { getThemeApp } from '../../../services/colors'
 import { globalStyles } from '../../../services/styles'
 import { addTransaction } from '../../../store/redusers/main/main'
 import { IAccounts, ITransaction } from '../../../store/redusers/main/types'
@@ -19,7 +19,9 @@ const TransactionModal: FC<IExpAndIncModal> = React.memo(({setModal}) => {
   const dispatch = useAppDispatch()
   const { t } = useTranslation()
 
-  const { accounts } = useAppSelector(state => state.main)
+  const { accounts, themeApp } = useAppSelector(state => state.main)
+
+  const COLORS = getThemeApp(themeApp)
 
   const [accauntsModalFirst, setAccauntsModalFirst] = useState(false)
   const [accauntsModalSecond, setAccauntsModalSecond] = useState(false)
@@ -77,8 +79,9 @@ const TransactionModal: FC<IExpAndIncModal> = React.memo(({setModal}) => {
 
 
   return (
-    <View style={[styles.content]}>
-      <Text style={[styles.title, {color: COLORS.colorText}]}>{t('Translation').toLocaleUpperCase()}</Text>
+    <View style={[styles.content, { backgroundColor: COLORS.colorBlack }]}>
+      <Text style={[styles.title, { textDecorationColor: COLORS.mainColor }, {color: COLORS.colorText}]}>
+        {t('Translation').toLocaleUpperCase()}</Text>
       
       <ScrollView style={{flex: 1, marginTop: 10}}>
 

@@ -12,28 +12,29 @@ interface ICOLORS {
     colorText: string
 }
 
-export let COLORS: ICOLORS = {
+export const COLORS = {
     mainColor: '#2EE5AC',
     colorPriamry: '#fff',
     colorShadow: 'rgb(13, 24, 40)',
-    colorBlack: '#111',
+    colorBlack: '#111111',
     colorLightBlack: '#333',
     colorHeader: '#3A8050',
     colorSecondary: '#444',
     colorBgModal: 'rgba(0, 0, 0, 0.8)',
     colorYellow: '#F0CB50',
     colorRed: 'red',
-    colorText: '#fff'
+    colorText: '#fff',
 }
 
-export const themeAppInit = (value) => {
+
+export const getThemeApp = (value: 'dark' | 'light') :ICOLORS => {
 
     if (value === 'dark') {
-        COLORS = {
+        return {
             mainColor: '#2EE5AC',
             colorPriamry: '#fff',
             colorShadow: 'rgb(13, 24, 40)',
-            colorBlack: '#111',
+            colorBlack: '#111111',
             colorLightBlack: '#333',
             colorHeader: '#3A8050',
             colorSecondary: '#444',
@@ -43,11 +44,11 @@ export const themeAppInit = (value) => {
             colorText: '#fff',
         }
     } else {
-        COLORS = {
+         return {
             mainColor: '#2EE5AC',
             colorPriamry: '#fff',
             colorShadow: 'rgb(13, 24, 40)',
-            colorBlack: '#fff',
+            colorBlack: '#ffffff',
             colorLightBlack: '#f1f1f1',
             colorHeader: '#3A8050',
             colorSecondary: '#B5B5B5',

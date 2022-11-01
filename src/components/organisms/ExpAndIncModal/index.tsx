@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react'
 import { Text, TouchableOpacity, View, ScrollView, ToastAndroid, Alert } from 'react-native'
 import { getItemFromList } from '../../../hooks/helpers'
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks'
-import { COLORS } from '../../../services/colors'
+import { getThemeApp } from '../../../services/colors'
 import { globalStyles } from '../../../services/styles'
 import { addTransaction } from '../../../store/redusers/main/main'
 import { IAccounts, ITransaction } from '../../../store/redusers/main/types'
@@ -14,16 +14,21 @@ import CategoriesList from '../CategoriesList'
 import { styles } from './modal.styles'
 import { IExpAndIncModal } from './modal.types'
 import { useTranslation } from 'react-i18next'
+import DateBtn from '../../atoms/DateBtn'
 
 const ExpAndIncModal: FC<IExpAndIncModal> = React.memo(({setExpAndEncomeModal, data}) => {
 
   const dispatch = useAppDispatch()
   const { t } = useTranslation()
   
-  const { accounts, tabExpOrIncome, categories, currencyValue } = useAppSelector(state => state.main)
+  const { accounts, tabExpOrIncome, categories, currencyValue, themeApp } = useAppSelector(state => state.main)
+
+  const COLORS = getThemeApp(themeApp)
+
   const filterAccaunts = accounts.filter((it) => it.id)
 
   const [modal, setModal] = useState(false)
+  
 
   const [accauntsId, setAccauntsId] = useState(data?.accounts)
   const [categoriId, setCategoriId] = useState(data?.categori)
@@ -33,6 +38,8 @@ const ExpAndIncModal: FC<IExpAndIncModal> = React.memo(({setExpAndEncomeModal, d
 
   const yesterday = new Date(+new Date() - 86400000)
   const dayBeforeYesterday = new Date(+new Date() - 86400000 * 2)
+  const prevDate = +dayBeforeYesterday - +new Date(data?.date) > 3600 * 1000 * 24
+  
 
    // выбранный счёт существует
   const selectAccaunt: IAccounts = getItemFromList(accauntsId, accounts)
@@ -73,9 +80,12 @@ const ExpAndIncModal: FC<IExpAndIncModal> = React.memo(({setExpAndEncomeModal, d
   }
 
   return (
-    <View style={[styles.content]}>
-      <Text style={[styles.title, {color: COLORS.colorText}]}>{tabExpOrIncome 
-      || data?.income ? t('income') : t('expense')}</Text>
+    <View style={[styles.content, { backgroundColor: COLORS.colorBlack }]}>
+      <Text style={[styles.title, { textDecorationColor: COLORS.mainColor },
+       {color: COLORS.colorText}]}>
+          {tabExpOrIncome 
+        || data?.income ? t('income') : t('expense')}
+      </Text>
       <View style={styles.inputWrapper}>
         <Input 
             overStyle={[styles.input, {color: COLORS.colorText}]} 
@@ -121,30 +131,27 @@ const ExpAndIncModal: FC<IExpAndIncModal> = React.memo(({setExpAndEncomeModal, d
           </Text>
 
           <View style={{flexDirection: 'row', marginTop: 10}}>
-            <TouchableOpacity 
+            {prevDate && <DateBtn 
+              onPress={() => setDate(new Date(data?.date))}
+              prevDate={new Date(data?.date)}
+              date={date}
+            />}
+
+            <DateBtn 
               onPress={() => setDate(dayBeforeYesterday)}
-              style={[styles.dataBtn, dayBeforeYesterday.getDate() === date.getDate()
-              && {backgroundColor: COLORS.mainColor}]}>
-              <Text style={[globalStyles.p1, dayBeforeYesterday.getDate() !== date.getDate() && {color: COLORS.colorText}]}>
-                {dayBeforeYesterday.getDate()} / {dayBeforeYesterday.getMonth()}
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity 
+              prevDate={dayBeforeYesterday}
+              date={date}
+            />
+            <DateBtn 
               onPress={() => setDate(yesterday)}
-              style={[styles.dataBtn, yesterday.getDate() === date.getDate()
-              && {backgroundColor: COLORS.mainColor}]}>
-              <Text style={[globalStyles.p1, yesterday.getDate() !== date.getDate() && {color: COLORS.colorText}]}>
-                {yesterday.getDate()} / {yesterday.getMonth()}
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity 
+              prevDate={yesterday}
+              date={date}
+            />
+            <DateBtn 
               onPress={() => setDate(new Date())}
-              style={[styles.dataBtn, new Date().getDate() === date.getDate()
-              && {backgroundColor: COLORS.mainColor}]}>
-              <Text style={[globalStyles.p1, new Date().getDate() !== date.getDate() && {color: COLORS.colorText}]}>
-                {new Date().getDate()} / {new Date().getMonth()}
-              </Text>
-            </TouchableOpacity>
+              prevDate={new Date()}
+              date={date}
+            />
           </View>
         </View>
 

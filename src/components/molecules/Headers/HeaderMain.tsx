@@ -13,6 +13,7 @@ import { globalStyles } from '../../../services/styles'
 import { ARROW_SELECT } from '../../../services/iconsName'
 import { setAllCauntAccaunts, sumCategiesCount, setAccauntId } from '../../../store/redusers/main/main'
 import { RoutesNames } from '../../../navigation/routes-names'
+import { COLORS } from '../../../services/colors'
 
 interface IHeaderMain {
   
@@ -54,7 +55,7 @@ const HeaderMain: FC<IHeaderMain> = (props) => {
             <IconSvg 
               name={accauntSelect?.icon} 
               color={'#fff'} width={20}/>
-            <Text style={[globalStyles.p1, {marginLeft: 10}]} numberOfLines={1}>
+            <Text style={[globalStyles.p1, {color: COLORS.colorPriamry}, {marginLeft: 10}]} numberOfLines={1}>
               {accauntSelect?.name}
             </Text>
         </View>
@@ -64,7 +65,7 @@ const HeaderMain: FC<IHeaderMain> = (props) => {
         <TouchableOpacity 
           style={styles.container} 
           onPress={() => setModal(!modal)}>
-          <Text style={[globalStyles.p2, {marginRight: 10}]}>
+          <Text style={[globalStyles.p2, {color: COLORS.colorPriamry}, {marginRight: 10}]}>
             {numberConverter(accauntSelect?.count)} {accauntSelect?.currency || currencyValue}
           </Text>
           <IconSvg name={ARROW_SELECT} marginTop={-5}/>     

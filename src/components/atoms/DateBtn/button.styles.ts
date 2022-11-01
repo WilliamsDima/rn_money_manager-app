@@ -1,11 +1,14 @@
 import { StyleSheet } from 'react-native'
 
 export const styles = StyleSheet.create({
-  button: {
+  dataBtn: {
+    width: 60,
+    height: 40,
+    padding: 10,
+    borderWidth: 1,
+    borderRadius: 5,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    borderRadius: 20
+    marginRight: 10
   },
 })

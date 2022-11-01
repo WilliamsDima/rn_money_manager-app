@@ -23,6 +23,8 @@ target 'MoneyManager' do
 
   pod 'react-native-splash-screen', :path => '../node_modules/react-native-splash-screen'
 
+  pod 'react-native-restart', :path => '../node_modules/react-native-restart'
+
   target 'MoneyManagerTests' do
     inherit! :complete
     # Pods for testing

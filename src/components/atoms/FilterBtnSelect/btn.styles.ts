@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native'
-import { COLORS } from '../../../services/colors'
 
 export const styles = StyleSheet.create({
   container: {
@@ -20,10 +19,5 @@ export const styles = StyleSheet.create({
     height: 20,
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: COLORS.colorLightBlack
-  },
-  active: {
-    borderColor: COLORS.mainColor,
-    backgroundColor: COLORS.mainColor,
   }
 })

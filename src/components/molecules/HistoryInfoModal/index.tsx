@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from 'react'
 import { ScrollView, Text, TouchableOpacity, View, Alert, ToastAndroid } from 'react-native'
 import { getItemFromList, months, numberConverter } from '../../../hooks/helpers'
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks'
-import { COLORS } from '../../../services/colors'
+import { getThemeApp } from '../../../services/colors'
 import { IconSvg } from '../../../services/icons'
 import { EDIT, REFUND } from '../../../services/iconsName'
 import { globalStyles } from '../../../services/styles'
@@ -22,23 +22,27 @@ const HistoryInfoModal: FC<IHistoryInfo> = React.memo(({close, data}) => {
 
   const [editModal, setEditModal] = useState(false)
 
-  const { categories, accounts, transaction, currencyValue } = useAppSelector(state => state.main)
+  const { categories, accounts, transaction, currencyValue, themeApp } = useAppSelector(state => state.main)
+
+  const isTransaction = getItemFromList(data?.id, transaction)
+
+  const COLORS = getThemeApp(themeApp)
 
 
-  const currentCategori: ICategories = data 
-  && getItemFromList(data?.categori, categories) || ''
+  const currentCategori: ICategories = isTransaction 
+  && getItemFromList(isTransaction?.categori, categories) || ''
   
 
-  let currentAccaunt: IAccounts = data 
-  && getItemFromList(data?.accounts, accounts)
+  let currentAccaunt: IAccounts = isTransaction 
+  && getItemFromList(isTransaction?.accounts, accounts)
 
-  const firstAccaunt: IAccounts = data 
-  && getItemFromList(data?.accounts[0], accounts)
+  const firstAccaunt: IAccounts = isTransaction 
+  && getItemFromList(isTransaction?.accounts[0], accounts)
 
-  const secondAccaunt: IAccounts = data 
-  && getItemFromList(data?.accounts[1], accounts)
+  const secondAccaunt: IAccounts = isTransaction 
+  && getItemFromList(isTransaction?.accounts[1], accounts)
 
-  const date = new Date(data?.date)
+  const date = new Date(isTransaction?.date)
 
   const dateDisplay = date.getDate() + ' ' + months()[date.getMonth()].title + ' ' 
   + date.getFullYear()
@@ -48,7 +52,7 @@ const HistoryInfoModal: FC<IHistoryInfo> = React.memo(({close, data}) => {
       t('Removal'),
       t('delete_account', {
         cat: currentCategori?.name || t('Translation'),
-      }) + `${data?.count} ${currencyValue}?`,
+      }) + `${isTransaction?.count} ${currencyValue}?`,
       [
         {
           text: "Cancel",
@@ -56,7 +60,7 @@ const HistoryInfoModal: FC<IHistoryInfo> = React.memo(({close, data}) => {
           style: "cancel"
         },
         { text: "OK", onPress: () => {
-            dispatch(deleteTransaction(data))
+            dispatch(deleteTransaction(isTransaction))
             ToastAndroid.show(t('deleted'), 2000);
             close()
         } }
@@ -74,7 +78,7 @@ const HistoryInfoModal: FC<IHistoryInfo> = React.memo(({close, data}) => {
     onPress={() => close()}
     style={[styles.container]}>
 
-      <CustomModal visible={editModal && !data?.transaction ? true : false} 
+      <CustomModal visible={editModal && !isTransaction?.transaction ? true : false} 
       closeHandler={setEditModal}>
           <ExpAndIncModal 
           data={editModal}
@@ -83,12 +87,12 @@ const HistoryInfoModal: FC<IHistoryInfo> = React.memo(({close, data}) => {
 
       <TouchableOpacity 
       activeOpacity={1}
-      style={styles.content}>
+      style={[styles.content, { backgroundColor: COLORS.colorBlack }]}>
 
         <ScrollView style={{marginTop: 20, width: '100%'}}>
           <View style={styles.item}>
             <Text style={[globalStyles.p1]} style={{color: COLORS.mainColor}}>
-              {t('currency')}: {numberConverter(data?.count)} {currentAccaunt?.currency || currencyValue}
+              {t('currency')}: {numberConverter(isTransaction?.count)} {currentAccaunt?.currency || currencyValue}
             </Text>
           </View>
           <View style={styles.item}>
@@ -106,7 +110,7 @@ const HistoryInfoModal: FC<IHistoryInfo> = React.memo(({close, data}) => {
               </Avatar>
 
               <Text style={[globalStyles.p1, {color: COLORS.colorText}]}>
-                {data.transaction ? t('Translation') : currentCategori?.name 
+                {isTransaction.transaction ? t('Translation') : currentCategori?.name 
                 || t('category_deleted')}
               </Text>
             </View>
@@ -127,7 +131,7 @@ const HistoryInfoModal: FC<IHistoryInfo> = React.memo(({close, data}) => {
               </Avatar>}
 
               <Text style={[globalStyles.p1, {color: COLORS.colorText}]}>
-                {data.transaction ? firstAccaunt?.name + ' -> ' + secondAccaunt?.name 
+                {isTransaction.transaction ? firstAccaunt?.name + ' -> ' + secondAccaunt?.name 
                 : currentAccaunt?.name || t('account_deleted')}
               </Text>
             </View>
@@ -146,7 +150,7 @@ const HistoryInfoModal: FC<IHistoryInfo> = React.memo(({close, data}) => {
             </View>
           </View>
 
-          { data?.text ? (<View style={styles.item}>
+          { isTransaction?.text ? (<View style={styles.item}>
             <Text style={[globalStyles.p1, {opacity: 0.6, color: COLORS.colorText}]}>
               {t('Comment')}:
             </Text>
@@ -154,7 +158,7 @@ const HistoryInfoModal: FC<IHistoryInfo> = React.memo(({close, data}) => {
             <View 
             style={{flexDirection: 'row', alignItems: 'center', marginTop: 10}}>
               <Text style={[globalStyles.p1, {color: COLORS.colorText}]}>
-                {data.text}
+                {isTransaction.text}
               </Text>
             </View>
           </View>) : null}
@@ -171,8 +175,8 @@ const HistoryInfoModal: FC<IHistoryInfo> = React.memo(({close, data}) => {
               </Text>
             </TouchableOpacity>
 
-            {!data?.transaction && <TouchableOpacity
-            onPress={() => setEditModal(data)}>
+            {!isTransaction?.transaction && <TouchableOpacity
+            onPress={() => setEditModal(isTransaction)}>
               <IconSvg name={EDIT} 
               color={COLORS.mainColor}
               style={{width: 30, height: 30}} />

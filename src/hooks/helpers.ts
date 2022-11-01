@@ -204,7 +204,7 @@ export const sortData = () => {
         {title: t('Year'), value: 'Year'}]
 }
 
-export const getThemeApp = () => {
+export const getThemeAppList = () => {
 
     const { t } = useTranslation()
 

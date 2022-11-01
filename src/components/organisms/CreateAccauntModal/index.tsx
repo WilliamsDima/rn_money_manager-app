@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react'
 import { Text, TouchableOpacity, View, ScrollView, ToastAndroid, Alert } from 'react-native'
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks'
-import { COLORS } from '../../../services/colors'
+import { getThemeApp } from '../../../services/colors'
 import { globalStyles } from '../../../services/styles'
 import { IAccounts } from '../../../store/redusers/main/types'
 import Button from '../../atoms/Button'
@@ -20,7 +20,9 @@ const CreateAccauntModal: FC<IAccauntCreateModal> = React.memo(({setModal, edite
 
   const dispatch = useAppDispatch()
   const { t } = useTranslation()
-  const { accounts, currencyValue } = useAppSelector(state => state.main)
+  const { accounts, currencyValue, themeApp } = useAppSelector(state => state.main)
+
+  const COLORS = getThemeApp(themeApp)
 
   const [colorModal, setColorModal] = useState(false)
   const [currenciesModal, setCurrenciesModal] = useState(false)
@@ -110,7 +112,7 @@ const CreateAccauntModal: FC<IAccauntCreateModal> = React.memo(({setModal, edite
   }
 
   return (
-    <View style={[styles.content]}>
+    <View style={[styles.content, { backgroundColor: COLORS.colorBlack }]}>
 
       <CustomModal visible={colorModal} closeHandler={setColorModal}>
         <ColorModal close={setColorModal} submin={setColorHandler} />
@@ -125,7 +127,7 @@ const CreateAccauntModal: FC<IAccauntCreateModal> = React.memo(({setModal, edite
           list={currencies()}/>
       </CustomModal>
 
-      <Text style={[styles.title, {color: COLORS.colorText}]}>
+      <Text style={[styles.title, { textDecorationColor: COLORS.mainColor }, {color: COLORS.colorText}]}>
         {editeMode ? t('Editing') : t('Create_account')}
       </Text>
 
@@ -181,7 +183,7 @@ const CreateAccauntModal: FC<IAccauntCreateModal> = React.memo(({setModal, edite
         <TouchableOpacity 
         onPress={() => setColorModal(true)}
         style={{marginTop: 20}}>
-            <View style={[styles.circle, bg && {backgroundColor: bg}]}/>
+            <View style={[styles.circle, { backgroundColor: COLORS.colorRed }, bg && {backgroundColor: bg}]}/>
         </TouchableOpacity>
 
         <View style={[styles.item, {paddingBottom: 70}]}>

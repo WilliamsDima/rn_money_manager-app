@@ -1,6 +1,5 @@
 import * as React from "react"
 import Svg, { Path } from "react-native-svg"
-import { COLORS } from "../../../services/colors"
 
 export const GearSvg = (props) => (
   <Svg
@@ -15,16 +14,16 @@ export const GearSvg = (props) => (
     {...props}
   >
     <Path
-        fill={props.color || COLORS.colorPriamry}
-        stroke={props.color || COLORS.colorPriamry}
+        fill={props.color || '#fff'}
+        stroke={props.color || '#fff'}
      d="M255.999 184.678c-39.327 0-71.322 31.996-71.322 71.323 0 39.328 31.995 71.323 71.322 71.323s71.322-31.996 71.322-71.323-31.994-71.323-71.322-71.323z" />
     <Path 
-        fill={props.color || COLORS.colorPriamry}
-        stroke={props.color || COLORS.colorPriamry}
+        fill={props.color || '#fff'}
+        stroke={props.color || '#fff'}
     d="M255.999 116.081c-77.151 0-139.918 62.767-139.918 139.919s62.767 139.919 139.918 139.919S395.918 333.152 395.918 256s-62.767-139.919-139.919-139.919zm0 241.66c-56.099 0-101.74-45.641-101.74-101.741s45.64-101.741 101.74-101.741S357.739 199.9 357.739 256s-45.64 101.741-101.74 101.741z" />
     <Path 
-        fill={props.color || COLORS.colorPriamry}
-        stroke={props.color || COLORS.colorPriamry}
+        fill={props.color || '#fff'}
+        stroke={props.color || '#fff'}
     d="M512 310.849V201.152h-42.52a217.679 217.679 0 0 0-23.75-57.313l30.073-30.073-77.568-77.569-30.073 30.073a217.679 217.679 0 0 0-57.313-23.75V0H201.151v42.52a217.679 217.679 0 0 0-57.313 23.75l-30.073-30.073-77.569 77.567 30.073 30.072a217.679 217.679 0 0 0-23.75 57.313H0v109.698h42.52a217.679 217.679 0 0 0 23.75 57.313l-30.073 30.073 77.568 77.568 30.073-30.072a217.679 217.679 0 0 0 57.313 23.75V512h109.698v-42.52a217.679 217.679 0 0 0 57.313-23.75l30.073 30.073 77.568-77.568-30.073-30.073a217.679 217.679 0 0 0 23.75-57.313H512zM255.999 426.336c-93.923 0-170.335-76.412-170.335-170.337S162.076 85.663 255.999 85.663 426.335 162.076 426.335 256s-76.412 170.336-170.336 170.336z" />
   </Svg>
 )

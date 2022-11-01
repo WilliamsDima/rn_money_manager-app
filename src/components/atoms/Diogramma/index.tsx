@@ -3,7 +3,7 @@ import { View, Text } from 'react-native'
 import { styles } from './diogramma.styles'
 import { IDiogramma } from './diogramma.types'
 import PieChart from 'react-native-pie-chart'
-import { COLORS } from '../../../services/colors'
+import { getThemeApp } from '../../../services/colors'
 import { globalStyles } from '../../../services/styles'
 import DiogrammaLine from '../DiogrammaLine'
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks'
@@ -17,7 +17,9 @@ const Diogramma: FC<IDiogramma> = React.memo(({sortArray, hideDiogram}) => {
 
   const dispatch = useAppDispatch()
   const { t } = useTranslation()
-  const { categories, currency, currencySelect, sumMoneySort, currencyValue } = useAppSelector(state => state.main)
+  const { categories, currency, currencySelect, sumMoneySort, currencyValue, themeApp } = useAppSelector(state => state.main)
+
+  const { colorText, colorBlack } = getThemeApp(themeApp)
 
   const widthAndHeight = 180
   const series = []
@@ -34,13 +36,13 @@ const Diogramma: FC<IDiogramma> = React.memo(({sortArray, hideDiogram}) => {
 
   const diogramm = hideDiogram ? <View style={{alignItems: 'center'}}>
     <DiogrammaLine sortArray={sortArray}/>
-    <Text style={[globalStyles.p2, {color: COLORS.colorText}]}>
+    <Text style={[globalStyles.p2, {color: colorText}]}>
           {numberConverter(sumMoneySort)} {currencyValue}
         </Text>
   </View> 
   : <View style={styles.wrapperDiagremm}>
       
-      {currency && <Text style={[globalStyles.p1, , {color: COLORS.colorText}]}>
+      {currency && <Text style={[globalStyles.p1, , {color: colorText}]}>
         {currency?.first?.count} {currency?.first?.code} 
       </Text>}
     <PieChart
@@ -49,13 +51,13 @@ const Diogramma: FC<IDiogramma> = React.memo(({sortArray, hideDiogram}) => {
       sliceColor={sliceColor}
       doughnut={true}
       coverRadius={0.5}
-      coverFill={COLORS.colorBlack}
+      coverFill={colorBlack}
     />
-      {currency && <Text style={[globalStyles.p1, {color: COLORS.colorText}]}>
+      {currency && <Text style={[globalStyles.p1, {color: colorText}]}>
         {currency?.second?.count} {currency?.second?.code} 
       </Text>}
       <View style={styles.count}>
-        <Text style={[globalStyles.p2, {color: COLORS.colorText}]}>
+        <Text style={[globalStyles.p2, {color: colorText}]}>
           {numberConverter(sumMoneySort)} {currencyValue}
         </Text>
       </View>
@@ -91,7 +93,7 @@ const Diogramma: FC<IDiogramma> = React.memo(({sortArray, hideDiogram}) => {
   return (
     <View style={[styles.container, !hideDiogram ? {marginBottom: 0} : {marginBottom: 10}]}>
       {sortArray.length && sliceColor.length ? diogramm :
-      <Text style={[globalStyles.p1, {opacity: 0.6, color: COLORS.colorText}]}>{t('EMPTY')}</Text>}
+      <Text style={[globalStyles.p1, {opacity: 0.6, color: colorText}]}>{t('EMPTY')}</Text>}
     </View>
   )
 })

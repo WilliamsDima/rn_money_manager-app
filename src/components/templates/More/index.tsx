@@ -10,7 +10,7 @@ import { useAppDispatch, useAppSelector } from '../../../hooks/hooks'
 import { setPop } from '../../../store/redusers/main/main'
 import { urlAppStore } from '../../../hooks/helpers'
 import { useTranslation } from 'react-i18next'
-import { COLORS } from '../../../services/colors'
+import { getThemeApp } from '../../../services/colors'
 
 const MoreTemplate = () => {
   
@@ -19,7 +19,9 @@ const MoreTemplate = () => {
 
   const dispatch = useAppDispatch()
   
-  const { pop } = useAppSelector(state => state.main)
+  const { pop, themeApp } = useAppSelector(state => state.main)
+
+  const COLORS = getThemeApp(themeApp)
 
   const toAboutApp = () => {
     navigation.navigate(RoutesNames.More.AboutApp)

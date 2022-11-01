@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 import { Text, TouchableOpacity } from 'react-native'
-import { COLORS } from '../../../services/colors'
+import { useAppSelector } from '../../../hooks/hooks'
+import { getThemeApp } from '../../../services/colors'
 import { IconSvg } from '../../../services/icons'
 import { globalStyles } from '../../../services/styles'
 import Avatar from '../../atoms/Avatar'
@@ -9,6 +10,10 @@ import { ICategoriItem } from './item.types'
 
 const CategoriItem: FC<ICategoriItem> = React.memo(({item, size, 
   overStyle, categoriId, setCategoriId}) => {
+
+  const { themeApp } = useAppSelector(state => state.main)
+
+  const COLORS = getThemeApp(themeApp)
 
   const {id, name, icon, bg} = item
 

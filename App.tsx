@@ -3,24 +3,30 @@ import { Provider } from 'react-redux'
 import Routes from './src/navigation/routes'
 import { store } from './src/store/index'
 import SplashScreen from 'react-native-splash-screen'
-import { AppContextProvider } from './src/context/App'
-import { useState } from 'react'
+import { StatusBar } from 'react-native'
+import { COLORS } from './src/services/colors'
 
 const App: FC = () => {
 
-  const [themeApp, setThemeApp] = useState('light')
-
   React.useEffect(() => {
+
     SplashScreen.hide()
+    console.log('app start')
   }, [])
 
   return (
-    <AppContextProvider store={{themeApp, setThemeApp}}>
-      <Provider store={store}>
-        <Routes />
-      </Provider>
-    </AppContextProvider>
+    <Provider store={store}>
+      <>
 
+        <StatusBar 
+        barStyle = "dark-content" 
+        hidden = {false} 
+        backgroundColor = {COLORS.colorHeader}
+        translucent = {true}/>
+        <Routes />
+      </>
+      
+    </Provider>
   );
 };
 

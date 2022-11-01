@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react'
 import { Text, TouchableOpacity, View, ScrollView, ToastAndroid, Alert } from 'react-native'
-import { useAppDispatch } from '../../../hooks/hooks'
-import { COLORS } from '../../../services/colors'
+import { useAppDispatch, useAppSelector } from '../../../hooks/hooks'
+import { getThemeApp } from '../../../services/colors'
 import { globalStyles } from '../../../services/styles'
 import { ICategories } from '../../../store/redusers/main/types'
 import Button from '../../atoms/Button'
@@ -15,6 +15,10 @@ import { addCategori, deleteCategori, editeCategori } from '../../../store/redus
 import { useTranslation } from 'react-i18next'
 
 const CreateCategoriModal: FC<IAccauntCreateModal> = React.memo(({setModal, editeMode}) => {
+
+  const { themeApp } = useAppSelector(state => state.main)
+
+  const COLORS = getThemeApp(themeApp)
 
   const dispatch = useAppDispatch()
   const { t } = useTranslation()
@@ -89,13 +93,13 @@ const CreateCategoriModal: FC<IAccauntCreateModal> = React.memo(({setModal, edit
   }
 
   return (
-    <View style={[styles.content]}>
+    <View style={[styles.content, { backgroundColor: COLORS.colorBlack }]}>
 
       <CustomModal visible={colorModal} closeHandler={setColorModal}>
         <ColorModal close={setColorModal} submin={setColorHandler} />
       </CustomModal>
 
-      <Text style={[styles.title, {color: COLORS.colorText}]}>
+      <Text style={[styles.title, { textDecorationColor: COLORS.mainColor }, {color: COLORS.colorText}]}>
         {editeMode ? t('Editing') : t('Create_category')}
       </Text>
 
@@ -114,7 +118,8 @@ const CreateCategoriModal: FC<IAccauntCreateModal> = React.memo(({setModal, edit
           style={[styles.btnSelect, {marginRight: 20}]}>
             <Text style={[globalStyles.p1, {marginRight: 10}, !income 
               ? {color: COLORS.mainColor} : {color: COLORS.colorText}]}>{t('expense')}</Text>
-            <View style={[styles.income, !income && {backgroundColor: COLORS.mainColor, borderColor: COLORS.mainColor}]}/>
+            <View style={[styles.income, { borderColor: COLORS.colorSecondary }, 
+              !income && {backgroundColor: COLORS.mainColor, borderColor: COLORS.mainColor}]}/>
           </TouchableOpacity>
 
           <TouchableOpacity 
@@ -122,7 +127,8 @@ const CreateCategoriModal: FC<IAccauntCreateModal> = React.memo(({setModal, edit
           style={[styles.btnSelect]}>
             <Text style={[globalStyles.p1, {marginRight: 10}, income 
               ? {color: COLORS.mainColor} : {color: COLORS.colorText}]}>{t('income')}</Text>
-            <View style={[styles.income, income && {backgroundColor: COLORS.mainColor, borderColor: COLORS.mainColor}]}/>
+            <View style={[styles.income, { borderColor: COLORS.colorSecondary }, 
+              income && {backgroundColor: COLORS.mainColor, borderColor: COLORS.mainColor}]}/>
           </TouchableOpacity>
         </View>
 
@@ -147,7 +153,8 @@ const CreateCategoriModal: FC<IAccauntCreateModal> = React.memo(({setModal, edit
         <TouchableOpacity 
         onPress={() => setColorModal(true)}
         style={{marginTop: 20}}>
-            <View style={[styles.circle, bg && {backgroundColor: bg}]}/>
+            <View style={[styles.circle, { backgroundColor: COLORS.colorRed}, 
+              bg && {backgroundColor: bg}]}/>
         </TouchableOpacity>
 
         <View style={[styles.item, {paddingBottom: 70}]}>

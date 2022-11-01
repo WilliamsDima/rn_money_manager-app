@@ -4,7 +4,8 @@ import { localAPI } from '../../../api/asyncStorage'
 import { useAppDispatch } from '../../../hooks/hooks'
 import i18n from '../../../i18n/i18n'
 import { LOCAL_NAME } from '../../../store/actions/main/types'
-import { addLocalAccaunts, addLocalCategories, addLocalExpAndIncome, setAccauntId, setAllCauntAccaunts, setCurrencyValue, setLanguage, setPop, setRate, setSortValue, setThemeApp } from '../../../store/redusers/main/main'
+import { addLocalAccaunts, addLocalCategories, addLocalExpAndIncome, setAccauntId, setAllCauntAccaunts, setCurrencyValue, 
+  setLanguage, setPop, setRate, setSortValue, setThemeApp } from '../../../store/redusers/main/main'
 import ButtonsTabMain from '../../atoms/ButtonsTabMain'
 import { styles } from './header.styles'
 
@@ -53,6 +54,8 @@ const HeaderMain = () => {
     const themeApp = await localAPI.get(LOCAL_NAME.THEME_APP)
     themeApp && dispatch(setThemeApp(themeApp))
 
+    console.log(themeApp);
+
     const language = await localAPI.get(LOCAL_NAME.LANGUAGE)
 
     language && i18n
@@ -73,7 +76,7 @@ const HeaderMain = () => {
   return (
     <View style={styles.container}>
         {/* <Rate /> */}
-        <ButtonsTabMain />
+        <ButtonsTabMain main={true}/>
     </View>
   )
 }

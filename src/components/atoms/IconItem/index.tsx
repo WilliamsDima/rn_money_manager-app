@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 import { TouchableOpacity } from 'react-native'
-import { COLORS } from '../../../services/colors'
+import { useAppSelector } from '../../../hooks/hooks'
+import { getThemeApp } from '../../../services/colors'
 import { IconSvg } from '../../../services/icons'
 import Avatar from '../../atoms/Avatar'
 import { styles } from './item.styles'
@@ -8,6 +9,10 @@ import { IIconItem } from './item.types'
 
 const IconItem: FC<IIconItem> = React.memo(({size, iconName, bg,
   overStyle, idSelect, setId}) => {
+
+  const { themeApp } = useAppSelector(state => state.main)
+
+  const COLORS = getThemeApp(themeApp)
 
   return (
     <TouchableOpacity 

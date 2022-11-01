@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { View, Text, TouchableOpacity, DevSettings, Alert } from 'react-native'
 import { localAPI } from '../../../api/asyncStorage'
-import { COLORS } from '../../../services/colors'
+import { getThemeApp } from '../../../services/colors'
 import { IconSvg } from '../../../services/icons'
 import { CLEAR, DOLLAR, EXCHANGE, LANGUAGE, PASSWORD, PERIOD, THEME } from '../../../services/iconsName'
 import { globalStyles } from '../../../services/styles'
@@ -12,21 +12,23 @@ import { useAppDispatch, useAppSelector } from '../../../hooks/hooks'
 import { setCurrencyValue, setLanguage, setRate, setSortValue, setThemeApp } from '../../../store/redusers/main/main'
 import CustomModal from '../../atoms/Modal'
 import Picker from '../../molecules/Picker'
-import { currencies, sortData, getThemeApp } from '../../../hooks/helpers'
+import { currencies, sortData, getThemeAppList } from '../../../hooks/helpers'
 import { useTranslation } from 'react-i18next'
 import i18n from '../../../i18n/i18n'
 import PickerMulti from '../../molecules/PickerMulti'
-import { AppContext } from '../../../context/App'
+import RNRestart from 'react-native-restart'
 
 const SettingsTemplate = () => {
 
-  const { setThemeApp } = useContext(AppContext)
   const dispatch = useAppDispatch()
   const { sort, currencyValue, languageData, language, currencySelect, themeApp } = useAppSelector(state => state.main)
+
+  const COLORS = getThemeApp(themeApp)
 
   const { t } = useTranslation()
 
   const languageSelect = languageData.find((item) => item.value === language)
+  const themeAppSelect = getThemeAppList().find((item) => item.value === themeApp)
 
   const [languageModal, setLanguageModal] = useState(false);
 
@@ -56,8 +58,23 @@ const SettingsTemplate = () => {
   }
 
   const changeThemeHandler = (value) => {
-    //dispatch(setThemeApp(value))
-    setThemeApp(value)
+    Alert.alert(
+      t('theme_ATTENTION'),
+      t('change_theme'),
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        { text: "OK", onPress: () => {
+            dispatch(setThemeApp(value))
+            setThemeApp(value)
+
+            RNRestart.Restart()
+        } }
+      ]
+    );
   }
 
   const rateSubmit = (value) => {
@@ -87,6 +104,9 @@ const SettingsTemplate = () => {
             localAPI.remove(LOCAL_NAME.CURRENCY_VALUE)
             localAPI.remove(LOCAL_NAME.LANGUAGE)
             localAPI.remove(LOCAL_NAME.RATE)
+            localAPI.remove(LOCAL_NAME.THEME_APP)
+
+            RNRestart.Restart()
         } }
       ]
     );
@@ -103,7 +123,7 @@ const SettingsTemplate = () => {
 
 
   return (
-    <ScrollContainer overStyle={styles.container}>
+    <ScrollContainer overStyle={[styles.container,  {backgroundColor: COLORS.colorLightBlack}]}>
 
       <TouchableOpacity style={styles.item} onPress={inDevProgress}>
         <View style={{marginRight: 20}}>
@@ -199,14 +219,14 @@ const SettingsTemplate = () => {
               close={() => setThemeModal(false)}
               changeValue={changeThemeHandler} 
               select={themeApp} 
-              list={getThemeApp()}/>
+              list={getThemeAppList()}/>
         </CustomModal>
         <View style={{justifyContent: 'flex-start'}}>
           <Text style={[globalStyles.h2, {marginRight: 20, opacity: 0.6, color: COLORS.colorText}]}>
             {t('theme')}
           </Text>
           <Text style={[globalStyles.h2, {color: COLORS.mainColor}]}>
-            {getThemeApp()[0].title}
+            {themeAppSelect?.title}
           </Text>
         </View>
       </TouchableOpacity>

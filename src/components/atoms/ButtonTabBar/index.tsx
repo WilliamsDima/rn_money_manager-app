@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 import { TouchableOpacity } from 'react-native'
-import { COLORS } from '../../../services/colors'
+import { useAppSelector } from '../../../hooks/hooks'
+import { getThemeApp } from '../../../services/colors'
 import { IconSvg } from '../../../services/icons'
 import { styles } from './button.styles'
 import { IButtonTabBar } from './button.types'
@@ -10,15 +11,19 @@ const ButtonTabBar: FC<IButtonTabBar> = ({
   assetNames,
   onPress,
 }) => {
+
+  const { themeApp } = useAppSelector(state => state.main)
+
+  const { mainColor, colorPriamry } = getThemeApp(themeApp)
   
   return (
     <TouchableOpacity
-      style={[styles.button, isFocused && styles.focus]}
+      style={[styles.button, isFocused && {backgroundColor: mainColor}]}
       onPress={onPress}
     >
       <IconSvg name={assetNames} color={isFocused 
-      ? COLORS.colorPriamry 
-      : COLORS.mainColor}/>
+      ? colorPriamry 
+      : mainColor}/>
     </TouchableOpacity>
   )
 }

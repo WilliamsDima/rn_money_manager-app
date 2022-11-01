@@ -5,8 +5,14 @@ import { styles } from './list.styles'
 import { IHistory } from './list.types'
 import CustomModal from '../../atoms/Modal'
 import HistoryInfoModal from '../../molecules/HistoryInfoModal'
+import { useAppSelector } from '../../../hooks/hooks'
+import { getThemeApp } from '../../../services/colors'
 
 const HistoryList: FC<IHistory> = ({ data }) => {
+
+  const { themeApp } = useAppSelector(state => state.main)
+
+  const COLORS = getThemeApp(themeApp)
 
   const [historyInfo, setHistoryInfo] = useState(false)
 
@@ -15,7 +21,7 @@ const HistoryList: FC<IHistory> = ({ data }) => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor:COLORS.colorBlack }]}>
       <CustomModal
         visible={historyInfo ? true : false}
         animationType={'fade'}

@@ -1,7 +1,8 @@
 import React, { FC } from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
 import { numberConverter } from '../../../hooks/helpers'
-import { COLORS } from '../../../services/colors'
+import { useAppSelector } from '../../../hooks/hooks'
+import { getThemeApp } from '../../../services/colors'
 import { IconSvg } from '../../../services/icons'
 import { globalStyles } from '../../../services/styles'
 import Avatar from '../Avatar'
@@ -12,6 +13,10 @@ const AccauntsBtnSelect: FC<IAccauntsBtnSelect> = ({data, overStyle,
   idSelect, setAccauntsHandler}) => {
 
   const {bg, count, id, icon, name, currency} = data
+
+  const { themeApp } = useAppSelector(state => state.main)
+
+  const {mainColor, colorText, colorLightBlack} = getThemeApp(themeApp)
   
   return (
     <TouchableOpacity style={[styles.container, overStyle]}
@@ -20,13 +25,15 @@ const AccauntsBtnSelect: FC<IAccauntsBtnSelect> = ({data, overStyle,
         <Avatar overStyle={styles.icon} bg={bg}>
           <IconSvg name={icon} color={'#fff'} width={25}/>
         </Avatar>
-        <Text style={[globalStyles.p1, {color: COLORS.colorText}]}>{name}</Text>
+        <Text style={[globalStyles.p1, {color: colorText}]}>{name}</Text>
       </View>
       <View style={styles.item}>
-        <Text style={[globalStyles.p1, styles.item, {color: COLORS.colorText}]}>
+        <Text style={[globalStyles.p1, styles.item, {color: colorText}]}>
           {numberConverter(count)} {currency || 'RUB'}
           </Text>
-        <View style={[styles.circle, idSelect === id && styles.active]}/>
+        <View style={[styles.circle, {borderColor: colorLightBlack},
+           idSelect === id && { borderColor: mainColor,
+            backgroundColor: mainColor,}]}/>
       </View>
     </TouchableOpacity>
   )

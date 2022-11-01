@@ -1,6 +1,5 @@
 import * as React from "react"
 import Svg, { Path } from "react-native-svg"
-import { COLORS } from "../../../services/colors"
 
 export const EnergySvg = (props) => (
   <Svg
@@ -11,8 +10,8 @@ export const EnergySvg = (props) => (
     {...props}
   >
     <Path
-      fill={props.color || COLORS.colorPriamry}
-      stroke={props.color || COLORS.colorPriamry}
+      fill={props.color || '#fff'}
+      stroke={props.color || '#fff'}
       strokeLinejoin="round"
       strokeMiterlimit={10}
       strokeWidth={2}

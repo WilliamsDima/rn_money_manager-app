@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native'
-import { COLORS } from '../../../services/colors'
 
 export const styles = StyleSheet.create({
   contetn: {
@@ -10,6 +9,5 @@ export const styles = StyleSheet.create({
     paddingVertical: 50,
     borderWidth: 1,
     borderRadius: 10,
-    borderColor: COLORS.colorSecondary
   },
 })
