@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { Text, View } from 'react-native'
-import { countSumTransaction, getItemFromList, numberConverter } from '../../../hooks/helpers'
+import { countSumTransaction, dataFilterMaxValue, numberConverter } from '../../../hooks/helpers'
 import { useAppSelector } from '../../../hooks/hooks'
 import { getThemeApp } from '../../../services/colors'
 import { globalStyles } from '../../../services/styles'
@@ -12,32 +12,11 @@ const HistoryStatisticList: FC<IHistory> = React.memo(({ data }) => {
 
   const { t } = useTranslation()
 
-  const { categories, currencyValue, themeApp } = useAppSelector(state => state.main)
+  const { currencyValue, themeApp, categoriesSortData } = useAppSelector(state => state.main)
 
   const COLORS = getThemeApp(themeApp)
 
-  // собираю самый часто повторяющийся id категории
-  const topCategory = {}
-  let count = 0
-  let maxCount = data[0]?.categori
-
-  for (let i = 0; i < data.length; i++) {
-    const categoriId = data[i].categori
-
-    if (topCategory[categoriId]) {
-      topCategory[categoriId]++
-    } else {
-      topCategory[categoriId] = 1
-    }
-
-    if (topCategory[categoriId] > maxCount) {
-      count = topCategory[categoriId]
-      maxCount = categoriId
-    }
-    
-  }
-
-  const topItemCategory = maxCount && getItemFromList(maxCount, categories)
+  const sortCategoryTop = dataFilterMaxValue(categoriesSortData, true)
   const filterTransaction = data?.filter((item) => !item.transaction)
   const sum = filterTransaction?.length ? countSumTransaction(filterTransaction) : 0
 
@@ -47,7 +26,7 @@ const HistoryStatisticList: FC<IHistory> = React.memo(({ data }) => {
   return (
     <View style={styles.container}>
       <Text style={[globalStyles.p1, {color: COLORS.colorText}, {textTransform: 'uppercase'}]}>{t('top')} 
-      : {topItemCategory?.name}</Text>
+      : {sortCategoryTop[0]?.name || '-'}</Text>
       <Text style={[globalStyles.p1, {color: COLORS.colorText}]}>{t('total')}:
         <Text 
         style={colorSum}> {sum < 0 ? numberConverter(sum * -1) 

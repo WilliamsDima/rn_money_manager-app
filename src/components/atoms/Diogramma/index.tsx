@@ -42,22 +42,24 @@ const Diogramma: FC<IDiogramma> = React.memo(({sortArray, hideDiogram}) => {
   </View> 
   : <View style={styles.wrapperDiagremm}>
       
-      {currency && <Text style={[globalStyles.p1, , {color: colorText}]}>
+      {currency && <Text style={[globalStyles.s3, , {color: colorText}]}>
         {currency?.first?.count} {currency?.first?.code} 
       </Text>}
-    <PieChart
-      widthAndHeight={widthAndHeight}
-      series={series}
-      sliceColor={sliceColor}
-      doughnut={true}
-      coverRadius={0.5}
-      coverFill={colorBlack}
-    />
-      {currency && <Text style={[globalStyles.p1, {color: colorText}]}>
+
+      <PieChart
+        widthAndHeight={widthAndHeight}
+        series={series}
+        sliceColor={sliceColor}
+        doughnut={true}
+        coverRadius={0.5}
+        coverFill={colorBlack}
+      />
+      
+      {currency && <Text style={[globalStyles.s3, {color: colorText}]}>
         {currency?.second?.count} {currency?.second?.code} 
       </Text>}
       <View style={styles.count}>
-        <Text style={[globalStyles.p2, {color: colorText}]}>
+        <Text style={[globalStyles.s3, {color: colorText}]}>
           {numberConverter(sumMoneySort)} {currencyValue}
         </Text>
       </View>

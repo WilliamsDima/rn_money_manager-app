@@ -26,23 +26,31 @@ export const dataFilterMaxValue = (categories, max) => categories
   return a.count - b.count
 })
 
-const getSort = (moneyArray, id) => {
-  return moneyArray.find((e) => e.categori === id)
+const getSort = (transactions, id) => {
+  return transactions.filter((e) => e.categori === id)
 }
 
-export const getSortCategories = (moneyArray, categories) => {
-  return moneyArray.length && categories.filter((c) => {
+export const getSortCategories = (transactions, categories, categoriesSortData) => {
 
-    const moneyObj = getSort(moneyArray, c.id)
+    // сначала обнуляю до нуля
+    const newCategories = categories.map((c) => {
+        const objCopy = {...c}
+        objCopy.count += c.count
+        objCopy.count = 0
+        return objCopy
+    })
+    
+    return transactions.length && newCategories.map((c) => {
 
-      if (moneyObj) {
-          // делаем копию объекта так как строгий режим не позволит редактировать объект "c" 
-          // на прямую (c.count += +expens.money) - // error - Attempted to assign to readonly property
-          const objCopy = {...moneyObj}
-          objCopy.count += +moneyObj.money
-          return objCopy
-      }
-  })
+        const transactionsCat = getSort(transactions, c.id)
+        const sum = transactionsCat.length && countSumItemsFromList(transactionsCat)
+
+        // делаем копию объекта так как строгий режим не позволит редактировать объект "c" 
+        // на прямую (c.count += +expens.money) - // error - Attempted to assign to readonly property
+        const objCopy = {...c}
+        objCopy.count += sum
+        return objCopy
+    })
 }
 
 export const months = () => {
@@ -212,3 +220,10 @@ export const getThemeAppList = () => {
         {title: t('dark'), value: 'dark'}, 
         {title: t('light'), value: 'light'},]
 }
+
+export const replaseNumber = (i: number | string) => {
+    if (i < 10) {
+      i = '0' + i
+    }
+    return i
+  }

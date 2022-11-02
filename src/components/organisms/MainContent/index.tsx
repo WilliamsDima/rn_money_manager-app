@@ -20,6 +20,7 @@ const MainContent: FC<IMain> = ({onScroll}) => {
   && c.count)
 
   const filterMaxValue = dataFilterMaxValue(categoriesFilter, filter)
+  
 
   return (
     <View style={[styles.view]}>

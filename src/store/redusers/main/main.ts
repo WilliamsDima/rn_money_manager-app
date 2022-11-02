@@ -9,7 +9,7 @@ const initialState: IStore = {
     accountsIdSelected: 1,
     tabExpOrIncome: false,
     sort: 'Month',
-    sortDatePeriod: null,
+    sortDatePeriod: new Date(),
     sumMoneySort: 0,
     sumCategiesCountSort: 0,
     categoriesSortData: [],

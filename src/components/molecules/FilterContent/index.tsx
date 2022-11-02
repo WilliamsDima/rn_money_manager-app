@@ -19,7 +19,7 @@ const FilterContent: FC<IFilter> = React.memo(({setExpAndEncomeModal, hideDiogra
 
   const dispatch = useAppDispatch()
   const { transaction, categories, 
-    tabExpOrIncome, sort, sortDatePeriod, themeApp } = useAppSelector(state => state.main)
+    tabExpOrIncome, sort, sortDatePeriod, themeApp, categoriesSortData } = useAppSelector(state => state.main)
 
   const COLORS = getThemeApp(themeApp)
 
@@ -28,7 +28,7 @@ const FilterContent: FC<IFilter> = React.memo(({setExpAndEncomeModal, hideDiogra
   // сортировка по выбранному периоду
   const sortArrayPeriodSelect = periodSort(sort, expensesAndIncomFilter, sortDatePeriod)
   // собираю категории
-  const sortArray = getSortCategories(sortArrayPeriodSelect, categories) || []
+  const sortArray = getSortCategories(sortArrayPeriodSelect, categories, categoriesSortData) || []
   // общая сумма денег в тратах или доходах
   const sumMoney = countSumItemsFromList(sortArray)
 

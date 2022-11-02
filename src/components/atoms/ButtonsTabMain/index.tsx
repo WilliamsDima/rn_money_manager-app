@@ -19,17 +19,15 @@ const ButtonsTabMain: FC<IButtonTabMain> = ({setTab, tabValue, main = true}) => 
   const { colorText, colorPriamry, colorBlack } = getThemeApp(themeApp)
 
   
-  const example = async () => {
-    try{
+  const setColorForNavigationBar = async () => {
+    try {
         const response = await changeNavigationBarColor(colorBlack)
-        console.log(response)// {success: true}
-    }catch(e){
+    } catch(e){
         console.log(e)// {success: false}
     }
-
   }
 
-  example()
+  setColorForNavigationBar()
   
   const tabHandler = (value) => {
     !setTab && dispatch(setTabExpOrIncome(value))

@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native'
 
 export const styles = StyleSheet.create({
   dataBtn: {
-    width: 60,
+    width: 70,
     height: 40,
     padding: 10,
     borderWidth: 1,

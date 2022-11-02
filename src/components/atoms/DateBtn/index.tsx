@@ -1,5 +1,6 @@
 import React, { FC } from 'react'
 import { Text, TouchableOpacity } from 'react-native'
+import { replaseNumber } from '../../../hooks/helpers'
 import { useAppSelector } from '../../../hooks/hooks'
 import { getThemeApp } from '../../../services/colors'
 import { globalStyles } from '../../../services/styles'
@@ -19,7 +20,7 @@ const DateBtn: FC<IButton> = ({onPress, overStyle, prevDate, date}) => {
       && {backgroundColor: COLORS.mainColor}, overStyle]}>
 
       <Text style={[globalStyles.p1, prevDate.getDate() !== date.getDate() && {color: COLORS.colorText}]}>
-        {prevDate.getDate()} / {prevDate.getMonth()}
+        {replaseNumber(prevDate.getDate())} / {replaseNumber(prevDate.getMonth())}
       </Text>
   </TouchableOpacity>
   )

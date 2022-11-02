@@ -51,7 +51,7 @@ export interface IStore {
     accountsIdSelected: number | string
     tabExpOrIncome: boolean
     sort: TsortFilter
-    sortDatePeriod: null | Date
+    sortDatePeriod: Date
     sumMoneySort: number
     sumCategiesCountSort: number
     categoriesSortData: ICategories[] | []

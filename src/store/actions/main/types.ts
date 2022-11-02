@@ -55,4 +55,5 @@ export interface IACMain {
 
     setLanguage: (state: IStore, payload: PayloadAction<string>) => void
     setThemeApp: (state: IStore, payload: PayloadAction<string>) => void
+    
 }
