@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { NativeScrollEvent, ScrollView } from 'react-native'
+import { NativeScrollEvent, ScrollView, RefreshControl } from 'react-native'
 import { ICategories } from '../../../store/redusers/main/types'
 import ItemList from '../../atoms/ItemList'
 import { styles } from './list.styles'

@@ -1,5 +1,5 @@
 import React, { FC, useEffect } from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, Alert } from 'react-native'
 import { styles } from './diogramma.styles'
 import { IDiogramma } from './diogramma.types'
 import PieChart from 'react-native-pie-chart'
@@ -17,7 +17,7 @@ const Diogramma: FC<IDiogramma> = React.memo(({sortArray, hideDiogram}) => {
 
   const dispatch = useAppDispatch()
   const { t } = useTranslation()
-  const { categories, currency, currencySelect, sumMoneySort, currencyValue, themeApp } = useAppSelector(state => state.main)
+  const { categories, currency, currencySelect, sumMoneySort, currencyValue, themeApp, developerMode } = useAppSelector(state => state.main)
 
   const { colorText, colorBlack } = getThemeApp(themeApp)
 
@@ -81,7 +81,19 @@ const Diogramma: FC<IDiogramma> = React.memo(({sortArray, hideDiogram}) => {
       }
     }
 
-    console.log(data);
+    console.log('developerMode', developerMode);
+    
+
+    if (developerMode) {
+      Alert.alert(
+        'Курсы валют',
+        `${data.first.code + ' - ' + data.first.count}
+         ${data.second.code + ' - ' + data.second.count}`,
+      );
+    } else {
+      console.log(data);
+    }
+  
     
     dispatch(setCurrency(data))
   }
@@ -90,7 +102,7 @@ const Diogramma: FC<IDiogramma> = React.memo(({sortArray, hideDiogram}) => {
   useEffect(() => {
     console.log('Diogramma');
     getCurrency()
-  }, [categories, currencySelect, currencyValue])
+  }, [categories, currencySelect, currencyValue, developerMode])
   
   return (
     <View style={[styles.container, !hideDiogram ? {marginBottom: 0} : {marginBottom: 10}]}>

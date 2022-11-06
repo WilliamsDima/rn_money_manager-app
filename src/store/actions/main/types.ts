@@ -14,6 +14,7 @@ export const LOCAL_NAME =  {
     LANGUAGE: 'LANGUAGE',
     RATE: 'RATE',
     THEME_APP: 'THEME_APP',
+    DEVELOPER: 'DEVELOPER'
 }
 
 interface IDeleteAccaunt {
@@ -22,6 +23,7 @@ interface IDeleteAccaunt {
 }
 
 export interface IACMain {
+    setDeveloperModeAC: (state: IStore, payload: PayloadAction<boolean>) => void
     setTabExpOrIncome: (state: IStore, payload: PayloadAction<boolean>) => void
     setAccauntId: (state: IStore, payload: PayloadAction<number>) => void
     setSumMoneySort: (state: IStore, payload: PayloadAction<number>) => void

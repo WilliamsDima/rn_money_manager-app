@@ -6,6 +6,10 @@ import { changeTransaction, countAccaunts, countAccauntsTransaction,
 import { IACMain, LOCAL_NAME } from "./types"
 
 export const reducers: IACMain = {
+    setDeveloperModeAC:(state, { payload }) => {
+        state.developerMode = payload
+        localAPI.set(LOCAL_NAME.DEVELOPER, state.developerMode)
+    },
     setPop: (state, {payload}) => {
         state.pop = payload
         localAPI.set(LOCAL_NAME.POP, state.pop)

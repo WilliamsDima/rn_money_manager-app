@@ -6,6 +6,7 @@ import { reducers } from "../../actions/main/mainAC"
 import { IStore } from './types'
 
 const initialState: IStore = {
+    developerMode: false,
     accountsIdSelected: 1,
     tabExpOrIncome: false,
     sort: 'Month',
@@ -195,4 +196,5 @@ export const {setAllCauntAccaunts, addTransaction,
     addLocalAccaunts, addAccaunt, editeAccaunt, deleteAccaunt,
     deleteTransaction, addCategori, editeCategori, deleteCategori,
     setCurrency, setPop, setCurrencyValue, setLanguage, setRate, setThemeApp,
+    setDeveloperModeAC,
     setDataOnPeriodFilter, setAccauntId, addLocalExpAndIncome } = counterSlice.actions;

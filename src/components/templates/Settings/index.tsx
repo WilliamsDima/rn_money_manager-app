@@ -3,16 +3,16 @@ import { View, Text, TouchableOpacity, DevSettings, Alert } from 'react-native'
 import { localAPI } from '../../../api/asyncStorage'
 import { getThemeApp } from '../../../services/colors'
 import { IconSvg } from '../../../services/icons'
-import { CLEAR, DOLLAR, EXCHANGE, LANGUAGE, PASSWORD, PERIOD, THEME } from '../../../services/iconsName'
+import { CLEAR, DEVELOPER, DOLLAR, EXCHANGE, LANGUAGE, PASSWORD, PERIOD, THEME } from '../../../services/iconsName'
 import { globalStyles } from '../../../services/styles'
 import { LOCAL_NAME } from '../../../store/actions/main/types'
 import ScrollContainer from '../../atoms/Container/ScrollContainer'
 import { styles } from './settings.styles'
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks'
-import { setCurrencyValue, setLanguage, setRate, setSortValue, setThemeApp } from '../../../store/redusers/main/main'
+import { setCurrencyValue, setDeveloperModeAC, setLanguage, setRate, setSortValue, setThemeApp } from '../../../store/redusers/main/main'
 import CustomModal from '../../atoms/Modal'
 import Picker from '../../molecules/Picker'
-import { currencies, sortData, getThemeAppList } from '../../../hooks/helpers'
+import { currencies, sortData, getThemeAppList, getDeveloperMode } from '../../../hooks/helpers'
 import { useTranslation } from 'react-i18next'
 import i18n from '../../../i18n/i18n'
 import PickerMulti from '../../molecules/PickerMulti'
@@ -21,7 +21,7 @@ import RNRestart from 'react-native-restart'
 const SettingsTemplate = () => {
 
   const dispatch = useAppDispatch()
-  const { sort, currencyValue, languageData, language, currencySelect, themeApp } = useAppSelector(state => state.main)
+  const { sort, currencyValue, languageData, language, currencySelect, themeApp, developerMode } = useAppSelector(state => state.main)
 
   const COLORS = getThemeApp(themeApp)
 
@@ -45,11 +45,16 @@ const SettingsTemplate = () => {
   const [currenciesModal, setCurrenciesModal] = useState(false)
   const [rateModal, setRateModal] = useState(false)
   const [themeModal, setThemeModal] = useState(false)
+  const [developer, setDeveloper] = useState(false)
   
 
   const changeSortHandler = (value) => {
     dispatch(setSortValue(value))
     localAPI.set(LOCAL_NAME.PERIOD, value)
+  }
+
+  const setDeveloperMode = (value) => {
+    dispatch(setDeveloperModeAC(value))
   }
 
   const changeCurrencyHandler = (value) => {
@@ -105,6 +110,7 @@ const SettingsTemplate = () => {
             localAPI.remove(LOCAL_NAME.LANGUAGE)
             localAPI.remove(LOCAL_NAME.RATE)
             localAPI.remove(LOCAL_NAME.THEME_APP)
+            localAPI.remove(LOCAL_NAME.DEVELOPER)
 
             RNRestart.Restart()
         } }
@@ -261,6 +267,28 @@ const SettingsTemplate = () => {
         <View style={{justifyContent: 'flex-start'}}>
           <Text style={[globalStyles.h2, {color: COLORS.colorRed}]}>
             {t('delete_app_data')}
+          </Text>
+        </View>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.item} onPress={() => setDeveloper(true)}>
+        <View style={{marginRight: 20}}>
+          <IconSvg name={DEVELOPER} width={25} color={COLORS.colorText}/>
+        </View>
+        <CustomModal visible={developer} closeHandler={setDeveloper}>
+          <Picker 
+            overStyle={{maxHeight: '90%'}}
+            close={() => setDeveloper(false)}
+            changeValue={setDeveloperMode} 
+            select={developerMode} 
+            list={getDeveloperMode()}/>
+        </CustomModal>
+        <View style={{justifyContent: 'flex-start'}}>
+          <Text style={[globalStyles.h2, {marginRight: 20, opacity: 0.6, color: COLORS.colorText}]}>
+            {t('developer_mode')}
+          </Text>
+          <Text style={[globalStyles.h2, {color: COLORS.mainColor}]}>
+            {developerMode ? t('developer_mode_on') : t('developer_mode_off')}
           </Text>
         </View>
       </TouchableOpacity>

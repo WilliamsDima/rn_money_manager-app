@@ -226,4 +226,13 @@ export const replaseNumber = (i: number | string) => {
       i = '0' + i
     }
     return i
-  }
+}
+
+export const getDeveloperMode = () => {
+
+    const { t } = useTranslation()
+
+    return  [
+        {title: t('developer_mode_on'), value: true}, 
+        {title: t('developer_mode_off'), value: false},]
+}

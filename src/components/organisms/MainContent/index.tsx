@@ -26,7 +26,10 @@ const MainContent: FC<IMain> = ({onScroll}) => {
     <View style={[styles.view]}>
         <FilterList filter={filter} setFilter={setFilter}/>
         {filterMaxValue?.length 
-        ? <ListData data={filterMaxValue} onScroll={onScroll}/> 
+        ? <ListData 
+        data={filterMaxValue} 
+        onScroll={onScroll}/> 
+
         : <DataListEmpty text={tabExpOrIncome ? t('no_income_selected_period')
         : t('no_expense_elected_period')} />}
         

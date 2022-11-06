@@ -11,7 +11,7 @@ import { MoreSvg } from "../assets/svg/MoreSvg";
 import { PlusSvg } from "../assets/svg/PlusSvg";
 import { ANIMAL, ARROW_SELECT, BANK, BASKET, BURGER, BUS, CAR, CARD, CHARITY, CLEAR, CLOTHES, 
     COIN, 
-    COSMETICS, DELETE, DOLLAR, EDIT, EDUCATION, ENERGY, EXCHANGE, FAMILY, FILL, FLIGHT, GAME, GAS, GEAR, GIFT,
+    COSMETICS, DELETE, DEVELOPER, DOLLAR, EDIT, EDUCATION, ENERGY, EXCHANGE, FAMILY, FILL, FLIGHT, GAME, GAS, GEAR, GIFT,
      GLASS, GLASSES, GOOGLE_PLAY, HEADER_LEFT, HEART, HISTORY, HOME, INST, INTERNET, LANGUAGE, LINKEDIN, MAP, 
      MEDIC, 
      MONEY_BAG, MUSIC, PASSWORD, PERIOD, PHONE, PIGGY_BANK, PLUS_CIRCLE, PRODUCTS, 
@@ -82,6 +82,7 @@ import DollarSvg from "../assets/svg/DollarSvg";
 import ThemeSvg from "../assets/svg/ThemeSvg";
 import ClearSvg from "../assets/svg/ClearSvg";
 import { TiketSvg } from "../assets/svg/categories/TiketSvg";
+import DeveloperSvg from "../assets/svg/DeveloperSvg";
 
 export const ICONS_SVG = {
     // tab
@@ -156,6 +157,7 @@ export const ICONS_SVG = {
     [THEME]: (props) => <ThemeSvg color={props.color} {...props}/>,
     [CLEAR]: (props) => <ClearSvg color={props.color} {...props}/>,
     [HOME]: (props) => <HomeCategorySvg color={props.color} {...props}/>,
+    [DEVELOPER]: (props) => <DeveloperSvg color={props.color} {...props}/>,
 
     [VK]: (props) => <VkSvg color={props.color} {...props}/>,
     [INST]: (props) => <InstSvg color={props.color} {...props}/>,

@@ -69,6 +69,7 @@ export const DOLLAR = 'DOLLAR'; // валюта, доллар
 export const THEME = 'THEME'; // тема, лампочка
 export const CLEAR = 'CLEAR'; // отчистить
 export const HOME = 'HOME'; // домик
+export const DEVELOPER = 'DEVELOPER'; // - </>
 
 export const VK = 'VK'; // логотип вк
 export const INST = 'INST'; // логотип инсты

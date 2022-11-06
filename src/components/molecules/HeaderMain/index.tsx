@@ -5,6 +5,7 @@ import { useAppDispatch } from '../../../hooks/hooks'
 import i18n from '../../../i18n/i18n'
 import { LOCAL_NAME } from '../../../store/actions/main/types'
 import { addLocalAccaunts, addLocalCategories, addLocalExpAndIncome, setAccauntId, setAllCauntAccaunts, setCurrencyValue, 
+  setDeveloperModeAC, 
   setLanguage, setPop, setRate, setSortValue, setThemeApp } from '../../../store/redusers/main/main'
 import ButtonsTabMain from '../../atoms/ButtonsTabMain'
 import { styles } from './header.styles'
@@ -22,6 +23,7 @@ const HeaderMain = () => {
   // localAPI.remove(LOCAL_NAME.CURRENCY_VALUE)
   // localAPI.remove(LOCAL_NAME.RATE)
   // localAPI.remove(LOCAL_NAME.THEME_APP)
+  // localAPI.remove(LOCAL_NAME.DEVELOPER)
 
   const localStoreHandler = async () => {
 
@@ -54,7 +56,8 @@ const HeaderMain = () => {
     const themeApp = await localAPI.get(LOCAL_NAME.THEME_APP)
     themeApp && dispatch(setThemeApp(themeApp))
 
-    console.log(themeApp);
+    const developer = await localAPI.get(LOCAL_NAME.DEVELOPER)
+    developer && dispatch(setDeveloperModeAC(developer))
 
     const language = await localAPI.get(LOCAL_NAME.LANGUAGE)
 

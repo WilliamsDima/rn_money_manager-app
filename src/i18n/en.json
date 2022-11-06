@@ -5,6 +5,10 @@
   "developer_contact": "Developer contacts:",
   "developer_site": "Developer site:",
 
+  "developer_mode": "Developer Mode",
+  "developer_mode_on": "On",
+  "developer_mode_off": "Off",
+
   "language": "Language",
   "Exchange_Rates": "Exchange Rates",
   "currency": "Currency",

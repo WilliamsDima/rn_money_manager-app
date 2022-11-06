@@ -19,11 +19,13 @@ const PickerMultiItem: FC<IPickerItem> = ({overStyle, item, disabled,
     ...styles.check,
     borderColor: COLORS.mainColor,
   } 
+
+  const disabledClick = !active && disabled
   
   return (
     <TouchableOpacity style={[styles.container, overStyle]}
-    disabled={!active && disabled}
-    onPress={() => setValue(item)}>
+    activeOpacity={disabledClick && 1}
+    onPress={() => !disabledClick && setValue(item)}>
       <Text style={[globalStyles.p1, styles.item, {width: '80%', color: COLORS.colorText}, 
       !active && disabled && {opacity: 0.6}]} numberOfLines={1}>{item.title}</Text>
       <View style={styles.item}>

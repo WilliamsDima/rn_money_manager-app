@@ -15,7 +15,7 @@ const MainTemplate = () => {
   const [hideDiogram, setHideDiogram] = useState(false)
 
   const onScroll = (e) => {
-    if (e.nativeEvent.contentOffset.y > 70) {
+    if (e.nativeEvent.contentOffset.y > 90) {
       setHideDiogram(true)
     }
     if (e.nativeEvent.contentOffset.y === 0) {
@@ -35,7 +35,8 @@ const MainTemplate = () => {
           setExpAndEncomeModal={setExpAndEncomeModal}/>
         </View>
 
-        <MainContent onScroll={onScroll}/>
+        <MainContent 
+        onScroll={onScroll}/>
 
         <CustomModal visible={expAndEncomeModal} closeHandler={setExpAndEncomeModal}>
             <ExpAndIncModal setExpAndEncomeModal={setExpAndEncomeModal}/>

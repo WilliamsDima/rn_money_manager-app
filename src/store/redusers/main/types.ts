@@ -48,6 +48,7 @@ export interface ICurrencySelect {
 }
 
 export interface IStore {
+    developerMode: boolean
     accountsIdSelected: number | string
     tabExpOrIncome: boolean
     sort: TsortFilter

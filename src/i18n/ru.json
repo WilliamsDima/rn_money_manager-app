@@ -5,6 +5,10 @@
   "developer_contact": "Контакты разработчика:",
   "developer_site": "Сайт разработчика:",
 
+  "developer_mode": "Режим разработчика",
+  "developer_mode_on": "Вкл.",
+  "developer_mode_off": "Выкл.",
+
   "language": "Язык",
   "Exchange_Rates": "Курс валют",
   "currency": "Валюта",
