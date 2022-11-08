@@ -80,10 +80,7 @@ const Diogramma: FC<IDiogramma> = React.memo(({sortArray, hideDiogram}) => {
         count: second[currencyValue.toLocaleLowerCase()]?.toFixed(3)
       }
     }
-
-    console.log('developerMode', developerMode);
     
-
     if (developerMode) {
       Alert.alert(
         'Курсы валют',
