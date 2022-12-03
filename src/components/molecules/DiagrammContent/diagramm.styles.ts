@@ -1,14 +1,6 @@
 import { StyleSheet } from 'react-native'
 
 export const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '100%',
-    paddingVertical: 15,
-    marginBottom: 30,
-    overflow: 'hidden',
-  },
   wrapperDiagremm: {
     flexDirection: 'row',
     alignItems: 'center',

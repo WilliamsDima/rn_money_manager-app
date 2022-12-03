@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { View } from 'react-native'
 import { globalStyles } from '../../../services/styles'
 import CustomModal from '../../atoms/Modal'

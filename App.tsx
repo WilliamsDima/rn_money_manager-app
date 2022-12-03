@@ -6,6 +6,7 @@ import SplashScreen from 'react-native-splash-screen'
 import { StatusBar } from 'react-native'
 import { COLORS } from './src/services/colors'
 
+
 const App: FC = () => {
 
   React.useEffect(() => {

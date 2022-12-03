@@ -2,68 +2,37 @@ import React, { FC, useEffect } from 'react'
 import { View, Text, Alert } from 'react-native'
 import { styles } from './diogramma.styles'
 import { IDiogramma } from './diogramma.types'
-import PieChart from 'react-native-pie-chart'
 import { getThemeApp } from '../../../services/colors'
 import { globalStyles } from '../../../services/styles'
-import DiogrammaLine from '../DiogrammaLine'
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks'
 import { rateAPI } from '../../../api/http/rateAPI'
 import { setCurrency } from '../../../store/redusers/main/main'
-import { numberConverter } from '../../../hooks/helpers'
 import { useTranslation } from 'react-i18next'
 import { ICurrencySelect } from '../../../store/redusers/main/types'
+import DiogrammContent from '../../molecules/DiagrammContent'
 
 const Diogramma: FC<IDiogramma> = React.memo(({sortArray, hideDiogram}) => {
 
   const dispatch = useAppDispatch()
   const { t } = useTranslation()
-  const { categories, currency, currencySelect, sumMoneySort, currencyValue, themeApp, developerMode } = useAppSelector(state => state.main)
+  const { categories, currencySelect, currencyValue, themeApp, developerMode } = useAppSelector(state => state.main)
 
-  const { colorText, colorBlack } = getThemeApp(themeApp)
+  const { colorText } = getThemeApp(themeApp)
 
-  const widthAndHeight = 180
-  const series = []
-  const sliceColor = []
+  const dataDiogramm = []
 
   if (sortArray.length) {
     sortArray.forEach((c) => {
       if (c.count) {
-        series.push(+c.count);
-        sliceColor.push(c.bg);
+        const item = {
+          population: +c.count,
+          color: c.bg,
+        }
+
+        dataDiogramm.push(item)
       }
-    });
+    })
   }
-
-  const diogramm = hideDiogram ? <View style={{alignItems: 'center'}}>
-    <DiogrammaLine sortArray={sortArray}/>
-    <Text style={[globalStyles.p2, {color: colorText}]}>
-          {numberConverter(sumMoneySort)} {currencyValue}
-        </Text>
-  </View> 
-  : <View style={styles.wrapperDiagremm}>
-      
-      {currency && <Text style={[globalStyles.s3, , {color: colorText}]}>
-        {currency?.first?.count} {currency?.first?.code} 
-      </Text>}
-
-      <PieChart
-        widthAndHeight={widthAndHeight}
-        series={series}
-        sliceColor={sliceColor}
-        doughnut={true}
-        coverRadius={0.5}
-        coverFill={colorBlack}
-      />
-      
-      {currency && <Text style={[globalStyles.s3, {color: colorText}]}>
-        {currency?.second?.count} {currency?.second?.code} 
-      </Text>}
-      <View style={styles.count}>
-        <Text style={[globalStyles.s3, {color: colorText}]}>
-          {numberConverter(sumMoneySort)} {currencyValue}
-        </Text>
-      </View>
-  </View>
 
   const getCurrency = async () => {
     
@@ -97,14 +66,17 @@ const Diogramma: FC<IDiogramma> = React.memo(({sortArray, hideDiogram}) => {
 
   
   useEffect(() => {
-    console.log('Diogramma');
+    console.log('Diogramma')
     getCurrency()
   }, [categories, currencySelect, currencyValue, developerMode])
   
   return (
-    <View style={[styles.container, !hideDiogram ? {marginBottom: 0} : {marginBottom: 10}]}>
-      {sortArray.length && sliceColor.length ? diogramm :
-      <Text style={[globalStyles.p1, {opacity: 0.6, color: colorText}]}>{t('EMPTY')}</Text>}
+    <View style={[styles.container, 
+      dataDiogramm.length && !hideDiogram ? {marginTop: -30} : {marginTop: 0},
+      !hideDiogram ? {marginBottom: 10} : {marginBottom: 10}]}>
+      {sortArray.length && dataDiogramm.length ? 
+      <DiogrammContent sortArray={sortArray} data={dataDiogramm} hideDiogram={hideDiogram}/> 
+      : <Text style={[globalStyles.p1, {opacity: 0.6, color: colorText}]}>{t('EMPTY')}</Text>}
     </View>
   )
 })

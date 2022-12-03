@@ -13,6 +13,7 @@ export const styles = StyleSheet.create({
     width: 30,
     alignItems: 'center',
     justifyContent: 'center',
+    zIndex: 10
   },
   prev: {
     marginTop: -2,

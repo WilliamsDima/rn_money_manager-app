@@ -10,8 +10,7 @@ const DiogrammaLine: FC<IDiogramma> = ({sortArray}) => {
   const { sumMoneySort } = useAppSelector(state => state.main) 
 
   useEffect(() => {
-    console.log('DiogrammaLine', sumMoneySort)
-    
+    console.log('DiogrammaLine')
   }, [])
   
   return (

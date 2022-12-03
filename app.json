@@ -1,4 +1,8 @@
 {
   "name": "MoneyManager",
-  "displayName": "MoneyManager"
+  "displayName": "MoneyManager",
+  "react-native-google-mobile-ads": {
+    "android_app_id": "ca-app-pub-1939443737249774~5333099685",
+    "ios_app_id": "ca-app-pub-1939443737249774~5333099685"
+  }
 }
